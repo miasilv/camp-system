@@ -3,6 +3,7 @@
         "id": "2a73df0e-df2f-4f6a-90da-32e888383b2e",
         "name": "Camp 247",
         "sessions": [{
+                        "id": "d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",
                         "theme": "splash week",
                         "cabins": ["a1876dff-63b7-448b-a19a-0ca4bb046c3b","9755e52b-bcb6-41e3-8f69-b840c866de19"],
                         "sessionNumber": 1,
@@ -10,6 +11,7 @@
                         "end date": "07/07/2024"
                     },
                     {
+                        "id": "642bbf90-b9d8-4f67-8764-5d0eb6af30f8",
                         "theme": "outdoorsy",
                         "cabins": ["a1876dff-63b7-448b-a19a-0ca4bb046c3b","9755e52b-bcb6-41e3-8f69-b840c866de19"],
                         "sessionNumber": 2,

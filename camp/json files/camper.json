@@ -14,7 +14,7 @@
                         "time": "during an athsma attack"
                         }],
         "allergies": ["pollen", "peanuts", "strawberries"],
-        "sessions": [1,4],
+        "sessions": ["d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",4],
         "notes": ["bobby is so nice", "bobby punched another camper"],
         "emergency contacts": [{
                                 "firstname": "Mackenzie",
@@ -31,7 +31,7 @@
         "age": 5,
         "medications": [],
         "allergies": ["pollen", "pet dander", "peaches"],
-        "sessions": [2,4],
+        "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8",4],
         "notes": ["mille is so sweet", "mille hurt her leg at kayaking today"],
         "emergency contacts": [{
                                 "firstname": "Rebecca",
