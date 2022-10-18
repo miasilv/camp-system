@@ -6,18 +6,18 @@ import java.util.HashMap;
  * @author sara
  */
 public class Schedule {
-    private HashMap<String, Activity> schedule;
+    private HashMap<String, String> schedule;
     /**
      * constructor of the daily schedule
      */
     public Schedule(){
-        schedule = new HashMap<String, Activity>();
+        schedule = new HashMap<String, String>();
     }
     /**
      * getter of the schedule
      * @return the schedule
      */
-    public HashMap<String, Activity> getSchedule(){
+    public HashMap<String, String> getSchedule(){
         return this.schedule;
     }
     /**
@@ -25,7 +25,7 @@ public class Schedule {
      * @param time the time of the activity being editted
      * @param activity the activity being editted
      */
-    public void editSchedule(String time, Activity activity){
+    public void editSchedule(String time, String activity){
 
     }
     public String toString(){
