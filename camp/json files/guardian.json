@@ -6,7 +6,7 @@
         "password": "ilovemykidstobeaway!",
         "phone number": "803-555-5555",
         "type": "guardian",
-        "camperids": [1, 2]
+        "camperids": ["77dfed2d-14d4-4ee9-a926-700153221541", "dd0df3f4-db7a-465e-8541-41865911d890"]
     },
     {
         "id": "fa4e6a66-52a2-421e-a371-56982226abaa",
@@ -15,6 +15,6 @@
         "password": "akfjdakfhoiakands",
         "phone number": "942-555-2390",
         "type": "guardian",
-        "camperids": [3]
+        "camperids": ["6fca9504-e805-411f-a7b0-3d51fb8b07fa"]
     }
 ]
