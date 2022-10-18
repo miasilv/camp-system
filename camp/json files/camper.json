@@ -1,0 +1,72 @@
+[
+    {
+        "id": "77dfed2d-14d4-4ee9-a926-700153221541",
+        "name" : "bobby smith",
+        "birthday": "10/08/14",
+        "medications": [{
+                        "type": "advil",
+                        "dose": "one pill",
+                        "time": "whenever he has a headache"
+                        },
+                        {
+                        "type": "albuterol",
+                        "dose": "two pumps of inhaler",
+                        "time": "during an athsma attack"
+                        }],
+        "allergies": ["pollen", "peanuts", "strawberries"],
+        "sessions": [1,4],
+        "notes": ["bobby is so nice", "bobby punched another camper"],
+        "emergency contacts": [{
+                                "firstname": "Mackenzie",
+                                "lastname": "Smith",
+                                "phonenumber": "3897751511",
+                                "address": "12 Millburn Avenue, 23888, Camden, South Carolina",
+                                "relationship": "Neighbor"
+                            }]
+    },
+    {
+        "id": "dd0df3f4-db7a-465e-8541-41865911d890",
+        "name" : "mille smith",
+        "birthday": "2/14/17",
+        "age": 5,
+        "medications": [],
+        "allergies": ["pollen", "pet dander", "peaches"],
+        "sessions": [2,4],
+        "notes": ["mille is so sweet", "mille hurt her leg at kayaking today"],
+        "emergency contacts": [{
+                                "firstname": "Rebecca",
+                                "lastname": "Wringler",
+                                "phonenumber": "2221123345",
+                                "address": "35 Brookview Street, 28990, Charleston, South Carolina",
+                                "relationship": "Neighbor"
+                            },
+                            {
+                                "firstname": "John",
+                                "lastname": "Van Dam",
+                                "phonenumber": "9882345568",
+                                "address": "23 Eagle Point, 28990, Charleston, South Carolina",
+                                "relationship": "Family Friend"
+                            }]
+    },
+    {
+        "id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa",
+        "name" : "ashley bahr",
+        "birthday": "5/24/17",
+        "age": 5,
+        "medications": [{
+                        "type": "amoxicillian",
+                        "dose": "20 to 40 milligrams (mg) per kilogram (kg) of body weight per day",
+                        "time": "divided and given every 8 hours"
+                        }],
+        "allergies": [],
+        "sessions": ["5"],
+        "notes": ["ashley is crazy", "ashley did really well at ziplining today"],
+        "emergency contacts": [{
+                                "firstname": "Trina",
+                                "lastname": "Beckley",
+                                "phonenumber": "3225678899",
+                                "address": "234 Rock Point Rd, 26789, Fort Mill, South Carolina",
+                                "relationship": "Family Friend"
+                            }]
+    }
+]
