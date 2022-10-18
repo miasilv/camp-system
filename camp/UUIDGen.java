@@ -1,5 +1,3 @@
-package camp;
-
 import java.util.UUID;
 
 public class UUIDGen {

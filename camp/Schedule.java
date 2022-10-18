@@ -1,5 +1,3 @@
-package camp;
-
 import java.util.HashMap;
 /**
  * an object representing a daily schedule

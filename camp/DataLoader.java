@@ -1,5 +1,3 @@
-package camp;
-
 import java.util.ArrayList;
 /**
  * @author Natalie Crawford
