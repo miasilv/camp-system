@@ -1,7 +1,13 @@
+package camp;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CampFacade {
+/**
+ * @author Mia Silver
+ * A Camp Facade Object
+ */
+public abstract class CampFacade {
     private User user;
     private Camp camp;
 
