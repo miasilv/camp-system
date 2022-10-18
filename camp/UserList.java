@@ -24,11 +24,11 @@ public class UserList {
     }
 
     public User getUser(String email) {
-
+        return users.get(0); // this is a placeholder
     }
 
     public User getUser(UUID id) {
-
+        return users.get(0);
     }
 
     public void editUser() {

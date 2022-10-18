@@ -16,28 +16,32 @@ public class Contact {
      * @param relationship Relationship of the contact to the camper
      */
     public Contact(String firstName, String lastName, String phoneNumber, String address, String relationship) {
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.relationship = relationship;
     }
 
     //i could java doc these but they're more or less self-explanatory
     
     public String getFirstName() {
-
+        return firstName;
     }
 
     public String getLastName() {
-
+        return lastName;
     }
 
     public String getPhoneNumber() {
-
+        return phoneNumber;
     }
 
     public String getAddress() {
-
+        return address;
     }
 
     public String getRelationship() {
-
+        return relationship;
     }
 }

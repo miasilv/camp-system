@@ -18,7 +18,8 @@ public class Counselor {
      * @param birthday Birthday of the counselor
      */
     public Counselor(String name, String email, String password, Date birthday) {
-
+        super();
+        this.birthday = birthday;
     }
 
     /**
@@ -64,6 +65,6 @@ public class Counselor {
      * Returns a string representation of the counselor
      */
     public String toString() {
-        
+        return "";
     }
 }

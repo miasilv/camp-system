@@ -21,7 +21,8 @@ public class Camper {
      * @param birthday Birthday of the camper
      */
     public Camper(String name, Date birthday) {
-
+        this.name = name;
+        this.birthday = birthday;
     }
 
     /**
@@ -103,6 +104,6 @@ public class Camper {
      * Returns a string representation. DO YOU REALLY NEED TO KNOW THIS??
      */
     public String toString() {
-
+        return "";
     }
 }

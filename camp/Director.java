@@ -9,6 +9,6 @@ public class Director {
      * @param password Password of the director
      */
     public Director(String name, String email, String password) {
-        
+        super();
     }
 }

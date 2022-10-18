@@ -14,7 +14,7 @@ public class Guardian {
      * @param password Password of the guardian
      */
     public Guardian(String name, String email, String password) {
-
+        super();
     }
 
     /**

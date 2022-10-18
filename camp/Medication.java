@@ -14,6 +14,8 @@ public class Medication {
      * @param time Time of medication consumption
      */
     public Medication(int dose, String type, LocalTime time) {
-
+        this.dose = dose;
+        this.type = type;
+        this.time = time;
     }
 }
