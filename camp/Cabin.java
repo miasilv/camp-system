@@ -1,4 +1,5 @@
 package camp;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -18,7 +19,6 @@ public class Cabin {
 
         cabinID = new UUID(0, 0);
         campers = new ArrayList<Camper>();
-        counselor = new Counselor();
         schedule = new HashMap<Day, Schedule>();
     }
     /**

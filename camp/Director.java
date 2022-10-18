@@ -1,4 +1,5 @@
 package camp;
+
 public class Director {
     
     /**

@@ -1,3 +1,5 @@
+package camp;
+
 import java.util.ArrayList;
 
 /**

@@ -1,3 +1,5 @@
+package camp;
+
 /**
  * @author Natalie Crawford
  * the DataConstants Class

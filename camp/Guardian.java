@@ -1,5 +1,7 @@
 package camp;
 
+import java.util.ArrayList;
+
 public class Guardian {
     private ArrayList<Camper> campers;
     private int numOfSessions;

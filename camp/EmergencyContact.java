@@ -3,7 +3,7 @@ package camp;
 import java.util.HashMap;
 
 public class EmergencyContact {
-    private Hashmap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
+    private HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
    
     /**
      * Contructor for the Emergency Contact class
