@@ -1,0 +1,74 @@
+[
+    {
+        "id": "a1876dff-63b7-448b-a19a-0ca4bb046c3b",
+        "campers": ["77dfed2d-14d4-4ee9-a926-700153221541","dd0df3f4-db7a-465e-8541-41865911d890","6fca9504-e805-411f-a7b0-3d51fb8b07fa"],
+        "counselor": ["00717bd2-d5c7-4c19-9502-f35dcb343261"],
+        "beds": 16,
+        "max age": 10,
+        "min age": 7,
+        "schedule": [{
+                        "day": "Monday",
+                        "schedule": ["Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Tuesday",
+                        "schedule": ["Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Wednesday",
+                        "schedule": ["Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Thursday",
+                        "schedule": ["Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Friday",
+                        "schedule": ["Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs"]
+                    },
+                    {
+                        "day": "Saturday",
+                        "schedule": ["Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Sunday",
+                        "schedule": ["Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs"]
+                    }]
+    },
+    {
+        "id": "9755e52b-bcb6-41e3-8f69-b840c866de19",
+        "campers": [9,10,11],
+        "counselor": ["55318676-1cb2-4886-98c4-6375a7b8ae73"],
+        "beds": 16,
+        "max age": 16,
+        "min age": 11,
+        "schedule": [{
+                        "day": "Monday",
+                        "schedule": ["Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Tuesday",
+                        "schedule": ["Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Wednesday",
+                        "schedule": ["Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Thursday",
+                        "schedule": ["Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Friday",
+                        "schedule": ["Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs"]
+                    },
+                    {
+                        "day": "Saturday",
+                        "schedule": ["Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs"]
+                    },
+                    {
+                        "day": "Sunday",
+                        "schedule": ["Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs"]
+                    }]
+    }
+]

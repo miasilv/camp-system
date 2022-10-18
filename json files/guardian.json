@@ -1,0 +1,20 @@
+[
+    {
+        "id": "39fb1b37-17ec-4d4a-9dbd-d8b0dc293be4",
+        "name": "Karen Smith",
+        "email": "karensmith82@gmail.com",
+        "password": "ilovemykidstobeaway!",
+        "phone number": "803-555-5555",
+        "type": "guardian",
+        "camperids": [1, 2]
+    },
+    {
+        "id": "fa4e6a66-52a2-421e-a371-56982226abaa",
+        "name": "John Bahr",
+        "email": "johnbahr@gmail.com",
+        "password": "akfjdakfhoiakands",
+        "phone number": "942-555-2390",
+        "type": "guardian",
+        "camperids": [3]
+    }
+]

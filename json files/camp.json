@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "name": "Camp 247",
+        "sessions": [{
+                        "theme": "splash week",
+                        "cabins": [1,2,3,4,5],
+                        "sessionNumber": 1,
+                        "start date": "07/01/2024",
+                        "end date": "07/07/2024"
+                    },
+                    {
+                        "theme": "outdoorsy",
+                        "cabins": [1,2,3,4,5],
+                        "sessionNumber": 2,
+                        "start date": "07/08/2024",
+                        "end date": "07/14/2024"
+                    }],
+        "price": "$500",
+        "faqs": [{
+                    "question": "what are the activities?",
+                    "answer": "running, archery, swimming, ziplining"
+                },
+                {
+                    "question": "what is the price",
+                    "answer": "$500"
+                }],
+        "camperspercounselor": 8,
+        "activities": ["ziplining", "swimming", "running", "gaga ball", "soccer", 
+                        "kayaking", "bracelet making","arts and crafts", "painting", 
+                        "breakfast", "lunch", "dinner", "snack/ rest time","campfire songs"]
+    }
+]
