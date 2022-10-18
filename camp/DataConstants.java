@@ -1,0 +1,72 @@
+package camp;
+
+/**
+ * @author Natalie Crawford
+ * the DataConstants Class
+ */
+public abstract class DataConstants {
+
+    //cabin data constants
+    protected static final String CABIN_FILE_NAME = "cabin.json";
+	protected static final String CABIN = "cabin";
+	protected static final String CABIN_CAMPERS = "campers";
+	protected static final String CABIN_COUNSELOR = "counselor";
+	protected static final String CABIN_BEDS = "beds";
+    protected static final String CABIN_MAX_AGE = "max age";
+    protected static final String CABIN_MIN_AGE = "min age";
+    protected static final String CABIN_SCHEDULE = "schedule";
+
+
+    //camp data constants
+    protected static final String CAMP_FILE_NAME = "camp.json";
+	protected static final String CAMP = "camp";
+	protected static final String CAMP_NAME = "name";
+	protected static final String CAMP_SESSIONS = "sessions";
+	protected static final String CAMP_PRICE = "price";
+    protected static final String CAMP_FAQS = "faqs";
+    protected static final String CAMP_RATIO = "camperspercounselor";
+    protected static final String CAMP_ACTIVITIES = "activities";
+
+    //camper data constants
+    protected static final String CAMPER_FILE_NAME = "camper.json";
+	protected static final String CAMPER = "camper";
+	protected static final String CAMPER_NAME = "name";
+	protected static final String CAMPER_BIRTHDAY = "birthday";
+	protected static final String CAMPER_MEDICATIONS = "medications";
+    protected static final String CAMPER_ALLERGIES = "allergies";
+    protected static final String CAMPER_SESSIONS = "sessions";
+    protected static final String CAMPER_NOTES = "notes";
+    protected static final String CAMPER_EMERGENCY_CONTACTS = "emergency contacts";
+
+    //counselor data constants
+    protected static final String COUNSELOR_FILE_NAME = "counselor.json";
+	protected static final String COUNSELOR = "counselor";
+	protected static final String COUNSELOR_NAME = "name";
+    protected static final String COUNSELOR_EMAIL = "email";
+    protected static final String COUNSELOR_PASSWORD = "password";
+    protected static final String COUNSELOR_PHONE_NUMBER = "phonenumber";
+    protected static final String COUNSELOR_BIO = "bio";
+    protected static final String COUNSELOR_CABINS = "cabins";
+	protected static final String COUNSELOR_BIRTHDAY = "birthday";
+    protected static final String COUNSELOR_ALLERGIES = "allergies";
+    protected static final String COUNSELOR_EMERGENCY_CONTACTS = "emergency contacts";
+
+    //director data constants
+    protected static final String DIRECTOR_FILE_NAME = "director.json";
+	protected static final String DIRECTOR = "director";
+	protected static final String DIRECTOR_NAME = "name";
+    protected static final String DIRECTOR_EMAIL = "email";
+    protected static final String DIRECTOR_PASSWORD = "password";
+    protected static final String DIRECTOR_PHONE_NUMBER = "phonenumber";
+
+    //guardian data constants
+    protected static final String GUARDIAN_FILE_NAME = "guardian.json";
+	protected static final String GUARDIAN = "guardian";
+	protected static final String GUARDIAN_NAME = "name";
+    protected static final String GUARDIAN_EMAIL = "email";
+    protected static final String GUARDIAN_PASSWORD = "password";
+    protected static final String GUARDIAN_PHONE_NUMBER = "phonenumber";
+    protected static final String GUARDIAN_CAMPERS = "campers";
+
+    
+}
