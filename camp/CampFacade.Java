@@ -135,7 +135,7 @@ public class CampFacade {
      * @return the schedule of the given day
      */
     public Schedule getSchedule(Day day) {
-        return getScheduleHash().day;
+        return getScheduleHash().get(day);
     }
 
    
@@ -146,11 +146,9 @@ public class CampFacade {
      * Signs a user in to their portal with their email and password.
      * @param email the user's email
      * @param password the user's password
-     * @return the user who signed in
      */
-    public User signIn(String email, String password) {
-        User user = new User(email, password);
-        return user;
+    public void signIn(String email, String password) {
+        
     }
     
     /**
@@ -279,8 +277,8 @@ public class CampFacade {
      * Gets emergency contacts.
      * @return a emergency contacts object (hash map) 
      */
-    public EmergencyContacts getEmergencyContacts() {
-        EmergencyContacts ec = new EmergencyContacts();
+    public EmergencyContact getEmergencyContacts() {
+        EmergencyContact ec = new EmergencyContact();
         return ec;
     }
 
@@ -290,7 +288,7 @@ public class CampFacade {
      * @return the contact information of the given relation
      */
     public Contact getContact(String relationship) {
-        Contact contact = new Contact();
+        Contact contact = new Contact("a", "b", "c", "d", "e");
         return contact;
     }
     
