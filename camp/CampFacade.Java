@@ -9,26 +9,38 @@ public class CampFacade {
     private UserList user;
     private Camp camp; 
 
+    private static final String CAMP_INFORMATION = "CampI";
+    private static final String SESSION_INFORMATION = "SessI";
+    private static final String CABIN_INFORMATION = "CabI";
+    private static final String USER_INFORMATION = "UserI";
+    private static final String COUNSELOR_INFORMATION = "CounI";
+    private static final String MEDICATION_INFORMATION = "MedI";
+    private static final String CONTACT_INFORMATION = "ContI";
+    private static final String GUARDIAN_INFORMATION = "GuardI";
+    private static final String CAMPER_INFORMATION = "CamperI";
+
     public CampFacade() {
         user.getInstance();
         camp.getInstance();
     }
 
     /**
-     * Edits the Camp Information based on the type of information and the change you want to make.
-     * @param type any of the instance variables in Camp
+     * Edits an instance variable (not array lists) in a given class.
+     * @param className the class that contains the information being edited.
+     * @param type any of the instance variables in the given class (not array lists)
      * @param change the new information you want to put in
      */
-    public void editCampInformation(String className, String type, String change) {
+    public void editInformation(String className, String type, String change) {
 
     }
     
     /**
-     * Gets the Camp Information based on the specific type.
-     * @param type any of the instance variables in Camp (not Array Lists)
+     * Gets an instance variable's (not array lists) information in a given class.
+     * @param className the class that contains the information being returned 
+     * @param type any of the instance variables in Camp (not array lists)
      * @return the string version of the instance variable
      */
-    public String getCampInformation(String type) {
+    public String getInformation(String className, String type) {
         return "null";
     }
 
@@ -50,13 +62,16 @@ public class CampFacade {
         return list;
     }
 
+    
+    
     /**
      * Edits the FAQ based on the type of information and the change you want to make.
      * @param type any of the instance variables in FAQ (not Array Lists)
      */
-    public void editFAQ(String type, String change) {
+    /*public void editFAQ(String type, String change) {
 
-    }
+    }*/
+    
 
     /**
      * Gets all activites in Camp.
@@ -76,18 +91,18 @@ public class CampFacade {
      * @param type any of the instance variables in Session (not Array Lists)
      * @param change the new information you want to put in
      */
-    public void editSessionInformation(String type, String change) {
+    /*public void editSessionInformation(String type, String change) {
 
-    }
+    }*/
     
     /**
      * Gets the Session Information based on the specific type.
      * @param type any of the instance variables in Session (not Array Lists)
      * @return the string version of the instance variable
      */
-    public String getSessionInformation(String type) {
+    /*public String getSessionInformation(String type) {
         return "null";
-    }
+    }*/
 
     /**
      * Gets a list of Cabins
@@ -107,18 +122,18 @@ public class CampFacade {
      * @param type any of the instance variables in Cabin (not Array Lists)
      * @param change the new information you want to put in
      */
-    public void editCabinInformation(String type, String change) {
+    /*public void editCabinInformation(String type, String change) {
 
-    }
+    }*/
     
     /**
      * Gets the Cabin Information based on the specific type.
      * @param type any of the instance variables in Cabin (not Array Lists)
      * @return the string version of the instance variable
      */
-    public String getCabinInformation(String type) {
+    /*public String getCabinInformation(String type) {
         return "null";
-    }
+    }*/
     
     /**
      * Gets a list of Campers.
@@ -175,18 +190,18 @@ public class CampFacade {
      * @param type any instance variable of that user (no array lists)
      * @param change the new information you want to put in
      */
-    public void editUserInformation(String type, String change) {
+    /*public void editUserInformation(String type, String change) {
     
-    }
+    }*/
 
     /**
      * Gets the User's Information based on the specific type.
      * @param type any of the instance variables in User (no array lists)
      * @return the string version of the instance variable
      */
-    public String getUserInformation(String type) {
+    /*public String getUserInformation(String type) {
         return "null";
-    }
+    }*/
 
 
 
@@ -198,54 +213,54 @@ public class CampFacade {
      * @param type any instance variable of that counselor (no array lists)
      * @param change the new information you want to put in
      */
-    public void editCounselorInformation(String type, String change) {
+    /*public void editCounselorInformation(String type, String change) {
 
-    }
+    }*/
     
     /**
      * Gets the Cousnelor's Information based on the specific type.
      * @param type any of the instance variables in Counselor (no array lists)
      * @return the string version of the instance variable
      */
-    public String getCounselorInformation(String type) {
+    /*public String getCounselorInformation(String type) {
         return "null";
-    }
+    }*/
 
     /**
      * Edits the Guardian's Information based on the type of information and the change you want to make. 
      * @param type any instance variable of that Guardian (no array lists)
      * @param change the new information you want to put in
      */
-    public void editGuardianInformation(String type, String change) {
+    /*public void editGuardianInformation(String type, String change) {
 
-    }
+    }*/
     
     /**
      * Gets the Guardian's Information based on the specific type.
      * @param type any of the instance variables in Guardian (no array lists)
      * @return the string version of the instance variable
      */
-    public String getGuardianInformation(String type) {
+    /*public String getGuardianInformation(String type) {
         return "null";
-    } 
+    }*/ 
 
     /**
      * Edits the Camper's Information based on the type of information and the change you want to make. 
      * @param type any instance variable of that camper (no array lists)
      * @param change the new information you want to put in
      */
-    public void editCamperInformation(String type, String change) {
+    /*public void editCamperInformation(String type, String change) {
 
-    }
+    }*/
 
     /**
      * Gets the Camper's Information based on the specific type.
      * @param type any of the instance variables in Camper (no array lists)
      * @return the string version of the instance variable
      */
-    public String getCamperInformation(String type) {
+    /*public String getCamperInformation(String type) {
         return "null";
-    }
+    }*/
 
     
 
@@ -274,9 +289,9 @@ public class CampFacade {
      * @param type any instance variable of that medication (no array lists)
      * @param change the new information you want to put in
      */
-    public void editMedicationInformation(String type, String Change) {
+    /*public void editMedicationInformation(String type, String Change) {
 
-    }
+    }*/
 
 
 
@@ -306,16 +321,16 @@ public class CampFacade {
      * @param type any of the instance variables in Contact (no array lists)
      * @return the string version of the instance variable
      */
-    public String getContactInfo(String type) {
+    /*public String getContactInfo(String type) {
         return "null";
-    }
+    }*/
 
     /**
      * Edits the Contact's Information based on the type of information and the change you want to make. 
      * @param type any instance variable of that contact (no array lists)
      * @param change the new information you want to put in
      */
-    public void editContactInfo(String type, String change) {
+    /*public void editContactInfo(String type, String change) {
 
-    }
+    }*/
 }

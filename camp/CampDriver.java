@@ -11,6 +11,16 @@ public class CampDriver {
 	private CampFacade facade;
 	private User user;
 
+	private static final String CAMP_INFORMATION = "CampI";
+    private static final String SESSION_INFORMATION = "SessI";
+    private static final String CABIN_INFORMATION = "CabI";
+    private static final String USER_INFORMATION = "UserI";
+    private static final String COUNSELOR_INFORMATION = "CounI";
+    private static final String MEDICATION_INFORMATION = "MedI";
+    private static final String CONTACT_INFORMATION = "ContI";
+    private static final String GUARDIAN_INFORMATION = "GuardI";
+    private static final String CAMPER_INFORMATION = "CamperI";
+
     /**
 	 * Constructs a new driver
 	 */
@@ -74,10 +84,10 @@ public class CampDriver {
 		while(true) {
 			//updating options
 			clearOptions();
-			options.add("Name: " + facade.getCampInformation("name"));
-			options.add("Pricing: $" + facade.getCampInformation("price") + " per session");
+			options.add("Name: " + facade.getInformation(CAMP_INFORMATION, "name"));
+			options.add("Pricing: $" + facade.getInformation(CAMP_INFORMATION, "price") + " per session");
 			options.add("Sessions Available:\n" + facade.getSessionList());
-			options.add("Campers per Counselor: " + facade.getCampInformation("ratio"));
+			options.add("Campers per Counselor: " + facade.getInformation(CAMP_INFORMATION, "ratio"));
 			options.add("FAQs:\n" + facade.getFAQList()); 
 			options.add("Return");
 			options.add("Quit");
@@ -106,14 +116,14 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editCampInformation("name");
+					editInformation(CAMPER_INFORMATION, "name");
 					break;
 				case 1:
 					if(!user.isDirector()) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editCampInformation("price");
+					editInformation(CAMPER_INFORMATION, "price");
 					break;
 				case 2:
 					//TODO sessions
@@ -122,7 +132,7 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editCampInformation("ratio");
+					editInformation(CAMPER_INFORMATION, "ratio");
 					break;
 				case 4:
 					//TODO FAQs
@@ -132,16 +142,24 @@ public class CampDriver {
 	}
 
 	/**
-	 * Edits camp information based on type
-	 * @param type the type of camp information you are editing
+	 * Edits a class' instance varaible.
+	 * @param className the class in which the instance variable is located
+	 * @param type the instance variable being edited
 	 */
-	private void editCampInformation(String type) {
-		System.out.println("Old" + type + ": " + facade.getCampInformation(type));
-		String change = changeInfo();
-		if(!change.isEmpty()) {
-			facade.editCampInformation(type, change);
-			System.out.println("New" + type + ": " + facade.getCampInformation(type));
+	private void editInformation(String className, String type) {
+		System.out.println("Old" + type + ": " + facade.getInformation(className, type));
+		
+		System.out.print("Enter what you would like to change this to: ");
+		String change = in.nextLine();
+		System.out.println("You would like to change it to " + change);
+		System.out.print("Is this right? (y/n): ");
+		String answer = in.nextLine();
+		if(answer.equalsIgnoreCase("y")) {
+			facade.editInformation(className, type, change);
+			System.out.println("New" + type + ": " + facade.getInformation(className, type));
+			return;
 		}
+		System.out.println("The " + type + " will not be changed.");		
 	}
 
 	/**
@@ -149,21 +167,6 @@ public class CampDriver {
 	 */
 	private void signIn() {
 		//TODO
-	}
-
-	/**
-	 * Change Information
-	 */
-	private String changeInfo() {
-		System.out.print("Enter what you would like to change this to: ");
-		String change = in.nextLine();
-		System.out.println("You would like to change it to " + change);
-		System.out.print("Is this right? (y/n): ");
-		String answer = in.nextLine();
-		if(answer.equalsIgnoreCase("y")) {
-			return answer;
-		}
-		return "";
 	}
 
 	/**
