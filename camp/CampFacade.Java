@@ -5,16 +5,21 @@ import java.util.HashMap;
  * @author Mia Silver
  * A Camp Facade Object
  */
-public abstract class CampFacade {
-    private User user;
-    private Camp camp;
+public class CampFacade {
+    private UserList user;
+    private Camp camp; 
+
+    public CampFacade() {
+        user.getInstance();
+        camp.getInstance();
+    }
 
     /**
      * Edits the Camp Information based on the type of information and the change you want to make.
      * @param type any of the instance variables in Camp
      * @param change the new information you want to put in
      */
-    public void editCampInformation(String type, String change) {
+    public void editCampInformation(String className, String type, String change) {
 
     }
     
