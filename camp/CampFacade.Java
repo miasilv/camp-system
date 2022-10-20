@@ -10,6 +10,7 @@ public class CampFacade {
     private UserList user;
     private Camp camp; 
 
+    //class names
     private static final String CAMP_INFORMATION = "CampI";
     private static final String SESSION_INFORMATION = "SessI";
     private static final String CABIN_INFORMATION = "CabI";
@@ -20,9 +21,45 @@ public class CampFacade {
     private static final String GUARDIAN_INFORMATION = "GuardI";
     private static final String CAMPER_INFORMATION = "CamperI";
 
-    private static final String NAME = "name";
-    private static final String PRICE = "price";
+    //camp instance variables
+	private static final String NAME = "name"; //can also use for User, Camper, and Contact
+	private static final String SESSIONS = "sessions"; //can also use for Camper
+    private static final String PRICE = "price"; //can also use for Guardian
     private static final String RATIO = "ratio";
+	private static final String FAQ = "faqs";
+	private static final String ACTIVITIES = "activities";
+
+	//FAQ instance variables
+	private static final String QUESTION = "question";
+	private static final String ANSWER = "answer";
+	
+	//session instance variables
+	private static final String CABINs = "cabins"; //can also use for Counselor and Camper
+	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
+	private static final String START_DATE = "startD";
+	private static final String END_DATE = "endD";
+
+	//cabin instance variables
+	private static final String CAMPER = "campers"; //can also use for Guardian
+	private static final String COUNSELOR = "counselor";
+	private static final String SCHEDULE = "schedule"; //can also use for schedule class
+
+	//user instance variables
+	private static final String EMAIL = "email"; //can also be used for Contact
+	private static final String PHONE = "phoneNum"; //can also be used for Contact
+	private static final String PASSWORD = "password";
+
+	//counselor instance variables
+	private static final String BIO = "bio";
+	private static final String EMERGENCY_CONTACTS = "emergenCon"; //can also be used for Camper
+	private static final String BIRTHDAY = "birthday"; //can also be used for Camper
+	private static final String ALLERGIES = "allergies"; //can also be used for Camper
+
+	//camper instance variables
+	private static final String MEDICATION = "medication";
+
+	//contact instance variables
+	private static final String RELATIONSHIP = "relationship";
 
     public CampFacade() {
         user.getInstance();
@@ -194,7 +231,7 @@ public class CampFacade {
      * @param password the user's password
      */
     public User signIn(String email, String password) {
-        User user = new Director(email, email, password);
+        User user = new Director(email, email, password, password);
         return user;
     }
     

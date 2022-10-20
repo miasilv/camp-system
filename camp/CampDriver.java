@@ -12,19 +12,56 @@ public class CampDriver {
 	private CampFacade facade;
 	private User user;
 
-	private static final String CAMP_INFORMATION = "CampI";
-    private static final String SESSION_INFORMATION = "SessI";
-    private static final String CABIN_INFORMATION = "CabI";
-    private static final String USER_INFORMATION = "UserI";
-    private static final String COUNSELOR_INFORMATION = "CounI";
-    private static final String MEDICATION_INFORMATION = "MedI";
-    private static final String CONTACT_INFORMATION = "ContI";
-    private static final String GUARDIAN_INFORMATION = "GuardI";
-    private static final String CAMPER_INFORMATION = "CamperI";
+	//Classes
+	private static final String CAMP_INFORMATION = "campI";
+    private static final String SESSION_INFORMATION = "sessI";
+    private static final String CABIN_INFORMATION = "cabI";
+    private static final String USER_INFORMATION = "userI";
+    private static final String COUNSELOR_INFORMATION = "counI";
+    private static final String MEDICATION_INFORMATION = "medI";
+    private static final String CONTACT_INFORMATION = "contI";
+    private static final String GUARDIAN_INFORMATION = "guardI";
+    private static final String CAMPER_INFORMATION = "camperI";
 
-	private static final String NAME = "name";
-    private static final String PRICE = "price";
+	//camp instance variables
+	private static final String NAME = "name"; //can also use for User, Camper, and Contact
+	private static final String SESSIONS = "sessions"; //can also use for Camper
+    private static final String PRICE = "price"; //can also use for Guardian
     private static final String RATIO = "ratio";
+	private static final String FAQ = "faqs";
+	private static final String ACTIVITIES = "activities";
+
+	//FAQ instance variables
+	private static final String QUESTION = "question";
+	private static final String ANSWER = "answer";
+	
+	//session instance variables
+	private static final String CABINs = "cabins"; //can also use for Counselor and Camper
+	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
+	private static final String START_DATE = "startD";
+	private static final String END_DATE = "endD";
+
+	//cabin instance variables
+	private static final String CAMPER = "campers"; //can also use for Guardian
+	private static final String COUNSELOR = "counselor";
+	private static final String SCHEDULE = "schedule"; //can also use for schedule class
+
+	//user instance variables
+	private static final String EMAIL = "email"; //can also be used for Contact
+	private static final String PHONE = "phoneNum"; //can also be used for Contact
+	private static final String PASSWORD = "password";
+
+	//counselor instance variables
+	private static final String BIO = "bio";
+	private static final String EMERGENCY_CONTACTS = "emergenCon"; //can also be used for Camper
+	private static final String BIRTHDAY = "birthday"; //can also be used for Camper
+	private static final String ALLERGIES = "allergies"; //can also be used for Camper
+
+	//camper instance variables
+	private static final String MEDICATION = "medication";
+
+	//contact instance variables
+	private static final String RELATIONSHIP = "relationship";
 
     /**
 	 * Constructs a new driver
@@ -93,6 +130,7 @@ public class CampDriver {
 			options.add("Sessions Available:\n" + facade.getSessionList(CAMP_INFORMATION));
 			options.add("Campers per Counselor: " + facade.getInformation(CAMP_INFORMATION, RATIO));
 			options.add("FAQs:\n" + facade.getFAQList(CAMP_INFORMATION)); 
+			options.add("Activities Offered:\n" + facade.getActivityList(CAMP_INFORMATION));
 			options.add("Return");
 			options.add("Quit");
 
@@ -102,27 +140,25 @@ public class CampDriver {
 			if(choice == -1) {
 				continue;
 			}
-			//if it is quit
-			if(choice == options.size() - 1) {
+			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
 				System.exit(0);
 			}
-			//if it is return
-			if(choice == options.size() - 2) {
+			if(choice == options.size() - 2) { //the user chose return
 				return;
 			}
 
 			//switches between choices
 			switch(choice) {
 				case 0:
-					if(!user.isDirector()) {
+					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
 					editStringInformation(CAMP_INFORMATION, NAME);
 					break;
 				case 1:
-					if(!user.isDirector()) {
+					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
@@ -131,7 +167,7 @@ public class CampDriver {
 				case 2:
 					//TODO sessions
 				case 3:
-					if(!user.isDirector()) {
+					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
@@ -145,10 +181,12 @@ public class CampDriver {
 	}
 
 	/**
-	 * Sign in
+	 * Sign in display
 	 */
 	private void signIn() {
-		//TODO
+		clear();
+		System.out.print("Enter your email: ");
+		System.out.print("Enter your password: ");
 	}
 
 	/**
@@ -237,7 +275,7 @@ public class CampDriver {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Clears the array list
 	 */
