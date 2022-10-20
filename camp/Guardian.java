@@ -12,11 +12,11 @@ public class Guardian {
      * @param email Email of the guardian
      * @param password Password of the guardian
      */
-    public Guardian(String name, String email, String password) {
+    public Guardian(String name, String email, String password, String phonenumber) {
         super();
     }
 
-    public Guardian(String name, String email, String password, UUID id, ArrayList<Camper> campers) {
+    public Guardian(String name, String email, String password, String phonenumber, UUID id, ArrayList<Camper> campers) {
         super();
     }
     //overload constructor and have one with id in param and also arraylist of cmapers.

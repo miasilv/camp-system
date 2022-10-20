@@ -78,14 +78,18 @@ public class DataLoader extends DataConstants {
 				String email = (String)guardianJSON.get(GUARDIAN_EMAIL);
                 String password = (String)guardianJSON.get(GUARDIAN_PASSWORD);
 				String phoneNumber = (String)guardianJSON.get(GUARDIAN_PHONE_NUMBER);
+                UUID id = UUID.fromString((String)guardianJSON.get(GUARDIAN_UUID));
                 JSONArray campersJSON = (JSONArray)guardianJSON.get(GUARDIAN_CAMPERS);
 
+                //make arraylist of campers
+                ArrayList<Camper> campers = new ArrayList<Camper>();
                 for(int j = 0; j < campersJSON.size(); j++){
                     UUID camperID = UUID.fromString((String)campersJSON.get(j));
                     Camper camper = UserList.getInstance().getCamperByUUID(camperID);
+                    campers.add(camper);
                 }
 				
-				guardians.add(new Guardian(name, email, password, phoneNumber));
+				guardians.add(new Guardian(name, email, password, phoneNumber, id, campers));
 			}
 			
 			return guardians;
