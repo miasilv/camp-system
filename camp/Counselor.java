@@ -1,14 +1,14 @@
-package camp;
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
-public class Counselor {
+public class Counselor extends User{
     private String bio;
     private ArrayList<Cabin> cabins;
     private ArrayList<EmergencyContact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
+    private UUID id;
 
     /**
      * Constructor for the counselor class
@@ -17,8 +17,62 @@ public class Counselor {
      * @param password Password of the counselor
      * @param birthday Birthday of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday) {
+    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, String bio) {
+        super(name, email, password, phoneNumber);
+        this.birthday = birthday;
+        this.bio = bio;
+    }
 
+    /**
+     * Constructor with the UUID and the Cabins for the JSON
+     * @param name Name of the counselor
+     * @param email Email of the counselor
+     * @param password Password of the counselor
+     * @param birthday Birthday of the counselor
+     * @param phoneNumber Phone Number of the counselor
+     * @param id UUID of the counselor
+     * @param bio Biography of the counselor
+     * @param cabins Cabins of the counselor
+     */
+    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins) {
+        super(name, email, password, phoneNumber);
+        this.birthday = birthday;
+        this.bio = bio;
+        this.cabins = cabins;
+        this.id = id;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     /**
@@ -64,6 +118,6 @@ public class Counselor {
      * Returns a string representation of the counselor
      */
     public String toString() {
-        
+        return "";
     }
 }

@@ -1,8 +1,5 @@
-package camp;
-
 public class Contact {
-    private String firstName;
-    private String lastName;
+    private String name;
     private String phoneNumber;
     private String address;
     private String relationship;
@@ -15,29 +12,28 @@ public class Contact {
      * @param address Address of the contact
      * @param relationship Relationship of the contact to the camper
      */
-    public Contact(String firstName, String lastName, String phoneNumber, String address, String relationship) {
-
+    public Contact(String name, String phoneNumber, String address, String relationship) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.relationship = relationship;
     }
 
     //i could java doc these but they're more or less self-explanatory
     
-    public String getFirstName() {
-
-    }
-
-    public String getLastName() {
-
+    public String getName() {
+        return name;
     }
 
     public String getPhoneNumber() {
-
+        return phoneNumber;
     }
 
     public String getAddress() {
-
+        return address;
     }
 
     public String getRelationship() {
-
+        return relationship;
     }
 }

@@ -26,14 +26,29 @@ public class Schedule {
     public void editSchedule(String time, String activity){
         schedule.put(time, activity);
     }
+<<<<<<< HEAD
     /**
      * NOTE: does not print in order yet, need to implement linked hash map for that
      */
     public String toString(){ //TODO make print in right order!!!
+=======
+    public String toString(){
+>>>>>>> 46335be388884cfe0448b01fce8499ff71dfbb7a
         String writtenSchedule = "";
         for (String keyValue  : schedule.keySet()) {
             writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
         }
         return writtenSchedule;
+<<<<<<< HEAD
+=======
+    }
+
+    public static void main(String[] args) {
+        Schedule schedule = new Schedule();
+        schedule.editSchedule("8:00 ", "swimming");
+        schedule.editSchedule("9:00 ", "hiking");
+        schedule.editSchedule("10:00 ", "climbing");
+        System.out.println(schedule.toString());
+>>>>>>> 46335be388884cfe0448b01fce8499ff71dfbb7a
     }
 }
