@@ -1,6 +1,5 @@
 public class Contact {
-    private String firstName;
-    private String lastName;
+    private String name;
     private String phoneNumber;
     private String address;
     private String relationship;
@@ -13,9 +12,8 @@ public class Contact {
      * @param address Address of the contact
      * @param relationship Relationship of the contact to the camper
      */
-    public Contact(String firstName, String lastName, String phoneNumber, String address, String relationship) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Contact(String name, String phoneNumber, String address, String relationship) {
+        this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.relationship = relationship;
@@ -23,12 +21,8 @@ public class Contact {
 
     //i could java doc these but they're more or less self-explanatory
     
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
     public String getPhoneNumber() {

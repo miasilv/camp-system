@@ -7,7 +7,7 @@ public class EmergencyContact {
      * Contructor for the Emergency Contact class
      */
     public EmergencyContact() {
-
+        
     }
 
     /**
