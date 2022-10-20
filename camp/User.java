@@ -13,11 +13,22 @@ public abstract class User {
      * @param email The email of the user
      * @param password The password for the user
      */
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
+
+    public abstract String getName();
+    public abstract String getEmail();
+    public abstract String getPassword();
+    public abstract String getPhoneNumber();
+
+    public abstract void setName(String name);
+    public abstract void setEmail(String email);
+    public abstract void setPassword(String password);
+    public abstract void setPhoneNumber(String phoneNumber);
 
     /**
      * Method to add a phone number for a user

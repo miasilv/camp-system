@@ -17,9 +17,8 @@ public class Camp {
      * @param name name of camp
      * @param sessions the sessions of the camp
      */
-    private Camp(String name, ArrayList<Session> sessions){
-        this.name = name;
-        this.sessions = sessions;
+    private Camp(){
+        
     }
     /**
      * implements singleton design pattern, gets the instance of camp
@@ -27,7 +26,7 @@ public class Camp {
      */
     public Camp getInstance(){
         if (this.camp == null){
-            camp = new Camp(name, sessions);            
+            camp = new Camp();            
         }
         return camp;
     }

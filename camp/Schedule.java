@@ -24,9 +24,21 @@ public class Schedule {
      * @param activity the activity being editted
      */
     public void editSchedule(String time, String activity){
-
+        schedule.put(time, activity);
     }
     public String toString(){
-        return "";
+        String writtenSchedule = "";
+        for (String keyValue  : schedule.keySet()) {
+            writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
+        }
+        return writtenSchedule;
+    }
+
+    public static void main(String[] args) {
+        Schedule schedule = new Schedule();
+        schedule.editSchedule("8:00 ", "swimming");
+        schedule.editSchedule("9:00 ", "hiking");
+        schedule.editSchedule("10:00 ", "climbing");
+        System.out.println(schedule.toString());
     }
 }
