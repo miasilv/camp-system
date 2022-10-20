@@ -15,7 +15,7 @@ public class UserList {
         guardians = DataLoader.loadGuardians();
     }
 
-    public UserList getInstance() {
+    public static UserList getInstance() {
         if (userList == null) {
             userList = new UserList();
         }
@@ -36,6 +36,10 @@ public class UserList {
     }
 
     public Camper getCamperByUUID(UUID id){
+        return null;
+    }
+
+    public Counselor getCounselorByUUID(UUID id){
         return null;
     }
 
