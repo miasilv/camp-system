@@ -1,5 +1,3 @@
-package camp;
-
 import java.util.HashMap;
 /**
  * an object representing a daily schedule
@@ -26,9 +24,16 @@ public class Schedule {
      * @param activity the activity being editted
      */
     public void editSchedule(String time, String activity){
-
+        schedule.put(time, activity);
     }
-    public String toString(){
-        return "";
+    /**
+     * NOTE: does not print in order yet, need to implement linked hash map for that
+     */
+    public String toString(){ //TODO make print in right order!!!
+        String writtenSchedule = "";
+        for (String keyValue  : schedule.keySet()) {
+            writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
+        }
+        return writtenSchedule;
     }
 }
