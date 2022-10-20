@@ -4,11 +4,9 @@ import java.util.UUID;
 
 public class Counselor extends User{
     private String bio;
-    private ArrayList<Cabin> cabins;
     private ArrayList<EmergencyContact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
-    private UUID id;
 
     /**
      * Constructor for the counselor class
@@ -17,30 +15,14 @@ public class Counselor extends User{
      * @param password Password of the counselor
      * @param birthday Birthday of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, String bio) {
+    public Counselor(String name, String email, String password, Date birthday, String phoneNumber) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
-        this.bio = bio;
     }
-
-    /**
-     * Constructor with the UUID and the Cabins for the JSON
-     * @param name Name of the counselor
-     * @param email Email of the counselor
-     * @param password Password of the counselor
-     * @param birthday Birthday of the counselor
-     * @param phoneNumber Phone Number of the counselor
-     * @param id UUID of the counselor
-     * @param bio Biography of the counselor
-     * @param cabins Cabins of the counselor
-     */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins) {
+    //overloaded for data loader
+    public Counselor(String name, String email, String password, String phoneNumber, String bio, Date birthday, UUID id, ArrayList<String> allergies, ArrayList<EmergencyContact> contacts) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
-        this.bio = bio;
-        this.cabins = cabins;
-        this.id = id;
-
     }
 
     public String getName() {

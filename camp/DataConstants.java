@@ -6,6 +6,7 @@ public abstract class DataConstants {
 
     //cabin data constants
     protected static final String CABIN_FILE_NAME = "cabin.json";
+    protected static final String CABIN_UUID = "id";
 	protected static final String CABIN = "cabin";
 	protected static final String CABIN_CAMPERS = "campers";
 	protected static final String CABIN_COUNSELOR = "counselor";
@@ -17,6 +18,7 @@ public abstract class DataConstants {
 
     //camp data constants
     protected static final String CAMP_FILE_NAME = "camp.json";
+    protected static final String CAMP_UUID = "id";
 	protected static final String CAMP = "camp";
 	protected static final String CAMP_NAME = "name";
 	protected static final String CAMP_SESSIONS = "sessions";
@@ -27,6 +29,7 @@ public abstract class DataConstants {
 
     //camper data constants
     protected static final String CAMPER_FILE_NAME = "camper.json";
+    protected static final String CAMPER_UUID = "id";
 	protected static final String CAMPER = "camper";
 	protected static final String CAMPER_NAME = "name";
 	protected static final String CAMPER_BIRTHDAY = "birthday";
@@ -38,6 +41,7 @@ public abstract class DataConstants {
 
     //counselor data constants
     protected static final String COUNSELOR_FILE_NAME = "counselor.json";
+    protected static final String COUNSELOR_UUID = "id";
 	protected static final String COUNSELOR = "counselor";
 	protected static final String COUNSELOR_NAME = "name";
     protected static final String COUNSELOR_EMAIL = "email";
@@ -51,6 +55,7 @@ public abstract class DataConstants {
 
     //director data constants
     protected static final String DIRECTOR_FILE_NAME = "director.json";
+    protected static final String DIRECTOR_UUID = "id";
 	protected static final String DIRECTOR = "director";
 	protected static final String DIRECTOR_NAME = "name";
     protected static final String DIRECTOR_EMAIL = "email";
@@ -59,6 +64,7 @@ public abstract class DataConstants {
 
     //guardian data constants
     protected static final String GUARDIAN_FILE_NAME = "guardian.json";
+    protected static final String GUARDIAN_UUID = "id";
 	protected static final String GUARDIAN = "guardian";
 	protected static final String GUARDIAN_NAME = "name";
     protected static final String GUARDIAN_EMAIL = "email";
@@ -66,5 +72,9 @@ public abstract class DataConstants {
     protected static final String GUARDIAN_PHONE_NUMBER = "phonenumber";
     protected static final String GUARDIAN_CAMPERS = "campers";
 
-    
+    //emergency contact constants
+    protected static final String EMERGENCY_NAME = "ename";
+	protected static final String EMERGENCY_PHONE = "ephonenumber";
+	protected static final String EMERGENCY_ADDRESS = "eaddress";
+    protected static final String EMERGENCY_RELATIONSHIP = "erelationship";
 }
