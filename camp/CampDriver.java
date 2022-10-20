@@ -21,6 +21,10 @@ public class CampDriver {
     private static final String GUARDIAN_INFORMATION = "GuardI";
     private static final String CAMPER_INFORMATION = "CamperI";
 
+	private static final String NAME = "name";
+    private static final String PRICE = "price";
+    private static final String RATIO = "ratio";
+
     /**
 	 * Constructs a new driver
 	 */
@@ -84,11 +88,11 @@ public class CampDriver {
 		while(true) {
 			//updating options
 			clearOptions();
-			options.add("Name: " + facade.getInformation(CAMP_INFORMATION, "name"));
-			options.add("Pricing: $" + facade.getInformation(CAMP_INFORMATION, "price") + " per session");
-			options.add("Sessions Available:\n" + facade.getSessionList());
-			options.add("Campers per Counselor: " + facade.getInformation(CAMP_INFORMATION, "ratio"));
-			options.add("FAQs:\n" + facade.getFAQList()); 
+			options.add("Name: " + facade.getInformation(CAMP_INFORMATION, NAME));
+			options.add("Pricing: $" + facade.getInformation(CAMP_INFORMATION, PRICE) + " per session");
+			options.add("Sessions Available:\n" + facade.getSessionList(CAMP_INFORMATION));
+			options.add("Campers per Counselor: " + facade.getInformation(CAMP_INFORMATION, RATIO));
+			options.add("FAQs:\n" + facade.getFAQList(CAMP_INFORMATION)); 
 			options.add("Return");
 			options.add("Quit");
 
@@ -116,14 +120,14 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editInformation(CAMPER_INFORMATION, "name");
+					editInformation(CAMP_INFORMATION, NAME);
 					break;
 				case 1:
 					if(!user.isDirector()) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editInformation(CAMPER_INFORMATION, "price");
+					editInformation(CAMP_INFORMATION, PRICE);
 					break;
 				case 2:
 					//TODO sessions
@@ -132,7 +136,7 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editInformation(CAMPER_INFORMATION, "ratio");
+					editInformation(CAMP_INFORMATION, RATIO);
 					break;
 				case 4:
 					//TODO FAQs
@@ -146,20 +150,32 @@ public class CampDriver {
 	 * @param className the class in which the instance variable is located
 	 * @param type the instance variable being edited
 	 */
-	private void editInformation(String className, String type) {
-		System.out.println("Old" + type + ": " + facade.getInformation(className, type));
-		
+	private void editInformation(String className, String variableName) {
+		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
 		System.out.print("Enter what you would like to change this to: ");
 		String change = in.nextLine();
+		
+		if(verify(change)) {
+			facade.editInformation(className, variableName, change);
+			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
+			return;
+		}
+		System.out.println("The " + variableName + " will not be changed.");		
+	}
+
+	/**
+	 * Verifies that the input is what the user wants to change it to
+	 * @param change the new input
+	 * @return true if it is correct, false if it is not correct
+	 */
+	private boolean verify(String change) {
 		System.out.println("You would like to change it to " + change);
 		System.out.print("Is this right? (y/n): ");
 		String answer = in.nextLine();
 		if(answer.equalsIgnoreCase("y")) {
-			facade.editInformation(className, type, change);
-			System.out.println("New" + type + ": " + facade.getInformation(className, type));
-			return;
+			return true;
 		}
-		System.out.println("The " + type + " will not be changed.");		
+		return false;
 	}
 
 	/**
