@@ -3,7 +3,7 @@ import java.time.LocalTime; // this is weird, might have to change
 public class Medication {
     private int dose;
     private String type;
-    private LocalTime time;
+    private String time;
     
     /**
      * Constrcutor for the medication class
@@ -11,7 +11,7 @@ public class Medication {
      * @param type Type of medication
      * @param time Time of medication consumption
      */
-    public Medication(int dose, String type, LocalTime time) {
+    public Medication(int dose, String type, String time) {
         this.dose = dose;
         this.type = type;
         this.time = time;
