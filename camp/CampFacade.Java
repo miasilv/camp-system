@@ -1,4 +1,3 @@
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,16 +69,6 @@ public class CampFacade {
 
     }
 
-    /**
-     * Edits a Time instance variable in a given class.
-     * @param className the class that contains the information being edited.
-     * @param type any of the Time instance variables in the given class
-     * @param change the new information you want to put in
-     */
-    public void editInformation(String className, String variableName, LocalTime change) {
-
-    }
-    
     /**
      * Gets an instance variable's (not array lists or hash maps) information in a given class.
      * @param className the class that contains the information being returned 

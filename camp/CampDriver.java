@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @author Mia Silver
@@ -42,14 +43,14 @@ public class CampDriver {
         System.out.println("***** Welcome to the Camp Website! *****");
 
         while(true) {
-			homeScreen();
+			displayHomeScreen();
         }
     }
 
 	/**
-	 * Displays the home screen and does the loop for that screen
+	 * Displays the home screen and performs the loop for that screen
 	 */
-	private void homeScreen() {
+	private void displayHomeScreen() {
 		while(true) {
 			//updating options
 			clearOptions();
@@ -59,8 +60,7 @@ public class CampDriver {
 
 			//displays choices and checks number
 			System.out.println("***** Home Screen *****");
-			printOptions();
-			int choice = getNum();
+			int choice = getOptions();
 			if(choice == -1) {
 				continue;
 			}
@@ -98,8 +98,7 @@ public class CampDriver {
 
 			//displays choices and checks number
 			System.out.println("***** Camp Information *****");
-			printOptions();
-			int choice = getNum();
+			int choice = getOptions();
 			if(choice == -1) {
 				continue;
 			}
@@ -120,14 +119,14 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editInformation(CAMP_INFORMATION, NAME);
+					editStringInformation(CAMP_INFORMATION, NAME);
 					break;
 				case 1:
 					if(!user.isDirector()) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editInformation(CAMP_INFORMATION, PRICE);
+					editDoubleInformation(CAMP_INFORMATION, PRICE);
 					break;
 				case 2:
 					//TODO sessions
@@ -136,7 +135,7 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editInformation(CAMP_INFORMATION, RATIO);
+					editIntInformation(CAMP_INFORMATION, RATIO);
 					break;
 				case 4:
 					//TODO FAQs
@@ -146,16 +145,77 @@ public class CampDriver {
 	}
 
 	/**
-	 * Edits a class' instance varaible.
-	 * @param className the class in which the instance variable is located
+	 * Sign in
+	 */
+	private void signIn() {
+		//TODO
+	}
+
+	/**
+	 * Edits a class' String instance varaible.
+	 * @param className the class in which the String instance variable is located
 	 * @param type the instance variable being edited
 	 */
-	private void editInformation(String className, String variableName) {
+	private void editStringInformation(String className, String variableName) {
 		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
 		System.out.print("Enter what you would like to change this to: ");
-		String change = in.nextLine();
+		String change = in.nextLine();		
 		
 		if(verify(change)) {
+			facade.editInformation(className, variableName, change);
+			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
+			return;
+		}
+		System.out.println("The " + variableName + " will not be changed.");		
+	}
+
+	/**
+	 * Edits a class' int instance varaible.
+	 * @param className the class in which the int instance variable is located
+	 * @param type the instance variable being edited
+	 */
+	private void editIntInformation(String className, String variableName) {
+		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
+		System.out.print("Enter what you would like to change this to: ");	
+		
+		int change;
+		try {
+			change = Integer.parseInt(in.nextLine()) - 1;
+		} catch (Exception e) {
+			System.out.println("You need to enter a valid number\n");
+			clear();
+			return;
+		}
+		clear();
+		
+		if(verify(Integer.toString(change))) {
+			facade.editInformation(className, variableName, change);
+			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
+			return;
+		}
+		System.out.println("The " + variableName + " will not be changed.");		
+	}
+
+	/**
+	 * Edits a class' double instance varaible.
+	 * @param className the class in which the double instance variable is located
+	 * @param type the instance variable being edited
+	 */
+	private void editDoubleInformation(String className, String variableName) {
+		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
+		System.out.print("Enter what you would like to change this to: ");	
+		
+		double change;
+		try {
+			change = Double.parseDouble(in.nextLine()) - 1;
+		} catch (Exception e) {
+			System.out.println("You need to enter a valid number\n");
+			clear();
+			return;
+		}
+		clear();
+		
+		if(verify(Double.toString(change))) {
 			facade.editInformation(className, variableName, change);
 			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
 			return;
@@ -179,13 +239,6 @@ public class CampDriver {
 	}
 
 	/**
-	 * Sign in
-	 */
-	private void signIn() {
-		//TODO
-	}
-
-	/**
 	 * Clears the array list
 	 */
 	private void clearOptions() {
@@ -193,28 +246,15 @@ public class CampDriver {
 	}
 
 	/**
-	 * Prints the array list and asks for a number
+	 * Prints the array list and gets the user's choice
+	 * @return the user's choice
 	 */
-	private void printOptions() {
+	private int getOptions() {
 		for(int i = 0; i < options.size(); i++) {
 			System.out.println((i + 1) + ". " + options.get(i));
 		}
 
 		System.out.print("Enter the number of the option you would like to see: ");
-	}
-
-    /**
-	 * Clears the console
-	 */
-	private void clear() {
-		System.out.print("\033[H\033[2J");
-	}
-
-    /**
-	 * Gets a number from the user, used to get their option.
-     * @return A number between 0 and the size of options - 1 correspoinding to their option
-	 */
-	private int getNum() {
 		int num;
 
 		try {
@@ -232,6 +272,13 @@ public class CampDriver {
 			return -1;
 		}
 		return num;
+	}
+
+    /**
+	 * Clears the console
+	 */
+	private void clear() {
+		System.out.print("\033[H\033[2J");
 	}
 
     public static void main(String[] args) {
