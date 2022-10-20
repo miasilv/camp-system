@@ -11,12 +11,59 @@ public class Camp {
     private int campersPerCounselor;
     private ArrayList<FAQ> FAQs;
     private ArrayList<String> activities;
-    private static Camp camp;
+
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Session> getSessions() {
+        return this.sessions;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
+    }
+
+    public double getPricePerSession() {
+        return this.pricePerSession;
+    }
+
+    public void setPricePerSession(double pricePerSession) {
+        this.pricePerSession = pricePerSession;
+    }
+
+    public int getCampersPerCounselor() {
+        return this.campersPerCounselor;
+    }
+
+    public void setCampersPerCounselor(int campersPerCounselor) {
+        this.campersPerCounselor = campersPerCounselor;
+    }
+
+    public ArrayList<FAQ> getFAQs() {
+        return this.FAQs;
+    }
+
+    public void setFAQs(ArrayList<FAQ> FAQs) {
+        this.FAQs = FAQs;
+    }
     /**
-     * private constructor of camp
-     * @param name name of camp
-     * @param sessions the sessions of the camp
+     * a method getting the activities of a camp
+     * @return the activities of a camp
      */
+    public ArrayList<String> getActivities() {
+        return this.activities;
+    }
+
+    public void setActivities(ArrayList<String> activities) {
+        this.activities = activities;
+    }
+
+    private static Camp camp;
+
     private Camp(){
         
     }
@@ -37,7 +84,8 @@ public class Camp {
      * @param endDate the session's end date
      */
     public void addSession(int sessionNumber, Date startDate, Date endDate){
-        
+        Session session = new Session(sessionNumber, startDate, endDate);
+        sessions.add(session);
     }
     /**
      * a method allowing the user to retrieve a session via search by keyword
@@ -48,14 +96,9 @@ public class Camp {
         return new Session(campersPerCounselor, null, null);
     }
     /**
-     * a method to edit a particular session
-     */
-    public void editSession(){
-
-    }
-    /**
      * a method to save the sessions to a JSON file
      */
+    //TODO how to save session?
     public void saveSessions(){
 
     }
@@ -64,13 +107,6 @@ public class Camp {
      * @param activity the activity being added
      */
     public void addActivity(String activity){
-
-    }
-    /**
-     * a method getting the activities of a camp
-     * @return the activities of a camp
-     */
-    public ArrayList<String> getActivities(){
-        return this.activities;
+        activities.add(activity);
     }
 }
