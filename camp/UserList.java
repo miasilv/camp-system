@@ -2,11 +2,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class UserList {
-    private ArrayList<User> users;
+    private ArrayList<Director> directors;
+    private ArrayList<Counselor> counselors;
+    private ArrayList<Guardian> guardians;
+    private ArrayList<Camper> campers;
     private static UserList userList;
 
     private UserList() {
         // use DataReader here
+        directors = DataLoader.loadDirector();
+        campers = DataLoader.loadCampers();
+        guardians = DataLoader.loadGuardians();
     }
 
     public UserList getInstance() {
@@ -27,6 +33,10 @@ public class UserList {
 
     public User getUser(UUID id) {
         return users.get(0);
+    }
+
+    public Camper getCamperByUUID(UUID id){
+        return null;
     }
 
     public void editUser() {

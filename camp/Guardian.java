@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Guardian {
     private ArrayList<Camper> campers;
@@ -14,6 +15,8 @@ public class Guardian {
     public Guardian(String name, String email, String password) {
         super();
     }
+
+    //overload constructor and have one with id in param and also arraylist of cmapers.
 
     /**
      * Method to register a camper
