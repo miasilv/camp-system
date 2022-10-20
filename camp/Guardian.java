@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Guardian extends User {
     private ArrayList<Camper> campers;
@@ -46,6 +47,8 @@ public class Guardian extends User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    //overload constructor and have one with id in param and also arraylist of cmapers.
 
     /**
      * Method to register a camper
