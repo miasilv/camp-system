@@ -20,6 +20,8 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
+    // abstract methods all children should have
+
     public abstract String getName();
     public abstract String getEmail();
     public abstract String getPassword();
@@ -34,7 +36,7 @@ public abstract class User {
      * Method to add a phone number for a user
      * @param phoneNumber Phone number to add
      */
-    public void addPhone(String phoneNumber) {
+    public void changePhoneNumber(String phoneNumber) {
 
     }
 

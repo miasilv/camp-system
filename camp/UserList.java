@@ -17,7 +17,7 @@ public class UserList {
         return userList;
     }
 
-    public void addUser(String name, String email, String password) {
+    public void addUser(String name, String email, String password, String phoneNumber) {
 
     }
 
