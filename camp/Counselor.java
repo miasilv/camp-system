@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Counselor {
+public class Counselor extends User{
     private String bio;
     private ArrayList<Cabin> cabins;
     private ArrayList<EmergencyContact> emergencyContacts;
@@ -16,7 +16,7 @@ public class Counselor {
      * @param birthday Birthday of the counselor
      */
     public Counselor(String name, String email, String password, Date birthday) {
-        super();
+        super(name, email, password);
         this.birthday = birthday;
     }
 

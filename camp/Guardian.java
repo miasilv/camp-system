@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Guardian {
+public class Guardian extends User {
     private ArrayList<Camper> campers;
     private int numOfSessions;
     private double price;
@@ -12,7 +12,7 @@ public class Guardian {
      * @param password Password of the guardian
      */
     public Guardian(String name, String email, String password) {
-        super();
+        super(name, email, password);
     }
 
     /**

@@ -1,4 +1,4 @@
-public class Director {
+public class Director extends User {
     
     /**
      * Constructor for the director class
@@ -7,6 +7,6 @@ public class Director {
      * @param password Password of the director
      */
     public Director(String name, String email, String password) {
-        super();
+        super(name, email, password);
     }
 }
