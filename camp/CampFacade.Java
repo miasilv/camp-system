@@ -221,7 +221,7 @@ public class CampFacade {
      * @return the contact information of the given relation
      */
     public Contact getContact(String relationship) {
-        Contact contact = new Contact("a", "b", "c", "d", "e");
+        Contact contact = new Contact("a", "b", "c", "d");
         return contact;
     }
 
