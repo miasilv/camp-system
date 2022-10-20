@@ -23,6 +23,11 @@ public class Camper {
         this.birthday = birthday;
     }
 
+    public Camper(String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<EmergencyContact> contacts, UUID id) {
+        this.name = name;
+        this.birthday = birthday;
+    }
+
     /**
      * Adds a medication for the camper
      * @param medication The medication to add

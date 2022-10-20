@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 /**
  * an object representing a camp
  * @author sara
@@ -24,8 +25,8 @@ public class Camp {
      * implements singleton design pattern, gets the instance of camp
      * @return the instance of camp
      */
-    public Camp getInstance(){
-        if (this.camp == null){
+    public static Camp getInstance(){
+        if (camp == null){
             camp = new Camp();            
         }
         return camp;
@@ -47,6 +48,13 @@ public class Camp {
     public Session getSession(String keyword){
         return new Session(campersPerCounselor, null, null);
     }
+
+
+    public Session getSessionByUUID(UUID id){
+        return null;
+    }
+
+
     /**
      * a method to edit a particular session
      */

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 /**
  * an object representing a camp session
  * @author sara
@@ -41,5 +42,9 @@ public class Session {
      */
     public void editCabin(int index, Cabin cabin){
 
+    }
+
+    public Cabin getCabinByUUID(UUID id){
+        return null;
     }
 }

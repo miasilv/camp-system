@@ -77,4 +77,11 @@ public abstract class DataConstants {
 	protected static final String EMERGENCY_PHONE = "ephonenumber";
 	protected static final String EMERGENCY_ADDRESS = "eaddress";
     protected static final String EMERGENCY_RELATIONSHIP = "erelationship";
+
+    //medications constants
+    protected static final String MEDICATION_TYPE = "type";
+    protected static final String MEDICATION_DOSE = "does";
+    protected static final String MEDICATION_TIME = "time";
+
+
 }
