@@ -34,13 +34,13 @@ public class Counselor extends User{
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins) {
+    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins, ArrayList<String> allergies) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
         this.cabins = cabins;
         this.id = id;
-
+        this.allergies = allergies;
     }
 
     public String getName() {
