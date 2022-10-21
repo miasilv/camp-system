@@ -4,11 +4,9 @@ import java.util.UUID;
 
 public class Counselor extends User{
     private String bio;
-    private ArrayList<Cabin> cabins;
     private ArrayList<EmergencyContact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
-    private UUID id;
 
     /**
      * Constructor for the counselor class
@@ -17,10 +15,9 @@ public class Counselor extends User{
      * @param password Password of the counselor
      * @param birthday Birthday of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, String bio) {
+    public Counselor(String name, String email, String password, Date birthday, String phoneNumber) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
-        this.bio = bio;
     }
 
     /**
@@ -34,13 +31,13 @@ public class Counselor extends User{
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins, ArrayList<String> allergies) {
+    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
         this.cabins = cabins;
         this.id = id;
-        this.allergies = allergies;
+
     }
 
     public String getName() {

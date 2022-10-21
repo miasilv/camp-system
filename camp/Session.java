@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 /**
  * an object representing a camp session
  * @author sara
@@ -25,21 +26,25 @@ public class Session {
      * @param cabin the cabin to be added
      */
     public void addCabin(Cabin cabin){
-
+        cabins.add(cabin);
     }
     /**
      * a method to remove a cabin
      * @param cabin the cabin to be removed
      */
     public void removeCabin(Cabin cabin){
-
+        cabins.remove(cabin);
     }
     /**
-     * a method to edit a cabin
-     * @param index the index of the cabin to be editted
-     * @param cabin the new cabin
+     * a method to get a specific cabin
+     * @param index index of the cabin to be retrieved
+     * @return the cabin
      */
-    public void editCabin(int index, Cabin cabin){
+    public Cabin getCabin(int index){
+        return cabins.get(index);
+    }
 
+    public Cabin getCabinByUUID(UUID id){
+        return null;
     }
 }

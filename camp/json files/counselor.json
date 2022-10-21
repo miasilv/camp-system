@@ -5,13 +5,11 @@
     "password": "kalhdikadfjkl",
     "phonenumber": "1223445666",
     "bio": "my name is john and i am 21 years old.",
-    "cabins": ["a1876dff-63b7-448b-a19a-0ca4bb046c3b", "9755e52b-bcb6-41e3-8f69-b840c866de19"],
     "emergency contacts":[{
-                            "firstname": "Bethany",
-                            "lastname": "Smoak",
-                            "phonenumber": "8034556888",
-                            "address": "104 Stone Rock Circle, 24332, Florence, South Carolina",
-                            "relationship": "Neighbor"
+                            "ename": "Bethany Smoak",
+                            "ephonenumber": "8034556888",
+                            "eaddress": "104 Stone Rock Circle, 24332, Florence, South Carolina",
+                            "erelationship": "Neighbor"
                         }],
     "birthday": "12/3/2001",
     "allergies": ["pollen", "gluten"]
@@ -23,13 +21,11 @@
     "password": "dkkdibhgogg",
     "phonenumber": "9999993322",
     "bio": "my name is brittany and i am 23 years old.",
-    "cabins": [ "9755e52b-bcb6-41e3-8f69-b840c866de19","a1876dff-63b7-448b-a19a-0ca4bb046c3b"],
     "emergency contacts":[{
-                            "firstname": "Brock",
-                            "lastname": "Goude",
-                            "phonenumber": "4332341234",
-                            "address": "231 Treyburn Court, 23431, Columbia, SC",
-                            "relationship": "Family Friend"
+                            "ename": "Brock Goude",
+                            "ephonenumber": "4332341234",
+                            "eaddress": "231 Treyburn Court, 23431, Columbia, SC",
+                            "erelationship": "Family Friend"
                         }],
     "birthday": "3/4/1999",
     "allergies": ["pollen", "pet dander", "peaches"]

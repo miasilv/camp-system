@@ -17,11 +17,10 @@
         "sessions": ["d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",4],
         "notes": ["bobby is so nice", "bobby punched another camper"],
         "emergency contacts": [{
-                                "firstname": "Mackenzie",
-                                "lastname": "Smith",
-                                "phonenumber": "3897751511",
-                                "address": "12 Millburn Avenue, 23888, Camden, South Carolina",
-                                "relationship": "Neighbor"
+                                "ename": "Mackenzie Smith",
+                                "ephonenumber": "3897751511",
+                                "eaddress": "12 Millburn Avenue, 23888, Camden, South Carolina",
+                                "erelationship": "Neighbor"
                             }]
     },
     {
@@ -34,18 +33,16 @@
         "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8",4],
         "notes": ["mille is so sweet", "mille hurt her leg at kayaking today"],
         "emergency contacts": [{
-                                "firstname": "Rebecca",
-                                "lastname": "Wringler",
-                                "phonenumber": "2221123345",
-                                "address": "35 Brookview Street, 28990, Charleston, South Carolina",
-                                "relationship": "Neighbor"
+                                "ename": "Rebecca Wringler",
+                                "ephonenumber": "2221123345",
+                                "eaddress": "35 Brookview Street, 28990, Charleston, South Carolina",
+                                "erelationship": "Neighbor"
                             },
                             {
-                                "firstname": "John",
-                                "lastname": "Van Dam",
-                                "phonenumber": "9882345568",
-                                "address": "23 Eagle Point, 28990, Charleston, South Carolina",
-                                "relationship": "Family Friend"
+                                "ename": "John Van Dam",
+                                "ephonenumber": "9882345568",
+                                "eaddress": "23 Eagle Point, 28990, Charleston, South Carolina",
+                                "erelationship": "Family Friend"
                             }]
     },
     {
@@ -62,11 +59,10 @@
         "sessions": ["5"],
         "notes": ["ashley is crazy", "ashley did really well at ziplining today"],
         "emergency contacts": [{
-                                "firstname": "Trina",
-                                "lastname": "Beckley",
-                                "phonenumber": "3225678899",
-                                "address": "234 Rock Point Rd, 26789, Fort Mill, South Carolina",
-                                "relationship": "Family Friend"
+                                "ename": "Trina Beckley",
+                                "ephonenumber": "3225678899",
+                                "eaddress": "234 Rock Point Rd, 26789, Fort Mill, South Carolina",
+                                "erelationship": "Family Friend"
                             }]
     }
 ]

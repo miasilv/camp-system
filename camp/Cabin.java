@@ -1,3 +1,5 @@
+package camp;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -24,29 +26,29 @@ public class Cabin {
      * @param counselor the counselor being added
      */
     public void addCounselor(Counselor counselor){
-
+        this.counselor = counselor;
     }
     /**
      * method to add a camper to cabin
      * @param camper the camper being added
      */
     public void addCamper(Camper camper){
-
+        campers.add(camper);
     }
     /**
      * method to remove a camper from cabin
      * @param camper the camper being removed
      */
     public void removeCamper(Camper camper){
-
+        campers.remove(camper);
     }
     /**
-     * a method to edit a camper in the cabin
-     * @param index index of the camper being edited
-     * @param camper the new camper
+     * method to get a camper
+     * @param index the index of the camper to be retrieved
+     * @return the camper
      */
-    public void editCamper(int index, Camper camper){
-
+    public Camper getCamper(int index){
+        return campers.get(index);
     }
     /**
      * a method to get the schedule of the cabin on a specific day
@@ -75,13 +77,18 @@ public class Cabin {
      * @return whether the cabin has a counselor
      */
     private boolean hasCounselor(){
-        return true;
+        if(counselor != null){
+            return true;
+        }
+        return false;
     }
     /**
      * method checking whether the cabin is full
      * @return if the cabin is full or not
      */
     private boolean isFull(){
-        return true;
+        if(counselor != null && campers.size() == 8)
+            return true;
+        return false;
     }
 }

@@ -10,7 +10,9 @@ public class CampFacade {
     private UserList user;
     private Camp camp; 
 
+    //class names
     private static final String CAMP_INFORMATION = "CampI";
+    private static final String FAQ_INFORMATION = "faqI";
     private static final String SESSION_INFORMATION = "SessI";
     private static final String CABIN_INFORMATION = "CabI";
     private static final String USER_INFORMATION = "UserI";
@@ -20,9 +22,45 @@ public class CampFacade {
     private static final String GUARDIAN_INFORMATION = "GuardI";
     private static final String CAMPER_INFORMATION = "CamperI";
 
-    private static final String NAME = "name";
-    private static final String PRICE = "price";
+    //camp instance variables (some objects)
+	private static final String NAME = "name"; //can also use for User, Camper, and Contact
+	private static final String SESSIONS = "sessions"; //can also use for Camper
+    private static final String PRICE = "price"; //can also use for Guardian
     private static final String RATIO = "ratio";
+	private static final String FAQS = "faqs";
+	private static final String ACTIVITIES = "activities";
+
+	//FAQ instance variables
+	private static final String QUESTION = "question";
+	private static final String ANSWER = "answer";
+	
+	//session instance variables (some objects)
+	private static final String CABINS = "cabins"; //can also use for Counselor and Camper
+	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
+	private static final String START_DATE = "startD";
+	private static final String END_DATE = "endD";
+
+	//cabin instance variables (some objects)
+	private static final String CAMPERS = "campers"; //can also use for Guardian
+	private static final String COUNSELOR = "counselor";
+	private static final String SCHEDULE = "schedule"; //can also use for schedule class
+
+	//user instance variables
+	private static final String EMAIL = "email"; //can also be used for Contact
+	private static final String PHONE = "phoneNum"; //can also be used for Contact
+	private static final String PASSWORD = "password";
+
+	//counselor instance variables (some objects)
+	private static final String BIO = "bio";
+	private static final String EMERGENCY_CONTACTS = "emergenCon"; //can also be used for Camper
+	private static final String BIRTHDAY = "birthday"; //can also be used for Camper
+	private static final String ALLERGIES = "allergies"; //can also be used for Camper
+
+	//camper instance variables (also object)
+	private static final String MEDICATION = "medication";
+
+	//contact instance variables
+	private static final String RELATIONSHIP = "relationship";
 
     public CampFacade() {
         user.getInstance();
@@ -64,9 +102,95 @@ public class CampFacade {
      * @param className the class that contains the information being edited.
      * @param type any of the Date instance variables in the given class
      * @param change the new information you want to put in
+     * @return true if successfully changed, false if not
      */
-    public void editInformation(String className, String variableName, Date change) {
+    public boolean editInformation(String className, String variableName, Date change) {
+        if(variableName.equals(START_DATE)) {
+            //TODO
+            return true;
+        }
+        if(variableName.equals(END_DATE)) {
+            //TODO
+            return true;
+        }
+        if(variableName.equals(BIRTHDAY)) {
+            if(className.equals(COUNSELOR)) {
+                //TODO
+                return true;
+            }
+            if(className.equals(CAMPERS)) {
+                //TODO
+                return true;
+            }
+        }
+        return false;
+    }
 
+    /**
+     * Remove an object from any array list
+     * @param className the class that this array list is found in
+     * @param arrayList the name of the array list
+     * @param index the index you are attempting to remove
+     * @return true if successfully removed, false if not
+     */
+    public boolean removeArrayListObject(String className, String arrayList, int index) {
+        if(arrayList.equals(SESSIONS)) {
+            ArrayList<Session> list = getSessionList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        else if (arrayList.equals(FAQS)) {
+            ArrayList<FAQ> list = getFAQList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        else if(arrayList.equals(ACTIVITIES)) {
+            ArrayList<String> list = getActivityList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        else if(arrayList.equals(CABINS)) {
+            ArrayList<Cabin> list = getCabinList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        else if(arrayList.equals(CAMPERS)) {
+            ArrayList<Camper> list = getCamperList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        else if(arrayList.equals(ALLERGIES)) {
+            ArrayList<String> list = getAllergyList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        else if(arrayList.equals(MEDICATION)) {
+            ArrayList<Medication> list = getMedicationList(className);
+            if(index >= list.size()) {
+                return false;
+            }
+            list.remove(index);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -88,7 +212,16 @@ public class CampFacade {
         ArrayList<Session> list = new ArrayList<Session>();
         return list;
     }
+    
+    /**
+     * Adds a session to a list of sessions
+     * @param className the class that contains the list of sessions being edited
+     * @param session the session being added
+     */
+    public void addSession(String className, Session session) {
 
+    }
+    
     /**
      * Gets a list of FAQs.
      * @param className the class that contains the list of FAQs being returned;
@@ -100,6 +233,15 @@ public class CampFacade {
     }
 
     /**
+     * Adds an FAQ to a list of FAQs
+     * @param className the class that contains the list of FAQs being edited
+     * @param session the FAQ being added
+     */
+    public void addFAQ(String className, FAQ faq) {
+
+    }
+
+    /**
      * Gets a list of activites.
      * @param className the class that contais the list of activities being returned.
      * @return an array list of activites
@@ -107,6 +249,15 @@ public class CampFacade {
     public ArrayList<String> getActivityList(String className) {
         ArrayList<String> list = new ArrayList<String>();
         return list;
+    }
+
+    /**
+     * Adds an activity to a list of activities
+     * @param className the class that contains the list of activities being edited
+     * @param session the activity being added
+     */
+    public void addActivity(String className, String activity) {
+
     }
 
     /**
@@ -184,7 +335,7 @@ public class CampFacade {
      * @return the contact information of the given relation
      */
     public Contact getContact(String relationship) {
-        Contact contact = new Contact("a", "b", "c", "d", "e");
+        Contact contact = new Contact("a", "b", "c", "d");
         return contact;
     }
 
@@ -194,7 +345,7 @@ public class CampFacade {
      * @param password the user's password
      */
     public User signIn(String email, String password) {
-        User user = new Director(email, email, password);
+        User user = new Director(email, email, password, password);
         return user;
     }
     
