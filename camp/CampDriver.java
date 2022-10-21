@@ -13,23 +13,21 @@ public class CampDriver {
 	private User user;
 
 	//Classes
-	private static final String CAMP_INFORMATION = "campI";
-	private static final String FAQ_INFORMATION = "faqI";
-    private static final String SESSION_INFORMATION = "sessI";
-    private static final String CABIN_INFORMATION = "cabI";
-    private static final String USER_INFORMATION = "userI";
-    private static final String COUNSELOR_INFORMATION = "counI";
-    private static final String MEDICATION_INFORMATION = "medI";
-    private static final String CONTACT_INFORMATION = "contI";
-    private static final String GUARDIAN_INFORMATION = "guardI";
-    private static final String CAMPER_INFORMATION = "camperI";
+	private static final String CAMP = "camp";
+	private static final String FAQ = "faq"; //also in camp
+    private static final String SESSION = "session"; //also in camper and camp
+    private static final String CABIN = "cabin"; //also in session, counselor, and camper
+    private static final String USER = "user";
+    private static final String COUNSELOR = "counselor"; //also in cabin
+	private static final String GUARDIAN = "guardian"; 
+    private static final String CAMPER = "camper"; //also in cabin and guardian
+    private static final String MEDICATION = "medication"; //also in camper
+    private static final String EMERGENCY_CONTACT = "eContact"; //also in counselor and camper
 
 	//camp instance variables
 	private static final String NAME = "name"; //can also use for User, Camper, and Contact
-	private static final String SESSIONS = "sessions"; //can also use for Camper
     private static final String PRICE = "price"; //can also use for Guardian
     private static final String RATIO = "ratio";
-	private static final String FAQS = "faqs";
 	private static final String ACTIVITIES = "activities";
 
 	//FAQ instance variables
@@ -37,14 +35,11 @@ public class CampDriver {
 	private static final String ANSWER = "answer";
 	
 	//session instance variables
-	private static final String CABINS = "cabins"; //can also use for Counselor and Camper
 	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
 
 	//cabin instance variables
-	private static final String CAMPERS = "campers"; //can also use for Guardian
-	private static final String COUNSELOR = "counselor";
 	private static final String SCHEDULE = "schedule"; //can also use for schedule class
 
 	//user instance variables
@@ -54,15 +49,16 @@ public class CampDriver {
 
 	//counselor instance variables
 	private static final String BIO = "bio";
-	private static final String EMERGENCY_CONTACTS = "emergenCon"; //can also be used for Camper
 	private static final String BIRTHDAY = "birthday"; //can also be used for Camper
 	private static final String ALLERGIES = "allergies"; //can also be used for Camper
 
-	//camper instance variables
-	private static final String MEDICATION = "medication";
-
 	//contact instance variables
 	private static final String RELATIONSHIP = "relationship";
+
+	//medication instance variables
+    private static final String DOSE = "dose";
+    private static final String TYPE = "type";
+    private static final String TIME = "time";
 
 	//edits for array lists
     private static final String ADD = "add";
@@ -124,12 +120,12 @@ public class CampDriver {
 		while(true) {
 			//updating options
 			clearOptions();
-			options.add("Name: " + facade.getInformation(CAMP_INFORMATION, NAME));
-			options.add("Pricing: $" + facade.getInformation(CAMP_INFORMATION, PRICE) + " per session");
-			options.add("Sessions Available:\n" + facade.getSessionList(CAMP_INFORMATION));
-			options.add("Campers per Counselor: " + facade.getInformation(CAMP_INFORMATION, RATIO));
-			options.add("FAQs:\n" + facade.getFAQList(CAMP_INFORMATION)); 
-			options.add("Activities Offered:\n" + facade.getActivityList(CAMP_INFORMATION));
+			options.add("Name: " + facade.getInformation(CAMP, NAME));
+			options.add("Pricing: $" + facade.getInformation(CAMP, PRICE) + " per session");
+			options.add("Sessions Available:\n" + facade.getSessionList(CAMP));
+			options.add("Campers per Counselor: " + facade.getInformation(CAMP, RATIO));
+			options.add("FAQs:\n" + facade.getFAQList(CAMP)); 
+			options.add("Activities Offered:\n" + facade.getActivityList(CAMP));
 			options.add("Return");
 			options.add("Quit");
 
@@ -155,14 +151,14 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editStringInformation(CAMP_INFORMATION, NAME);
+					editStringInformation(CAMP, NAME);
 					break;
 				case 1:
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editDoubleInformation(CAMP_INFORMATION, PRICE);
+					editDoubleInformation(CAMP, PRICE);
 					break;
 				case 2:
 					if(!(user instanceof Director || user instanceof Counselor)) {
@@ -174,7 +170,7 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editIntInformation(CAMP_INFORMATION, RATIO);
+					editIntInformation(CAMP, RATIO);
 					break;
 				case 4:
 					if(!(user instanceof Director)) {
@@ -190,7 +186,7 @@ public class CampDriver {
 	 * Displays an FAQ list
 	 */
 	private void displayFAQ() {
-		ArrayList<FAQ> faqs = facade.getFAQList(CAMP_INFORMATION);
+		ArrayList<FAQ> faqs = facade.getFAQList(CAMP);
 		
 		while(true) {
 			//updating options
@@ -218,21 +214,21 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove an FAQ
-				if(!facade.removeArrayListObject(FAQS, CAMP_INFORMATION, choice)) {
+				if(!facade.removeArrayListObject(FAQ, CAMP, choice)) {
 					System.out.println("Something went wrong, unable to remove");
 					break;
 				}
 			}
 			if(choice == options.size() -4) { //the user wants to add an FAQ
-				facade.addFAQ(FAQ_INFORMATION, createNewFAQ());
+				facade.addFAQ(FAQ, createNewFAQ());
 			}
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing FAQ
 				System.out.print("Do you want to edit the question or answer? (q/a)");
 				if(in.nextLine().equalsIgnoreCase("q")) {
-					editStringInformation(FAQ_INFORMATION, QUESTION);
+					editStringInformation(FAQ, QUESTION);
 				}
 				else {
-					editStringInformation(FAQ_INFORMATION, ANSWER);				
+					editStringInformation(FAQ, ANSWER);				
 				}
         	}
 		}
@@ -266,7 +262,7 @@ public class CampDriver {
 		return new FAQ(question, answer);
 	}
 	
-	//------------------------------------------- Methods that change an instance vairable/array list ----------------------------------------------
+	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
 	/**
 	 * Edits a class' String instance varaible.
 	 * @param className the class in which the String instance variable is located
