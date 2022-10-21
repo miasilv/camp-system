@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class Counselor extends User{
+public class Counselor extends User {
     private String bio;
     private ArrayList<EmergencyContact> emergencyContacts;
     private Date birthday;
@@ -10,6 +10,7 @@ public class Counselor extends User{
 
     /**
      * Constructor for the counselor class
+     * Not touching this for now, but most data read through JSON
      * @param name Name of the counselor
      * @param email Email of the counselor
      * @param password Password of the counselor
@@ -21,7 +22,8 @@ public class Counselor extends User{
     }
 
     /**
-     * Constructor with the UUID and the Cabins for the JSON
+     * Constructor with the UUID and the Cabins for the JSON.
+     * FOR THE JSON FILE!!!!!!
      * @param name Name of the counselor
      * @param email Email of the counselor
      * @param password Password of the counselor
@@ -31,13 +33,13 @@ public class Counselor extends User{
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber, UUID id, String bio, ArrayList<Cabin> cabins) {
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<EmergencyContact> emergencyContacts, Date birthday, ArrayList<String> allergies) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
-        this.cabins = cabins;
         this.id = id;
-
+        this.allergies = allergies;
+        this.emergencyContacts = emergencyContacts;
     }
 
     public String getName() {
