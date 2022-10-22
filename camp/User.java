@@ -26,6 +26,7 @@ public abstract class User {
     public abstract String getEmail();
     public abstract String getPassword();
     public abstract String getPhoneNumber();
+    public abstract UUID getID();
 
     public abstract void setName(String name);
     public abstract void setEmail(String email);

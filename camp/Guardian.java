@@ -48,6 +48,10 @@ public class Guardian extends User {
         return phoneNumber;
     }
 
+    public UUID getID() {
+        return id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

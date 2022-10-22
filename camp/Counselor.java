@@ -16,9 +16,8 @@ public class Counselor extends User {
      * @param password Password of the counselor
      * @param birthday Birthday of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber) {
+    public Counselor(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
-        this.birthday = birthday;
     }
 
     /**
@@ -56,6 +55,10 @@ public class Counselor extends User {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public UUID getID() {
+        return id;
     }
 
     public void setName(String name) {
