@@ -9,7 +9,6 @@ public class UserList {
     private static UserList userList;
 
     private UserList() {
-        // use DataReader here
         directors = DataLoader.loadDirector();
         campers = DataLoader.loadCampers();
         guardians = DataLoader.loadGuardians();
@@ -19,8 +18,21 @@ public class UserList {
         if (userList == null) {
             userList = new UserList();
         }
-
         return userList;
+    }
+
+    // ACCESSORS AND MUTATORS!
+
+    public ArrayList<Director> getDirectors() {
+        return directors;
+    }
+
+    public ArrayList<Camper> getCampers() {
+        return campers;
+    }
+
+    public ArrayList<Counselor> getCounselors() {
+        return counselors;
     }
 
     public void addUser(String name, String email, String password, String phoneNumber) {
