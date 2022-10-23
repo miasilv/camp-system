@@ -7,15 +7,32 @@ import java.util.HashMap;
  * A Camp Facade Object
  */
 public class CampFacade {
-    private UserList user;
+    //array lists and objects
+    private UserList userList;
     private Camp camp; 
+    private ArrayList<FAQ> faqList;
+    private FAQ faq;
+    private ArrayList<Session> sessionList;
+    private Session session;
+    private ArrayList<Cabin> cabinList;
+    private Cabin cabin;
+    private User user;
+    private Counselor counselor;
+    private Guardian guardian;
+    private ArrayList<Camper> camperList;
+    private Camper camper;
+    private ArrayList<Medication> medicationList;
+    private Medication medication;
+    private ArrayList<String> activityList;
+    private ArrayList<String> allergyList;
 
-    //Classes
-	private static final String CAMP = "camp";
+    //Strings for class
+    private static final String CAMP = "camp";
 	private static final String FAQ = "faq"; //also in camp (array list)
     private static final String SESSION = "session"; //also in camper and camp (array list)
     private static final String CABIN = "cabin"; //also in session, counselor, and camper (array list)
     private static final String USER = "user";
+    private static final String DIRECTOR = "director";
     private static final String COUNSELOR = "counselor"; //also in cabin
     private static final String GUARDIAN = "guardian"; 
     private static final String CAMPER = "camper"; //also in cabin and guardian (array list)
@@ -64,8 +81,9 @@ public class CampFacade {
     private static final String EDIT = "edit";
 
     public CampFacade() {
-        user.getInstance();
+        userList.getInstance();
         camp.getInstance();
+        sessionList = new ArrayList<Session>();
     }
 
     /**
@@ -77,16 +95,16 @@ public class CampFacade {
     public void editInformation(String className, String variableName, String change) {
         if(className.equals(CAMP)) {
             if(variableName.equals(NAME)) {
-                //TODO
+                camp.setName(change);
             }
         }
 
         if(className.equals(FAQ)) {
             if(variableName.equals(QUESTION)) {
-                //TODO
+                faq.setQuestion(change);
             }
             if(variableName.equals(ANSWER)) {
-                //TODO
+                faq.setAnswer(change);
             }
         }
 
@@ -141,6 +159,81 @@ public class CampFacade {
             }
         }
         
+    }
+
+    /** Gets a string instance variable's information in a given class.
+     * @param className the class that contains the information being returned 
+     * @param type any of the string instance variables in Camp
+     * @param index if the type is found in an array list, the index is the index of the object being edited, if not index = -1
+     * @return the string instance variable
+    */
+    public String getStringInformation(String className, String variableName) {
+        if(className.equals(CAMP)) {
+            if(variableName.equals(NAME)) {
+                return camp.getName();
+            }
+        }
+
+        if(className.equals(FAQ)) {
+            if(variableName.equals(QUESTION)) {
+                return faq.getQuestion();
+            }
+            if(variableName.equals(ANSWER)) {
+                return faq.getAnswer();
+            }
+        }
+
+        if(className.equals(GUARDIAN) || className.equals(DIRECTOR) || className.equals(COUNSELOR)) {
+            if(variableName.equals(NAME)) {
+                return user.getName();
+            } 
+            if(variableName.equals(EMAIL)) {
+                return user.getEmail();
+            }
+            if(variableName.equals(PHONE)) {
+                return user.getPhoneNumber();
+            }
+            if(variableName.equals(PASSWORD)) {
+                return user.getPassword();
+            }
+        }
+
+        if(className.equals(COUNSELOR)) {
+            if(variableName.equals(BIO)) {
+                return counselor.getBio();
+            } 
+        }
+
+        if(className.equals(CAMPER)) {
+            if(variableName.equals(NAME)) {
+                return camper.getName();
+            } 
+        }
+
+        if(className.equals(MEDICATION)) {
+            if(variableName.equals(TYPE)) {
+                return medication.getType();
+            }
+            if(variableName.equals(TIME)) { 
+                //TODO
+            }
+        }
+
+        if(className.equals(EMERGENCY_CONTACT)) {
+            if(variableName.equals(NAME)) {
+                //TODO
+            } 
+            if(variableName.equals(PHONE)) {
+                //TODO
+            }
+            if(variableName.equals(EMAIL)) {
+                //TODO
+            }
+            if(variableName.equals(RELATIONSHIP)) {
+                //TODO
+            }
+        }
+        return "Not Found";
     }
 
     /**
@@ -236,27 +329,27 @@ public class CampFacade {
      */
     public boolean removeArrayListObject(String className, String arrayList, int index) {
         if(arrayList.equals(SESSION)) {
-            ArrayList<Session> list = getSessionList(className);
-            if(index >= list.size()) {
+            getSessionList(className);
+            if(index >= sessionList.size()) {
                 return false;
             }
-            list.remove(index);
+            sessionList.remove(index);
             return true;
         }
         else if (arrayList.equals(FAQ)) {
-            ArrayList<FAQ> list = getFAQList(className);
-            if(index >= list.size()) {
+            getFAQList(className);
+            if(index >= faqList.size()) {
                 return false;
             }
-            list.remove(index);
+            faqList.remove(index);
             return true;
         }
         else if(arrayList.equals(ACTIVITIES)) {
-            ArrayList<String> list = getActivityList(className);
-            if(index >= list.size()) {
+            getActivityList(className);
+            if(index >= activityList.size()) {
                 return false;
             }
-            list.remove(index);
+            activityList.remove(index);
             return true;
         }
         else if(arrayList.equals(CABIN)) {
@@ -294,25 +387,28 @@ public class CampFacade {
         return false;
     }
 
+
+
     /**
      * Gets an instance variable's (not array lists or hash maps) information in a given class.
      * @param className the class that contains the information being returned 
      * @param type any of the instance variables in Camp (not array lists or hash maps)
+     * @param index if the type is found in an array list, the index is the index of the object being edited, if not index = -1
      * @return the string version of the instance variable
      */
-    public String getInformation(String className, String variableName) {
+    public String getInformation(String className, String variableName, int index) {
         if(className.equals(CAMP)) {
             if(variableName.equals(NAME)) {
-                //TODO
+                return camp.getName();
             } 
             if(variableName.equals(SESSION)) { //array list
                 //TODO
             }
             if(variableName.equals(PRICE)) {
-                //TODO
+                return Double.toString(camp.getPricePerSession());
             }
             if(variableName.equals(RATIO)) {
-                //TODO
+                return Integer.toString(camp.getCampersPerCounselor());
             } 
             if(variableName.equals(FAQ)) { //array list
                 //TODO
@@ -323,11 +419,12 @@ public class CampFacade {
         }
 
         if(className.equals(FAQ)) {
+            ArrayList<FAQ> list = getFAQList(CAMP);
             if(variableName.equals(QUESTION)) {
-                //TODO
+                return list.get(index).getQuestion();
             }
             if(variableName.equals(ANSWER)) {
-                //TODO
+                return list.get(index).getAnswer();
             }
         }
 
@@ -336,7 +433,7 @@ public class CampFacade {
                 //TODO
             } 
             if(variableName.equals(SESS_NUM)) {
-                //TODO
+                return list.get(index).getSessionNumber();
             }
             if(variableName.equals(START_DATE)) {
                 //TODO
@@ -347,6 +444,7 @@ public class CampFacade {
         }
 
         if(className.equals(CABIN)) {
+            
             if(variableName.equals(CAMPER)) { //array list
                 //TODO
             } 
@@ -362,25 +460,25 @@ public class CampFacade {
 
         if(className.equals(USER)) {
             if(variableName.equals(NAME)) {
-                //TODO
+                return user.getName();
             } 
             if(variableName.equals(EMAIL)) {
-                //TODO
+                return user.getEmail();
             }
             if(variableName.equals(PHONE)) {
-                //TODO
+                return user.getPhoneNumber();
             }
             if(variableName.equals(PASSWORD)) {
-                //TODO
+                return user.getPassword();
             }
         }
 
         if(className.equals(COUNSELOR)) {
             if(variableName.equals(BIO)) {
-                //TODO
+                return counselor.getBio();
             } 
             if(variableName.equals(BIRTHDAY)) {
-                //TODO
+                return counselor.getBirthday();
             }
             if(variableName.equals(ALLERGIES)) { //array list
                 //TODO
@@ -407,7 +505,7 @@ public class CampFacade {
 
         if(className.equals(CAMPER)) {
             if(variableName.equals(NAME)) {
-                //TODO
+                return camper.getName();
             } 
             if(variableName.equals(BIRTHDAY)) {
                 //TODO
@@ -431,7 +529,7 @@ public class CampFacade {
 
         if(className.equals(MEDICATION)) {
             if(variableName.equals(DOSE)) {
-                //TODO
+                //getMedicationList(CAMPER).getDose();
             } 
             if(variableName.equals(TYPE)) {
                 //TODO
@@ -461,13 +559,21 @@ public class CampFacade {
     }
     
     /**
-     * Gets a list of sessions.
+     * Gets a list of sessions and sets sessionList to those specific sessions
      * @param className the class that contains the list of sessions being returned
      * @return an array list of sessions
      */
     public ArrayList<Session> getSessionList(String className) {
-        ArrayList<Session> list = new ArrayList<Session>();
-        return list;
+        if(className.equals(CAMPER)) {
+            sessionList = camper.getSessions();
+        }
+        else if(className.equals(CAMP)) {
+            sessionList = camp.getSessions();
+        }
+        else {
+            return null;
+        }
+        return sessionList;        
     }
     
     /**
@@ -476,7 +582,7 @@ public class CampFacade {
      * @param session the session being added
      */
     public void addSession(String className, Session session) {
-
+        getSessionList(className).add(session);
     }
     
     /**
@@ -485,8 +591,10 @@ public class CampFacade {
      * @return an array list of FAQs
      */
     public ArrayList<FAQ> getFAQList(String className) {
-        ArrayList<FAQ> list = new ArrayList<FAQ>();
-        return list;
+        if(className.equals(CAMP)) {
+            faqList = camp.getFAQs();
+        }
+        return faqList;
     }
 
     /**
@@ -638,8 +746,14 @@ public class CampFacade {
      * @param password the user's password
      */
     public User signIn(String email, String password) {
-        User user = new Director(email, email, password, password);
-        return user;
+        user = userList.getUser(email);
+        if(user == null) {
+            return null;
+        }
+        if(user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
     
     /**

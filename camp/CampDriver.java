@@ -64,6 +64,7 @@ public class CampDriver {
     private static final String ADD = "add";
     private static final String REMOVE = "remove";
     private static final String EDIT = "edit";
+	private static final int NO_INDEX = -1;
 
     /**
 	 * Constructs a new driver
@@ -120,10 +121,10 @@ public class CampDriver {
 		while(true) {
 			//updating options
 			clearOptions();
-			options.add("Name: " + facade.getInformation(CAMP, NAME));
-			options.add("Pricing: $" + facade.getInformation(CAMP, PRICE) + " per session");
+			options.add("Name: " + facade.getInformation(CAMP, NAME, NO_INDEX));
+			options.add("Pricing: $" + facade.getInformation(CAMP, PRICE, NO_INDEX) + " per session");
 			options.add("Sessions Available:\n" + facade.getSessionList(CAMP));
-			options.add("Campers per Counselor: " + facade.getInformation(CAMP, RATIO));
+			options.add("Campers per Counselor: " + facade.getInformation(CAMP, RATIO, NO_INDEX));
 			options.add("FAQs:\n" + facade.getFAQList(CAMP)); 
 			options.add("Activities Offered:\n" + facade.getActivityList(CAMP));
 			options.add("Return");
@@ -151,14 +152,14 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editStringInformation(CAMP, NAME);
+					editStringInformation(CAMP, NAME, NO_INDEX);
 					break;
 				case 1:
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editDoubleInformation(CAMP, PRICE);
+					editDoubleInformation(CAMP, PRICE, NO_INDEX);
 					break;
 				case 2:
 					if(!(user instanceof Director || user instanceof Counselor)) {
@@ -170,7 +171,7 @@ public class CampDriver {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editIntInformation(CAMP, RATIO);
+					editIntInformation(CAMP, RATIO, NO_INDEX);
 					break;
 				case 4:
 					if(!(user instanceof Director)) {
@@ -225,10 +226,10 @@ public class CampDriver {
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing FAQ
 				System.out.print("Do you want to edit the question or answer? (q/a)");
 				if(in.nextLine().equalsIgnoreCase("q")) {
-					editStringInformation(FAQ, QUESTION);
+					editStringInformation(FAQ, QUESTION, choice);
 				}
 				else {
-					editStringInformation(FAQ, ANSWER);				
+					editStringInformation(FAQ, ANSWER, choice);				
 				}
         	}
 		}
@@ -267,15 +268,16 @@ public class CampDriver {
 	 * Edits a class' String instance varaible.
 	 * @param className the class in which the String instance variable is located
 	 * @param type the instance variable being edited
+	 * @param index if the instance variable is contained in an array list, the index is the index of the object being edited.
 	 */
-	private void editStringInformation(String className, String variableName) {
-		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
+	private void editStringInformation(String className, String variableName, int index) {
+		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName, index));
 		System.out.print("Enter what you would like to change this to: ");
 		String change = in.nextLine();		
 		
 		if(verify(change)) {
 			facade.editInformation(className, variableName, change);
-			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
+			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName, index));
 			return;
 		}
 		System.out.println("The " + variableName + " will not be changed.");		
@@ -285,16 +287,17 @@ public class CampDriver {
 	 * Edits a class' int instance varaible.
 	 * @param className the class in which the int instance variable is located
 	 * @param type the instance variable being edited
+	 * @param index if the type is found in an array list, the index is the index of the object being edited, if not index = -1
 	 */
-	private void editIntInformation(String className, String variableName) {
-		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
+	private void editIntInformation(String className, String variableName, int index) {
+		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName, index));
 		System.out.print("Enter what you would like to change this to: ");	
 		
 		int change = getNum();
 		
 		if(verify(Integer.toString(change))) {
 			facade.editInformation(className, variableName, change);
-			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
+			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName, index));
 			return;
 		}
 		System.out.println("The " + variableName + " will not be changed.");		
@@ -304,9 +307,10 @@ public class CampDriver {
 	 * Edits a class' double instance varaible.
 	 * @param className the class in which the double instance variable is located
 	 * @param type the instance variable being edited
+	 * @param index if the type is found in an array list, the index is the index of the object being edited, if not index = -1
 	 */
-	private void editDoubleInformation(String className, String variableName) {
-		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName));
+	private void editDoubleInformation(String className, String variableName, int index) {
+		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName, index));
 		System.out.print("Enter what you would like to change this to: ");	
 		
 		double change;
@@ -321,7 +325,7 @@ public class CampDriver {
 		
 		if(verify(Double.toString(change))) {
 			facade.editInformation(className, variableName, change);
-			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName));
+			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName, index));
 			return;
 		}
 		System.out.println("The " + variableName + " will not be changed.");		
