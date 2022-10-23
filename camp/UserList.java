@@ -49,7 +49,7 @@ public class UserList {
                 return directors.get(i);
             }
         }
-        return directors.get(0); // if unable to find it
+        return null; // if unable to find it
     }
 
     public Counselor getCounselor(String email) {
@@ -58,7 +58,7 @@ public class UserList {
                 return counselors.get(i);
             }
         }
-        return counselors.get(0); // if unable to find it
+        return null; // if unable to find it
     }
 
     public Guardian getGuardian(String email) {
@@ -67,7 +67,7 @@ public class UserList {
                 return guardians.get(i);
             }
         }
-        return guardians.get(0); // if unable to find it, return first
+        return null; // if unable to find it, return first
     }
 
     /**
@@ -82,7 +82,7 @@ public class UserList {
                 return directors.get(i);
             }
         }
-        return directors.get(0); // if unable to find it
+        return null; // if unable to find it
     }
 
     public Counselor getCounselor(UUID id) {
@@ -91,7 +91,7 @@ public class UserList {
                 return counselors.get(i);
             }
         }
-        return counselors.get(0); // if unable to find it
+        return null; // if unable to find it
     }
 
     public Guardian getGuardian(UUID id) {
@@ -100,7 +100,36 @@ public class UserList {
                 return guardians.get(i);
             }
         }
-        return guardians.get(0); // if unable to find it
+        return null; // if unable to find it
+    }
+
+    /**
+     * Loops through all the directors, counselors, and guadians for users
+     * @param email Email to search for
+     * @return User with that email
+     */
+    public User getUser(String email) {
+        if (getDirector(email) != null) {
+            return getDirector(email);
+        }
+        else if (getCounselor(email) != null) {
+            return getCounselor(email);
+        }
+        else if (getGuardian(email) != null) {
+            return getGuardian(email);
+        }
+        return null; // if no email is found
+    }
+
+    public User getUser(UUID id) {
+        if (getDirector(id) != null) {
+            return getDirector(id);
+        } else if (getCounselor(id) != null) {
+            return getCounselor(id);
+        } else if (getGuardian(id) != null) {
+            return getGuardian(id);
+        }
+        return null; // if no email is found
     }
 
     /* ADDING THROUGH UI */
@@ -198,14 +227,6 @@ public class UserList {
     /*
     public void addUser(String name, String email, String password, String phoneNumber) {
 
-    }
-
-    public User getUser(String email) {
-        return users.get(0); // this is a placeholder
-    }
-
-    public User getUser(UUID id) {
-        return users.get(0);
     }
 
     public Camper getCamperByUUID(UUID id){
