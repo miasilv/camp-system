@@ -18,6 +18,9 @@ public class Schedule {
     public HashMap<String, String> getSchedule(){
         return this.schedule;
     }
+    public void setSchedule(HashMap<String, String> schedule){
+        this.schedule = schedule;
+    }
     /**
      * a method to edit the schedule
      * @param time the time of the activity being editted
