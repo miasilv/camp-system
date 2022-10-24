@@ -14,25 +14,6 @@ import org.json.simple.parser.JSONParser;
  */
 
 public class DataLoader extends DataConstants {
-    private ArrayList<User> users;
-    private Camp camp;
-    /**
-     * get guardians, counselors, and directors
-     * @return
-     */
-    public ArrayList<User> getAllUsers(){
-    
-        return users;
-
-    }
-    /**
-     * 
-     * @return
-     */
-    public Camp getCamp(){
-        return camp;
-
-    }
 
     public static ArrayList<Director> loadDirector() {
 		ArrayList<Director> directors = new ArrayList<Director>();
@@ -48,7 +29,6 @@ public class DataLoader extends DataConstants {
 				String email = (String)directorJSON.get(DIRECTOR_EMAIL);
                 String password = (String)directorJSON.get(DIRECTOR_PASSWORD);
 				String phoneNumber = (String)directorJSON.get(DIRECTOR_PHONE_NUMBER);
-
 				
 				directors.add(new Director(name, email, password, phoneNumber));
 			}
@@ -99,7 +79,7 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
-
+    //load counselors
     public static ArrayList<Counselor> loadCounselors() {
 		ArrayList<Counselor> counselors = new ArrayList<Counselor>();
 		
@@ -152,7 +132,7 @@ public class DataLoader extends DataConstants {
 	}
 
 
-
+    //load campers
     public static ArrayList<Camper> loadCampers() {
 		ArrayList<Camper> campers = new ArrayList<Camper>();
 		
@@ -172,7 +152,6 @@ public class DataLoader extends DataConstants {
                 JSONArray medicationsJSON = (JSONArray)camperJSON.get(CAMPER_MEDICATIONS);
                 JSONArray sessionsJSON = (JSONArray)camperJSON.get(CAMPER_SESSIONS);
                 JSONArray notesJSON = (JSONArray)camperJSON.get(CAMPER_NOTES);
-                
                 
                 //make arraylist of allergies
                 ArrayList<String> allergies = new ArrayList<String>();
@@ -252,8 +231,6 @@ public class DataLoader extends DataConstants {
                 JSONArray counselorsJSON = (JSONArray)cabinJSON.get(CABIN_COUNSELOR);
                 JSONArray schedulesJSON = (JSONArray)cabinJSON.get(CABIN_SCHEDULE);
                 
-                
-            
                 //make arraylist of schedule data
                 ArrayList<Schedule> schedules = new ArrayList<Schedule>();
                 for(int j = 0; j < schedulesJSON.size(); j++){
@@ -285,8 +262,6 @@ public class DataLoader extends DataConstants {
                      Camper camper = UserList.getInstance().getCamperByUUID(camperID);
                      campers.add(camper);
                  }
-
-
 				
 				cabins.add(new Cabin(campers, counselors, beds, maxAge, minAge, schedules, id));
 			}
@@ -320,8 +295,6 @@ public class DataLoader extends DataConstants {
                 JSONArray faqsJSON = (JSONArray)campJSON.get(CAMP_FAQS);
                 JSONArray activitiesJSON = (JSONArray)campJSON.get(CAMP_ACTIVITIES);
                 
-                
-            
                 //make arraylist of sessions
                 ArrayList<Session> sessions = new ArrayList<Session>();
                 for(int j = 0; j < sessionsJSON.size(); j++){
@@ -342,7 +315,6 @@ public class DataLoader extends DataConstants {
                         cabins.add(cabin);
                     }
                     
-
                     Session session = new Session (seshid, theme, cabins, seshNum, start, end);
                     sessions.add(session);
                 }
@@ -363,8 +335,6 @@ public class DataLoader extends DataConstants {
                      activities.add((String)activitiesJSON.get(j));
                  }
 
-
-				
                 Camp camp = Camp.getInstance(id, name, sessions, price, faqs, campersPerCounselor, activities);
 				camps.add(camp);
 			}
