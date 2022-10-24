@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class Counselor extends User{
+public class Counselor extends User {
     private String bio;
     private ArrayList<EmergencyContact> emergencyContacts;
     private Date birthday;
@@ -10,19 +10,35 @@ public class Counselor extends User{
 
     /**
      * Constructor for the counselor class
+     * Not touching this for now, but most data read through JSON
      * @param name Name of the counselor
      * @param email Email of the counselor
      * @param password Password of the counselor
      * @param birthday Birthday of the counselor
      */
-    public Counselor(String name, String email, String password, Date birthday, String phoneNumber) {
+    public Counselor(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
-        this.birthday = birthday;
     }
-    //overloaded for data loader
-    public Counselor(String name, String email, String password, String phoneNumber, String bio, Date birthday, UUID id, ArrayList<String> allergies, ArrayList<EmergencyContact> contacts) {
+
+    /**
+     * Constructor with the UUID and the Cabins for the JSON.
+     * FOR THE JSON FILE!!!!!!
+     * @param name Name of the counselor
+     * @param email Email of the counselor
+     * @param password Password of the counselor
+     * @param birthday Birthday of the counselor
+     * @param phoneNumber Phone Number of the counselor
+     * @param id UUID of the counselor
+     * @param bio Biography of the counselor
+     * @param cabins Cabins of the counselor
+     */
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<EmergencyContact> emergencyContacts, Date birthday, ArrayList<String> allergies) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
+        this.bio = bio;
+        this.id = id;
+        this.allergies = allergies;
+        this.emergencyContacts = emergencyContacts;
     }
 
     public String getName() {
@@ -39,6 +55,10 @@ public class Counselor extends User{
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public UUID getID() {
+        return id;
     }
 
     public void setName(String name) {

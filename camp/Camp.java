@@ -101,8 +101,6 @@ public class Camp {
     public Session getSessionByUUID(UUID id){
         return null;
     }
-
-
     /**
      * a method to save the sessions to a JSON file
      */

@@ -21,16 +21,39 @@ public class Cabin {
         campers = new ArrayList<Camper>();
         schedule = new HashMap<Day, Schedule>();
     }
+<<<<<<< HEAD
 
     //nat
     public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, )
 
+=======
+    public UUID getCabinID() {
+        return this.cabinID;
+    }
+
+    public void setCabinID(UUID cabinID) {
+        this.cabinID = cabinID;
+    }
+>>>>>>> 2b441acc9460b68ffc9ff7829f7725de766f8e3e
     /**
-     * method to add a counselor to the cabin
-     * @param counselor the counselor being added
+     * getter of the counselor
+     * @return the counselor
      */
-    public void addCounselor(Counselor counselor){
+    public Counselor getCounselor(){
+        return counselor;
+    }
+    private void setCounselor(Counselor counselor){
         this.counselor = counselor;
+     }
+    /**
+     * getter of the campers
+     * @return the list of campers
+     */
+     public ArrayList<Camper> getCampers(){
+        return campers;
+    }
+    public void setCampers(ArrayList<Camper> campers){
+        this.campers = campers;
     }
     /**
      * method to add a camper to cabin
@@ -63,18 +86,14 @@ public class Cabin {
         return schedule.get(day);
     }
     /**
-     * getter of the counselor
-     * @return the counselor
+     * a method to get the entire schedule for the cabin
+     * @return the schedule for that cabin
      */
-    public Counselor getCounselor(){
-        return counselor;
+    public HashMap<Day, Schedule> getSchedule(){
+        return this.schedule;
     }
-    /**
-     * getter of the campers
-     * @return the list of campers
-     */
-    public ArrayList<Camper> getCampers(){
-        return campers;
+    public void setSchedule(HashMap<Day, Schedule> schedule){
+        this.schedule = schedule;
     }
     /**
      * method to determine whether the cabin has a counselor

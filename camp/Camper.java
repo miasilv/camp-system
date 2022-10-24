@@ -6,10 +6,10 @@ public class Camper {
     private UUID camperID;
     private String name;
     private Date birthday;
-    private ArrayList<Medication> medicaitons;
+    private ArrayList<Medication> medications;
     private ArrayList<String> allergies;
     private ArrayList<Session> sessions;
-    private String notes;
+    private ArrayList<String> notes;
     private ArrayList<Cabin> cabins;
     private ArrayList<EmergencyContact> emergencyContacts;
 
@@ -23,9 +23,26 @@ public class Camper {
         this.birthday = birthday;
     }
 
-    public Camper(String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<EmergencyContact> contacts, UUID id) {
+    /**
+     * OVERLOADED CONSTRUCTOR FOR THE JSON FILE!!
+     * @param id ID of the camper
+     * @param name Name of the camper
+     * @param birthday Birthday of the camper
+     * @param medications Medications of the camper
+     * @param allergies Allergies of the camper
+     * @param sessions Sessions of the camper
+     * @param notes Notes of the camper
+     * @param emergencyContacts Emergency contacts of the camper
+     */
+    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<EmergencyContact> emergencyContacts) {
+        this.camperID = id;
         this.name = name;
         this.birthday = birthday;
+        this.medications = medications;
+        this.allergies = allergies;
+        this.sessions = sessions;
+        this.notes = notes;
+        this.emergencyContacts = emergencyContacts;
     }
 
     /**
