@@ -1,3 +1,5 @@
+package camp;
+
 import java.time.LocalTime; // this is weird, might have to change
 
 public class Medication {

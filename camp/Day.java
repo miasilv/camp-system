@@ -1,3 +1,5 @@
+package camp;
+
 /**
  * an enum of the days of the week
  * @author sara

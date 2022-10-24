@@ -1,3 +1,5 @@
+package camp;
+
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Date;
@@ -299,9 +301,8 @@ public class DataLoader extends DataConstants {
 	}
 
     //load camp
-     //load cabin
-     public static ArrayList<Camp> loadCamp() {
-		ArrayList<Camp> camps = new ArrayList<Camp>();
+    public static ArrayList<Camp> loadCamp() {
+	    ArrayList<Camp> camps = new ArrayList<Camp>();
 		
 		try {
 			FileReader reader = new FileReader(CAMP_FILE_NAME);
