@@ -224,7 +224,7 @@ public class UserList {
         }
     }
 
-    /*
+    
     public void addUser(String name, String email, String password, String phoneNumber) {
 
     }
@@ -244,5 +244,5 @@ public class UserList {
     public void saveUsers() {
         
     }
-    */
+    
 }

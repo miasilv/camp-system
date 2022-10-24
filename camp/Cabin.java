@@ -21,12 +21,12 @@ public class Cabin {
         campers = new ArrayList<Camper>();
         schedule = new HashMap<Day, Schedule>();
     }
-<<<<<<< HEAD
 
-    //nat
-    public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, )
+    //overloaded constructor for dataloader
+    public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, int beds, int maxAge, int minAge, ArrayList<Schedule> schedules, UUID id){
 
-=======
+    }
+
     public UUID getCabinID() {
         return this.cabinID;
     }
@@ -34,7 +34,6 @@ public class Cabin {
     public void setCabinID(UUID cabinID) {
         this.cabinID = cabinID;
     }
->>>>>>> 2b441acc9460b68ffc9ff7829f7725de766f8e3e
     /**
      * getter of the counselor
      * @return the counselor
