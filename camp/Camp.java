@@ -50,6 +50,10 @@ public class Camp {
         return this.FAQs;
     }
 
+    public void addFAQ(String question, String answer){
+        FAQs.add(new FAQ(question, answer));
+    }
+
     public void setFAQs(ArrayList<FAQ> FAQs) {
         this.FAQs = FAQs;
     }

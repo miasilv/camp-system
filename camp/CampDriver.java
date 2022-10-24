@@ -257,12 +257,12 @@ public class CampDriver {
 	/**
 	 * Creates a new FAQ object
 	 */
-	private FAQ createNewFAQ() {
+	private boolean createNewFAQ() {
 		System.out.print("Please enter the question: ");
 		String question = in.nextLine();
 		System.out.print("Please enter the answer: ");
 		String answer = in.nextLine();
-		return new FAQ(question, answer);
+		return facade.addFAQ(question, answer);
 	}
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
