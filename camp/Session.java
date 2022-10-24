@@ -21,6 +21,12 @@ public class Session {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+    
+    //overloaded
+    public Session (UUID id, String theme, ArrayList<Cabin> cabins, int sessionNumber, Date start, Date end){
+
+    }
+
     /**
      * a method to add a cabin
      * @param cabin the cabin to be added

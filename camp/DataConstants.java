@@ -87,4 +87,16 @@ public abstract class DataConstants {
     protected static final String SCHEDULE_DAY = "day";
     protected static final String SCHEDULE_SCHEDULE = "schedule";
 
+    //session constants
+    protected static final String SESSION_ID = "id";
+    protected static final String SESSION_THEME = "theme";
+    protected static final String SESSION_CABINS = "cabins";
+    protected static final String SESSION_NUM = "sessionNumber";
+    protected static final String SESSION_START = "start date";
+    protected static final String SESSION_END = "end date";
+
+    //faq constants
+    protected static final String FAQ_QUESTION = "question";
+    protected static final String FAQ_ANSWER = "answer";
+
 }
