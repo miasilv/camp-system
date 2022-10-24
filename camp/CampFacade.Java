@@ -290,6 +290,9 @@ public class CampFacade {
         return false;
     }
 
+    // ------------------------------ ARRAY LISTS ---------------------------
+
+
 
 
     // ********************************** SESSION CLASS ***************************************
@@ -387,6 +390,7 @@ public class CampFacade {
 
 
 
+
     // ***************************** CABIN CLASS **********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside cabin
@@ -396,9 +400,53 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets the counselor for the current cabin
+     * @return the counselor of the cabin
+     */
+    public Counselor getCabinCounselor() {
+        return currentCabin.getCounselor();
+    }
+    
+    /**
+     * Sets the counselor for the current cabin
+     * @param counselor the counselor to set as the new counselor
+     * @return true if successful, false if not successful
+     */
+    public boolean setCabinCounselor(Counselor counselor) {
+        return currentCabin.setCounselor(counselor);
+    }
+
+
     // ------------------------------ ARRAY LISTS ---------------------------
+    /**
+     * Gets the current camper list, (which should be in a cabin object)
+     * @return an arraylist of campers
+     */
+    public ArrayList<Camper> getCabinCamperList() {
+        return currentCamperList;
+    }
 
+    /**
+     * Removes a camper from the current camper list (which should be in a cabin object)
+     * @param index the index of the camper to be removed
+     * @return the removed camper object
+     */
+    public Camper removeCabinCamper(int index) {
+        return currentCamperList.remove(index);
+    }
 
+    /**
+     * Adds a camper to the current camper list (which should be in a cabin object)
+     * @param cabinNum the number of the new cabin
+     * @return true if successful, false if not successful
+     */
+    public boolean addCabinCamper(Camper camper) {
+        //TODO check if the cabin already exists in this list
+        return currentCamperList.add(camper);
+    }
+
+    
 
     // ***************************** USER CLASS ***********************************************
     /**
