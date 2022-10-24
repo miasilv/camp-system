@@ -26,7 +26,7 @@ public class Guardian extends User {
      * @param phoneNumber Phone number of the guardian
      * @param campers Campers of the guardian
      */
-    public Guardian(String name, String email, String password, String phoneNumber,UUID id, ArrayList<Camper> campers) {
+    public Guardian(UUID id, String name, String email, String password, String phoneNumber, ArrayList<Camper> campers) {
         super(name, email, password, phoneNumber);
         this.id = id;
         this.campers = campers;
