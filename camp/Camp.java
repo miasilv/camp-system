@@ -97,7 +97,7 @@ public class Camp {
         return new Session(campersPerCounselor, null, null);
     }
 
-
+    //nat
     public Session getSessionByUUID(UUID id){
         return null;
     }

@@ -44,6 +44,7 @@ public class Session {
         return cabins.get(index);
     }
 
+    //talk to nat
     public Cabin getCabinByUUID(UUID id){
         return null;
     }

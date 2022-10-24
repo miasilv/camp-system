@@ -21,6 +21,10 @@ public class Cabin {
         campers = new ArrayList<Camper>();
         schedule = new HashMap<Day, Schedule>();
     }
+
+    //nat
+    public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, )
+
     /**
      * method to add a counselor to the cabin
      * @param counselor the counselor being added
