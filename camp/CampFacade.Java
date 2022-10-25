@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class CampFacade {
     // ------------------------- CURRENT ARRAYLISTS/OBJECTS -----------------
     private UserList userList;
+    private CampList camplist;
     private Camp camp; 
     private ArrayList<FAQ> currentFaqList;
     private FAQ currentFaq;
@@ -81,7 +82,7 @@ public class CampFacade {
     private static final String TIME = "time";
 
     public CampFacade() {
-        camp.getInstance();
+        camplist.getInstance();
         initArrayLists();
     }
 
@@ -104,7 +105,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside camp
      */
     public void updateCamp() {
-        this.currentSessionList = this.camp.getSessions();
+        this.currentCamperSessionList = this.camp.getSessions();
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
     }
@@ -324,7 +325,7 @@ public class CampFacade {
      */
     public String getSessionString(String variableName) {
         if(variableName.equals(THEME)) {
-            return currentFaq.getTheme();
+            return currentSession.getTheme();
         }
         return null;
     }
@@ -337,7 +338,7 @@ public class CampFacade {
      */
     public boolean setSessionString(String variableName, String change) {
         if(variableName.equals(THEME)) {
-            return currentFaq.setTheme(change);
+            return currentSession.setTheme(change);
         }
         return false;
     }
@@ -491,7 +492,7 @@ public class CampFacade {
      */
     public boolean addCabinCamper(Camper camper) {
         //TODO check if the camper already exists in this list
-        return currentCamperList.add(camper);
+        return currentCabinCamperList.add(camper);
     }
 
     /**
@@ -958,7 +959,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperMedication(String dose, String type, String time) {
-        //TODO check if the allergy already exists in this list
+        //TODO check if the medication already exists in this list
         return currentMedicationList.add(new Medication(dose, type, time));
     }
 

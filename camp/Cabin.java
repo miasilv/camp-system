@@ -99,7 +99,7 @@ public class Cabin {
     public Counselor getCounselor(){
         return counselor;
     }
-    private boolean setCounselor(Counselor counselor){
+    public boolean setCounselor(Counselor counselor){
         if(counselor != null){
             this.counselor = counselor;
             return true;

@@ -39,7 +39,7 @@ public class CampList {
 
     public Camp getCamp(UUID id) {
         for (int i=0; i < camps.size(); i++) {
-            if (camps.get(i).getID().equals(id)) {
+            if (camps.get(i).getId().equals(id)) {
                 return camps.get(i);
             }
         }
@@ -59,7 +59,7 @@ public class CampList {
         for (int i=0; i < camps.size(); i++) {
             ArrayList<Session> sessions = camps.get(i).getSessions();
             for(int j = 0; j<sessions.size(); j++){
-                if (sessions.get(i).getID().equals(id)) {
+                if (sessions.get(i).getId().equals(id)) {
                     return sessions.get(j);
                 }
             }

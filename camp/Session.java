@@ -27,7 +27,7 @@ public class Session {
         return this.theme;
     }
 
-    public void setTheme(String theme) {
+    public boolean setTheme(String theme) {
         this.theme = theme;
     }
 

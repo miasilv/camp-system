@@ -30,10 +30,10 @@ public abstract class User {
     public abstract String getPhoneNumber();
     public abstract UUID getID();
 
-    public abstract void setName(String name);
-    public abstract void setEmail(String email);
-    public abstract void setPassword(String password);
-    public abstract void setPhoneNumber(String phoneNumber);
+    public abstract boolean setName(String name);
+    public abstract boolean setEmail(String email);
+    public abstract boolean setPassword(String password);
+    public abstract boolean setPhoneNumber(String phoneNumber);
 
     /**
      * Method to add a phone number for a user
