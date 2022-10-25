@@ -29,6 +29,18 @@ public class Medication {
         return time;
     }
 
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String toString() {
         return dose + " " + type + " " + time;
     }
