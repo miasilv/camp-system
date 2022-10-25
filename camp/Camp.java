@@ -16,6 +16,14 @@ public class Camp {
     private ArrayList<String> activities;
     private UUID id;
 
+    public UUID getId() {
+        return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public Camp (){
 
     }
@@ -141,16 +149,31 @@ public class Camp {
         activities.add(activity);
     }
 
-    public UUID getID() {
-        return id;
-    }
-
     public double getPrice(){
         return pricePerSession;
     }
 
     public int getRatio(){
         return campersPerCounselor;
+    }
+
+    public String toString(){
+        String workingString = "";
+        workingString += id.toString() + "\n";
+        workingString += name + "\n";
+        for(int i=0; i<sessions.size(); i++){
+            workingString += sessions.get(i).toString() + "\n";
+        }
+        workingString += String.valueOf(pricePerSession) + "\n";
+        for(int i=0; i<FAQs.size(); i++){
+            workingString += FAQs.get(i).getQuestion() + " " + FAQs.get(i).getAnswer() + "\n";
+        }
+        workingString += String.valueOf(campersPerCounselor) + "\n";
+        for(int i=0; i<activities.size(); i++){
+            workingString += activities.get(i) + " ";
+        }
+        workingString += "\n";
+        return workingString;
     }
 }
 

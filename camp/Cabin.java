@@ -180,5 +180,15 @@ public class Cabin {
         return cabinID;
     }
 
-
+    public String toString(){
+        String workingString = "";
+        workingString += cabinID + " \n";
+        for (int i=0; i<campers.size(); i++){
+            workingString += String.valueOf(campers.get(i)) + " ";
+        }
+        workingString += counselor + " \n";
+        workingString += schedule.toString() + " \n";
+        workingString += String.valueOf(beds) + " \n" + String.valueOf(minAge) + " \n" + String.valueOf(maxAge) + " \n";
+        return workingString;
+    }
 }

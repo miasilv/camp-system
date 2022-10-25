@@ -124,4 +124,13 @@ public class Session {
         return null;
     }
 
+    public String toString(){
+        String workingString = "";
+        workingString += id + "\n";
+        for(int i=0; i<cabins.size(); i++){
+            workingString += cabins.get(i).toString() + "\n";
+        }
+        workingString += String.valueOf(sessionNumber) + "\n" + String.valueOf(startDate) + "\n" + String.valueOf(endDate) + "\n" + theme;
+        return workingString;
+    }
 }
