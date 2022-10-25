@@ -20,6 +20,7 @@ public class DataWriter extends DataConstants {
 
 
 
+    //save directors
     public static void saveDirectors() {
 		UserList users = UserList.getInstance();
 		ArrayList<Director> directors = users.getDirectors();
@@ -53,6 +54,8 @@ public class DataWriter extends DataConstants {
         return directorDetails;
 	}
 
+
+    //save guardians
     public static void saveGuardians() {
 		UserList users = UserList.getInstance();
 		ArrayList<Guardian> guardians = users.getGuardians();
@@ -84,6 +87,154 @@ public class DataWriter extends DataConstants {
         guardianDetails.put(GUARDIAN_CAMPERS, guardian.getCampers());
 		
 		
-        return directorDetails;
+        return guardianDetails;
+	}
+
+
+
+    //save counselors
+    public static void saveCounselors() {
+		UserList users = UserList.getInstance();
+		ArrayList<Counselor> counselors = users.getCounselors();
+		JSONArray jsonCounselors = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< counselors.size(); i++) {
+			jsonCounselors.add(getCounselorJSON(counselors.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter(COUNSELOR_FILE_NAME)) {
+ 
+            file.write(jsonCounselors.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getCounselorJSON(Counselor counselor) {
+		JSONObject counselorDetails = new JSONObject();
+		counselorDetails.put(COUNSELOR_NAME, counselor.getName());
+		counselorDetails.put(COUNSELOR_EMAIL, counselor.getEmail());
+        counselorDetails.put(COUNSELOR_PASSWORD, counselor.getPassword());
+        counselorDetails.put(COUNSELOR_PHONE_NUMBER, counselor.getPhoneNumber());
+        counselorDetails.put(COUNSELOR_UUID, counselor.getID());
+        counselorDetails.put(COUNSELOR_BIO, counselor.getBio());
+        counselorDetails.put(COUNSELOR_BIRTHDAY, counselor.getBirthday());
+        counselorDetails.put(COUNSELOR_ALLERGIES, counselor.getAllergies());
+		counselorDetails.put(COUNSELOR_EMERGENCY_CONTACTS, counselor.getEmergencyContacts());
+    
+		
+        return counselorDetails;
+	}
+
+     //save campers
+     public static void saveCampers() {
+		UserList users = UserList.getInstance();
+		ArrayList<Camper> campers = users.getCampers();
+		JSONArray jsonCampers = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< campers.size(); i++) {
+			jsonCampers.add(getCamperJSON(campers.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter(CAMPER_FILE_NAME)) {
+ 
+            file.write(jsonCampers.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getCamperJSON(Camper camper) {
+		JSONObject camperDetails = new JSONObject();
+		camperDetails.put(CAMPER_NAME, camper.getName());
+		camperDetails.put(CAMPER_MEDICATIONS, camper.getMedications());
+        camperDetails.put(CAMPER_NOTES, camper.getNotes());
+        camperDetails.put(CAMPER_SESSIONS, camper.getSessions());
+        camperDetails.put(CAMPER_UUID, camper.getID());
+        camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthday());
+        camperDetails.put(CAMPER_ALLERGIES, camper.getAllergies());
+		camperDetails.put(CAMPER_EMERGENCY_CONTACTS, camper.getEmergencyContacts());
+		
+        return camperDetails;
+	}
+
+
+
+    //save camp
+    public static void saveCamp() {
+		CampList camp = CampList.getInstance();
+		ArrayList<Camp> camps = camp.getCampers();
+		JSONArray jsonCamps = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< camps.size(); i++) {
+			jsonCamps.add(getCamperJSON(camps.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter(CAMP_FILE_NAME)) {
+ 
+            file.write(jsonCamps.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getCampJSON(Camp camp) {
+		JSONObject campDetails = new JSONObject();
+		campDetails.put(CAMP_NAME, camp.getName());
+		campDetails.put(CAMP_ACTIVITIES, camp.getActivities());
+        campDetails.put(CAMP_FAQS, camp.getFAQs());
+        campDetails.put(CAMP_PRICE, camp.getPrice());
+        campDetails.put(CAMP_UUID, camp.getID());
+        campDetails.put(CAMP_RATIO, camp.getRatio());
+        campDetails.put(CAMP_SESSIONS, camp.getSessions());
+		
+        return campDetails;
+	}
+
+    //save cabin
+    public static void saveCabin() {
+		CampList camp = CampList.getInstance();
+		ArrayList<Cabin> cabins = camp.getCampers();
+		JSONArray jsonCabins = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< cabins.size(); i++) {
+			jsonCabins.add(getCamperJSON(cabins.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter(CABIN_FILE_NAME)) {
+ 
+            file.write(jsonCabins.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getCabinJSON(Cabin cabin) {
+		JSONObject cabinDetails = new JSONObject();
+		cabinDetails.put(CABIN_BEDS, cabin.getBeds());
+		cabinDetails.put(CABIN_CAMPERS, cabin.getCampers());
+        cabinDetails.put(CABIN_COUNSELOR, cabin.getCounselor());
+        cabinDetails.put(CABIN_MAX_AGE, cabin.getMaxAge());
+        cabinDetails.put(CABIN_UUID, cabin.getID());
+        cabinDetails.put(CABIN_MIN_AGE, cabin.getMinAge());
+        cabinDetails.put(CABIN_SCHEDULE, cabin.getSchedule());
+		
+        return cabinDetails;
 	}
 }

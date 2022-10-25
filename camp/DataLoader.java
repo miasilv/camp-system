@@ -16,11 +16,18 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
+    public static void main(String[] args) {
+        ArrayList<Director> directors = loadDirector();
+        for (Director d: directors){
+            System.out.println(d.toString());
+        }
+    }
+
     public static ArrayList<Director> loadDirector() {
 		ArrayList<Director> directors = new ArrayList<Director>();
 		
 		try {
-			FileReader reader = new FileReader(DIRECTOR_FILE_NAME);
+			FileReader reader = new FileReader("./camp/json files/"+ DIRECTOR_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray directorsJSON = (JSONArray)new JSONParser().parse(reader);
 			
@@ -184,7 +191,7 @@ public class DataLoader extends DataConstants {
                     relationships.add(erelationship);
                 }
 
-                //make arraylist of emergency contact data
+                //make arraylist of medications
                 ArrayList<Medication>  medications = new ArrayList<Medication>();
                 for(int j = 0; j < emergencycontactsJSON.size(); j++){
                     JSONObject contact = (JSONObject)medicationsJSON.get(j);

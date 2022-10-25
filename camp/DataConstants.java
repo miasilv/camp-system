@@ -50,7 +50,6 @@ public abstract class DataConstants {
     protected static final String COUNSELOR_PASSWORD = "password";
     protected static final String COUNSELOR_PHONE_NUMBER = "phonenumber";
     protected static final String COUNSELOR_BIO = "bio";
-    protected static final String COUNSELOR_CABINS = "cabins";
 	protected static final String COUNSELOR_BIRTHDAY = "birthday";
     protected static final String COUNSELOR_ALLERGIES = "allergies";
     protected static final String COUNSELOR_EMERGENCY_CONTACTS = "emergency contacts";
