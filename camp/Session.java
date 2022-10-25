@@ -29,6 +29,7 @@ public class Session {
 
     public boolean setTheme(String theme) {
         this.theme = theme;
+        return false;
     }
 
     public ArrayList<Cabin> getCabins() {
@@ -121,6 +122,10 @@ public class Session {
 
     //talk to nat
     public Cabin getCabinByUUID(UUID id){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).getID()==id)
+                return cabins.get(i);
+        }
         return null;
     }
 

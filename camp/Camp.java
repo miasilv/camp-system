@@ -126,11 +126,18 @@ public class Camp {
 
     //nat
     public Session getSessionByUUID(UUID id){
+        for(int i=0; i<sessions.size(); i++){
+            if(sessions.get(i).getId() == id)
+                return sessions.get(i);
+        }
         return null;
     }
 
     //nat 
     public Cabin getCabinByUUID(UUID id){
+        for(int i=0; i<sessions.size(); i++){
+            sessions.get(i).getCabinByUUID(id);
+        }
         return null;
     }
 

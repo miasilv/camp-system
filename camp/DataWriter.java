@@ -196,7 +196,7 @@ public class DataWriter extends DataConstants {
 		campDetails.put(CAMP_ACTIVITIES, camp.getActivities());
         campDetails.put(CAMP_FAQS, camp.getFAQs());
         campDetails.put(CAMP_PRICE, camp.getPrice());
-        campDetails.put(CAMP_UUID, camp.getID());
+        campDetails.put(CAMP_UUID, camp.getId());
         campDetails.put(CAMP_RATIO, camp.getRatio());
         campDetails.put(CAMP_SESSIONS, camp.getSessions());
 		
