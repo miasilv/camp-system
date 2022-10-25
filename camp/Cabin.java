@@ -41,8 +41,12 @@ public class Cabin {
     public Counselor getCounselor(){
         return counselor;
     }
-    private void setCounselor(Counselor counselor){
-        this.counselor = counselor;
+    private boolean setCounselor(Counselor counselor){
+        if(counselor != null){
+            this.counselor = counselor;
+            return true;
+        }
+        return false;
      }
     /**
      * getter of the campers
