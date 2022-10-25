@@ -231,27 +231,9 @@ public class UserList {
                 guardians.remove(i);
             }
         }
-    }
-
-    
-    public void addUser(String name, String email, String password, String phoneNumber) {
-
-    }
-
-    public Camper getCamperByUUID(UUID id){
-        return null;
-    }
-
-    public Counselor getCounselorByUUID(UUID id){
-        return null;
-    }
-
-    public void editUser() {
-
-    }   
+    }  
     
     public void saveUsers() {
         
     }
-    
 }
