@@ -20,7 +20,8 @@ public class CampFacade {
     private Cabin currentCabin;
     private HashMap<Day, Schedule> currentScheduleHash;
     private Schedule currentSchedule;
-    private User currentUser;
+    
+    private User currentUser; // the person using it
     private Director currentDirector;
     private Counselor currentCounselor;
     private Guardian currentGuardian;
