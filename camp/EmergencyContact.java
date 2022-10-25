@@ -1,3 +1,5 @@
+package camp;
+
 import java.util.HashMap;
 
 public class EmergencyContact {
@@ -7,7 +9,11 @@ public class EmergencyContact {
      * Contructor for the Emergency Contact class
      */
     public EmergencyContact() {
-        
+
+    }
+
+    public EmergencyContact(String name, String phonenumber, String address, String relationship) {
+
     }
 
     /**

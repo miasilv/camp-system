@@ -1,3 +1,5 @@
+package camp;
+
 /**
  * an object representing an FAQ
  * @author sara

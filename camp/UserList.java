@@ -1,3 +1,5 @@
+package camp;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -224,7 +226,7 @@ public class UserList {
         }
     }
 
-    /*
+    
     public void addUser(String name, String email, String password, String phoneNumber) {
 
     }
@@ -244,5 +246,5 @@ public class UserList {
     public void saveUsers() {
         
     }
-    */
+    
 }

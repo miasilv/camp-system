@@ -1,3 +1,5 @@
+package camp;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -126,4 +128,6 @@ public class Camper {
     public String toString() {
         return "";
     }
+
+
 }

@@ -21,6 +21,12 @@ public class Cabin {
         campers = new ArrayList<Camper>();
         schedule = new HashMap<Day, Schedule>();
     }
+
+    //overloaded constructor for dataloader
+    public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, int beds, int maxAge, int minAge, ArrayList<Schedule> schedules, UUID id){
+
+    }
+
     public UUID getCabinID() {
         return this.cabinID;
     }

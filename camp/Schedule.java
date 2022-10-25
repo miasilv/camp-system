@@ -1,3 +1,6 @@
+package camp;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 /**
  * an object representing a daily schedule
@@ -11,6 +14,13 @@ public class Schedule {
     public Schedule(){
         schedule = new HashMap<String, String>();
     }
+
+    //data loading talk to natalie
+    public Schedule(String day, ArrayList<String> scheudle){
+        
+    }
+
+    
     /**
      * getter of the schedule
      * @return the schedule

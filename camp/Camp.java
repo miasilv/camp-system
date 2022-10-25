@@ -1,3 +1,5 @@
+
+package camp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -48,6 +50,10 @@ public class Camp {
         return this.FAQs;
     }
 
+    public void addFAQ(String question, String answer){
+        FAQs.add(new FAQ(question, answer));
+    }
+
     public void setFAQs(ArrayList<FAQ> FAQs) {
         this.FAQs = FAQs;
     }
@@ -68,6 +74,7 @@ public class Camp {
     private Camp(){
         
     }
+    
     /**
      * implements singleton design pattern, gets the instance of camp
      * @return the instance of camp
@@ -78,6 +85,19 @@ public class Camp {
         }
         return camp;
     }
+
+    //overloaded for nat
+    private Camp(UUID id, String name, ArrayList<Session> sessions, int price, ArrayList<FAQ> faqs, int camperRatio, ArrayList<String> activities){
+
+    }
+    public static Camp getInstance(UUID id, String name, ArrayList<Session> sessions, int price, ArrayList<FAQ> faqs, int camperRatio, ArrayList<String> activities){
+        if (camp == null){
+            camp = new Camp(id, name, sessions, price, faqs, camperRatio, activities);            
+        }
+        return camp;
+    }
+
+
     /**
      * a method to add a session
      * @param sessionNumber the session's number
@@ -97,10 +117,16 @@ public class Camp {
         return new Session(campersPerCounselor, null, null);
     }
 
-
+    //nat
     public Session getSessionByUUID(UUID id){
         return null;
     }
+
+    //nat 
+    public Cabin getCabinByUUID(UUID id){
+        return null;
+    }
+
     /**
      * a method to save the sessions to a JSON file
      */

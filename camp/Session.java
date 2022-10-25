@@ -1,3 +1,5 @@
+package camp;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -53,6 +55,12 @@ public class Session {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+    
+    //overloaded
+    public Session (UUID id, String theme, ArrayList<Cabin> cabins, int sessionNumber, Date start, Date end){
+
+    }
+
     /**
      * a method to add a cabin
      * @param cabin the cabin to be added
@@ -76,6 +84,7 @@ public class Session {
         return cabins.get(index);
     }
 
+    //talk to nat
     public Cabin getCabinByUUID(UUID id){
         return null;
     }
