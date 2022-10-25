@@ -264,9 +264,12 @@ public class CampFacade {
      * @param endDate the end date of the session
      * @return true if successful, false if not successful
      */
-    public boolean addCampSession(int sessionNumber, Date startDate, Date endDate) {
-        //TODO check if session already exists by id/session number and don't create a new objects
-        return currentCampSessionList.add(new Session(sessionNumber, startDate, endDate));
+    public boolean addCampSession(String theme, int sessionNumber, Date startDate, Date endDate) {
+        for(int i=0; i<currentCampSessionList.size(); i++){
+            if(currentCampSessionList.get(i).getSessionNumber() == sessionNumber)
+                return false;
+        }
+        return currentCampSessionList.add(new Session(theme, sessionNumber, startDate, endDate));
     }
     
 
@@ -431,9 +434,12 @@ public class CampFacade {
      * @param cabinNum the number of the new cabin
      * @return true if successful, false if not successful
      */
-    public boolean addSessionCabin(int cabinNum) {
-        //TODO check if the cabin already exists in this list
-        return currentSessionCabinList.add(new Cabin(cabinNum));
+    public boolean addSessionCabin(Cabin cabin) {
+        for(int i=0; i<currentSessionCabinList.size(); i++){
+            if(currentSessionCabinList.get(i).getCabinID() == cabin.getCabinID())
+                return false;
+        }
+        return currentSessionCabinList.add(cabin);
     }
 
 
@@ -491,7 +497,10 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCabinCamper(Camper camper) {
-        //TODO check if the camper already exists in this list
+        for(int i=0; i<currentCabinCamperList.size(); i++){
+            if(currentCabinCamperList.get(i).getID() == camper.getID())
+                return false;
+        }
         return currentCabinCamperList.add(camper);
     }
 
@@ -723,7 +732,10 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCounselorAllergy(String allergy) {
-        //TODO check if the allergy already exists in this list
+        for(int i=0; i<currentCounselorAllergyList.size(); i++){
+            if(currentCounselorAllergyList.get(i).equalsIgnoreCase(allergy))
+                return false;
+        }
         return currentCounselorAllergyList.add(allergy);
     }
 
@@ -840,7 +852,10 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addGuardianCamper(Camper camper) {
-        //TODO check if the camper already exists in this list
+        for(int i=0; i<currentGuardianCamperList.size(); i++){
+            if(currentGuardianCamperList.get(i).getID() == camper.getID())
+                return false;
+        }
         return currentGuardianCamperList.add(camper);
     }
 
@@ -930,7 +945,10 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperAllergy(String allergy) {
-        //TODO check if the allergy already exists in this list
+        for(int i=0; i<currentCamperAllergyList.size(); i++){
+            if(currentCamperAllergyList.get(i).equalsIgnoreCase(allergy))
+                return false;
+        }
         return currentCamperAllergyList.add(allergy);
     }
 
@@ -959,6 +977,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperMedication(String dose, String type, String time) {
+        for(int i=0; i<currentMedicationList.size(); i++){
+            
+        }
         //TODO check if the medication already exists in this list
         return currentMedicationList.add(new Medication(dose, type, time));
     }
@@ -1016,7 +1037,10 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperSession(String theme, int sessionNumber, Date startDate, Date endDate) {
-        //TODO check if session already exists by id/session number and don't create a new objects
+        for(int i=0; i<currentCamperSessionList.size(); i++){
+            if(currentCamperSessionList.get(i).getSessionNumber() == sessionNumber)
+                return false;
+        }
         return currentCamperSessionList.add(new Session(theme, sessionNumber, startDate, endDate));
     }
 
