@@ -81,7 +81,8 @@ public class Session {
      * @param startDate the date the session starts
      * @param endDate the date the session ends
      */
-    public Session(int sessionNumber, Date startDate, Date endDate){
+    public Session(String theme, int sessionNumber, Date startDate, Date endDate){
+        this.theme = theme;
         this.sessionNumber = sessionNumber;
         this.startDate = startDate;
         this.endDate = endDate;
