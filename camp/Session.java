@@ -13,6 +13,23 @@ public class Session {
     private int sessionNumber;
     private Date startDate;
     private Date endDate;
+    private String theme;
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getTheme() {
+        return this.theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
 
     public ArrayList<Cabin> getCabins() {
         return this.cabins;
@@ -71,7 +88,12 @@ public class Session {
     
     //overloaded
     public Session (UUID id, String theme, ArrayList<Cabin> cabins, int sessionNumber, Date start, Date end){
-
+        this.id = id;
+        this.theme = theme;
+        this.cabins = cabins;
+        this.sessionNumber = sessionNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     /**
@@ -102,7 +124,4 @@ public class Session {
         return null;
     }
 
-    public UUID getID() {
-        return id;
-    }
 }

@@ -73,7 +73,17 @@ public class Cabin {
     public int getBeds(){
         return beds;
     }
+    public void setBeds(int beds) {
+        this.beds = beds;
+    }
 
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
 
     public UUID getCabinID() {
         return this.cabinID;
