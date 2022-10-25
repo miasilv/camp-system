@@ -12,6 +12,38 @@ public class Session {
     private int sessionNumber;
     private Date startDate;
     private Date endDate;
+
+    public ArrayList<Cabin> getCabins() {
+        return this.cabins;
+    }
+
+    public void setCabins(ArrayList<Cabin> cabins) {
+        this.cabins = cabins;
+    }
+
+    public int getSessionNumber() {
+        return this.sessionNumber;
+    }
+
+    public void setSessionNumber(int sessionNumber) {
+        this.sessionNumber = sessionNumber;
+    }
+
+    public Date getStartDate() {
+        return this.startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
     /**
      * constructor of session
      * @param sessionNumber which session it is

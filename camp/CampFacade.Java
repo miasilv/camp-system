@@ -19,7 +19,7 @@ public class CampFacade {
     private ArrayList<Cabin> currentCabinList;
     private Cabin currentCabin;
     private HashMap<Day, Schedule> currentScheduleHash;
-    private HashMap<String, String> currentSchedule;
+    private Schedule currentSchedule;
     private User currentUser;
     private Director currentDirector;
     private Counselor currentCounselor;
@@ -30,6 +30,10 @@ public class CampFacade {
     private Medication currentMedication;
     private ArrayList<String> currentAllergyList;
     private Contact currentContact;
+    private ArrayList<Cabin> currentSessionCabins;
+    private ArrayList<Camper> currentCabinsCampers;
+    private HashMap<Day, Schedule> currentCabinsSchedule;
+
 
 
 
@@ -89,7 +93,9 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside camp
      */
     public void updateCamp() {
-        
+        this.currentSessionList = this.camp.getSessions();
+        this.currentFaqList = this.camp.getFAQs();
+        this.currentActivityList = this.camp.getActivities();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -259,7 +265,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside faq
      */
     public void updateFAQ() {
-
+        this.currentFaqList = this.camp.getFAQs();
     }   
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -286,10 +292,10 @@ public class CampFacade {
      */
     public boolean setFAQString(String variableName, String change) {
         if(variableName.equals(QUESTION)) {
-            return currentFaq.setQuestion();
+            return currentFaq.setQuestion(change);
         }
         if(variableName.equals(ANSWER)) {
-            return currentFaq.setAnswer();
+            return currentFaq.setAnswer(change);
         }
         return false;
     }
@@ -303,8 +309,9 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside session
      */
-    public void updateSession() {
-        
+    public void updateSession(String keyword) {
+        this.currentSession = this.camp.getSession(keyword);
+        this.currentSessionCabins = this.currentSession.getCabins();
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -399,8 +406,10 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside cabin
      */
-    public void updateCabin() {
-        
+    public void updateCabin(int index) {
+        this.currentCabin = this.currentSessionCabins.get(index);
+        this.currentCabinsCampers = this.currentCabin.getCampers();
+        this.currentCabinsSchedule = this.currentCabin.getSchedule();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -483,7 +492,8 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
-    public void updateSchedule() {
+    public void updateSchedule(Day day) {
+        this.currentSchedule = this.currentCabinsSchedule.get(day);
         
     }
 
@@ -494,7 +504,7 @@ public class CampFacade {
      * Gets the current schedule hash (which should be in a cabin object)
      * @return a hash map of days by schedules
      */
-    public HashMap<String, String> getSchedule() {
+    public Schedule getSchedule() {
         return currentSchedule;
     }
 
@@ -514,7 +524,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addScheduleActivity(String time, String activity) {
-        return currentSchedule.replace(time, null, activity);
+        return currentSchedule.add(time, activity);
     }
 
 
