@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+// don't touch this class, it's ugly and smelly - portia
+
 /**
  * @author Mia Silver
  * A Camp Facade Object

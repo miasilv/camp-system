@@ -12,7 +12,7 @@ public class EmergencyContact {
 
     }
 
-    public EmergencyContact(String name, String phonenumber, String address, String relationship) {
+    public EmergencyContact(String relationship, Contact contact) {
 
     }
 
