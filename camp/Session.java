@@ -8,6 +8,7 @@ import java.util.UUID;
  * @author sara
  */
 public class Session {
+    private UUID id;
     private ArrayList<Cabin> cabins;
     private int sessionNumber;
     private Date startDate;
@@ -99,5 +100,9 @@ public class Session {
     //talk to nat
     public Cabin getCabinByUUID(UUID id){
         return null;
+    }
+
+    public UUID getID() {
+        return id;
     }
 }

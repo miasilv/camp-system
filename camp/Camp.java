@@ -14,6 +14,20 @@ public class Camp {
     private int campersPerCounselor;
     private ArrayList<FAQ> FAQs;
     private ArrayList<String> activities;
+    private UUID id;
+
+    public Camp (){
+
+    }
+    public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, int camperRatio, ArrayList<String> activities){
+        this.id = id;
+        this.name = name;
+        this.sessions = sessions;
+        this.pricePerSession= price;
+        this.campersPerCounselor= camperRatio;
+        this.FAQs = faqs;
+        this.activities = activities;
+    }
 
     public String getName() {
         return this.name;
@@ -81,33 +95,6 @@ public class Camp {
         this.activities = activities;
     }
 
-    private static Camp camp;
-
-    private Camp(){
-        
-    }
-    
-    /**
-     * implements singleton design pattern, gets the instance of camp
-     * @return the instance of camp
-     */
-    public static Camp getInstance(){
-        if (camp == null){
-            camp = new Camp();            
-        }
-        return camp;
-    }
-
-    //overloaded for nat
-    private Camp(UUID id, String name, ArrayList<Session> sessions, int price, ArrayList<FAQ> faqs, int camperRatio, ArrayList<String> activities){
-
-    }
-    public static Camp getInstance(UUID id, String name, ArrayList<Session> sessions, int price, ArrayList<FAQ> faqs, int camperRatio, ArrayList<String> activities){
-        if (camp == null){
-            camp = new Camp(id, name, sessions, price, faqs, camperRatio, activities);            
-        }
-        return camp;
-    }
 
 
     /**
@@ -153,4 +140,17 @@ public class Camp {
     public void addActivity(String activity){
         activities.add(activity);
     }
+
+    public UUID getID() {
+        return id;
+    }
+
+    public double getPrice(){
+        return pricePerSession;
+    }
+
+    public int getRatio(){
+        return campersPerCounselor;
+    }
 }
+

@@ -207,7 +207,7 @@ public class DataLoader extends DataConstants {
                 ArrayList<Session> sessions = new ArrayList<Session>();
                 for(int j = 0; j < sessionsJSON.size(); j++){
                     UUID sessionID = UUID.fromString((String)sessionsJSON.get(j));
-                    Session session = Camp.getInstance().getSessionByUUID(sessionID);
+                    Session session = CampList.getInstance().getSession(sessionID);
                     sessions.add(session);
                 }
 				
@@ -325,7 +325,7 @@ public class DataLoader extends DataConstants {
                     ArrayList<Cabin> cabins = new ArrayList<Cabin>();
                     for(int k = 0; k < cabinsJSON.size(); k++){
                         UUID cabinID = UUID.fromString((String)cabinsJSON.get(j));
-                        Cabin cabin = Camp.getInstance().getCabinByUUID(cabinID);
+                        Cabin cabin = CampList.getInstance().getCabin(cabinID);
                         cabins.add(cabin);
                     }
                     
@@ -349,7 +349,7 @@ public class DataLoader extends DataConstants {
                      activities.add((String)activitiesJSON.get(j));
                  }
 
-                Camp camp = Camp.getInstance(id, name, sessions, price, faqs, campersPerCounselor, activities);
+                Camp camp = new Camp(id, name, sessions, price, faqs, campersPerCounselor, activities);
 				camps.add(camp);
 			}
 			
