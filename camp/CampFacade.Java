@@ -322,7 +322,7 @@ public class CampFacade {
      * @param variableName the name of the string instance variable wanted
      * @return the string of the variableName, null if not found
      */
-    public String getFAQString(String variableName) {
+    public String getSessionString(String variableName) {
         if(variableName.equals(THEME)) {
             return currentFaq.getTheme();
         }
@@ -335,7 +335,7 @@ public class CampFacade {
      * @param change the new string to place in the instance variable
      * @return true if successful, false if not successful
      */
-    public boolean setFAQString(String variableName, String change) {
+    public boolean setSessionString(String variableName, String change) {
         if(variableName.equals(THEME)) {
             return currentFaq.setTheme(change);
         }
@@ -472,7 +472,7 @@ public class CampFacade {
      * @return an arraylist of campers
      */
     public ArrayList<Camper> getCabinCamperList() {
-        return currentCamperList;
+        return currentCabinCamperList;
     }
 
     /**
@@ -481,7 +481,7 @@ public class CampFacade {
      * @return the removed camper object
      */
     public Camper removeCabinCamper(int index) {
-        return currentCamperList.remove(index);
+        return currentCabinCamperList.remove(index);
     }
 
     /**
@@ -821,7 +821,7 @@ public class CampFacade {
      * @return an arraylist of campers
      */
     public ArrayList<Camper> getGuardianCamperList() {
-        return currentCamperList;
+        return currentGuardianCamperList;
     }
 
     /**
@@ -830,7 +830,7 @@ public class CampFacade {
      * @return the removed camper object
      */
     public Camper removeGuardianCamper(int index) {
-        return currentCamperList.remove(index);
+        return currentGuardianCamperList.remove(index);
     }
 
     /**
@@ -840,7 +840,7 @@ public class CampFacade {
      */
     public boolean addGuardianCamper(Camper camper) {
         //TODO check if the camper already exists in this list
-        return currentCamperList.add(camper);
+        return currentGuardianCamperList.add(camper);
     }
 
 
@@ -952,12 +952,14 @@ public class CampFacade {
 
     /**
      * Adds an medication to the current medication list (which should be in a camper object)
-     * @param allergy the string of the new medication
+     * @param dose string of the does for the new medication
+     * @param type the type of medication 
+     * @param time the time the new medication should be taken
      * @return true if successful, false if not successful
      */
-    public boolean addCamperMedication(int dose, String type, String time) {
+    public boolean addCamperMedication(String dose, String type, String time) {
         //TODO check if the allergy already exists in this list
-        return currentAllergyList.add(new Medication(dose, type, time));
+        return currentMedicationList.add(new Medication(dose, type, time));
     }
 
      /**
@@ -1006,14 +1008,15 @@ public class CampFacade {
 
     /**
      * Adds an activity to the current session list (which should be in a camper object)
+     * @param theme the theme of the new sessions
      * @param sessionNumber the session number
      * @param startDate the start date of the session
      * @param endDate the end date of the session
      * @return true if successful, false if not successful
      */
-    public boolean addCamperSession(int sessionNumber, Date startDate, Date endDate) {
+    public boolean addCamperSession(String theme, int sessionNumber, Date startDate, Date endDate) {
         //TODO check if session already exists by id/session number and don't create a new objects
-        return currentCamperSessionList.add(new Session(sessionNumber, startDate, endDate));
+        return currentCamperSessionList.add(new Session(theme, sessionNumber, startDate, endDate));
     }
 
 
