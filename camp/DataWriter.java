@@ -171,12 +171,12 @@ public class DataWriter extends DataConstants {
     //save camp
     public static void saveCamp() {
 		CampList camp = CampList.getInstance();
-		ArrayList<Camp> camps = camp.getCampers();
+		ArrayList<Camp> camps = camp.getCamps();
 		JSONArray jsonCamps = new JSONArray();
 		
 		//creating all the json objects
 		for(int i=0; i< camps.size(); i++) {
-			jsonCamps.add(getCamperJSON(camps.get(i)));
+			jsonCamps.add(getCampJSON(camps.get(i)));
 		}
 		
 		//Write JSON file
@@ -206,12 +206,12 @@ public class DataWriter extends DataConstants {
     //save cabin
     public static void saveCabin() {
 		CampList camp = CampList.getInstance();
-		ArrayList<Cabin> cabins = camp.getCampers();
+		ArrayList<Cabin> cabins = camp.getCabins();
 		JSONArray jsonCabins = new JSONArray();
 		
 		//creating all the json objects
 		for(int i=0; i< cabins.size(); i++) {
-			jsonCabins.add(getCamperJSON(cabins.get(i)));
+			jsonCabins.add(getCabinJSON(cabins.get(i)));
 		}
 		
 		//Write JSON file

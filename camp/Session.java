@@ -8,10 +8,28 @@ import java.util.UUID;
  * @author sara
  */
 public class Session {
+    private UUID id;
     private ArrayList<Cabin> cabins;
     private int sessionNumber;
     private Date startDate;
     private Date endDate;
+    private String theme;
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getTheme() {
+        return this.theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
 
     public ArrayList<Cabin> getCabins() {
         return this.cabins;
@@ -70,7 +88,12 @@ public class Session {
     
     //overloaded
     public Session (UUID id, String theme, ArrayList<Cabin> cabins, int sessionNumber, Date start, Date end){
-
+        this.id = id;
+        this.theme = theme;
+        this.cabins = cabins;
+        this.sessionNumber = sessionNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     /**
@@ -99,5 +122,15 @@ public class Session {
     //talk to nat
     public Cabin getCabinByUUID(UUID id){
         return null;
+    }
+
+    public String toString(){
+        String workingString = "";
+        workingString += id + "\n";
+        for(int i=0; i<cabins.size(); i++){
+            workingString += cabins.get(i).toString() + "\n";
+        }
+        workingString += String.valueOf(sessionNumber) + "\n" + String.valueOf(startDate) + "\n" + String.valueOf(endDate) + "\n" + theme;
+        return workingString;
     }
 }

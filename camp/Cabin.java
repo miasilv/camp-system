@@ -12,6 +12,10 @@ public class Cabin {
     private ArrayList<Camper> campers;
     private Counselor counselor;
     private HashMap<Day, Schedule> schedule;
+    private int beds;
+    private int maxAge;
+    private int minAge;
+    
     /**
      * constructor of cabin
      */
@@ -23,8 +27,62 @@ public class Cabin {
     }
 
     //overloaded constructor for dataloader
-    public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, int beds, int maxAge, int minAge, ArrayList<Schedule> schedules, UUID id){
+    public Cabin(ArrayList<Camper> campers, Counselor counselor, int beds, int maxAge, int minAge, ArrayList<Schedule> schedules, UUID id){
+        this.campers = campers;
+        this.counselor = counselor;
+        this.beds = beds;
+        this.maxAge= maxAge;
+        this.minAge = minAge; 
+        this.cabinID = id;
+        int i = 0; 
+        Day day = Day.MONDAY;
+        while(i< schedules.size()){
+            schedule.put(day, schedules.get(i));
+            i++;
+            if (day.equals(Day.MONDAY)){
+                day = Day.TUESDAY;
+            }
+            if (day.equals(Day.TUESDAY)){
+                day = Day.WEDNESDAY;
+            }
+            if (day.equals(Day.WEDNESDAY)){
+                day = Day.THURSDAY;
+            }
+            if (day.equals(Day.THURSDAY)){
+                day = Day.FRIDAY;
+            }
+            if (day.equals(Day.FRIDAY)){
+                day = Day.SATURDAY;
+            }
+            if (day.equals(Day.SATURDAY)){
+                day = Day.SUNDAY;
+            }
+            if (day.equals(Day.SUNDAY)){
+                day = Day.MONDAY;
+            }
+        }
+       
+    }
 
+    public int getMinAge(){
+        return minAge;
+    }
+    public int getMaxAge(){
+        return maxAge;
+    }
+    public int getBeds(){
+        return beds;
+    }
+    public void setBeds(int beds) {
+        this.beds = beds;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
     }
 
     public UUID getCabinID() {
@@ -116,5 +174,21 @@ public class Cabin {
         if(counselor != null && campers.size() == 8)
             return true;
         return false;
+    }
+
+    public UUID getID() {
+        return cabinID;
+    }
+
+    public String toString(){
+        String workingString = "";
+        workingString += cabinID + " \n";
+        for (int i=0; i<campers.size(); i++){
+            workingString += String.valueOf(campers.get(i)) + " ";
+        }
+        workingString += counselor + " \n";
+        workingString += schedule.toString() + " \n";
+        workingString += String.valueOf(beds) + " \n" + String.valueOf(minAge) + " \n" + String.valueOf(maxAge) + " \n";
+        return workingString;
     }
 }
