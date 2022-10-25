@@ -87,7 +87,7 @@ public class UserList {
      */
     public Director getDirector(UUID id) {
         for (int i=0; i < directors.size(); i++) {
-            if (directors.get(i).getID().equals(id)) {
+            if (directors.get(i).getID().equals(id)) { 
                 return directors.get(i);
             }
         }
@@ -107,6 +107,15 @@ public class UserList {
         for (int i = 0; i < guardians.size(); i++) {
             if (guardians.get(i).getID().equals(id)) {
                 return guardians.get(i);
+            }
+        }
+        return null; // if unable to find it
+    }
+
+    public Camper getCamper(UUID id) {
+        for (int i = 0; i < campers.size(); i++) {
+            if (campers.get(i).getID().equals(id)) {
+                return campers.get(i);
             }
         }
         return null; // if unable to find it

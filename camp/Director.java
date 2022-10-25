@@ -3,7 +3,7 @@ package camp;
 import java.util.UUID;
 
 public class Director extends User {
-    
+    private UUID id;
     /**
      * Constructor for the director class
      * @param name Name of the director

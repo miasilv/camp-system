@@ -54,3 +54,17 @@ public class CampList {
         }
         return null; // if unable to find it
     }
+
+    public Session getSession(UUID id) {
+        for (int i=0; i < camps.size(); i++) {
+            ArrayList<Session> sessions = camps.get(i).getSessions();
+            for(int j = 0; j<sessions.size(); j++){
+                if (sessions.get(i).getID().equals(id)) {
+                    return sessions.get(j);
+                }
+            }
+            
+        }
+        return null; // if unable to find it
+    }
+}
