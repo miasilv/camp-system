@@ -66,7 +66,6 @@ public class CampDriver {
     private static final String ADD = "add";
     private static final String REMOVE = "remove";
     private static final String EDIT = "edit";
-	private static final int NO_INDEX = -1;
 
     /**
 	 * Constructs a new driver

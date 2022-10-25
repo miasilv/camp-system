@@ -18,8 +18,12 @@ public class Camp {
     public String getName() {
         return this.name;
     }
-    public void setName(String name) {
-        this.name = name;
+    public boolean setName(String name) {
+        if(name != null){
+            this.name = name;
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Session> getSessions() {
@@ -34,16 +38,24 @@ public class Camp {
         return this.pricePerSession;
     }
 
-    public void setPricePerSession(double pricePerSession) {
-        this.pricePerSession = pricePerSession;
+    public boolean setPricePerSession(double pricePerSession) {
+        if(pricePerSession >= 0){
+            this.pricePerSession = pricePerSession;
+            return true;
+        }
+        return false;
     }
 
     public int getCampersPerCounselor() {
         return this.campersPerCounselor;
     }
 
-    public void setCampersPerCounselor(int campersPerCounselor) {
-        this.campersPerCounselor = campersPerCounselor;
+    public boolean setCampersPerCounselor(int campersPerCounselor) {
+        if(campersPerCounselor >= 1){
+            this.campersPerCounselor = campersPerCounselor;
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<FAQ> getFAQs() {
