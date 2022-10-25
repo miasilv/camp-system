@@ -2,6 +2,7 @@ package camp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class UserList {
@@ -156,8 +157,8 @@ public class UserList {
         directors.add(aDirector);
     }
 
-    public void addCounselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<EmergencyContact> emergencyContacts, Date birthday, ArrayList<String> allergies) {
-        Counselor aCounselor = new Counselor(id, name, email, password, phoneNumber, bio, emergencyContacts, birthday, allergies);
+    public void addCounselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies) {
+        Counselor aCounselor = new Counselor(id, name, email, password, phoneNumber, bio, relationships, contacts, birthday, allergies);
         counselors.add(aCounselor);
     }
 

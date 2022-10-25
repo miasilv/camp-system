@@ -522,7 +522,8 @@ public class CampFacade {
 
     // ***************************** USER CLASS ***********************************************
     /**
-     * updates all the current classes/arraylists/hashmaps to be the ones inside user //MIGHT JUST BE SIGN IN? not entirely sure
+     * updates all the current classes/arraylists/hashmaps to be the ones inside user 
+     * MIGHT JUST BE SIGN IN? not entirely sure
      */
     public void updateUser() {
         
@@ -619,7 +620,7 @@ public class CampFacade {
      * @param change the new string to place in the instance variable
      * @return true if successful, false if not successful
      */
-    public boolean setCousnelorString(String variableName, String change) {
+    public boolean setCounselorString(String variableName, String change) {
         if(variableName.equals(BIO)) {
             return currentCounselor.setBio(change);
         } 
@@ -644,7 +645,7 @@ public class CampFacade {
      * @param change the new string to place in the instance variable
      * @return true if successful, false if not successful
      */
-    public boolean setCousnelorDate(String variableName, Date change) {
+    public boolean setCounselorDate(String variableName, Date change) {
         if(variableName.equals(BIRTHDAY)) {
             return currentCounselor.setBirthday(change);
         } 
