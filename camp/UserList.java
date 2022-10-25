@@ -15,6 +15,7 @@ public class UserList {
         directors = DataLoader.loadDirector();
         campers = DataLoader.loadCampers();
         guardians = DataLoader.loadGuardians();
+        campers = DataLoader.loadCampers();
     }
 
     public static UserList getInstance() {
