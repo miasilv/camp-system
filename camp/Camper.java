@@ -50,12 +50,44 @@ public class Camper {
         }
     }
 
+    public UUID getID() {
+        return camperID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public ArrayList<Medication> getMedications() {
+        return medications;
+    }
+
+    public ArrayList<String> getAllergies() {
+        return allergies;
+    }
+
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
+    public ArrayList<String> getNotes() {
+        return notes;
+    }
+
+    public HashMap<String, Contact> getEmergencyContacts() {
+        return emergencyContacts;
+    }
+
     /**
      * Adds a medication for the camper
      * @param medication The medication to add
      */
     public void addMedication(Medication medication) {
-
+        medications.add(medication);
     }
 
     /**
@@ -63,7 +95,7 @@ public class Camper {
      * @param medication The medication to remove
      */
     public void removeMedication(Medication medication) {
-
+        medications.remove(medication);
     }
 
     /**
@@ -72,7 +104,7 @@ public class Camper {
      * @param medication Medication to replace index with
      */
     public void editMedication(int index, Medication medication) {
-
+        medications.set(index, medication);
     }
     
     /**
@@ -80,7 +112,7 @@ public class Camper {
      * @param allergy The allergy to add
      */
     public void addAllergy(String allergy) {
-
+        allergies.add(allergy);
     }
 
     /**
@@ -88,7 +120,7 @@ public class Camper {
      * @param allergy The allergy to remove
      */
     public void removeAllergy(String allergy) {
-
+        allergies.remove(allergy);
     }
 
     /**
@@ -97,33 +129,9 @@ public class Camper {
      * @param allergy Allergy to replace index allergy with
      */
     public void editAllergy(int index, String allergy) {
-
+        allergies.set(index, allergy);
     }
 
-    /**
-     * Adds an emergency contact to the camper
-     * @param emergencyContact The emergency contact to add
-     */
-    public void addEmergencyContact(EmergencyContact emergencyContact) {
-
-    }
-
-    /**
-     * Removes an emergency contact from the camper
-     * @param emergencyContact The emergency contact to remove
-     */
-    public void removeEmergencyContact(EmergencyContact emergencyContact) {
-
-    }
-    
-    /**
-     * Edits an emergency contact of the camper
-     * @param index Index of the emergency contact to edit
-     * @param emergencyContact The emergency contact to replace the index with
-     */
-    public void editEmergencyContact(int index, EmergencyContact emergencyContact) {
-
-    }
 
     /**
      * Returns a string representation. DO YOU REALLY NEED TO KNOW THIS??
@@ -132,5 +140,32 @@ public class Camper {
         return "";
     }
 
+    /**
+     * Adds an emergency contact to the camper
+     * 
+     * @param emergencyContact The emergency contact to add
+     */
+    public void addEmergencyContact(EmergencyContact emergencyContact) {
+
+    }
+
+    /**
+     * Removes an emergency contact from the camper
+     * 
+     * @param emergencyContact The emergency contact to remove
+     */
+    public void removeEmergencyContact(EmergencyContact emergencyContact) {
+
+    }
+
+    /**
+     * Edits an emergency contact of the camper
+     * 
+     * @param index            Index of the emergency contact to edit
+     * @param emergencyContact The emergency contact to replace the index with
+     */
+    public void editEmergencyContact(int index, EmergencyContact emergencyContact) {
+
+    }
 
 }

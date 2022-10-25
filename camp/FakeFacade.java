@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-// don't touch this class, it's ugly and smelly - portia
+/*
+THIS CLASS IS SO UGLY AND SMELLY YOU SHOULD NEVER TOUCH IT OR USE IT, GROSS BABY"
+- PORTIA PLANTE
+*/
 
 /**
  * @author Mia Silver
