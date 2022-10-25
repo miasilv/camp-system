@@ -18,14 +18,18 @@ public class CampFacade {
     private Session currentSession;
     private ArrayList<Cabin> currentCabinList;
     private Cabin currentCabin;
+    private HashMap<Day, Schedule> currentScheduleHash;
+    private HashMap<String, String> currentSchedule;
     private User currentUser;
     private Director currentDirector;
     private Counselor currentCounselor;
     private Guardian currentGuardian;
     private ArrayList<Camper> currentCamperList;
+    private Camper currentCamper;
     private ArrayList<Medication> currentMedicationList;
     private Medication currentMedication;
     private ArrayList<String> currentAllergyList;
+    private Contact currentContact;
 
 
 
@@ -290,6 +294,9 @@ public class CampFacade {
         return false;
     }
 
+    // ------------------------------ ARRAY LISTS ---------------------------
+
+
 
 
     // ********************************** SESSION CLASS ***************************************
@@ -387,6 +394,7 @@ public class CampFacade {
 
 
 
+
     // ***************************** CABIN CLASS **********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside cabin
@@ -396,7 +404,119 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets the counselor for the current cabin
+     * @return the counselor of the cabin
+     */
+    public Counselor getCabinCounselor() {
+        return currentCabin.getCounselor();
+    }
+    
+    /**
+     * Sets the counselor for the current cabin
+     * @param counselor the counselor to set as the new counselor
+     * @return true if successful, false if not successful
+     */
+    public boolean setCabinCounselor(Counselor counselor) {
+        return currentCabin.setCounselor(counselor);
+    }
+
     // ------------------------------ ARRAY LISTS ---------------------------
+    /**
+     * Gets the current camper list, (which should be in a cabin object)
+     * @return an arraylist of campers
+     */
+    public ArrayList<Camper> getCabinCamperList() {
+        return currentCamperList;
+    }
+
+    /**
+     * Removes a camper from the current camper list (which should be in a cabin object)
+     * @param index the index of the camper to be removed
+     * @return the removed camper object
+     */
+    public Camper removeCabinCamper(int index) {
+        return currentCamperList.remove(index);
+    }
+
+    /**
+     * Adds a camper to the current camper list (which should be in a cabin object)
+     * @param camper the new camper object to add
+     * @return true if successful, false if not successful
+     */
+    public boolean addCabinCamper(Camper camper) {
+        //TODO check if the camper already exists in this list
+        return currentCamperList.add(camper);
+    }
+
+    /**
+     * Gets the current schedule hash (which should be in a cabin object)
+     * @return a hash map of days by schedules
+     */
+    public HashMap<Day, Schedule> getCabinScheduleHash() {
+        return currentScheduleHash;
+    }
+
+    /**
+     * Removes a schedule from the current schedule hash (which should be in a cabin object)
+     * @param day the day of the schedule to be removed
+     * @return the removed schedule object
+     */
+    public Schedule removeCabinSchedule(Day day) {
+        return currentScheduleHash.remove(day);
+    }
+
+    /**
+     * Adds a schedule to the current schedule hash (which should be in a cabin object)
+     * @param day the day that the new schedule should be linked to, must be linked to a null object
+     * @param schedule the schedule being added to the day
+     * @return true if successful, false if not successful
+     */
+    public boolean addCabinSchedule(Day day, Schedule schedule) {
+        return currentScheduleHash.replace(day, null, schedule);
+    }
+
+    
+
+
+    // ***************************** SCHEDULE CLASS *******************************************
+    /**
+     * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
+     */
+    public void updateSchedule() {
+        
+    }
+
+    // ------------------------ INSTANCE VARIALBES --------------------------
+
+    // ------------------------------ ARRAY LISTS ---------------------------
+    /**
+     * Gets the current schedule hash (which should be in a cabin object)
+     * @return a hash map of days by schedules
+     */
+    public HashMap<String, String> getSchedule() {
+        return currentSchedule;
+    }
+
+    /**
+     * Removes an activity from the current schedule (which should be in a schedule object)
+     * @param day the time of the activity to be removed
+     * @return the removed activity string
+     */
+    public String removeScheduleActivity(String time) {
+        return currentSchedule.remove(time);
+    }
+
+    /**
+     * Adds an activity to the current schedule (which should be in a schedule object)
+     * @param time the time that the new activity should be linked to, must be linked to a null string
+     * @param activity the activity being added to the day
+     * @return true if successful, false if not successful
+     */
+    public boolean addScheduleActivity(String time, String activity) {
+        return currentSchedule.replace(time, null, activity);
+    }
+
 
 
 
@@ -409,11 +529,55 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any string instance variable in the current user object
+     * @param variableName the name of the string instance variable wanted
+     * @return the string of the variableName, null if not found
+     */
+    public String getUserString(String variableName) {
+        if(variableName.equals(NAME)) {
+            return currentUser.getName();
+        }
+        if(variableName.equals(EMAIL)) {
+            return currentUser.getEmail();
+        }
+        if(variableName.equals(PHONE)) {
+            return currentUser.getPhoneNumber();
+        }
+        if(variableName.equals(PASSWORD)) {
+            return currentUser.getPassword();
+        }
+        return null;
+    }
+    
+    /**
+     * Sets any string instance variable in the current user object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setUserString(String variableName, String change) {
+        if(variableName.equals(NAME)) {
+            return currentUser.setName(change);
+        }
+        if(variableName.equals(EMAIL)) {
+            return currentUser.setEmail(change);
+        }
+        if(variableName.equals(PHONE)) {
+            return currentUser.setPhoneNumber(change);
+        }
+        if(variableName.equals(PASSWORD)) {
+            return currentUser.setPassword(change);
+        }
+        return false;
+    }
+
     // ------------------------------ ARRAY LISTS ---------------------------
 
 
 
-    // ***************************** DIRECTOR CLASS ******************************************* //UNSURE IF WE NEED THIS ONE
+
+    // ***************************** DIRECTOR CLASS *******************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside director
      */
@@ -422,11 +586,13 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    
     // ------------------------------ ARRAY LISTS ---------------------------
 
 
 
-    // ***************************** COUNSELOR CLASS ******************************************
+
+    // ***************************** COUNSELOR CLASS ****************************************** //DO SOMETHING ABOUT EMERGENCY CONTACTS, CABIN, AND SESSION
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
@@ -435,7 +601,84 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any string instance variable in the current counselor object
+     * @param variableName the name of the string instance variable wanted
+     * @return the string of the variableName, null if not found
+     */
+    public String getCounselorString(String variableName) {
+        if(variableName.equals(BIO)) {
+            return currentCounselor.getBio();
+        } 
+        return null;
+    }
+
+    /**
+     * Sets any string instance variable in the current counselor object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setCousnelorString(String variableName, String change) {
+        if(variableName.equals(BIO)) {
+            return currentCounselor.setBio(change);
+        } 
+        return false;
+    }
+
+    /**
+     * Gets any date instance variable in the current counselor object
+     * @param variableName the name of the date instance variable wanted
+     * @return the date of the variableName, null if not found
+     */
+    public Date getCounselorDate(String variableName) {
+        if(variableName.equals(BIRTHDAY)) {
+            return currentCounselor.getBirthday();
+        } 
+        return null;
+    }
+
+    /**
+     * Sets any string instance variable in the current counselor object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setCousnelorDate(String variableName, Date change) {
+        if(variableName.equals(BIRTHDAY)) {
+            return currentCounselor.setBirthday(change);
+        } 
+        return false;
+    }
+
     // ------------------------------ ARRAY LISTS ---------------------------
+    /**
+     * Gets the current allergy list, (which should be in counselor object)
+     * @return an arraylist of allergies (strings)
+     */
+    public ArrayList<String> getCounselorAllergyList() {
+        return currentAllergyList;
+    }
+
+    /**
+     * Removes an allergy from the current allergy list (which should be in a cousnelor object)
+     * @param index the index of the cabin to be removed
+     * @return the removed allergy string
+     */
+    public String removeCounselorAllergy(int index) {
+        return currentAllergyList.remove(index);
+    }
+
+    /**
+     * Adds an allergy to the current allergy list (which should be in a counselor object)
+     * @param allergy the string of the new allergy
+     * @return true if successful, false if not successful
+     */
+    public boolean addCousnelorAllergy(String allergy) {
+        //TODO check if the allergy already exists in this list
+        return currentAllergyList.add(allergy);
+    }
+
 
 
 
@@ -448,11 +691,88 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any int instance variable in the current guardian object
+     * @param variableName the name of the int instance variable
+     * @return the int value in the variableName, -1 if not found
+     */
+    public int getGuardianInt(String variableName) {
+        if(variableName.equals(SESS_NUM)) {
+            return currentGuardian.getTotalSessions();
+        }
+        return -1;
+    }
+
+    /**
+     * Sets any int instance variable in the current guardian object with a new value
+     * @param variableName the name of the int instance variable being edited
+     * @param change the new int to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setGuardianInt(String variableName, int change) {
+        if(variableName.equals(SESS_NUM)) {
+            return currentGuardian.setTotalSessions(change);
+        }
+        return false;
+    }
+
+    /**
+     * Gets any double instance variable in the current guardian object
+     * @param variableName the name of the double instance variable
+     * @return the double value in the variableName, -1 if not found
+     */
+    public double getGuardianDouble(String variableName) {
+        if(variableName.equals(PRICE)) {
+            return currentGuardian.getPrice();
+        }
+        return -1;
+    }
+
+    /**
+     * Sets any double instance variable in the current guardian object with a new value
+     * @param variableName the name of the double instance variable being edited
+     * @param change the new dobule to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setGuardianDouble(String variableName, double change) {
+        if(variableName.equals(PRICE)) {
+            return currentGuardian.setPrice(change);
+        }
+        return false;
+    }
+    
     // ------------------------------ ARRAY LISTS ---------------------------
+    /**
+     * Gets the current camper list, (which should be in a guardian object)
+     * @return an arraylist of campers
+     */
+    public ArrayList<Camper> getGuardianCamperList() {
+        return currentCamperList;
+    }
+
+    /**
+     * Removes a camper from the current camper list (which should be in a guardian object)
+     * @param index the index of the camper to be removed
+     * @return the removed camper object
+     */
+    public Camper removeGuardianCamper(int index) {
+        return currentCamperList.remove(index);
+    }
+
+    /**
+     * Adds a camper to the current camper list (which should be in a guardian object)
+     * @param camper the new camper object
+     * @return true if successful, false if not successful
+     */
+    public boolean addGuardianCamper(Camper camper) {
+        //TODO check if the camper already exists in this list
+        return currentCamperList.add(camper);
+    }
 
 
 
-    // ***************************** CAMPER CLASS *********************************************
+
+    // ***************************** CAMPER CLASS ********************************************* //DO SOMETHING ABOUT EMERGENCY CONTACTS, CABIN, AND SESSIONS
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */
@@ -461,7 +781,112 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any string instance variable in the current camper object
+     * @param variableName the name of the string instance variable wanted
+     * @return the string of the variableName, null if not found
+     */
+    public String getCamperString(String variableName) {
+        if(variableName.equals(NAME)) {
+            return currentCamper.getName();
+        } 
+        return null;
+    }
+
+    /**
+     * Sets any string instance variable in the current camper object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setCamperString(String variableName, String change) {
+        if(variableName.equals(NAME)) {
+            return currentCamper.setName(change);
+        } 
+        return false;
+    }
+
+    /**
+     * Gets any date instance variable in the current camper object
+     * @param variableName the name of the date instance variable wanted
+     * @return the date of the variableName, null if not found
+     */
+    public Date getCamperDate(String variableName) {
+        if(variableName.equals(BIRTHDAY)) {
+            return currentCounselor.getBirthday();
+        } 
+        return null;
+    }
+
+    /**
+     * Sets any string instance variable in the current camepr object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setCamperDate(String variableName, Date change) {
+        if(variableName.equals(BIRTHDAY)) {
+            return currentCounselor.setBirthday(change);
+        } 
+        return false;
+    }
+
     // ------------------------------ ARRAY LISTS ---------------------------
+    /**
+     * Gets the current allergy list, (which should be in camper object)
+     * @return an arraylist of allergies (strings)
+     */
+    public ArrayList<String> getCamperAllergyList() {
+        return currentAllergyList;
+    }
+
+    /**
+     * Removes an allergy from the current allergy list (which should be in a camper object)
+     * @param index the index of the cabin to be removed
+     * @return the removed allergy string
+     */
+    public String removeCamperAllergy(int index) {
+        return currentAllergyList.remove(index);
+    }
+
+    /**
+     * Adds an allergy to the current allergy list (which should be in a camper object)
+     * @param allergy the string of the new allergy
+     * @return true if successful, false if not successful
+     */
+    public boolean addCamperAllergy(String allergy) {
+        //TODO check if the allergy already exists in this list
+        return currentAllergyList.add(allergy);
+    }
+
+    /**
+     * Gets the current medication list, (which should be in camper object)
+     * @return an arraylist of medications
+     */
+    public ArrayList<Medication> getCamperMedicationList() {
+        return currentMedicationList;
+    }
+
+    /**
+     * Removes a medication from the current medication list (which should be in a camper object)
+     * @param index the index of the cabin to be removed
+     * @return the removed medication object
+     */
+    public Medication removeCamperMedication(int index) {
+        return currentMedicationList.remove(index);
+    }
+
+    /**
+     * Adds an medication to the current medication list (which should be in a camper object)
+     * @param allergy the string of the new medication
+     * @return true if successful, false if not successful
+     */
+    public boolean addCamperMedication(int dose, String type, String time) {
+        //TODO check if the allergy already exists in this list
+        return currentAllergyList.add(new Medication(dose, type, time));
+    }
+
+
 
 
     // ***************************** MEDICATION CLASS *****************************************
@@ -473,11 +898,67 @@ public class CampFacade {
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any string instance variable in the current medication object
+     * @param variableName the name of the string instance variable wanted
+     * @return the string of the variableName, null if not found
+     */
+    public String getMedicationString(String variableName) {
+        if(variableName.equals(TYPE)) {
+            return currentMedication.getType();
+        }
+        if(variableName.equals(TIME)) {
+            return currentMedication.getTime();
+        }
+        return null;
+    }
+    
+    /**
+     * Sets any string instance variable in the current medication object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setMedicationString(String variableName, String change) {
+        if(variableName.equals(TYPE)) {
+            return currentMedication.setType(change);
+        }
+        if(variableName.equals(TIME)) {
+            return currentMedication.setTime(change);
+        }
+        return false;
+    }
+
+    /**
+     * Gets any int instance variable in the current medication object
+     * @param variableName the name of the int instance variable
+     * @return the int value in the variableName, -1 if not found
+     */
+    public int getMedicationInt(String variableName) {
+        if(variableName.equals(DOSE)) {
+            return currentMedication.getDose();
+        }
+        return -1;
+    }
+
+    /**
+     * Sets any int instance variable in the current medication object with a new value
+     * @param variableName the name of the int instance variable being edited
+     * @param change the new int to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setMedicationInt(String variableName, int change) {
+        if(variableName.equals(DOSE)) {
+            return currentMedication.setDose(change);
+        }
+        return false;
+    }
+    
     // ------------------------------ ARRAY LISTS ---------------------------
 
 
 
-    // ***************************** EMERGENCY CONTACTS CLASS *********************************
+    // ***************************** EMERGENCY CONTACTS CLASS ********************************* //MAYBE NOT NECESSARY IF WE DECIDE WHAT TO DO
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside emergency contacts
      */
@@ -499,6 +980,43 @@ public class CampFacade {
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any string instance variable in the current contact object
+     * @param variableName the name of the string instance variable wanted
+     * @return the string of the variableName, null if not found
+     */
+    public String getContactString(String variableName) {
+        if(variableName.equals(NAME)) {
+            return currentContact.getName();
+        }
+        if(variableName.equals(EMAIL)) {
+            return currentContact.getEmail();
+        }
+        if(variableName.equals(PHONE)) {
+            return currentContact.getPhoneNumber();
+        }
+        return null;
+    }
+    
+    /**
+     * Sets any string instance variable in the current contact object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setContactString(String variableName, String change) {
+        if(variableName.equals(NAME)) {
+            return currentContact.setName(change);
+        }
+        if(variableName.equals(EMAIL)) {
+            return currentContact.setEmail(change);
+        }
+        if(variableName.equals(PHONE)) {
+            return currentContact.setPhoneNumber(change);
+        }
+        return false;
+    }
+    
     // ------------------------------ ARRAY LISTS ---------------------------
 
 

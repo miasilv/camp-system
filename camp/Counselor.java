@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Counselor extends User {
     private String bio;
-    private HashMap emergencyContacts;
+    private HashMap<String, Contact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
 
@@ -35,13 +35,15 @@ public class Counselor extends User {
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, HashMap emergencyContacts, Date birthday, ArrayList<String> allergies) {
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
         this.id = id;
         this.allergies = allergies;
-        this.emergencyContacts = emergencyContacts;
+        for (int i=0; i<relationships.size(); i++) {
+            emergencyContacts.put(relationships.get(i), contacts.get(i));
+        }
     }
 
     public String getName() {
