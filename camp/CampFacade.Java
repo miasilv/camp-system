@@ -57,7 +57,8 @@ public class CampFacade {
 	private static final String ANSWER = "answer";
 	
 	//session instance variables
-	private static final String SESS_NUM = "sessNum"; //in Guardian
+	private static final String THEME = "theme";
+    private static final String SESS_NUM = "sessNum"; //in Guardian
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
 
@@ -319,6 +320,31 @@ public class CampFacade {
 
 
     // ********************************** SESSION CLASS ***************************************
+    /**
+     * Gets any string instance variable in the current session object
+     * @param variableName the name of the string instance variable wanted
+     * @return the string of the variableName, null if not found
+     */
+    public String getFAQString(String variableName) {
+        if(variableName.equals(THEME)) {
+            return currentFaq.getTheme();
+        }
+        return null;
+    }
+
+    /**
+     * Sets any string instance variable in the current session object with a new value
+     * @param variableName the name of the string instance variable being edited
+     * @param change the new string to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setFAQString(String variableName, String change) {
+        if(variableName.equals(THEME)) {
+            return currentFaq.setTheme(change);
+        }
+        return false;
+    }
+    
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside session
      */
