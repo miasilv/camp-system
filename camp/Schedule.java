@@ -49,4 +49,13 @@ public class Schedule {
         }
         return writtenSchedule;
     }
+
+	public String remove(String time) {
+		return this.schedule.remove(time);
+	}
+
+	public boolean add(String time, String activity) {
+		this.schedule.put(time, activity);
+        return true;
+	}
 }
