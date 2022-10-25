@@ -42,9 +42,6 @@ public class CampFacade {
     private ArrayList<Camper> currentCabinsCampers;
     private HashMap<Day, Schedule> currentCabinsSchedule;
 
-
-
-
     //------------- INSTANCE VARIABLES (NOT OBJECTS) ------------------------
     //camp instance variables
 	private static final String NAME = "name"; //in User, Camper, and Contact
