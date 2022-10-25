@@ -4,6 +4,7 @@ public class Contact {
     private String name;
     private String phoneNumber;
     private String address;
+    private String email;
 
     /**
      * Constructor for the contact class
@@ -13,10 +14,11 @@ public class Contact {
      * @param address Address of the contact
      * @param relationship Relationship of the contact to the camper
      */
-    public Contact(String name, String phoneNumber, String address) {
+    public Contact(String name, String phoneNumber, String address, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.email = email; // just added this
     
     }
 
@@ -36,5 +38,21 @@ public class Contact {
 
     public String toString() {
         return name + " " + phoneNumber + " " + address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean setName(String change) {
+        return false;
+    }
+
+    public boolean setEmail(String change) {
+        return false;
+    }
+
+    public boolean setPhoneNumber(String change) {
+        return false;
     }
 }

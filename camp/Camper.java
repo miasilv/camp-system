@@ -170,4 +170,8 @@ public class Camper {
 
     }
 
+    public boolean setName(String change) {
+        return false;
+    }
+
 }

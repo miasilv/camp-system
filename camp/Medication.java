@@ -6,7 +6,7 @@ public class Medication {
     private String time;
     
     /**
-     * Constrcutor for the medication class
+     * Constructor for the medication class
      * @param dose Dose of the medication
      * @param type Type of medication
      * @param time Time of medication consumption
@@ -29,16 +29,19 @@ public class Medication {
         return time;
     }
 
-    public void setDose(String dose) {
+    public boolean setDose(String dose) {
         this.dose = dose;
+        return true;
     }
 
-    public void setType(String type) {
+    public boolean setType(String type) {
         this.type = type;
+        return true;
     }
 
-    public void setTime(String time) {
+    public boolean setTime(String time) {
         this.time = time;
+        return true;
     }
 
     public String toString() {

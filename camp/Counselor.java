@@ -137,10 +137,20 @@ public class Counselor extends User {
 
     }
 
+    public boolean setBio(String change) {
+        return false;
+    }
+
     /**
      * Returns a string representation of the counselor
      */
     public String toString() {
         return id + " " + name + " " + email + " " + password + " " + phoneNumber + " " + bio + " " + emergencyContacts + " " + birthday + " " + allergies;
     }
+
+    public boolean setBirthday(Date change) {
+        return false;
+    }
+
+    
 }
