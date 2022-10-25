@@ -2,11 +2,12 @@ package camp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class Counselor extends User {
     private String bio;
-    private ArrayList<EmergencyContact> emergencyContacts;
+    private HashMap emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
 
@@ -34,7 +35,7 @@ public class Counselor extends User {
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<EmergencyContact> emergencyContacts, Date birthday, ArrayList<String> allergies) {
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, HashMap emergencyContacts, Date birthday, ArrayList<String> allergies) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
