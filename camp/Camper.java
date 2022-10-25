@@ -2,6 +2,7 @@ package camp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class Camper {
@@ -13,7 +14,7 @@ public class Camper {
     private ArrayList<Session> sessions;
     private ArrayList<String> notes;
     private ArrayList<Cabin> cabins;
-    private ArrayList<EmergencyContact> emergencyContacts;
+    private HashMap<String, Contact> emergencyContacts;
 
     /**
      * Constructor for the camper class
@@ -36,7 +37,7 @@ public class Camper {
      * @param notes Notes of the camper
      * @param emergencyContacts Emergency contacts of the camper
      */
-    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<EmergencyContact> emergencyContacts) {
+    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts) {
         this.camperID = id;
         this.name = name;
         this.birthday = birthday;
@@ -44,7 +45,9 @@ public class Camper {
         this.allergies = allergies;
         this.sessions = sessions;
         this.notes = notes;
-        this.emergencyContacts = emergencyContacts;
+        for (int i=0; i<relationships.size(); i++) {
+            emergencyContacts.put(relationships.get(i), contacts.get(i));
+        }
     }
 
     /**
