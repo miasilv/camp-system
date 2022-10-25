@@ -14,7 +14,7 @@ public class Contact {
      * @param address Address of the contact
      * @param relationship Relationship of the contact to the camper
      */
-    public Contact(String name, String phoneNumber, String address, String relationship) {
+    public Contact(String name, String phoneNumber, String address) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
