@@ -37,6 +37,7 @@ public class CampDriver {
 	private static final String ANSWER = "answer";
 	
 	//session instance variables
+	private static final String THEME = "theme";
 	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
