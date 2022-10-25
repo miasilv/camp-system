@@ -1,7 +1,7 @@
 package camp;
 
 public class Medication {
-    private int dose;
+    private String dose;
     private String type;
     private String time;
     
@@ -11,7 +11,7 @@ public class Medication {
      * @param type Type of medication
      * @param time Time of medication consumption
      */
-    public Medication(int dose, String type, String time) {
+    public Medication(String dose, String type, String time) {
         this.dose = dose;
         this.type = type;
         this.time = time;
