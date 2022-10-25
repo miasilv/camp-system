@@ -722,7 +722,7 @@ public class CampFacade {
      * @param allergy the string of the new allergy
      * @return true if successful, false if not successful
      */
-    public boolean addCousnelorAllergy(String allergy) {
+    public boolean addCounselorAllergy(String allergy) {
         //TODO check if the allergy already exists in this list
         return currentCounselorAllergyList.add(allergy);
     }
