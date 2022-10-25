@@ -121,7 +121,6 @@ public class DataLoader extends DataConstants {
                     emergencies.add(emergency);
                     relationships.add(erelationship);
 
-                    
                 }
 				
 				counselors.add(new Counselor(id, name, email, password, phoneNumber, bio, relationships, emergencies, birthday, allergies));
@@ -171,15 +170,18 @@ public class DataLoader extends DataConstants {
                 }
 
                 //make arraylist of emergency contact data
-                ArrayList<EmergencyContact> emergencies = new ArrayList<EmergencyContact>();
+                ArrayList<Contact> emergencies = new ArrayList<Contact>();
+                ArrayList<String> relationships = new ArrayList<String>();
                 for(int j = 0; j < emergencycontactsJSON.size(); j++){
                     JSONObject contact = (JSONObject)emergencycontactsJSON.get(j);
                     String ename = (String)contact.get(EMERGENCY_NAME);
                     String ephone = (String)contact.get(EMERGENCY_PHONE);
                     String eaddress = (String)contact.get(EMERGENCY_ADDRESS);
                     String erelationship = (String)contact.get(EMERGENCY_RELATIONSHIP);
-                    EmergencyContact emergency = new EmergencyContact(ename, ephone, eaddress, erelationship);
+                    Contact emergency = new Contact(ename, ephone, eaddress);
+                    
                     emergencies.add(emergency);
+                    relationships.add(erelationship);
                 }
 
                 //make arraylist of emergency contact data
@@ -202,7 +204,7 @@ public class DataLoader extends DataConstants {
                     sessions.add(session);
                 }
 				
-				campers.add(new Camper(id, name, birthday, medications, allergies, sessions, notes, emergencies));
+				campers.add(new Camper(id, name, birthday, medications, allergies, sessions, notes, relationships, emergencies));
 			}
 			
 			return campers;
