@@ -12,16 +12,24 @@ public class FAQ {
         return this.question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public boolean setQuestion(String question) {
+        if(question != null){
+            this.question = question;
+            return true;
+        }
+        return false;
     }
 
     public String getAnswer() {
         return this.answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public boolean setAnswer(String answer) {
+        if(answer != null){
+            this.answer = answer;
+            return true;
+        }
+        return false;
     }
 
     /**

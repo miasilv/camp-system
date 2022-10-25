@@ -25,24 +25,36 @@ public class Session {
         return this.sessionNumber;
     }
 
-    public void setSessionNumber(int sessionNumber) {
-        this.sessionNumber = sessionNumber;
+    public boolean setSessionNumber(int sessionNumber) {
+        if(sessionNumber >= 0){
+            this.sessionNumber = sessionNumber;
+            return true;
+        }
+        return false;
     }
 
     public Date getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public boolean setStartDate(Date startDate) {
+        if(startDate != null){
+            this.startDate = startDate;
+            return true;
+        }
+        return false;
     }
 
     public Date getEndDate() {
         return this.endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public boolean setEndDate(Date endDate) {
+        if(endDate != null){
+            this.endDate = endDate;
+            return true;
+        }
+        return false;
     }
     /**
      * constructor of session

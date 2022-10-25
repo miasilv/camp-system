@@ -66,6 +66,22 @@ public class Counselor extends User {
         return id;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public HashMap<String, Contact> getEmergencyContacts() {
+        return emergencyContacts;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public ArrayList<String> getAllergies() {
+        return allergies;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
