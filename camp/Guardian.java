@@ -69,6 +69,10 @@ public class Guardian extends User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public ArrayList<Camper> getCampers(){
+        return campers;
+    }
     
     /**
      * Method to register a camper

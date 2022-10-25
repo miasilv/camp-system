@@ -39,6 +39,11 @@ public class UserList {
         return counselors;
     }
 
+    public ArrayList<Guardian> getGuardians() {
+        return guardians;
+    }
+
+
     // "every arraylist must have getters, adders, and removers - mia"
 
     /**
