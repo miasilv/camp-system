@@ -3,7 +3,7 @@ package camp;
 import java.time.LocalTime; // this is weird, might have to change
 
 public class Medication {
-    private String dose;
+    private int dose;
     private String type;
     private String time;
     
@@ -13,7 +13,7 @@ public class Medication {
      * @param type Type of medication
      * @param time Time of medication consumption
      */
-    public Medication(String dose, String type, String time) {
+    public Medication(int dose, String type, String time) {
         this.dose = dose;
         this.type = type;
         this.time = time;

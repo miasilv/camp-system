@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public class Counselor extends User {
     private String bio;
-    //private ArrayList<EmergencyContact> emergencyContacts;
     private HashMap<String, Contact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
