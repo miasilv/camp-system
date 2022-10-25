@@ -50,6 +50,8 @@ public class Camper {
         }
     }
 
+    // getters because Nat needs them:
+
     public UUID getID() {
         return camperID;
     }
@@ -134,10 +136,10 @@ public class Camper {
 
 
     /**
-     * Returns a string representation. DO YOU REALLY NEED TO KNOW THIS??
+     * Returns a string representation. Returns all instance variables
      */
     public String toString() {
-        return "";
+        return camperID + " " + name + " " + birthday + " " + medications + " " + allergies + " " + sessions + " " + notes + " " + emergencyContacts;
     }
 
     /**

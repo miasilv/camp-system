@@ -4,7 +4,6 @@ public class Contact {
     private String name;
     private String phoneNumber;
     private String address;
-    private String relationship;
 
     /**
      * Constructor for the contact class
@@ -35,7 +34,7 @@ public class Contact {
         return address;
     }
 
-    public String getRelationship() {
-        return relationship;
+    public String toString() {
+        return name + " " + phoneNumber + " " + address;
     }
 }

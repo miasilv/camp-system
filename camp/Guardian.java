@@ -110,4 +110,8 @@ public class Guardian extends User {
     public void signWaiver() {
 
     }
+
+    public String toString() {
+        return id + " " + name + " " + email + " " + password + " " + campers;
+    }
 }

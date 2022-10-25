@@ -62,4 +62,8 @@ public class Director extends User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String toString() {
+        return id + " " + name + " " + email + " " + password + " " + phoneNumber;
+    }
 }

@@ -141,6 +141,6 @@ public class Counselor extends User {
      * Returns a string representation of the counselor
      */
     public String toString() {
-        return "";
+        return id + " " + name + " " + email + " " + password + " " + phoneNumber + " " + bio + " " + emergencyContacts + " " + birthday + " " + allergies;
     }
 }

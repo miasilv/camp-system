@@ -16,4 +16,8 @@ public class Medication {
         this.type = type;
         this.time = time;
     }
+
+    public String toString() {
+        return dose + " " + type + " " + time;
+    }
 }

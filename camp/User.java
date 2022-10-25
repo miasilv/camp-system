@@ -73,4 +73,8 @@ public abstract class User {
     public void deleteUser() {
         
     }
+
+    public String toString() {
+        return name + " " + email + " " + password + " " + phoneNumber;
+    }
 }
