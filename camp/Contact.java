@@ -18,7 +18,7 @@ public class Contact {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.relationship = relationship;
+    
     }
 
     //i could java doc these but they're more or less self-explanatory
