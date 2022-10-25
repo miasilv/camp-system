@@ -526,7 +526,7 @@ public class CampFacade {
      * MIGHT JUST BE SIGN IN? not entirely sure
      */
     public void updateUser() {
-        
+        // "i don't know entirely what that is"
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
