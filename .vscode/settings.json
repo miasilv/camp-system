@@ -2,5 +2,14 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "camp/lib/json-simple-1.1.1.jar"
-    ]
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": false
+    }
 }
