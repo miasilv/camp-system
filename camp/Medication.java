@@ -17,6 +17,18 @@ public class Medication {
         this.time = time;
     }
 
+    public String getDose() {
+        return dose;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
     public String toString() {
         return dose + " " + type + " " + time;
     }
