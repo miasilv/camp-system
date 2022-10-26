@@ -11,14 +11,11 @@ import java.util.UUID;
 public class CampList {
     private ArrayList<Camp> camps;
     private ArrayList<Cabin> cabins;
-    private ArrayList<Session> sessions;
     private static CampList campList;
 
     private CampList(){
-        sessions = DataLoader.loadSessions();
-        cabins = DataLoader.loadCabins();
         camps = DataLoader.loadCamp();
-        
+        cabins = DataLoader.loadCabins();
         
     }
     
@@ -28,7 +25,7 @@ public class CampList {
      */
     public static CampList getInstance(){
         if (campList == null){
-            campList = new CampList();            
+            campList = new CampList();        
         }
         return campList;
     }
@@ -40,10 +37,7 @@ public class CampList {
     public ArrayList<Cabin> getCabins() {
         return cabins;
     }
-    public ArrayList<Session> getSessions(){
-        return sessions;
-    }
-
+    
     public Camp getCamp(UUID id) {
         for (int i=0; i < camps.size(); i++) {
             if (camps.get(i).getId().equals(id)) {
@@ -62,12 +56,5 @@ public class CampList {
         return null; // if unable to find it
     }
 
-    public Session getSession(UUID id) {
-        for (int i = 0; i < sessions.size(); i++) {
-            if (sessions.get(i).getID().equals(id)) {
-                return sessions.get(i);
-            }
-        }
-        return null; // if unable to find it
-    }
+
 }

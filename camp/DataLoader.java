@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.swing.text.html.StyleSheet.ListPainter;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -133,12 +135,13 @@ public class DataLoader extends DataConstants {
     //load guardians
     public static ArrayList<Guardian> loadGuardians() {
 		ArrayList<Guardian> guardians = new ArrayList<Guardian>();
-		
+
 		try {
 			FileReader reader = new FileReader("./camp/json files/"+GUARDIAN_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray guardiansJSON = (JSONArray)new JSONParser().parse(reader);
 			
+
 			for(int i=0; i < guardiansJSON.size(); i++) {
 				JSONObject guardianJSON = (JSONObject)guardiansJSON.get(i);
 				String name = (String)guardianJSON.get(GUARDIAN_NAME);
@@ -154,7 +157,7 @@ public class DataLoader extends DataConstants {
                 
                 for(int j = 0; j < campersJSON.size(); j++){
                     UUID camperID = UUID.fromString((String)campersJSON.get(j));
-                    Camper camper = UserList.getInstance().getCamper(camperID);
+                    Camper camper = CamperList.getInstance().getCamper(camperID);
                     campers.add(camper);
                 }
                 
@@ -237,6 +240,7 @@ public class DataLoader extends DataConstants {
 			JSONParser parser = new JSONParser();
 			JSONArray campersJSON = (JSONArray)new JSONParser().parse(reader);
 			
+
 			for(int i=0; i < campersJSON.size(); i++) {
 				JSONObject camperJSON = (JSONObject)campersJSON.get(i);
 				String name = (String)camperJSON.get(CAMPER_NAME);
@@ -279,7 +283,7 @@ public class DataLoader extends DataConstants {
 
                 //make arraylist of medications
                 ArrayList<Medication>  medications = new ArrayList<Medication>();
-                for(int j = 0; j < emergencycontactsJSON.size(); j++){
+                for(int j = 0; j < medicationsJSON.size(); j++){
                     JSONObject contact = (JSONObject)medicationsJSON.get(j);
                     String type = (String)contact.get(MEDICATION_TYPE);
                     String dose = (String)contact.get(MEDICATION_DOSE);
@@ -293,7 +297,7 @@ public class DataLoader extends DataConstants {
                 ArrayList<Session> sessions = new ArrayList<Session>();
                 for(int j = 0; j < sessionsJSON.size(); j++){
                     UUID sessionID = UUID.fromString((String)sessionsJSON.get(j));
-                    Session session = CampList.getInstance().getSession(sessionID);
+                    Session session = SessionList.getInstance().getSession(sessionID);
                     sessions.add(session);
                 }
 				
@@ -313,12 +317,13 @@ public class DataLoader extends DataConstants {
     //load cabin
     public static ArrayList<Cabin> loadCabins() {
 		ArrayList<Cabin> cabins = new ArrayList<Cabin>();
-		
+        UserList list = UserList.getInstance();
+			
 		try {
 			FileReader reader = new FileReader("./camp/json files/"+CABIN_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray cabinsJSON = (JSONArray)new JSONParser().parse(reader);
-			
+           
 			for(int i=0; i < cabinsJSON.size(); i++) {
 				JSONObject cabinJSON = (JSONObject)cabinsJSON.get(i);
 				Double beds = (Double)cabinJSON.get(CABIN_BEDS);
@@ -326,7 +331,7 @@ public class DataLoader extends DataConstants {
                 Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
                 UUID counselorID = UUID.fromString((String)cabinJSON.get(CABIN_COUNSELOR));
-                Counselor counselor = UserList.getInstance().getCounselor(counselorID);
+                Counselor counselor = CounselorList.getInstance().getCounselor(counselorID);
 
                 JSONArray campersJSON = (JSONArray)cabinJSON.get(CABIN_CAMPERS);
                 JSONArray schedulesJSON = (JSONArray)cabinJSON.get(CABIN_SCHEDULE);
@@ -334,13 +339,11 @@ public class DataLoader extends DataConstants {
                 //make arraylist of schedule data
                 ArrayList<Schedule> schedules = new ArrayList<Schedule>();
                 for(int j = 0; j < schedulesJSON.size(); j++){
-                    JSONObject dschedule = (JSONObject)schedulesJSON.get(j);
-                    String day = (String)dschedule.get(SCHEDULE_DAY);
+                    JSONArray dscheduleJSON = (JSONArray)schedulesJSON.get(j);
 
-                    JSONArray dayschedulesJSON = (JSONArray)schedulesJSON.get(j);
                     ArrayList<String> activities = new ArrayList<String>() ;
-                    for(int k = 0; k<dayschedulesJSON.size(); k++){
-                        activities.add((String)dayschedulesJSON.get(k));
+                    for(int k = 0; k<dscheduleJSON.size(); k++){
+                        activities.add((String)schedulesJSON.get(k));
                     }
                     
                     Schedule schedule = new Schedule(activities);
@@ -351,7 +354,7 @@ public class DataLoader extends DataConstants {
                 ArrayList<Camper> campers = new ArrayList<Camper>();
                 for(int j = 0; j < campersJSON.size(); j++){
                     UUID camperID = UUID.fromString((String)campersJSON.get(j));
-                    Camper camper = UserList.getInstance().getCamper(camperID);
+                    Camper camper = CamperList.getInstance().getCamper(camperID);
                     campers.add(camper);
                 }
 				
@@ -375,6 +378,7 @@ public class DataLoader extends DataConstants {
 			FileReader reader = new FileReader("./camp/json files/"+CAMP_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray campsJSON = (JSONArray)new JSONParser().parse(reader);
+        
 			
 			for(int i=0; i < campsJSON.size(); i++) {
 				JSONObject campJSON = (JSONObject)campsJSON.get(i);
@@ -391,7 +395,7 @@ public class DataLoader extends DataConstants {
                 ArrayList<Session> sessions = new ArrayList<Session>();
                 for(int j = 0; j < sessionsJSON.size(); j++){
                     UUID sessionID = UUID.fromString((String)sessionsJSON.get(j));
-                    Session session = CampList.getInstance().getSession(sessionID);
+                    Session session = SessionList.getInstance().getSession(sessionID);
                     sessions.add(session);
                 }
 

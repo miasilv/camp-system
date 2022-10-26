@@ -10,12 +10,11 @@ public class UserList {
     private ArrayList<Counselor> counselors;
     private ArrayList<Guardian> guardians;
     private ArrayList<Camper> campers;
+    private ArrayList<User> users;
     private static UserList userList;
 
     private UserList() {
         directors = DataLoader.loadDirector();
-        campers = DataLoader.loadCampers();
-        counselors = DataLoader.loadCounselors();
         guardians = DataLoader.loadGuardians();
         
     }
@@ -23,6 +22,7 @@ public class UserList {
     public static UserList getInstance() {
         if (userList == null) {
             userList = new UserList();
+            return userList;
         }
         return userList;
     }

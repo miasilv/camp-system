@@ -19,6 +19,10 @@ public class DataWriter extends DataConstants {
     }
 
 
+    public static void main(String[] args) {
+        
+    }
+
 
     //save directors
     public static void saveDirectors() {
@@ -181,7 +185,6 @@ public class DataWriter extends DataConstants {
 		
 		//Write JSON file
         try (FileWriter file = new FileWriter(CAMP_FILE_NAME)) {
- 
             file.write(jsonCamps.toJSONString());
             file.flush();
  

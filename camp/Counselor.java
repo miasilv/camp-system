@@ -43,9 +43,15 @@ public class Counselor extends User {
         this.bio = bio;
         this.id = id;
         this.allergies = allergies;
-        for (int i=0; i<relationships.size(); i++) {
+        this.emergencyContacts = createEmergencyContacts(relationships, contacts);
+    }
+
+    public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
+        HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
+        for (int i=0; i<contacts.size(); i++) {
             emergencyContacts.put(relationships.get(i), contacts.get(i));
         }
+        return emergencyContacts;
     }
 
     public String getName() {
