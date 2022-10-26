@@ -138,7 +138,7 @@ public class CampFacade {
      * @param variableName the name of the int instance variable
      * @return the int value in the variableName, -1 if not found
      */
-    public int getCampInt(String variableName) {
+    public double getCampInt(String variableName) {
         if(variableName.equals(RATIO)) {
             return camp.getCampersPerCounselor();
         }
@@ -357,7 +357,7 @@ public class CampFacade {
      * @param variableName the name of the int instance variable
      * @return the int value in the variableName, -1 if not found
      */
-    public int getSessionInt(String variableName) {
+    public double getSessionInt(String variableName) {
         if(variableName.equals(SESS_NUM)) {
             return currentSession.getSessionNumber();
         }

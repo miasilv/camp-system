@@ -359,7 +359,7 @@ public class CampDriver {
 		String question = in.nextLine();
 		System.out.print("Please enter the answer: ");
 		String answer = in.nextLine();
-		return facade.addFAQ(question, answer);
+		return facade.addCampFAQ(question, answer);
 	}
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------

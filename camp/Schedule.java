@@ -1,5 +1,6 @@
 package camp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
@@ -8,16 +9,21 @@ import java.util.HashMap;
  */
 public class Schedule {
     private HashMap<String, String> schedule;
+    private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
     /**
      * constructor of the daily schedule
      */
     public Schedule(){
-        schedule = new HashMap<String, String>();
+        this.schedule = new HashMap<String, String>();
     }
 
     //data loading talk to natalie
-    public Schedule(ArrayList<String> scheudle){
-        
+    public Schedule(ArrayList<String> schedule){
+        HashMap createdSchedule = new HashMap<String, String>();
+        for(int i=0; i<times.length; i++){
+            createdSchedule.put(times[i], schedule.get(i));
+        }
+        this.schedule = createdSchedule;
     }
 
     
