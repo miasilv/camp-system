@@ -47,24 +47,20 @@ public class Director extends User {
         return id;
     }
 
-    public boolean setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return true;
     }
 
-    public boolean setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return true;
     }
 
-    public boolean setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return true;
     }
 
-    public boolean setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return true;
     }
 
     public String toString() {

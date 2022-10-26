@@ -42,7 +42,7 @@ public class Session {
         this.cabins = cabins;
     }
 
-    public int getSessionNumber() {
+    public double getSessionNumber() {
         return this.sessionNumber;
     }
 
@@ -83,7 +83,7 @@ public class Session {
      * @param startDate the date the session starts
      * @param endDate the date the session ends
      */
-    public Session(String theme, int sessionNumber, Date startDate, Date endDate){
+    public Session(String theme, double sessionNumber, Date startDate, Date endDate){
         this.theme = theme;
         this.sessionNumber = sessionNumber;
         this.startDate = startDate;
@@ -135,6 +135,9 @@ public class Session {
         return id;
     }
 
+    public String getSessionID(){
+        return getID().toString();
+    }
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";

@@ -19,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
+    /* 
     public static void main(String[] args) {
         ArrayList<Session> sessions = loadSessions();
         System.out.println("Sessions:\n");
@@ -72,7 +73,7 @@ public class DataLoader extends DataConstants {
         
        
     }
-
+*/
     //load sessions
     public static ArrayList<Session> loadSessions() {
 		ArrayList<Session> sessions = new ArrayList<Session>();
@@ -339,11 +340,13 @@ public class DataLoader extends DataConstants {
                 //make arraylist of schedule data
                 ArrayList<Schedule> schedules = new ArrayList<Schedule>();
                 for(int j = 0; j < schedulesJSON.size(); j++){
-                    JSONArray dscheduleJSON = (JSONArray)schedulesJSON.get(j);
+                    JSONObject dscheduleJSON = (JSONObject)schedulesJSON.get(i);
+                    JSONArray  dayscheduleJSON = (JSONArray)dscheduleJSON.get(SCHEDULE_SCHEDULE);
+
 
                     ArrayList<String> activities = new ArrayList<String>() ;
-                    for(int k = 0; k<dscheduleJSON.size(); k++){
-                        activities.add((String)schedulesJSON.get(k));
+                    for(int k = 0; k<dayscheduleJSON.size(); k++){
+                        activities.add((String)dayscheduleJSON.get(k));
                     }
                     
                     Schedule schedule = new Schedule(activities);

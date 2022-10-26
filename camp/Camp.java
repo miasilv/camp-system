@@ -68,7 +68,7 @@ public class Camp {
         return false;
     }
 
-    public int getCampersPerCounselor() {
+    public double getCampersPerCounselor() {
         return this.campersPerCounselor;
     }
 
@@ -163,6 +163,11 @@ public class Camp {
     public double getRatio(){
         return campersPerCounselor;
     }
+
+    public String getCampID(){
+        return getId().toString();
+    }
+    
 
     public String toString(){
         String workingString = "";

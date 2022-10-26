@@ -64,6 +64,9 @@ public class Camper {
     public UUID getID() {
         return camperID;
     }
+    public String getCamperID(){
+        return getID().toString();
+    }
 
     public String getName() {
         return name;

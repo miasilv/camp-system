@@ -23,7 +23,7 @@ public class CamperList {
         return camperList;
     }
 
-    public ArrayList<Camper> getCamper(){
+    public ArrayList<Camper> getCampers(){
         return campers;
     }
 

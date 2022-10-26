@@ -11,16 +11,9 @@ import org.json.simple.JSONObject;
  * The DataWriter class
  */
 public class DataWriter extends DataConstants {
-    public static boolean saveAllUsers(ArrayList<User> users){
-        return true;
-    }
-    public static boolean saveCamp(Camp camp){
-        return true;
-    }
-
 
     public static void main(String[] args) {
-        
+        saveCounselors();
     }
 
 
@@ -36,7 +29,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(DIRECTOR_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + DIRECTOR_FILE_NAME)) {
  
             file.write(jsonDirectors.toJSONString());
             file.flush();
@@ -52,7 +45,7 @@ public class DataWriter extends DataConstants {
 		directorDetails.put(DIRECTOR_EMAIL, director.getEmail());
         directorDetails.put(DIRECTOR_PASSWORD, director.getPassword());
         directorDetails.put(DIRECTOR_PHONE_NUMBER, director.getPhoneNumber());
-        directorDetails.put(DIRECTOR_UUID, director.getID());
+        directorDetails.put(DIRECTOR_UUID, director.getDirectorID());
 		
 		
         return directorDetails;
@@ -71,7 +64,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(GUARDIAN_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + GUARDIAN_FILE_NAME)) {
  
             file.write(jsonGuardians.toJSONString());
             file.flush();
@@ -87,7 +80,7 @@ public class DataWriter extends DataConstants {
 		guardianDetails.put(GUARDIAN_EMAIL, guardian.getEmail());
         guardianDetails.put(GUARDIAN_PASSWORD, guardian.getPassword());
         guardianDetails.put(GUARDIAN_PHONE_NUMBER, guardian.getPhoneNumber());
-        guardianDetails.put(DIRECTOR_UUID, guardian.getID());
+        guardianDetails.put(DIRECTOR_UUID, guardian.getGuardianID());
         guardianDetails.put(GUARDIAN_CAMPERS, guardian.getCampers());
 		
 		
@@ -98,7 +91,7 @@ public class DataWriter extends DataConstants {
 
     //save counselors
     public static void saveCounselors() {
-		UserList users = UserList.getInstance();
+		CounselorList users = CounselorList.getInstance();
 		ArrayList<Counselor> counselors = users.getCounselors();
 		JSONArray jsonCounselors = new JSONArray();
 		
@@ -108,7 +101,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(COUNSELOR_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
  
             file.write(jsonCounselors.toJSONString());
             file.flush();
@@ -124,7 +117,7 @@ public class DataWriter extends DataConstants {
 		counselorDetails.put(COUNSELOR_EMAIL, counselor.getEmail());
         counselorDetails.put(COUNSELOR_PASSWORD, counselor.getPassword());
         counselorDetails.put(COUNSELOR_PHONE_NUMBER, counselor.getPhoneNumber());
-        counselorDetails.put(COUNSELOR_UUID, counselor.getID());
+        counselorDetails.put(COUNSELOR_UUID, counselor.getCounselorID());
         counselorDetails.put(COUNSELOR_BIO, counselor.getBio());
         counselorDetails.put(COUNSELOR_BIRTHDAY, counselor.getBirthday());
         counselorDetails.put(COUNSELOR_ALLERGIES, counselor.getAllergies());
@@ -136,8 +129,8 @@ public class DataWriter extends DataConstants {
 
      //save campers
      public static void saveCampers() {
-		UserList users = UserList.getInstance();
-		ArrayList<Camper> campers = users.getCampers();
+		CamperList campersL = CamperList.getInstance();
+		ArrayList<Camper> campers = campersL.getCampers();
 		JSONArray jsonCampers = new JSONArray();
 		
 		//creating all the json objects
@@ -146,7 +139,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(CAMPER_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + CAMPER_FILE_NAME)) {
  
             file.write(jsonCampers.toJSONString());
             file.flush();
@@ -162,7 +155,7 @@ public class DataWriter extends DataConstants {
 		camperDetails.put(CAMPER_MEDICATIONS, camper.getMedications());
         camperDetails.put(CAMPER_NOTES, camper.getNotes());
         camperDetails.put(CAMPER_SESSIONS, camper.getSessions());
-        camperDetails.put(CAMPER_UUID, camper.getID());
+        camperDetails.put(CAMPER_UUID, camper.getCamperID());
         camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthday());
         camperDetails.put(CAMPER_ALLERGIES, camper.getAllergies());
 		camperDetails.put(CAMPER_EMERGENCY_CONTACTS, camper.getEmergencyContacts());
@@ -184,7 +177,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(CAMP_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + CAMP_FILE_NAME)) {
             file.write(jsonCamps.toJSONString());
             file.flush();
  
@@ -199,7 +192,7 @@ public class DataWriter extends DataConstants {
 		campDetails.put(CAMP_ACTIVITIES, camp.getActivities());
         campDetails.put(CAMP_FAQS, camp.getFAQs());
         campDetails.put(CAMP_PRICE, camp.getPrice());
-        campDetails.put(CAMP_UUID, camp.getId());
+        campDetails.put(CAMP_UUID, camp.getCampID());
         campDetails.put(CAMP_RATIO, camp.getRatio());
         campDetails.put(CAMP_SESSIONS, camp.getSessions());
 		
@@ -218,7 +211,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(CABIN_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + CABIN_FILE_NAME)) {
  
             file.write(jsonCabins.toJSONString());
             file.flush();
@@ -234,10 +227,44 @@ public class DataWriter extends DataConstants {
 		cabinDetails.put(CABIN_CAMPERS, cabin.getCampers());
         cabinDetails.put(CABIN_COUNSELOR, cabin.getCounselor());
         cabinDetails.put(CABIN_MAX_AGE, cabin.getMaxAge());
-        cabinDetails.put(CABIN_UUID, cabin.getID());
+        cabinDetails.put(CABIN_UUID, cabin.getCabinID());
         cabinDetails.put(CABIN_MIN_AGE, cabin.getMinAge());
         cabinDetails.put(CABIN_SCHEDULE, cabin.getSchedule());
 		
         return cabinDetails;
+	}
+
+    //save session
+    public static void saveSession() {
+		SessionList sesh = SessionList.getInstance();
+		ArrayList<Session> sessions = sesh.getSessions();
+		JSONArray jsonSessions = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< sessions.size(); i++) {
+			jsonSessions.add(getSessionJSON(sessions.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter("./camp/json files/" + SESSION_FILE_NAME)) {
+ 
+            file.write(jsonSessions.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getSessionJSON(Session session) {
+		JSONObject sessionDetails = new JSONObject();
+		sessionDetails.put(SESSION_ID, session.getSessionID());
+		sessionDetails.put(SESSION_THEME, session.getTheme());
+        sessionDetails.put(SESSION_CABINS, session.getCabins());
+        sessionDetails.put(SESSION_NUM, session.getSessionNumber());
+        sessionDetails.put(SESSION_END, session.getEndDate());
+        sessionDetails.put(SESSION_START, session.getStartDate());
+		
+        return sessionDetails;
 	}
 }
