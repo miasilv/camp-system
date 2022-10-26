@@ -78,6 +78,7 @@ public abstract class DataConstants {
 	protected static final String EMERGENCY_PHONE = "ephonenumber";
 	protected static final String EMERGENCY_ADDRESS = "eaddress";
     protected static final String EMERGENCY_RELATIONSHIP = "erelationship";
+    protected static final String EMERGENCY_EMAIL = "eemail";
 
     //medications constants
     protected static final String MEDICATION_TYPE = "type";
@@ -89,6 +90,7 @@ public abstract class DataConstants {
     protected static final String SCHEDULE_SCHEDULE = "schedule";
 
     //session constants
+    protected static final String SESSION_FILE_NAME = "session.json";
     protected static final String SESSION_ID = "id";
     protected static final String SESSION_THEME = "theme";
     protected static final String SESSION_CABINS = "cabins";

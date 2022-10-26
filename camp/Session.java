@@ -89,10 +89,9 @@ public class Session {
     }
     
     //overloaded
-    public Session (UUID id, String theme, ArrayList<Cabin> cabins, int sessionNumber, Date start, Date end){
+    public Session (UUID id, String theme, double sessionNumber, Date start, Date end){
         this.id = id;
         this.theme = theme;
-        this.cabins = cabins;
         this.sessionNumber = sessionNumber;
         this.startDate = startDate;
         this.endDate = endDate;

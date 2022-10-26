@@ -24,6 +24,35 @@ public class DataLoader extends DataConstants {
             System.out.println();
         }
 
+        ArrayList<Camp> camps = loadCamp();
+        System.out.println("Camp:\n");
+        for(Camp c: camps){
+            System.out.println(c);
+            System.out.println();
+        }
+
+        ArrayList<Camper> campers = loadCampers();
+        System.out.println("Campers:\n");
+        for(Camper c: campers){
+            System.out.println(c);
+            System.out.println();
+        }
+
+        ArrayList<Counselor> counselors = loadCounselors();
+        System.out.println("Counselors:\n");
+        for(Counselor c: counselors){
+            System.out.println(c);
+            System.out.println();
+        }
+
+        ArrayList<Cabin> cabins = loadCabins();
+        System.out.println("Cabins:\n");
+        for(Cabin c: cabins){
+            System.out.println(c);
+            System.out.println();
+        }
+
+        
         ArrayList<Guardian> guardians = loadGuardians();
         System.out.println("Guardians:\n");
         for(Guardian g: guardians){
@@ -78,12 +107,15 @@ public class DataLoader extends DataConstants {
                 JSONArray campersJSON = (JSONArray)guardianJSON.get(GUARDIAN_CAMPERS);
 
                 //make arraylist of campers
+                
                 ArrayList<Camper> campers = new ArrayList<Camper>();
+                
                 for(int j = 0; j < campersJSON.size(); j++){
                     UUID camperID = UUID.fromString((String)campersJSON.get(j));
-                    Camper camper = UserList.getInstance().getCamperByUUID(camperID);
+                    Camper camper = UserList.getInstance().getCamper(camperID);
                     campers.add(camper);
                 }
+                
 				
 				guardians.add(new Guardian(id, name, email, password, phoneNumber,campers));
 			}
@@ -134,7 +166,8 @@ public class DataLoader extends DataConstants {
                     String ephone = (String)contact.get(EMERGENCY_PHONE);
                     String eaddress = (String)contact.get(EMERGENCY_ADDRESS);
                     String erelationship = (String)contact.get(EMERGENCY_RELATIONSHIP);
-                    Contact emergency = new Contact(ename, ephone, eaddress);
+                    String eemail = (String)contact.get(EMERGENCY_EMAIL);
+                    Contact emergency = new Contact(ename, ephone, eaddress, eemail);
                     emergencies.add(emergency);
                     relationships.add(erelationship);
 
@@ -195,7 +228,8 @@ public class DataLoader extends DataConstants {
                     String ephone = (String)contact.get(EMERGENCY_PHONE);
                     String eaddress = (String)contact.get(EMERGENCY_ADDRESS);
                     String erelationship = (String)contact.get(EMERGENCY_RELATIONSHIP);
-                    Contact emergency = new Contact(ename, ephone, eaddress);
+                    String eemail = (String)contact.get(EMERGENCY_EMAIL);
+                    Contact emergency = new Contact(ename, ephone, eaddress,eemail);
                     
                     emergencies.add(emergency);
                     relationships.add(erelationship);
@@ -234,7 +268,6 @@ public class DataLoader extends DataConstants {
 	}
 
 
-
     //load cabin
     public static ArrayList<Cabin> loadCabins() {
 		ArrayList<Cabin> cabins = new ArrayList<Cabin>();
@@ -246,9 +279,9 @@ public class DataLoader extends DataConstants {
 			
 			for(int i=0; i < cabinsJSON.size(); i++) {
 				JSONObject cabinJSON = (JSONObject)cabinsJSON.get(i);
-				int beds = (int)cabinJSON.get(CABIN_BEDS);
-                int maxAge = (int)cabinJSON.get(CABIN_MAX_AGE);
-                int minAge = (int)cabinJSON.get(CABIN_MIN_AGE);
+				Double beds = (Double)cabinJSON.get(CABIN_BEDS);
+                Double maxAge = (Double)cabinJSON.get(CABIN_MAX_AGE);
+                Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
                 Counselor counselor = (Counselor)cabinJSON.get(CABIN_COUNSELOR);
 
@@ -276,7 +309,7 @@ public class DataLoader extends DataConstants {
                 ArrayList<Camper> campers = new ArrayList<Camper>();
                 for(int j = 0; j < campersJSON.size(); j++){
                     UUID camperID = UUID.fromString((String)campersJSON.get(j));
-                    Camper camper = UserList.getInstance().getCamperByUUID(camperID);
+                    Camper camper = UserList.getInstance().getCamper(camperID);
                     campers.add(camper);
                 }
 				
@@ -304,8 +337,8 @@ public class DataLoader extends DataConstants {
 			for(int i=0; i < campsJSON.size(); i++) {
 				JSONObject campJSON = (JSONObject)campsJSON.get(i);
 				String name = (String)campJSON.get(CAMP_NAME);
-                double price = (double)campJSON.get(CAMP_PRICE);
-                int campersPerCounselor = (int)campJSON.get(CAMP_RATIO);
+                Double price = (Double)campJSON.get(CAMP_PRICE);
+                Double campersPerCounselor = (Double)campJSON.get(CAMP_RATIO);
                 UUID id = UUID.fromString((String)campJSON.get(CAMP_UUID));
 
                 JSONArray sessionsJSON = (JSONArray)campJSON.get(CAMP_SESSIONS);
@@ -318,21 +351,11 @@ public class DataLoader extends DataConstants {
                     JSONObject sessionJSON = (JSONObject)sessionsJSON.get(j);
                     UUID seshid = UUID.fromString((String)sessionJSON.get(SESSION_ID));
                     String theme = (String)sessionJSON.get(SESSION_THEME);
-                    int seshNum = (int)sessionJSON.get(SESSION_NUM);
+                    Double seshNum = (Double)sessionJSON.get(SESSION_NUM);
                     Date start= (Date)sessionJSON.get(SESSION_START);
                     Date end = (Date)sessionJSON.get(SESSION_END);
-                    JSONArray cabinsJSON = (JSONArray)sessionJSON.get(SESSION_CABINS);
-
-
-                    //make arraylist of cabins
-                    ArrayList<Cabin> cabins = new ArrayList<Cabin>();
-                    for(int k = 0; k < cabinsJSON.size(); k++){
-                        UUID cabinID = UUID.fromString((String)cabinsJSON.get(j));
-                        Cabin cabin = CampList.getInstance().getCabin(cabinID);
-                        cabins.add(cabin);
-                    }
                     
-                    Session session = new Session (seshid, theme, cabins, seshNum, start, end);
+                    Session session = new Session (seshid, theme, seshNum, start, end);
                     sessions.add(session);
                 }
 

@@ -12,9 +12,9 @@ public class Cabin {
     private ArrayList<Camper> campers;
     private Counselor counselor;
     private HashMap<Day, Schedule> schedule;
-    private int beds;
-    private int maxAge;
-    private int minAge;
+    private double beds;
+    private double maxAge;
+    private double minAge;
     
     /**
      * constructor of cabin
@@ -27,7 +27,7 @@ public class Cabin {
     }
 
     //overloaded constructor for dataloader
-    public Cabin(ArrayList<Camper> campers, Counselor counselor, int beds, int maxAge, int minAge, ArrayList<Schedule> schedules, UUID id){
+    public Cabin(ArrayList<Camper> campers, Counselor counselor, double beds, double maxAge, double minAge, ArrayList<Schedule> schedules, UUID id){
         this.campers = campers;
         this.counselor = counselor;
         this.beds = beds;
@@ -64,13 +64,13 @@ public class Cabin {
        
     }
 
-    public int getMinAge(){
+    public double getMinAge(){
         return minAge;
     }
-    public int getMaxAge(){
+    public double getMaxAge(){
         return maxAge;
     }
-    public int getBeds(){
+    public double getBeds(){
         return beds;
     }
     public void setBeds(int beds) {

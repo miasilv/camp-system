@@ -20,6 +20,7 @@
                                 "ename": "Mackenzie Smith",
                                 "ephonenumber": "3897751511",
                                 "eaddress": "12 Millburn Avenue, 23888, Camden, South Carolina",
+                                "eemail": "macksm8@outlook.com",
                                 "erelationship": "Neighbor"
                             }]
     },
@@ -36,12 +37,14 @@
                                 "ename": "Rebecca Wringler",
                                 "ephonenumber": "2221123345",
                                 "eaddress": "35 Brookview Street, 28990, Charleston, South Carolina",
+                                "eemail": "rew@hotmail.com",
                                 "erelationship": "Neighbor"
                             },
                             {
                                 "ename": "John Van Dam",
                                 "ephonenumber": "9882345568",
                                 "eaddress": "23 Eagle Point, 28990, Charleston, South Carolina",
+                                "eemail": "johnvandam@gmail.com",
                                 "erelationship": "Family Friend"
                             }]
     },
@@ -62,6 +65,7 @@
                                 "ename": "Trina Beckley",
                                 "ephonenumber": "3225678899",
                                 "eaddress": "234 Rock Point Rd, 26789, Fort Mill, South Carolina",
+                                "eemail": "trinab@yahoo.com",
                                 "erelationship": "Family Friend"
                             }]
     }

@@ -27,7 +27,7 @@ public class Camp {
     public Camp (){
 
     }
-    public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, int camperRatio, ArrayList<String> activities){
+    public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, double camperRatio, ArrayList<String> activities){
         this.id = id;
         this.name = name;
         this.sessions = sessions;
