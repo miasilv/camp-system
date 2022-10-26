@@ -34,10 +34,17 @@ public class Cabin {
         this.maxAge= maxAge;
         this.minAge = minAge; 
         this.cabinID = id;
+        this.schedule = createHash(schedules);
+        
+       
+    }
+
+    private static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2) {
+        HashMap<Day, Schedule> schedule = new HashMap<Day, Schedule>();
         int i = 0; 
         Day day = Day.MONDAY;
-        while(i< schedules.size()){
-            schedule.put(day, schedules.get(i));
+        while(i< schedules2.size()){
+            schedule.put(day, schedules2.get(i));
             i++;
             if (day.equals(Day.MONDAY)){
                 day = Day.TUESDAY;
@@ -61,7 +68,7 @@ public class Cabin {
                 day = Day.MONDAY;
             }
         }
-       
+        return schedule;
     }
 
     public double getMinAge(){

@@ -7,60 +7,28 @@ import java.util.HashMap;
  * @author sara
  */
 public class Schedule {
-    private HashMap<Day, String> schedule;
+    private HashMap<String, String> schedule;
     /**
      * constructor of the daily schedule
      */
     public Schedule(){
-        this.schedule = new HashMap<Day, String>();
+        schedule = new HashMap<String, String>();
     }
 
     //data loading talk to natalie
-    public Schedule(ArrayList<String> schedule){
-        this.schedule = createHash(schedule);
+    public Schedule(ArrayList<String> scheudle){
+        
     }
 
     
-    private static HashMap<Day, String> createHash(ArrayList<String> inpschedule) {
-        HashMap<Day, String> schedule = new HashMap<Day, String>();
-        Day day = Day.MONDAY;
-        for(int i = 0; i< inpschedule.size(); i++){
-                schedule.put(day, inpschedule.get(i));
-                if (day.equals(Day.MONDAY)){
-                    day = Day.TUESDAY;
-                }
-                else if (day.equals(Day.TUESDAY)){
-                    day = Day.WEDNESDAY;
-                }
-                else if (day.equals(Day.WEDNESDAY)){
-                    day = Day.THURSDAY;
-                }
-                else if (day.equals(Day.THURSDAY)){
-                    day = Day.FRIDAY;
-                }
-                else if (day.equals(Day.FRIDAY)){
-                    day = Day.SATURDAY;
-                }
-                else if (day.equals(Day.SATURDAY)){
-                    day = Day.SUNDAY;
-                }
-                else if (day.equals(Day.SATURDAY)){
-                    day = Day.MONDAY;
-                }
-
-        }
-
-        return schedule;
-    }
-
     /**
      * getter of the schedule
      * @return the schedule
      */
-    public HashMap<Day, String> getSchedule(){
+    public HashMap<String, String> getSchedule(){
         return this.schedule;
     }
-    public void setSchedule(HashMap<Day, String> schedule){
+    public void setSchedule(HashMap<String, String> schedule){
         this.schedule = schedule;
     }
     /**
@@ -68,7 +36,7 @@ public class Schedule {
      * @param time the time of the activity being editted
      * @param activity the activity being editted
      */
-    public void editSchedule(Day time, String activity){
+    public void editSchedule(String time, String activity){
         schedule.put(time, activity);
     }
     /**
@@ -76,7 +44,7 @@ public class Schedule {
      */
     public String toString(){ //TODO make print in right order!!!
         String writtenSchedule = "";
-        for (Day keyValue  : schedule.keySet()) {
+        for (String keyValue  : schedule.keySet()) {
             writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
         }
         return writtenSchedule;
@@ -86,8 +54,8 @@ public class Schedule {
 		return this.schedule.remove(time);
 	}
 
-	public boolean add(Day day, String activity) {
-		this.schedule.put(day, activity);
+	public boolean add(String time, String activity) {
+		this.schedule.put(time, activity);
         return true;
 	}
 }
