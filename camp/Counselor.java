@@ -73,7 +73,9 @@ public class Counselor extends User {
     public UUID getID() {
         return id;
     }
-
+    public String getCounselorID(){
+        return getID().toString();
+    }
     public String getBio() {
         return bio;
     }

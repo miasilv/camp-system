@@ -92,8 +92,12 @@ public class Cabin {
         this.minAge = minAge;
     }
 
-    public UUID getCabinID() {
-        return this.cabinID;
+    public UUID getID() {
+        return cabinID;
+    }
+    public String getCabinID() {
+        return getID().toString();
+        
     }
 
     public void setCabinID(UUID cabinID) {
@@ -183,9 +187,7 @@ public class Cabin {
         return false;
     }
 
-    public UUID getID() {
-        return cabinID;
-    }
+    
 
     public String toString(){
         String workingString = "";

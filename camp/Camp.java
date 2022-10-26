@@ -164,6 +164,11 @@ public class Camp {
         return campersPerCounselor;
     }
 
+    public String getCampID(){
+        return getId().toString();
+    }
+    
+
     public String toString(){
         String workingString = "";
         workingString += "id: " + id.toString() + "\n";
