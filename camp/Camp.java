@@ -68,7 +68,7 @@ public class Camp {
         return false;
     }
 
-    public int getCampersPerCounselor() {
+    public double getCampersPerCounselor() {
         return this.campersPerCounselor;
     }
 
