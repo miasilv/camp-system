@@ -1,5 +1,7 @@
 package camp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -145,7 +147,8 @@ public class Counselor extends User {
      * Returns a string representation of the counselor
      */
     public String toString() {
-        return id + " " + name + " " + email + " " + password + " " + phoneNumber + " " + bio + " " + emergencyContacts + " " + birthday + " " + allergies;
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy"); 
+        return id + " " + name + " " + email + " " + password + " " + phoneNumber + " " + bio + " " + emergencyContacts + " " + dateFormat.format(birthday) + " " + allergies;
     }
 
     public boolean setBirthday(Date change) {

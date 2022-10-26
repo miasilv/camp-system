@@ -1,6 +1,7 @@
 package camp;
 
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +18,13 @@ import org.json.simple.parser.JSONParser;
 public class DataLoader extends DataConstants {
 
     public static void main(String[] args) {
+        ArrayList<Session> sessions = loadSessions();
+        System.out.println("Sessions:\n");
+        for (Session s: sessions){
+            System.out.println(s);
+            System.out.println();
+        }
+
         ArrayList<Director> directors = loadDirector();
         System.out.println("Director:\n");
         for (Director d: directors){
@@ -45,6 +53,13 @@ public class DataLoader extends DataConstants {
             System.out.println();
         }
 
+        ArrayList<Guardian> guardians = loadGuardians();
+        System.out.println("Guardians:\n");
+        for(Guardian g: guardians){
+            System.out.println(g);
+            System.out.println();
+        }
+        
         ArrayList<Cabin> cabins = loadCabins();
         System.out.println("Cabins:\n");
         for(Cabin c: cabins){
@@ -53,14 +68,40 @@ public class DataLoader extends DataConstants {
         }
 
         
-        ArrayList<Guardian> guardians = loadGuardians();
-        System.out.println("Guardians:\n");
-        for(Guardian g: guardians){
-            System.out.println(g);
-            System.out.println();
-        }
+       
     }
 
+    //load sessions
+    public static ArrayList<Session> loadSessions() {
+		ArrayList<Session> sessions = new ArrayList<Session>();
+		
+		try {
+			FileReader reader = new FileReader("./camp/json files/"+ SESSION_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray sessionsJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < sessionsJSON.size(); i++) {
+				JSONObject sessionJSON = (JSONObject)sessionsJSON.get(i);
+                UUID seshid = UUID.fromString((String)sessionJSON.get(SESSION_ID));
+                String theme = (String)sessionJSON.get(SESSION_THEME);
+                Double seshNum = (Double)sessionJSON.get(SESSION_NUM);
+                Date start= new SimpleDateFormat("mm/dd/yyyy").parse((String)sessionJSON.get(SESSION_START));
+                Date end = new SimpleDateFormat("MM/dd/yyyy").parse((String)sessionJSON.get(SESSION_END));
+                
+                Session session = new Session (seshid, theme, seshNum, start, end);
+                sessions.add(session);    
+			}
+			
+			return sessions;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+    //load director
     public static ArrayList<Director> loadDirector() {
 		ArrayList<Director> directors = new ArrayList<Director>();
 		
@@ -89,6 +130,7 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
+    //load guardians
     public static ArrayList<Guardian> loadGuardians() {
 		ArrayList<Guardian> guardians = new ArrayList<Guardian>();
 		
@@ -145,7 +187,7 @@ public class DataLoader extends DataConstants {
                 String password = (String)counselorJSON.get(COUNSELOR_PASSWORD);
 				String phoneNumber = (String)counselorJSON.get(COUNSELOR_PHONE_NUMBER);
                 String bio = (String)counselorJSON.get(COUNSELOR_BIO);
-                Date birthday = (Date)counselorJSON.get(COUNSELOR_BIRTHDAY);
+                Date birthday = new SimpleDateFormat("mm/dd/yyyy").parse((String)counselorJSON.get(COUNSELOR_BIRTHDAY));
                 UUID id = UUID.fromString((String)counselorJSON.get(COUNSELOR_UUID));
 
                 JSONArray allergiesJSON = (JSONArray)counselorJSON.get(COUNSELOR_ALLERGIES);
@@ -198,7 +240,7 @@ public class DataLoader extends DataConstants {
 			for(int i=0; i < campersJSON.size(); i++) {
 				JSONObject camperJSON = (JSONObject)campersJSON.get(i);
 				String name = (String)camperJSON.get(CAMPER_NAME);
-                Date birthday = (Date)camperJSON.get(CAMPER_BIRTHDAY);
+                Date birthday = new SimpleDateFormat("MM/dd/yyyy").parse((String)camperJSON.get(CAMPER_BIRTHDAY));
                 UUID id = UUID.fromString((String)camperJSON.get(CAMPER_UUID));
 
                 JSONArray allergiesJSON = (JSONArray)camperJSON.get(CAMPER_ALLERGIES);
@@ -283,10 +325,10 @@ public class DataLoader extends DataConstants {
                 Double maxAge = (Double)cabinJSON.get(CABIN_MAX_AGE);
                 Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
-                Counselor counselor = (Counselor)cabinJSON.get(CABIN_COUNSELOR);
+                UUID counselorID = UUID.fromString((String)cabinJSON.get(CABIN_COUNSELOR));
+                Counselor counselor = UserList.getInstance().getCounselor(counselorID);
 
                 JSONArray campersJSON = (JSONArray)cabinJSON.get(CABIN_CAMPERS);
-                JSONArray counselorsJSON = (JSONArray)cabinJSON.get(CABIN_COUNSELOR);
                 JSONArray schedulesJSON = (JSONArray)cabinJSON.get(CABIN_SCHEDULE);
                 
                 //make arraylist of schedule data
@@ -348,14 +390,8 @@ public class DataLoader extends DataConstants {
                 //make arraylist of sessions
                 ArrayList<Session> sessions = new ArrayList<Session>();
                 for(int j = 0; j < sessionsJSON.size(); j++){
-                    JSONObject sessionJSON = (JSONObject)sessionsJSON.get(j);
-                    UUID seshid = UUID.fromString((String)sessionJSON.get(SESSION_ID));
-                    String theme = (String)sessionJSON.get(SESSION_THEME);
-                    Double seshNum = (Double)sessionJSON.get(SESSION_NUM);
-                    Date start= (Date)sessionJSON.get(SESSION_START);
-                    Date end = (Date)sessionJSON.get(SESSION_END);
-                    
-                    Session session = new Session (seshid, theme, seshNum, start, end);
+                    UUID sessionID = UUID.fromString((String)sessionsJSON.get(j));
+                    Session session = CampList.getInstance().getSession(sessionID);
                     sessions.add(session);
                 }
 

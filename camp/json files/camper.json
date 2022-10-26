@@ -14,7 +14,7 @@
                         "time": "during an athsma attack"
                         }],
         "allergies": ["pollen", "peanuts", "strawberries"],
-        "sessions": ["d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",4],
+        "sessions": ["d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6"],
         "notes": ["bobby is so nice", "bobby punched another camper"],
         "emergency contacts": [{
                                 "ename": "Mackenzie Smith",
@@ -31,7 +31,7 @@
         "age": 5,
         "medications": [],
         "allergies": ["pollen", "pet dander", "peaches"],
-        "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8",4],
+        "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8"],
         "notes": ["mille is so sweet", "mille hurt her leg at kayaking today"],
         "emergency contacts": [{
                                 "ename": "Rebecca Wringler",
@@ -59,7 +59,7 @@
                         "time": "divided and given every 8 hours"
                         }],
         "allergies": [],
-        "sessions": ["5"],
+        "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8"],
         "notes": ["ashley is crazy", "ashley did really well at ziplining today"],
         "emergency contacts": [{
                                 "ename": "Trina Beckley",

@@ -1,5 +1,7 @@
 package camp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -10,7 +12,7 @@ import java.util.UUID;
 public class Session {
     private UUID id;
     private ArrayList<Cabin> cabins;
-    private int sessionNumber;
+    private double sessionNumber;
     private Date startDate;
     private Date endDate;
     private String theme;
@@ -93,8 +95,8 @@ public class Session {
         this.id = id;
         this.theme = theme;
         this.sessionNumber = sessionNumber;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = start;
+        this.endDate = end;
     }
 
     /**
@@ -129,13 +131,15 @@ public class Session {
         return null;
     }
 
+    public UUID getID() {
+        return id;
+    }
+
     public String toString(){
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
         workingString += id + "\n";
-        for(int i=0; i<cabins.size(); i++){
-            workingString += cabins.get(i).toString() + "\n";
-        }
-        workingString += String.valueOf(sessionNumber) + "\n" + String.valueOf(startDate) + "\n" + String.valueOf(endDate) + "\n" + theme;
+        workingString += String.valueOf(sessionNumber) + "\n" + dateFormat.format(startDate) + "\n" + dateFormat.format(endDate) + "\n" + theme;
         return workingString;
     }
 }

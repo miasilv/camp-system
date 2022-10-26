@@ -11,7 +11,7 @@ public class Camp {
     private String name;
     private ArrayList<Session> sessions;
     private double pricePerSession;
-    private int campersPerCounselor;
+    private double campersPerCounselor;
     private ArrayList<FAQ> FAQs;
     private ArrayList<String> activities;
     private UUID id;
@@ -160,14 +160,14 @@ public class Camp {
         return pricePerSession;
     }
 
-    public int getRatio(){
+    public double getRatio(){
         return campersPerCounselor;
     }
 
     public String toString(){
         String workingString = "";
-        workingString += id.toString() + "\n";
-        workingString += name + "\n";
+        workingString += "id: " + id.toString() + "\n";
+        workingString += "camp name: " +name + "\n";
         for(int i=0; i<sessions.size(); i++){
             workingString += sessions.get(i).toString() + "\n";
         }

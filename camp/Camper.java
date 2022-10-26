@@ -1,5 +1,7 @@
 package camp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -139,7 +141,8 @@ public class Camper {
      * Returns a string representation. Returns all instance variables
      */
     public String toString() {
-        return camperID + " " + name + " " + birthday + " " + medications + " " + allergies + " " + sessions + " " + notes + " " + emergencyContacts;
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy"); 
+        return camperID + " " + name + " " + dateFormat.format(birthday) + " " + medications + " " + allergies + " " + sessions + " " + notes + " " + emergencyContacts;
     }
 
     /**

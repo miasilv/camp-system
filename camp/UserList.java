@@ -15,8 +15,9 @@ public class UserList {
     private UserList() {
         directors = DataLoader.loadDirector();
         campers = DataLoader.loadCampers();
+        counselors = DataLoader.loadCounselors();
         guardians = DataLoader.loadGuardians();
-        campers = DataLoader.loadCampers();
+        
     }
 
     public static UserList getInstance() {
@@ -240,9 +241,27 @@ public class UserList {
                 guardians.remove(i);
             }
         }
-    }  
+    }
+
+    
+    public void addUser(String name, String email, String password, String phoneNumber) {
+
+    }
+
+    public Camper getCamperByUUID(UUID id){
+        return null;
+    }
+
+    public Counselor getCounselorByUUID(UUID id){
+        return null;
+    }
+
+    public void editUser() {
+
+    }   
     
     public void saveUsers() {
         
     }
+    
 }
