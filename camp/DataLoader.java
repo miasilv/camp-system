@@ -19,7 +19,7 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
-    /* 
+    
     public static void main(String[] args) {
         ArrayList<Session> sessions = loadSessions();
         System.out.println("Sessions:\n");
@@ -73,7 +73,7 @@ public class DataLoader extends DataConstants {
         
        
     }
-*/
+
     //load sessions
     public static ArrayList<Session> loadSessions() {
 		ArrayList<Session> sessions = new ArrayList<Session>();
@@ -318,7 +318,6 @@ public class DataLoader extends DataConstants {
     //load cabin
     public static ArrayList<Cabin> loadCabins() {
 		ArrayList<Cabin> cabins = new ArrayList<Cabin>();
-        UserList list = UserList.getInstance();
 			
 		try {
 			FileReader reader = new FileReader("./camp/json files/"+CABIN_FILE_NAME);
@@ -332,7 +331,7 @@ public class DataLoader extends DataConstants {
                 Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
                 UUID counselorID = UUID.fromString((String)cabinJSON.get(CABIN_COUNSELOR));
-                Counselor counselor = CounselorList.getInstance().getCounselor(counselorID);
+                Counselor counselor = UserList.getInstance().getCounselor(counselorID);
 
                 JSONArray campersJSON = (JSONArray)cabinJSON.get(CABIN_CAMPERS);
                 JSONArray schedulesJSON = (JSONArray)cabinJSON.get(CABIN_SCHEDULE);
