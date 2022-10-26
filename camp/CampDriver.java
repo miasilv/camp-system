@@ -1,6 +1,8 @@
 package camp;
 
 import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,22 +11,25 @@ import java.util.Date;
  * The Camp Driver (the front end of the system)
  */
 public class CampDriver {
+	SimpleDateFormat dateFormatter;
+
     private Scanner in;
 	private ArrayList<String> options;
 	private CampFacade facade;
 	private User user;
 
-	//Classes
+	//Classes (and in some cases instance variables)
 	private static final String CAMP = "camp";
 	private static final String FAQ = "faq"; //also in camp
     private static final String SESSION = "session"; //also in camper and camp
     private static final String CABIN = "cabin"; //also in session, counselor, and camper
+	private static final String SCHEDULE = "schedule"; //also in cabin
     private static final String USER = "user";
     private static final String COUNSELOR = "counselor"; //also in cabin
 	private static final String GUARDIAN = "guardian"; 
     private static final String CAMPER = "camper"; //also in cabin and guardian
     private static final String MEDICATION = "medication"; //also in camper
-    private static final String EMERGENCY_CONTACT = "eContact"; //also in counselor and camper
+    private static final String CONTACT = "contact"; //also in counselor and camper
 
 	//camp instance variables
 	private static final String NAME = "name"; //can also use for User, Camper, and Contact
@@ -41,9 +46,6 @@ public class CampDriver {
 	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
-
-	//cabin instance variables
-	private static final String SCHEDULE = "schedule"; //can also use for schedule class
 
 	//user instance variables
 	private static final String EMAIL = "email"; //can also be used for Contact
@@ -75,6 +77,7 @@ public class CampDriver {
         in = new Scanner(System.in); 
 		options = new ArrayList<String>();
 		facade = new CampFacade();
+		dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
 
@@ -93,9 +96,9 @@ public class CampDriver {
 			options.add("Sign In");
 			options.add("Quit");
 
-			//displays choices and checks number
+			//displays choices and checks if the number is quit/return
 			System.out.println("***** Home Screen *****");
-			int choice = getNum();
+			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
@@ -123,19 +126,19 @@ public class CampDriver {
 		while(true) {
 			//updating options
 			clearOptions();
-			options.add("Name: " + facade.getInformation(CAMP, NAME, NO_INDEX));
-			options.add("Pricing: $" + facade.getInformation(CAMP, PRICE, NO_INDEX) + " per session");
-			options.add("Sessions Available:\n" + facade.getSessionList(CAMP));
-			options.add("Campers per Counselor: " + facade.getInformation(CAMP, RATIO, NO_INDEX));
-			options.add("FAQs:\n" + facade.getFAQList(CAMP)); 
-			options.add("Activities Offered:\n" + facade.getActivityList(CAMP));
+			options.add("Name: " + facade.getCampString(NAME));
+			options.add("Pricing: $" + facade.getCampDouble(PRICE) + " per session");
+			options.add("Sessions Available:\n" + facade.getCampSessions());
+			options.add("Campers per Counselor: " + facade.getCampInt(RATIO));
+			options.add("FAQs:\n" + facade.getCampFAQ()); 
+			options.add("Activities Offered:\n" + facade.getCampActivities());
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number
+			//displays choices and checks number is quit/return
 			clear();
 			System.out.println("***** Camp Information *****");
-			int choice = getNum();
+			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
@@ -149,47 +152,130 @@ public class CampDriver {
 
 			//switches between choices
 			switch(choice) {
-				case 0:
+				case 0: //Name
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getCampString(NAME));
+					String change = setStringInformation(NAME);
+					if(!change.isEmpty()) {
+						if(!facade.setCampString(NAME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 1: //Price
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					editStringInformation(CAMP, NAME, NO_INDEX);
-					break;
-				case 1:
-					if(!(user instanceof Director)) {
-						System.out.println("You do not have permission to edit this.");
-						break;
+					
+					clear();
+					System.out.println("Old " + PRICE + ": " + facade.getCampDouble(PRICE));
+					double doub = setDoubleInformation(PRICE);
+					if(!(doub == -1)) {
+						if(!facade.setCampDouble(PRICE, doub)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
 					}
-					editDoubleInformation(CAMP, PRICE, NO_INDEX);
 					break;
-				case 2:
-					if(!(user instanceof Director || user instanceof Counselor)) {
-						System.out.println("You do not have permission to edit this.");
-					}
+
+				case 2: //Session List
 					displaySessionInformation();
-				case 3:
-					if(!(user instanceof Director)) {
-						System.out.println("You do not have permission to edit this.");
-						break;
-					}
-					editIntInformation(CAMP, RATIO, NO_INDEX);
 					break;
-				case 4:
+
+				case 3: //Campers per Counselor
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						break;
 					}
-					displayFAQ();
+					
+					clear();
+					System.out.println("Old " + RATIO + ": " + facade.getCampDouble(RATIO));
+					int num = setIntInformation(RATIO);
+					if(!(num == -1)) {
+						if(!facade.setCampInt(RATIO, num)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 4: //FAQ List
+					displayCampFAQ();
+					break;
+
+				case 5: //activity list
+					displayCampActivities();
+					break;
 			}
+		}
+	}
+
+	private void displayCampActivities() {
+		ArrayList<String> activities = facade.getCampActivities();
+
+		while(true) {
+			//updating options
+			clearOptions();
+			for(int i = 0; i < activities.size(); i++) {
+				options.add(activities.get(i));
+			}
+			options.add("Add a new Activity");
+			options.add("Remove an existing Activity");
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number is quit/return
+			clear();
+			System.out.println("***** Camp Activities *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+			if(choice == options.size() - 3) { //the user wants to remove an Activity
+				System.out.println("Which activity do you want to delete?");
+				int num = getNum();
+				if(facade.removeCampActivity(num).isEmpty()) {
+					System.out.println("Something went wrong, unable to remove");
+				}
+				break;
+			}
+			
+			if(choice == options.size() -4) { //the user wants to add an Activity
+				System.out.println("What activity do you want to add?");
+				if(!facade.addCampActivity(in.nextLine())) {
+					System.out.println("Something went wrong, unable to add");
+				}
+				break;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing activity
+				System.out.print(facade.getCampActivities().get(choice));
+				String change = setStringInformation(ACTIVITIES);
+				if(facade.removeCampActivity(choice).isEmpty() && !facade.addCampActivity(change)) {
+					System.out.println("Something went wrong, unable to change");
+				}
+				break;
+        	}
 		}
 	}
 
 	/**
 	 * Displays an FAQ list
 	 */
-	private void displayFAQ() {
-		ArrayList<FAQ> faqs = facade.getFAQList(CAMP);
+	private void displayCampFAQ() {
+		ArrayList<FAQ> faqs = facade.getCampFAQ();
 		
 		while(true) {
 			//updating options
@@ -205,7 +291,7 @@ public class CampDriver {
 			//displays choices and checks number
 			clear();
 			System.out.println("***** FAQs *****");
-			int choice = getNum();
+			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
@@ -217,22 +303,33 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove an FAQ
-				if(!facade.removeArrayListObject(FAQ, CAMP, choice)) {
+				System.out.println("Which faq do you want to delete?");
+				int num = getNum();
+				if(facade.removeCampFAQ(num).equals(null)) {
 					System.out.println("Something went wrong, unable to remove");
-					break;
 				}
+				break;
 			}
+
 			if(choice == options.size() -4) { //the user wants to add an FAQ
-				facade.addFAQ(FAQ, createNewFAQ());
+				System.out.println("What is the question of the new faq?");
+				String question = in.nextLine();
+				System.out.println("What is the answer of the new faq?");
+				String answer = in.nextLine();
+				if(!facade.addCampFAQ(question, answer)) {
+					System.out.println("Something went wrong, unable to add");
+				}
+				break;
 			}
+
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing FAQ
-				System.out.print("Do you want to edit the question or answer? (q/a)");
-				if(in.nextLine().equalsIgnoreCase("q")) {
-					editStringInformation(FAQ, QUESTION, choice);
+				System.out.print(facade.getCampFAQ().get(choice));
+				String question = setStringInformation(QUESTION);
+				String answer = setStringInformation(ANSWER);
+				if(!facade.setFAQString(QUESTION, question) && !facade.setFAQString(ANSWER, answer)) {
+					System.out.println("Something went wrong, unable to change");
 				}
-				else {
-					editStringInformation(FAQ, ANSWER, choice);				
-				}
+				break;
         	}
 		}
 	}
@@ -267,103 +364,93 @@ public class CampDriver {
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
 	/**
-	 * Edits a class' String instance varaible.
-	 * @param className the class in which the String instance variable is located
-	 * @param type the instance variable being edited
-	 * @param index if the instance variable is contained in an array list, the index is the index of the object being edited.
+	 * User inputs a new string to replace a string variable and verifies the change
+	 * @param variableName the instance variable being edited
+	 * @return the new string to input into the variableName, null if not verified
 	 */
-	private void editStringInformation(String className, String variableName, int index) {
-		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName, index));
+	private String setStringInformation(String variableName) {
 		System.out.print("Enter what you would like to change this to: ");
-		String change = in.nextLine();		
+		String change = in.nextLine();	
 		
-		if(verify(change)) {
-			facade.editInformation(className, variableName, change);
-			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName, index));
-			return;
-		}
-		System.out.println("The " + variableName + " will not be changed.");		
-	}
-
-	/**
-	 * Edits a class' int instance varaible.
-	 * @param className the class in which the int instance variable is located
-	 * @param type the instance variable being edited
-	 * @param index if the type is found in an array list, the index is the index of the object being edited, if not index = -1
-	 */
-	private void editIntInformation(String className, String variableName, int index) {
-		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName, index));
-		System.out.print("Enter what you would like to change this to: ");	
-		
-		int change = getNum();
-		
-		if(verify(Integer.toString(change))) {
-			facade.editInformation(className, variableName, change);
-			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName, index));
-			return;
-		}
-		System.out.println("The " + variableName + " will not be changed.");		
-	}
-
-	/**
-	 * Edits a class' double instance varaible.
-	 * @param className the class in which the double instance variable is located
-	 * @param type the instance variable being edited
-	 * @param index if the type is found in an array list, the index is the index of the object being edited, if not index = -1
-	 */
-	private void editDoubleInformation(String className, String variableName, int index) {
-		System.out.println("Old" + variableName + ": " + facade.getInformation(className, variableName, index));
-		System.out.print("Enter what you would like to change this to: ");	
-		
-		double change;
-		try {
-			change = Double.parseDouble(in.nextLine()) - 1;
-		} catch (Exception e) {
-			System.out.println("You need to enter a valid number\n");
-			clear();
-			return;
-		}
-		clear();
-		
-		if(verify(Double.toString(change))) {
-			facade.editInformation(className, variableName, change);
-			System.out.println("New" + variableName + ": " + facade.getInformation(className, variableName, index));
-			return;
-		}
-		System.out.println("The " + variableName + " will not be changed.");		
-	}
-
-	/**
-	 * Verifies that the input is what the user wants to change it to
-	 * @param change the new input
-	 * @return true if it is correct, false if it is not correct
-	 */
-	private boolean verify(String change) {
 		System.out.println("You would like to change it to " + change);
 		System.out.print("Is this right? (y/n): ");
 		String answer = in.nextLine();
 		if(answer.equalsIgnoreCase("y")) {
-			return true;
+			return change;
 		}
-		return false;
+		System.out.println("The " + variableName + " will not be changed");
+		return null;	
 	}
-	
-	private int editArrayList() {
-		System.out.println("Would you like to add, remove, or edit this list?");
+
+	/**
+	 * User inputs a new int to replace an int variable and verifies the change
+	 * @param type the instance variable being edited
+	 * @return the new int to input into the variableName, -1 if not a valid int/not verified
+	 */
+	private int setIntInformation(String variableName) {
+		System.out.print("Enter what you would like to change this to: ");
+		int num = getNum();
+		
+		System.out.println("You would like to change it to " + num);
+		System.out.print("Is this right? (y/n): ");
 		String answer = in.nextLine();
-		if(answer.equalsIgnoreCase(ADD)) {
-			return 0;
+		if(answer.equalsIgnoreCase("y")) {
+			return num;
 		}
-		else if(answer.equalsIgnoreCase(REMOVE)) {
-			return 1;
+		System.out.println("The " + variableName + " will not be changed.");
+		return -1;		
+	}
+
+	/**
+	 * User inputs a new double to replace a double variable and verifies the change
+	 * @param type the instance variable being edited
+	 * @return the new double to input into the variableName, -1 if not a valid double/ not verified
+	 */
+	private double setDoubleInformation(String variableName) {
+		System.out.print("Enter what you would like to change this to: ");
+		double doub;
+		try {
+			doub = Double.parseDouble(in.nextLine()) - 1;
+		} catch (Exception e) {
+			System.out.println("You need to enter a valid number\n");
+			clear();
+			return -1;
 		}
-		else if(answer.equalsIgnoreCase(EDIT)) {
-			return 2;
+		
+		System.out.println("You would like to change it to " + doub);
+		System.out.print("Is this right? (y/n): ");
+		String answer = in.nextLine();
+		if(answer.equalsIgnoreCase("y")) {
+			return doub;
 		}
-		else {
-			return -1;			
+		System.out.println("The " + variableName + " will not be changed.");
+		return -1;		
+	}
+
+	/**
+	 * User inputs a new date to replace a date variable and verifies the change
+	 * @param type the instance variable being edited
+	 * @return the new date to input into the variableName, null if not valid
+	 */
+	private Date setDateInformation(String variableName) {
+		System.out.print("Enter what you would like to change this to: ");
+		Date date;
+		String str = in.nextLine();
+		try {
+			date = new SimpleDateFormat("MM/dd/yyyy").parse(str);
+		} catch (ParseException e) {
+			System.out.println("Sorry " + str + " is not parsable");
+			return null;
 		}
 
+		System.out.println("You would like to change it to " + date);
+		System.out.print("Is this right? (y/n): ");
+		String answer = in.nextLine();
+		if(answer.equalsIgnoreCase("y")) {
+			return date;
+		}
+		System.out.println("The " + variableName + " will not be changed.");
+		return null;
 	}
 
 	//------------------------------------- Methods that deal with the array list, options, and the console ----------------------------------------------
@@ -378,12 +465,27 @@ public class CampDriver {
 	 * Displays the options, and gets the user's input
 	 * @return the user's choice
 	 */
-	private int getNum() {
+	private int getChoice() {
 		for(int i = 0; i < options.size(); i++) {
 			System.out.println((i + 1) + ". " + options.get(i));
 		}
 		System.out.print("Enter the number of the option you would like to see/edit: ");
 
+		int num = getNum();
+
+		if (num < 0 || num > options.size() - 1) {
+			clear();
+			System.out.println("Sorry, your option is not in the valid range.\n");
+			return -1;
+		}
+		clear();
+		return num;
+	}
+
+	/**
+	 * User entered integer
+	 */
+	private int getNum() {
 		int num;
 		try {
 			num = Integer.parseInt(in.nextLine()) - 1;
@@ -392,13 +494,6 @@ public class CampDriver {
 			clear();
 			return -1;
 		}
-
-		if (num < 0 || num > options.size() - 1) {
-			clear();
-			System.out.println("Sorry, your option is not in the valid range.\n");
-			return -1;
-		}
-		clear();
 		return num;
 	}
 
