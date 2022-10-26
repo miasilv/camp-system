@@ -212,7 +212,7 @@ public class CampDriver {
 					break;
 
 				case 4: //FAQ List
-					displayCampFAQ();
+					displayFAQList();
 					break;
 
 				case 5: //activity list
@@ -222,7 +222,10 @@ public class CampDriver {
 		}
 	}
 
-	private void displayCampActivities() {
+	/**
+	 * Displays an activity list (only exists in camp currently)
+	 */
+	private void displayActivitiesList() {
 		ArrayList<String> activities = facade.getCampActivities();
 
 		while(true) {
@@ -300,9 +303,9 @@ public class CampDriver {
 	}
 
 	/**
-	 * Displays an FAQ list
+	 * Displays an FAQ list (only exists in camp currently)
 	 */
-	private void displayCampFAQ() {
+	private void displayFAQList() {
 		ArrayList<FAQ> faqs = facade.getCampFAQ();
 		
 		while(true) {
@@ -353,15 +356,7 @@ public class CampDriver {
 					in.nextLine();
 					break;
 				}
-
-				System.out.println("What is the question of the new faq?");
-				String question = in.nextLine();
-				System.out.println("What is the answer of the new faq?");
-				String answer = in.nextLine();
-				if(!facade.addCampFAQ(question, answer)) {
-					System.out.println("Something went wrong, unable to add");
-					in.nextLine();
-				}
+				createFAQ();
 				break;
 			}
 
@@ -371,16 +366,70 @@ public class CampDriver {
 					in.nextLine();
 					break;
 				}
-
-				facade.updateFAQ(choice);
-				String question = setStringInformation(QUESTION);
-				String answer = setStringInformation(ANSWER);
-				if(!facade.setFAQString(QUESTION, question) && !facade.setFAQString(ANSWER, answer)) {
-					System.out.println("Something went wrong, unable to change");
-					in.nextLine();
-				}
+				displayFAQ(choice);
 				break;
         	}
+		}
+	}
+
+	/**
+	 * Displays an FAQ
+	 */
+	private void displayFAQ(int index) {
+		while(true) {
+			facade.updateFAQ(index);
+			clearOptions();
+			options.add(facade.getFAQString(QUESTION));
+			options.add(facade.getFAQString(ANSWER));
+			options.add("Return");
+			options.add("Quit");
+
+			clear();
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			switch(choice) {
+				case 0: //Question
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + QUESTION + ": " + facade.getCampString(QUESTION));
+					String change = setStringInformation(QUESTION);
+					if(!change.isEmpty()) {
+						if(!facade.setFAQString(QUESTION, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 1: //Answer
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+			
+					clear();
+					System.out.println("Old " + ANSWER + ": " + facade.getCampString(ANSWER));
+					String change2 = setStringInformation(ANSWER);
+					if(!change2.isEmpty()) {
+						if(!facade.setFAQString(ANSWER, change2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+			}
 		}
 	}
 
@@ -402,16 +451,84 @@ public class CampDriver {
 				}
 			}
 
-			
+			options.add("Add a new Session");
+			options.add("Remove an existing Session");
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number
+			clear();
+			System.out.println("***** Sessions *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			if(choice == options.size() - 3) { //the user wants to remove a Session
+				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				System.out.println("Which session do you want to delete?");
+				int num = getNum();
+				if(user instanceof Guardian && facade.removeCamperSession(num).equals(null)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					break;
+				}
+				if(user instanceof Director && facade.removeCampSession(num).equals(null)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					break;
+				}
+				break;
+			}
+
+			if(choice == options.size() -4) { //the user wants to add a Session
+				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+				createSession(classFrom);
+				break;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing Session
+				if(!(classFrom.equals(CAMP) && user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				facade.updateFAQ(choice);
+				String question = setStringInformation(QUESTION);
+				String answer = setStringInformation(ANSWER);
+				if(!facade.setFAQString(QUESTION, question) && !facade.setFAQString(ANSWER, answer)) {
+					System.out.println("Something went wrong, unable to change");
+					in.nextLine();
+				}
+				break;
+        	}
 		}
 	}
 
 	/**
 	 * Displays a Session
 	 */
-	private void displaySessionInformation() {
+	private void displaySessionInformation(int index) {
 		while(true) {			
 			//updating options
+			facade.updateSession(ACTIVITIES);
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
 			options.add("Session Number" + facade.getSessionInt(SESS_NUM));
@@ -523,6 +640,27 @@ public class CampDriver {
 		clear();
 		System.out.print("Enter your email: ");
 		System.out.print("Enter your password: ");
+	}
+
+	/**
+	 * Creates an FAQ Object
+	 */
+	private void createFAQ() {
+		System.out.println("What is the question of the new faq?");
+		String question = in.nextLine();
+		System.out.println("What is the answer of the new faq?");
+		String answer = in.nextLine();
+		if(!facade.addCampFAQ(question, answer)) {
+			System.out.println("Something went wrong, unable to add");
+			in.nextLine();
+		}
+	}
+
+	/**
+	 * Creates a Session Object
+	 */
+	private void createSession(String classFrom) {
+
 	}
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
