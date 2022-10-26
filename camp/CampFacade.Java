@@ -39,9 +39,6 @@ public class CampFacade {
     private Medication currentMedication;
     private ArrayList<String> currentCamperAllergyList;
     private Contact currentContact;
-    private ArrayList<Cabin> currentSessionCabins;
-    private ArrayList<Camper> currentCabinsCampers;
-    private HashMap<Day, Schedule> currentCabinsSchedule;
 
     //------------- INSTANCE VARIABLES (NOT OBJECTS) ------------------------
     //camp instance variables
@@ -351,7 +348,7 @@ public class CampFacade {
      */
     public void updateSession(String keyword) {
         this.currentSession = this.camp.getSession(keyword);
-        this.currentSessionCabins = this.currentSession.getCabins();
+        this.currentSessionCabinList = this.currentSession.getCabins();
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -450,9 +447,9 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside cabin
      */
     public void updateCabin(int index) {
-        this.currentCabin = this.currentSessionCabins.get(index);
-        this.currentCabinsCampers = this.currentCabin.getCampers();
-        this.currentCabinsSchedule = this.currentCabin.getSchedule();
+        this.currentCabin = this.currentSessionCabinList.get(index);
+        this.currentCabinCamperList = this.currentCabin.getCampers();
+        this.currentScheduleHash = this.currentCabin.getSchedule();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -539,7 +536,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
     public void updateSchedule(Day day) {
-        this.currentSchedule = this.currentCabinsSchedule.get(day);
+        this.currentSchedule = this.currentScheduleHash.get(day);
         
     }
 
@@ -766,7 +763,35 @@ public class CampFacade {
         return currentCounselorContactHash.put(relationship, contact);
     }
 
-    
+    /**
+     * Gets the current cabin list, (which should be in cousnelor object)
+     * @return an arraylist of cabins
+     */
+    public ArrayList<Cabin> getCounselorCabinList() {
+        return currentCounselorCabinList;
+    }
+
+    /**
+     * Removes a cabin from the current cabin list (which should be in a counselor object)
+     * @param index the index of the cabin to be removed
+     * @return the removed cabin object
+     */
+    public Cabin removeCounselorCabin(int index) {
+        return currentCounselorCabinList.remove(index);
+    }
+
+    /**
+     * Adds a cabin to the current cabin list (which should be in a counselor object)
+     * @param cabinNum the number of the new cabin
+     * @return true if successful, false if not successful
+     */
+    public boolean addCounselorCabin(Cabin cabin) {
+        for(int i=0; i<currentCounselorCabinList.size(); i++){
+            if(currentCounselorCabinList.get(i).getCabinID() == cabin.getCabinID())
+                return false;
+        }
+        return currentCounselorCabinList.add(cabin);
+    }
 
 
     // ***************************** GUARDIAN CLASS *******************************************
@@ -1044,6 +1069,35 @@ public class CampFacade {
         return currentCamperSessionList.add(new Session(theme, sessionNumber, startDate, endDate));
     }
 
+    /**
+     * Gets the current cabin list, (which should be in camper object)
+     * @return an arraylist of cabins
+     */
+    public ArrayList<Cabin> getCamperCabinList() {
+        return currentCamperCabinList;
+    }
+
+    /**
+     * Removes a cabin from the current cabin list (which should be in a camper object)
+     * @param index the index of the cabin to be removed
+     * @return the removed cabin object
+     */
+    public Cabin removeCamperCabin(int index) {
+        return currentCamperCabinList.remove(index);
+    }
+
+    /**
+     * Adds a cabin to the current cabin list (which should be in a camper object)
+     * @param cabinNum the number of the new cabin
+     * @return true if successful, false if not successful
+     */
+    public boolean addCamperCabin(Cabin cabin) {
+        for(int i=0; i<currentCamperCabinList.size(); i++){
+            if(currentCamperCabinList.get(i).getCabinID() == cabin.getCabinID())
+                return false;
+        }
+        return currentCamperCabinList.add(cabin);
+    }
 
 
 

@@ -452,25 +452,6 @@ public class CampDriver {
 		System.out.println("The " + variableName + " will not be changed.");
 		return null;
 	}
-	
-	
-	private int editArrayList() {
-		System.out.println("Would you like to add, remove, or edit this list?");
-		String answer = in.nextLine();
-		if(answer.equalsIgnoreCase(ADD)) {
-			return 0;
-		}
-		else if(answer.equalsIgnoreCase(REMOVE)) {
-			return 1;
-		}
-		else if(answer.equalsIgnoreCase(EDIT)) {
-			return 2;
-		}
-		else {
-			return -1;			
-		}
-
-	}
 
 	//------------------------------------- Methods that deal with the array list, options, and the console ----------------------------------------------
 	/**
