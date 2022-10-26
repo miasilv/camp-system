@@ -16,8 +16,8 @@ public class Schedule {
     }
 
     //data loading talk to natalie
-    public Schedule(ArrayList<String> schedule){
-        this.schedule = schedule;
+    public Schedule(ArrayList<String> scheudle){
+        
     }
 
     

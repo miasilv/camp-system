@@ -125,6 +125,7 @@ public class CampDriver {
 	private void displayCampInformation() {
 		while(true) {
 			//updating options
+			facade.updateCamp();
 			clearOptions();
 			options.add("Name: " + facade.getCampString(NAME));
 			options.add("Pricing: $" + facade.getCampDouble(PRICE) + " per session");
@@ -302,6 +303,7 @@ public class CampDriver {
 			if(choice == options.size() - 2) { //the user chose return
 				return;
 			}
+
 			if(choice == options.size() - 3) { //the user wants to remove an FAQ
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
@@ -323,7 +325,7 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing FAQ
-				System.out.print(facade.getCampFAQ().get(choice));
+				facade.updateFAQ(choice);
 				String question = setStringInformation(QUESTION);
 				String answer = setStringInformation(ANSWER);
 				if(!facade.setFAQString(QUESTION, question) && !facade.setFAQString(ANSWER, answer)) {

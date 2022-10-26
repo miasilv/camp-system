@@ -887,7 +887,7 @@ public class CampFacade {
 
 
 
-    // ***************************** CAMPER CLASS ********************************************* //DO SOMETHING ABOUT CABIN, AND SESSIONS
+    // ***************************** CAMPER CLASS *********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */

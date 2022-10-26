@@ -47,12 +47,19 @@ public class Camper {
         this.allergies = allergies;
         this.sessions = sessions;
         this.notes = notes;
-        for (int i=0; i<relationships.size(); i++) {
-            emergencyContacts.put(relationships.get(i), contacts.get(i));
-        }
+        this.emergencyContacts = createEmergencyContacts(relationships, contacts);
+        
     }
 
     // getters because Nat needs them:
+
+    public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
+        HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
+        for (int i=0; i<contacts.size(); i++) {
+            emergencyContacts.put(relationships.get(i), contacts.get(i));
+        }
+        return emergencyContacts;
+    }
 
     public UUID getID() {
         return camperID;
@@ -174,7 +181,8 @@ public class Camper {
     }
 
     public boolean setName(String change) {
-        return false;
+        this.name = change;
+        return true;
     }
 
 }

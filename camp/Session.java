@@ -42,7 +42,7 @@ public class Session {
         this.cabins = cabins;
     }
 
-    public int getSessionNumber() {
+    public double getSessionNumber() {
         return this.sessionNumber;
     }
 

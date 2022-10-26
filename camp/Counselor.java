@@ -43,9 +43,15 @@ public class Counselor extends User {
         this.bio = bio;
         this.id = id;
         this.allergies = allergies;
-        for (int i=0; i<relationships.size(); i++) {
+        this.emergencyContacts = createEmergencyContacts(relationships, contacts);
+    }
+
+    public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
+        HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
+        for (int i=0; i<contacts.size(); i++) {
             emergencyContacts.put(relationships.get(i), contacts.get(i));
         }
+        return emergencyContacts;
     }
 
     public String getName() {
@@ -84,20 +90,24 @@ public class Counselor extends User {
         return allergies;
     }
 
-    public void setName(String name) {
+    public boolean setName(String name) {
         this.name = name;
+        return true;
     }
 
-    public void setEmail(String email) {
+    public boolean setEmail(String email) {
         this.email = email;
+        return true;
     }
 
-    public void setPassword(String password) {
+    public boolean setPassword(String password) {
         this.password = password;
+        return true;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public boolean setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return true;
     }
 
     /**
@@ -140,7 +150,8 @@ public class Counselor extends User {
     }
 
     public boolean setBio(String change) {
-        return false;
+        this.bio = change;
+        return true;
     }
 
     /**
@@ -152,7 +163,8 @@ public class Counselor extends User {
     }
 
     public boolean setBirthday(Date change) {
-        return false;
+        this.birthday = change;
+        return true;
     }
 
     
