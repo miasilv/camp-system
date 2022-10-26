@@ -45,14 +45,17 @@ public class Contact {
     }
 
     public boolean setName(String change) {
-        return false;
+        this.name = change;
+        return true;
     }
 
     public boolean setEmail(String change) {
-        return false;
+        this.email = change;
+        return true;
     }
 
     public boolean setPhoneNumber(String change) {
-        return false;
+        this.phoneNumber = change;
+        return true;
     }
 }
