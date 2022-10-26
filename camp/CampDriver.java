@@ -129,10 +129,10 @@ public class CampDriver {
 			clearOptions();
 			options.add("Name: " + facade.getCampString(NAME));
 			options.add("Pricing: $" + facade.getCampDouble(PRICE) + " per session");
-			options.add("Sessions Available:\n" + facade.getCampSessions());
+			options.add("Sessions Available:");
 			options.add("Campers per Counselor: " + facade.getCampInt(RATIO));
-			options.add("FAQs:\n" + facade.getCampFAQ()); 
-			options.add("Activities Offered:\n" + facade.getCampActivities());
+			options.add("FAQs:"); 
+			options.add("Activities Offered:");
 			options.add("Return");
 			options.add("Quit");
 
@@ -156,6 +156,7 @@ public class CampDriver {
 				case 0: //Name
 					if(!(user instanceof Director)) { 
 						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
 						break;
 					}
 					
@@ -165,6 +166,7 @@ public class CampDriver {
 					if(!change.isEmpty()) {
 						if(!facade.setCampString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
 						}
 					}
 					break;
@@ -172,6 +174,7 @@ public class CampDriver {
 				case 1: //Price
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
 						break;
 					}
 					
@@ -181,17 +184,19 @@ public class CampDriver {
 					if(!(doub == -1)) {
 						if(!facade.setCampDouble(PRICE, doub)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
 						}
 					}
 					break;
 
 				case 2: //Session List
-					displaySessionInformation(CAMP);
+					displaySessionList(CAMP);
 					break;
 
 				case 3: //Campers per Counselor
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
 						break;
 					}
 					
@@ -201,6 +206,7 @@ public class CampDriver {
 					if(!(num == -1)) {
 						if(!facade.setCampInt(RATIO, num)) {
 							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
 						}
 					}
 					break;
@@ -245,27 +251,48 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove an Activity
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
 				System.out.println("Which activity do you want to delete?");
 				int num = getNum();
 				if(facade.removeCampActivity(num).isEmpty()) {
 					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
 				}
 				break;
 			}
 			
 			if(choice == options.size() -4) { //the user wants to add an Activity
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
 				System.out.println("What activity do you want to add?");
 				if(!facade.addCampActivity(in.nextLine())) {
 					System.out.println("Something went wrong, unable to add");
+					in.nextLine();
 				}
 				break;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing activity
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
 				System.out.print(facade.getCampActivities().get(choice));
 				String change = setStringInformation(ACTIVITIES);
 				if(facade.removeCampActivity(choice).isEmpty() && !facade.addCampActivity(change)) {
 					System.out.println("Something went wrong, unable to change");
+					in.nextLine();
 				}
 				break;
         	}
@@ -305,31 +332,52 @@ public class CampDriver {
 			}
 
 			if(choice == options.size() - 3) { //the user wants to remove an FAQ
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
 				if(facade.removeCampFAQ(num).equals(null)) {
 					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
 				}
 				break;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add an FAQ
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
 				System.out.println("What is the question of the new faq?");
 				String question = in.nextLine();
 				System.out.println("What is the answer of the new faq?");
 				String answer = in.nextLine();
 				if(!facade.addCampFAQ(question, answer)) {
 					System.out.println("Something went wrong, unable to add");
+					in.nextLine();
 				}
 				break;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing FAQ
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
 				facade.updateFAQ(choice);
 				String question = setStringInformation(QUESTION);
 				String answer = setStringInformation(ANSWER);
 				if(!facade.setFAQString(QUESTION, question) && !facade.setFAQString(ANSWER, answer)) {
 					System.out.println("Something went wrong, unable to change");
+					in.nextLine();
 				}
 				break;
         	}
@@ -337,10 +385,10 @@ public class CampDriver {
 	}
 
 	/**
-	 * Displays a Session
+	 * Displays a Session List
 	 * @param classFrom is the class the sessions currently come from
 	 */
-	private void displaySessionInformation(String classFrom) {
+	private void displaySessionList(String classFrom) {
 		while(true) {
 			clearOptions();
 			if(classFrom.equals(CAMP)) {
@@ -353,7 +401,16 @@ public class CampDriver {
 					options.add(facade.getCamperSessions().get(i).toString());
 				}
 			}
+
 			
+		}
+	}
+
+	/**
+	 * Displays a Session
+	 */
+	private void displaySessionInformation() {
+		while(true) {			
 			//updating options
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
