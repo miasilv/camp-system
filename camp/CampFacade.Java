@@ -79,7 +79,7 @@ public class CampFacade {
     private static final String TIME = "time";
 
     public CampFacade() {
-        camplist.getInstance();
+        camplist = CampList.getInstance();
         initArrayLists();
     }
 
