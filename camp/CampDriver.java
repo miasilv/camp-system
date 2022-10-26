@@ -186,7 +186,7 @@ public class CampDriver {
 					break;
 
 				case 2: //Session List
-					displaySessionInformation();
+					displaySessionInformation(CAMP);
 					break;
 
 				case 3: //Campers per Counselor
@@ -338,10 +338,125 @@ public class CampDriver {
 
 	/**
 	 * Displays a Session
+	 * @param classFrom is the class the sessions currently come from
 	 */
-	private void displaySessionInformation() {
+	private void displaySessionInformation(String classFrom) {
+		while(true) {
+			clearOptions();
+			if(classFrom.equals(CAMP)) {
+				for(int i = 0; i < facade.getCampSessions().size(); i++) {
+					options.add(facade.getCampSessions().get(i).toString());
+				}
+			}
+			if(classFrom.equals(CAMPER)) {
+				for(int i = 0; i < facade.getCamperSessions().size(); i++) {
+					options.add(facade.getCamperSessions().get(i).toString());
+				}
+			}
+			
+			//updating options
+			clearOptions();
+			options.add("Theme: " + facade.getSessionString(THEME));
+			options.add("Session Number" + facade.getSessionInt(SESS_NUM));
+			options.add("Start Date:" + facade.getSessionDate(START_DATE));
+			options.add("End Date: " + facade.getSessionDate(END_DATE));
+			options.add("Cabins:" + facade.getSessionCabinList()); 
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number is quit/return
+			clear();
+			System.out.println("***** Session Information *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			//switches between choices
+			switch(choice) {
+				case 0: //Theme
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + THEME + ": " + facade.getCampString(THEME));
+					String change = setStringInformation(THEME);
+					if(!change.isEmpty()) {
+						if(!facade.setSessionString(THEME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 1: //Session Number
+					if(!(user instanceof Director)) {
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + SESS_NUM + ": " + facade.getCampDouble(SESS_NUM));
+					int num = setIntInformation(SESS_NUM);
+					if(!(num == -1)) {
+						if(!facade.setSessionInt(SESS_NUM, num)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 2: //Start Date
+					if(!(user instanceof Director)) {
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + START_DATE + ": " + facade.getCampDouble(START_DATE));
+					Date date = setDateInformation(START_DATE);
+					if(!date.equals(null)) {
+						if(!facade.setSessionDate(START_DATE, date)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 3: //End Date
+					if(!(user instanceof Director)) {
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + END_DATE + ": " + facade.getCampDouble(END_DATE));
+					Date date2 = setDateInformation(END_DATE);
+					if(!date2.equals(null)) {
+						if(!facade.setSessionDate(END_DATE, date2)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 4: //Cabin List
+					displayCabinInformation();
+					break;
+
+			}
+		}
+	}
+
+	private void displayCabinInformation() {
 		//TODO
 	}
+
 
 	//------------------------------------------- Methods that deal with creating new objects/users -----------------------------------------------------
 	/**
@@ -351,17 +466,6 @@ public class CampDriver {
 		clear();
 		System.out.print("Enter your email: ");
 		System.out.print("Enter your password: ");
-	}
-
-	/**
-	 * Creates a new FAQ object
-	 */
-	private boolean createNewFAQ() {
-		System.out.print("Please enter the question: ");
-		String question = in.nextLine();
-		System.out.print("Please enter the answer: ");
-		String answer = in.nextLine();
-		return facade.addFAQ(question, answer);
 	}
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
