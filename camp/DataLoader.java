@@ -19,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
+    /* 
     public static void main(String[] args) {
         ArrayList<Session> sessions = loadSessions();
         System.out.println("Sessions:\n");
@@ -72,7 +73,7 @@ public class DataLoader extends DataConstants {
         
        
     }
-
+*/
     //load sessions
     public static ArrayList<Session> loadSessions() {
 		ArrayList<Session> sessions = new ArrayList<Session>();
