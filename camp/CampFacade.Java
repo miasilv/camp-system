@@ -276,8 +276,8 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside faq
      */
-    public void updateFAQ() {
-        this.currentFaqList = this.camp.getFAQs();
+    public void updateFAQ(int index) {
+        this.currentFaq = currentFaqList.get(index);
     }   
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -319,6 +319,15 @@ public class CampFacade {
 
     // ********************************** SESSION CLASS ***************************************
     /**
+     * updates all the current classes/arraylists/hashmaps to be the ones inside session
+     */
+    public void updateSession(String keyword) {
+        this.currentSession = this.camp.getSession(keyword);
+        this.currentSessionCabinList = this.currentSession.getCabins();
+    }
+    
+    // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
      * Gets any string instance variable in the current session object
      * @param variableName the name of the string instance variable wanted
      * @return the string of the variableName, null if not found
@@ -343,15 +352,6 @@ public class CampFacade {
         return false;
     }
     
-    /**
-     * updates all the current classes/arraylists/hashmaps to be the ones inside session
-     */
-    public void updateSession(String keyword) {
-        this.currentSession = this.camp.getSession(keyword);
-        this.currentSessionCabinList = this.currentSession.getCabins();
-    }
-    
-    // ------------------------ INSTANCE VARIALBES --------------------------
     /**
      * Gets any int instance variable in the current session object
      * @param variableName the name of the int instance variable
@@ -636,7 +636,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside director
      */
     public void updateDirector() {
-        
+        //TODO
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -646,12 +646,12 @@ public class CampFacade {
 
 
 
-    // ***************************** COUNSELOR CLASS ****************************************** //DO SOMETHING ABOUT EMERGENCY CONTACTS, CABIN, AND SESSION
+    // ***************************** COUNSELOR CLASS ******************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
     public void updateCounselor() {
-        
+        //TODO
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -799,7 +799,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside guardian
      */
     public void updateGuardian() {
-        
+        //TODO
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -887,12 +887,12 @@ public class CampFacade {
 
 
 
-    // ***************************** CAMPER CLASS ********************************************* //DO SOMETHING ABOUT CABIN, AND SESSIONS
+    // ***************************** CAMPER CLASS *********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */
     public void updateCamper() {
-        
+        //TODO
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1033,6 +1033,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public Contact addCamperContact(String relationship, Contact contact) {
+        //TODO check if contact already exitsts in the list
         return currentCamperContactHash.put(relationship, contact);
     }
 
