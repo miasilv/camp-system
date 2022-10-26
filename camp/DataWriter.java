@@ -234,5 +234,37 @@ public class DataWriter extends DataConstants {
         return cabinDetails;
 	}
 
-    //add save session
+    //save session
+    public static void saveSession() {
+		SessionList sesh = SessionList.getInstance();
+		ArrayList<Session> sessions = sesh.getSessions();
+		JSONArray jsonSessions = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< sessions.size(); i++) {
+			jsonSessions.add(getSessionJSON(sessions.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter("./camp/json files/" + SESSION_FILE_NAME)) {
+ 
+            file.write(jsonSessions.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getSessionJSON(Session session) {
+		JSONObject sessionDetails = new JSONObject();
+		sessionDetails.put(SESSION_ID, session.getSessionID());
+		sessionDetails.put(SESSION_THEME, session.getTheme());
+        sessionDetails.put(SESSION_CABINS, session.getCabins());
+        sessionDetails.put(SESSION_NUM, session.getSessionNumber());
+        sessionDetails.put(SESSION_END, session.getEndDate());
+        sessionDetails.put(SESSION_START, session.getStartDate());
+		
+        return sessionDetails;
+	}
 }

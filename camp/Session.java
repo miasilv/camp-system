@@ -135,6 +135,9 @@ public class Session {
         return id;
     }
 
+    public String getSessionID(){
+        return getID().toString();
+    }
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
