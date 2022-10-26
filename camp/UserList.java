@@ -16,7 +16,7 @@ public class UserList {
     private UserList() {
         directors = DataLoader.loadDirector();
         guardians = DataLoader.loadGuardians();
-        
+        counselors = DataLoader.loadCounselors();
     }
 
     public static UserList getInstance() {
