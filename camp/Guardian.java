@@ -54,20 +54,24 @@ public class Guardian extends User {
         return id;
     }
 
-    public void setName(String name) {
+    public boolean setName(String name) {
         this.name = name;
+        return true;
     }
 
-    public void setEmail(String email) {
+    public boolean setEmail(String email) {
         this.email = email;
+        return true;
     }
 
-    public void setPassword(String password) {
+    public boolean setPassword(String password) {
         this.password = password;
+        return true;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public boolean setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return true;
     }
 
     public ArrayList<Camper> getCampers(){
@@ -116,18 +120,20 @@ public class Guardian extends User {
     }
 
     public int getTotalSessions() {
-        return 0;
+        return numOfSessions;
     }
 
     public boolean setTotalSessions(int change) {
-        return false;
+        this.numOfSessions = change;
+        return true;
     }
 
     public double getPrice() {
-        return 0;
+        return price;
     }
 
     public boolean setPrice(double change) {
-        return false;
+        this.price = change;
+        return true;
     }
 }

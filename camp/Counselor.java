@@ -90,20 +90,24 @@ public class Counselor extends User {
         return allergies;
     }
 
-    public void setName(String name) {
+    public boolean setName(String name) {
         this.name = name;
+        return true;
     }
 
-    public void setEmail(String email) {
+    public boolean setEmail(String email) {
         this.email = email;
+        return true;
     }
 
-    public void setPassword(String password) {
+    public boolean setPassword(String password) {
         this.password = password;
+        return true;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public boolean setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return true;
     }
 
     /**
@@ -146,7 +150,8 @@ public class Counselor extends User {
     }
 
     public boolean setBio(String change) {
-        return false;
+        this.bio = change;
+        return true;
     }
 
     /**
@@ -158,7 +163,8 @@ public class Counselor extends User {
     }
 
     public boolean setBirthday(Date change) {
-        return false;
+        this.birthday = change;
+        return true;
     }
 
     

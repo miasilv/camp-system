@@ -181,7 +181,8 @@ public class Camper {
     }
 
     public boolean setName(String change) {
-        return false;
+        this.name = change;
+        return true;
     }
 
 }
