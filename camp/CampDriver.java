@@ -216,7 +216,7 @@ public class CampDriver {
 					break;
 
 				case 5: //activity list
-					displayCampActivities();
+					displayActivitiesList();
 					break;
 			}
 		}
@@ -366,7 +366,8 @@ public class CampDriver {
 					in.nextLine();
 					break;
 				}
-				displayFAQ(choice);
+				facade.updateFAQ(choice);
+				displayFAQ();
 				break;
         	}
 		}
@@ -375,9 +376,8 @@ public class CampDriver {
 	/**
 	 * Displays an FAQ
 	 */
-	private void displayFAQ(int index) {
+	private void displayFAQ() {
 		while(true) {
-			facade.updateFAQ(index);
 			clearOptions();
 			options.add(facade.getFAQString(QUESTION));
 			options.add(facade.getFAQString(ANSWER));
@@ -435,7 +435,7 @@ public class CampDriver {
 
 	/**
 	 * Displays a Session List
-	 * @param classFrom is the class the sessions currently come from
+	 * @param classFrom is the class the sessions currently come from (in this instance, either CAMP or CAMPER)
 	 */
 	private void displaySessionList(String classFrom) {
 		while(true) {
@@ -495,7 +495,7 @@ public class CampDriver {
 
 			if(choice == options.size() -4) { //the user wants to add a Session
 				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
-					System.out.println("You do not have permission to edit this.");
+					System.out.println("You do not have permission to view/edit this.");
 					in.nextLine();
 					break;
 				}
@@ -503,20 +503,15 @@ public class CampDriver {
 				break;
 			}
 
-			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing Session
-				if(!(classFrom.equals(CAMP) && user instanceof Director)) {
-					System.out.println("You do not have permission to edit this.");
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Session
+				if(!classFrom.equals(CAMP) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+					System.out.println("You do not have permission to view/edit this.");
 					in.nextLine();
 					break;
 				}
 
-				facade.updateFAQ(choice);
-				String question = setStringInformation(QUESTION);
-				String answer = setStringInformation(ANSWER);
-				if(!facade.setFAQString(QUESTION, question) && !facade.setFAQString(ANSWER, answer)) {
-					System.out.println("Something went wrong, unable to change");
-					in.nextLine();
-				}
+				facade.updateSession(choice, classFrom);
+				displaySessionInformation();
 				break;
         	}
 		}
@@ -525,10 +520,9 @@ public class CampDriver {
 	/**
 	 * Displays a Session
 	 */
-	private void displaySessionInformation(int index) {
+	private void displaySessionInformation() {
 		while(true) {			
 			//updating options
-			facade.updateSession(ACTIVITIES);
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
 			options.add("Session Number" + facade.getSessionInt(SESS_NUM));
@@ -660,7 +654,30 @@ public class CampDriver {
 	 * Creates a Session Object
 	 */
 	private void createSession(String classFrom) {
-
+		System.out.println("What would you like the theme to be?");
+		String theme = in.nextLine();
+		System.out.println("What would you like the session number to be?");
+		double sessionNumber = (double)getNum();
+		System.out.println("What would you like the start date to be?");
+		Date startDate = getDate(in.nextLine());
+		System.out.println("What would you like the end date to be?");
+		Date endDate = getDate(in.nextLine());
+		if(classFrom.equals(CAMP)) {
+			if(!facade.addCampSession(theme, sessionNumber, startDate, endDate)) {
+				System.out.println("Something went wrong, unable to add");
+				in.nextLine();
+				return;
+			}
+		}
+		if(classFrom.equals(CAMPER)) {
+			if(!facade.addCamperSession(theme, sessionNumber, startDate, endDate)) {
+				System.out.println("Something went wrong, unable to add");
+				in.nextLine();
+				return;
+			}
+		}
+		System.out.println("Something went wrong, unable to add");
+		return;
 	}
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
@@ -735,15 +752,11 @@ public class CampDriver {
 	 */
 	private Date setDateInformation(String variableName) {
 		System.out.print("Enter what you would like to change this to: ");
-		Date date;
-		String str = in.nextLine();
-		try {
-			date = new SimpleDateFormat("MM/dd/yyyy").parse(str);
-		} catch (ParseException e) {
-			System.out.println("Sorry " + str + " is not parsable");
+		Date date = getDate(in.nextLine());
+		if(date.equals(null)) {
+			System.out.println("Something went wrong");
 			return null;
 		}
-
 		System.out.println("You would like to change it to " + date);
 		System.out.print("Is this right? (y/n): ");
 		String answer = in.nextLine();
@@ -784,7 +797,7 @@ public class CampDriver {
 	}
 
 	/**
-	 * User entered integer
+	 * User entered int
 	 */
 	private int getNum() {
 		int num;
@@ -796,6 +809,18 @@ public class CampDriver {
 			return -1;
 		}
 		return num;
+	}
+
+	/**
+	 * User entered Date
+	 */
+	private Date getDate(String date) {
+		try {
+			return new SimpleDateFormat("MM/dd/yyyy").parse(date);
+		} catch (ParseException e) {
+			System.out.println("Sorry " + date + " is not parsable");
+			return null;
+		}
 	}
 
     /**

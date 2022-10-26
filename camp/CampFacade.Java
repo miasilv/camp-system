@@ -40,6 +40,20 @@ public class CampFacade {
     private ArrayList<String> currentCamperAllergyList;
     private Contact currentContact;
 
+    //-------------------Classes (and in some cases instance variables)
+	private static final String CAMP = "camp";
+	private static final String FAQ = "faq"; //also in camp
+    private static final String SESSION = "session"; //also in camper and camp
+    private static final String CABIN = "cabin"; //also in session, counselor, and camper
+	private static final String SCHEDULE = "schedule"; //also in cabin
+    private static final String USER = "user";
+    private static final String COUNSELOR = "counselor"; //also in cabin
+	private static final String GUARDIAN = "guardian"; 
+    private static final String CAMPER = "camper"; //also in cabin and guardian
+    private static final String MEDICATION = "medication"; //also in camper
+    private static final String CONTACT = "contact"; //also in counselor and camper
+
+
     //------------- INSTANCE VARIABLES (NOT OBJECTS) ------------------------
     //camp instance variables
 	private static final String NAME = "name"; //in User, Camper, and Contact
@@ -56,9 +70,6 @@ public class CampFacade {
     private static final String SESS_NUM = "sessNum"; //in Guardian
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
-
-	//cabin instance variables
-	private static final String SCHEDULE = "schedule"; //(hash map)
 
 	//user instance variables
 	private static final String EMAIL = "email"; //in Contact
@@ -262,7 +273,7 @@ public class CampFacade {
      * @param endDate the end date of the session
      * @return true if successful, false if not successful
      */
-    public boolean addCampSession(String theme, int sessionNumber, Date startDate, Date endDate) {
+    public boolean addCampSession(String theme, double sessionNumber, Date startDate, Date endDate) {
         for(int i=0; i<currentCampSessionList.size(); i++){
             if(currentCampSessionList.get(i).getSessionNumber() == sessionNumber)
                 return false;
@@ -322,9 +333,18 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside session
      */
-    public void updateSession(String keyword) {
-        this.currentSession = this.camp.getSession(keyword);
+    public boolean updateSession(int index, String classFrom) {
+        if(classFrom.equals(CAMP)) {
+            this.currentSession = this.camp.getSession(index);
+        }
+        else if(classFrom.equals(CAMPER)) {
+            this.currentSession = this.currentCamper.getSession(index);
+        }
+        else {
+            return false;
+        }
         this.currentSessionCabinList = this.currentSession.getCabins();
+        return true;
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1063,7 +1083,7 @@ public class CampFacade {
      * @param endDate the end date of the session
      * @return true if successful, false if not successful
      */
-    public boolean addCamperSession(String theme, int sessionNumber, Date startDate, Date endDate) {
+    public boolean addCamperSession(String theme, double sessionNumber, Date startDate, Date endDate) {
         for(int i=0; i<currentCamperSessionList.size(); i++){
             if(currentCamperSessionList.get(i).getSessionNumber() == sessionNumber)
                 return false;
