@@ -935,18 +935,18 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */
-    public boolean updateCamper(String classFrom) {
+    public boolean updateCamper(String classFrom, int index) {
         if (classFrom.equals(GUARDIAN) && currentUser instanceof Guardian) {
-            this.currentCamper = currentCamper;
+            this.currentCamper = currentGuardian.getCamper(index);
         }
-        if (classFrom.equals(CABIN)) {
-            this.currentCamper = currentCamper;
+        else if (classFrom.equals(CABIN)) {
+            this.currentCamper = currentCabin.getCamper(index);
         }
+        else {return false;}
         currentCamperContactHash = currentCamper.getCamperContactHash();
-        currentCamperSessionList = currentCamper.getCamperSessions();
-        currentMedicationList = ;
-        currentMedication = ;
-        currentCamperAllergyList = ;
+        currentMedicationList = currentCamper.getMedications();
+        currentCamperAllergyList = currentCamper.getCamperAllergyList();
+        return true;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------

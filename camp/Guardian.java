@@ -140,4 +140,8 @@ public class Guardian extends User {
         this.price = change;
         return true;
     }
+
+    public Camper getCamper(int index) {
+        return campers.get(index);
+    }
 }
