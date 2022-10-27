@@ -156,4 +156,40 @@ public class Session {
         workingString += String.valueOf(sessionNumber) + "\n" + dateFormat.format(startDate) + "\n" + dateFormat.format(endDate) + "\n" + theme;
         return workingString;
     }
+
+    public Cabin placeCamper(Camper camper){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).getMinAge() <= camper.getAge() <= cabins.get(i).getMaxAge() && !cabins.get(i).isFull()){
+                cabins.get(i).addCamper(camper);
+                return cabins.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Cabin placeCounselor(Counselor counselor){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).getMinAge() <= counselor.getAge() <= cabins.get(i).getMaxAge() && !cabins.get(i).hasCounselor()){
+                cabins.get(i).setCounselor(counselor);
+                return cabins.get(i);
+            }
+        }
+        return null;
+    }
+
+    public boolean isCamperInSession(Camper camper){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCamper(camper))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isCounselorInSession(Counselor counselor){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCounselor(counselor))
+                return true;
+        }
+        return false;
+    }
 }

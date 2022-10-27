@@ -149,6 +149,13 @@ public class Cabin {
     public Camper getCamper(int index){
         return campers.get(index);
     }
+    public boolean hasCamper(Camper camper){
+        for(int i=0; i<campers.size(); i++){
+            if(campers.get(i).equals(camper))
+                return true;
+        }
+        return false;
+    }
     /**
      * a method to get the schedule of the cabin on a specific day
      * @param day the day of the schedule being grabbed
@@ -171,8 +178,14 @@ public class Cabin {
      * method to determine whether the cabin has a counselor
      * @return whether the cabin has a counselor
      */
-    private boolean hasCounselor(){
+    public boolean hasCounselor(){
         if(counselor != null){
+            return true;
+        }
+        return false;
+    }
+    public boolean hasCounselor(Counselor counselor){
+        if(counselor != null && this.counselor.equals(counselor)){
             return true;
         }
         return false;
@@ -181,7 +194,7 @@ public class Cabin {
      * method checking whether the cabin is full
      * @return if the cabin is full or not
      */
-    private boolean isFull(){
+    public boolean isFull(){
         if(counselor != null && campers.size() == 8)
             return true;
         return false;

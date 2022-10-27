@@ -41,4 +41,8 @@ public class FAQ {
         this.question = question;
         this.answer = answer;
     }
+
+    public String toString(){
+        return question + "\n" + answer + "\n";
+    }
 }
