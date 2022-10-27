@@ -119,7 +119,6 @@ public class Guardian extends User {
 
     }
 
-
     public Camper getCamper(int index){
         return campers.get(index);
     }
@@ -146,7 +145,7 @@ public class Guardian extends User {
         return true;
     }
 
-    public Camper getCamper(int index) {
-        return campers.get(index);
+    public double pricePerSession() {
+        return numOfSessions * price;
     }
 }
