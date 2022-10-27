@@ -90,6 +90,7 @@ public class CampFacade {
     private static final String TIME = "time";
 
     public CampFacade() {
+        userList = UserList.getInstance();
         camplist = CampList.getInstance();
         initArrayLists();
     }
@@ -597,10 +598,23 @@ public class CampFacade {
     // ***************************** USER CLASS ***********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside user 
-     * MIGHT JUST BE SIGN IN? not entirely sure
      */
-    public void updateUser() {
-        // "i don't know entirely what that is"
+    public boolean signIn(String email, String password) {
+        while(true) {
+            if((!(userList.getUser(email) == null) && userList.getUser(email).getPassword().equals(password))) {
+                currentUser = userList.getUser(email);
+                return true;
+            }
+            return false;
+        }
+    }
+
+    /**
+     * Gets the current user
+     * @return the current user
+     */
+    public User getUser() {
+        return currentUser;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------

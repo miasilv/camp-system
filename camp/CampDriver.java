@@ -93,7 +93,12 @@ public class CampDriver {
 			//updating options
 			clearOptions();
 			options.add("View Camp Information");
-			options.add("Sign In");
+			if(user == null) {
+				options.add("Sign in");
+			}
+			else {
+				options.add("User Portal");
+			}
 			options.add("Quit");
 
 			//displays choices and checks if the number is quit/return
@@ -113,11 +118,17 @@ public class CampDriver {
 					displayCampInformation();
 					break;
 				case 1:
-					signIn();
+					if(user == null) {
+						signIn();
+					}
+					else {
+						displayUserPortal();
+					}
 					break;
 			}
         }
     }
+
 
 	/**
 	 * Displays the Camp Information
@@ -343,7 +354,7 @@ public class CampDriver {
 
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
-				if(facade.removeCampFAQ(num).equals(null)) {
+				if(facade.removeCampFAQ(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
@@ -360,12 +371,7 @@ public class CampDriver {
 				break;
 			}
 
-			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing FAQ
-				if(!(user instanceof Director)) {
-					System.out.println("You do not have permission to edit this.");
-					in.nextLine();
-					break;
-				}
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing FAQ
 				facade.updateFAQ(choice);
 				displayFAQ();
 				break;
@@ -480,12 +486,12 @@ public class CampDriver {
 
 				System.out.println("Which session do you want to delete?");
 				int num = getNum();
-				if(user instanceof Guardian && facade.removeCamperSession(num).equals(null)) {
+				if(user instanceof Guardian && facade.removeCamperSession(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					break;
 				}
-				if(user instanceof Director && facade.removeCampSession(num).equals(null)) {
+				if(user instanceof Director && facade.removeCampSession(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					break;
@@ -590,7 +596,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + START_DATE + ": " + facade.getCampDouble(START_DATE));
 					Date date = setDateInformation(START_DATE);
-					if(!date.equals(null)) {
+					if(!(date == null)) {
 						if(!facade.setSessionDate(START_DATE, date)) {
 							System.out.println("Sorry, something when wrong, unable to edit");
 						}
@@ -606,7 +612,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + END_DATE + ": " + facade.getCampDouble(END_DATE));
 					Date date2 = setDateInformation(END_DATE);
-					if(!date2.equals(null)) {
+					if(!(date2 == null)) {
 						if(!facade.setSessionDate(END_DATE, date2)) {
 							System.out.println("Sorry, something when wrong, unable to edit");
 						}
@@ -625,6 +631,10 @@ public class CampDriver {
 		//TODO
 	}
 
+	private void displayUserPortal() {
+		//TODO
+	}
+
 
 	//------------------------------------------- Methods that deal with creating new objects/users -----------------------------------------------------
 	/**
@@ -633,7 +643,18 @@ public class CampDriver {
 	private void signIn() {
 		clear();
 		System.out.print("Enter your email: ");
+		String email = in.nextLine();
 		System.out.print("Enter your password: ");
+		String password = in.nextLine();
+
+		if(facade.signIn(email, password)) {
+			user = facade.getUser();
+			System.out.println("Successfully signed in");
+			in.nextLine();
+			return;
+		}
+		System.out.println("Could not sign you in");
+		return;
 	}
 
 	/**
@@ -753,7 +774,7 @@ public class CampDriver {
 	private Date setDateInformation(String variableName) {
 		System.out.print("Enter what you would like to change this to: ");
 		Date date = getDate(in.nextLine());
-		if(date.equals(null)) {
+		if(date == null) {
 			System.out.println("Something went wrong");
 			return null;
 		}
