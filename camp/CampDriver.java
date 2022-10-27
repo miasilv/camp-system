@@ -315,11 +315,7 @@ public class CampDriver {
 				}
 
 				System.out.print(facade.getCampActivities().get(choice));
-				String change = setStringInformation(ACTIVITIES);
-				if(facade.removeCampActivity(choice).isEmpty() && !facade.addCampActivity(change)) {
-					System.out.println("Something went wrong, unable to change");
-					in.nextLine();
-				}
+				facade.getCampActivities().set(choice, setStringInformation(ACTIVITIES));
 				break;
         	}
 		}
@@ -1198,17 +1194,23 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove an Allergy
-				if(!(user instanceof Guardian)) { //TODO
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					break;
 				}
 
-				System.out.println("Which activity do you want to delete?");
+				System.out.println("Which allergy do you want to delete?");
 				int num = getNum();
-				if(facade.removeCampActivity(num).isEmpty()) {
+				if(user instanceof Guardian && facade.removeCamperAllergy(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
+					break;
+				}
+				if(user instanceof Counselor && facade.removeCounselorAllergy(num) == null) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					break;
 				}
 				break;
 			}
@@ -1229,20 +1231,26 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing activity
-				if(!(user instanceof Director)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					break;
 				}
 
-				System.out.print(facade.getCampActivities().get(choice));
-				String change = setStringInformation(ACTIVITIES);
-				if(facade.removeCampActivity(choice).isEmpty() && !facade.addCampActivity(change)) {
-					System.out.println("Something went wrong, unable to change");
-					in.nextLine();
+				if(user instanceof Guardian) {
+					System.out.println(facade.getCamperAllergyList().get(choice));
+					facade.getCamperAllergyList().set(choice, setStringInformation(ALLERGIES));
+				}
+				else if(user instanceof Counselor) {
+					System.out.println(facade.getCounselorAllergyList().get(choice));
+					facade.getCounselorAllergyList().set(choice, setStringInformation(ALLERGIES));
+				}
+				else {
+					System.out.println("Something went wrong");
 				}
 				break;
         	}
+		}
 	}
 
 	private void displayEmergencyContactHash(String classFrom) {
