@@ -19,8 +19,8 @@ public class Schedule {
 
     //data loading talk to natalie
     public Schedule(ArrayList<String> schedule){
-        HashMap createdSchedule = new HashMap<String, String>();
-        for(int i=0; i<times.length; i++){
+        HashMap<String,String> createdSchedule = new HashMap<String, String>();
+        for(int i=0; i<schedule.size(); i++){
             createdSchedule.put(times[i], schedule.get(i));
         }
         this.schedule = createdSchedule;

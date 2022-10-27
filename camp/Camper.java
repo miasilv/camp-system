@@ -15,7 +15,6 @@ public class Camper {
     private ArrayList<String> allergies;
     private ArrayList<Session> sessions;
     private ArrayList<String> notes;
-    private ArrayList<Cabin> cabins;
     private HashMap<String, Contact> emergencyContacts;
 
     /**
@@ -39,13 +38,13 @@ public class Camper {
      * @param notes Notes of the camper
      * @param emergencyContacts Emergency contacts of the camper
      */
-    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts) {
+    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts) {
         this.camperID = id;
         this.name = name;
         this.birthday = birthday;
         this.medications = medications;
         this.allergies = allergies;
-        this.sessions = sessions;
+        //this.sessions = sessions;
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         
@@ -63,6 +62,9 @@ public class Camper {
 
     public UUID getID() {
         return camperID;
+    }
+    public String getCamperID(){
+        return getID().toString();
     }
 
     public String getName() {
@@ -83,6 +85,19 @@ public class Camper {
 
     public ArrayList<Session> getSessions() {
         return sessions;
+    }
+
+    //****EDITED BY MIA*****
+    /**
+     * a method allowing the user to retrieve a session via search by index
+     * @param index the index of the session being retrieved
+     * @return the corresponding session
+     */
+    public Session getSession(int index){
+        if(index > sessions.size()) {
+            return null;
+        }
+        return sessions.get(index);
     }
 
     public ArrayList<String> getNotes() {

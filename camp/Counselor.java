@@ -73,7 +73,9 @@ public class Counselor extends User {
     public UUID getID() {
         return id;
     }
-
+    public String getCounselorID(){
+        return getID().toString();
+    }
     public String getBio() {
         return bio;
     }
@@ -165,6 +167,11 @@ public class Counselor extends User {
     public boolean setBirthday(Date change) {
         this.birthday = change;
         return true;
+    }
+
+    //**********************************PLEASE DO THIS********************************************************************
+    public ArrayList<Cabin> getCabins() {
+        return null;
     }
 
     

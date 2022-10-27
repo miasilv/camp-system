@@ -53,7 +53,11 @@ public class Guardian extends User {
     public UUID getID() {
         return id;
     }
-
+    
+    public String getGuardianID(){
+        return getID().toString();
+    }
+    
     public boolean setName(String name) {
         this.name = name;
         return true;

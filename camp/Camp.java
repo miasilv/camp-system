@@ -24,9 +24,7 @@ public class Camp {
         this.id = id;
     }
 
-    public Camp (){
-
-    }
+    public Camp (){}
     public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, double camperRatio, ArrayList<String> activities){
         this.id = id;
         this.name = name;
@@ -115,13 +113,18 @@ public class Camp {
         Session session = new Session(theme, sessionNumber, startDate, endDate);
         sessions.add(session);
     }
+    
+    //****EDITED BY MIA*****
     /**
-     * a method allowing the user to retrieve a session via search by keyword
-     * @param keyword the word being used to search for the session
+     * a method allowing the user to retrieve a session via search by index
+     * @param index the index of the session being retrieved
      * @return the corresponding session
      */
-    public Session getSession(String keyword){
-        return new Session(null, campersPerCounselor, null, null);
+    public Session getSession(int index){
+        if(index > sessions.size()) {
+            return null;
+        }
+        return sessions.get(index);
     }
 
     //nat
@@ -163,6 +166,11 @@ public class Camp {
     public double getRatio(){
         return campersPerCounselor;
     }
+
+    public String getCampID(){
+        return getId().toString();
+    }
+    
 
     public String toString(){
         String workingString = "";
