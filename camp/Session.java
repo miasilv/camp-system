@@ -38,6 +38,7 @@ public class Session {
         return cabins;
     }
 
+
     public void setCabins(ArrayList<Cabin> cabins) {
         this.cabins = cabins;
     }

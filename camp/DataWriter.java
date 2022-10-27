@@ -260,7 +260,12 @@ public class DataWriter extends DataConstants {
 		JSONObject sessionDetails = new JSONObject();
 		sessionDetails.put(SESSION_ID, session.getSessionID());
 		sessionDetails.put(SESSION_THEME, session.getTheme());
-        sessionDetails.put(SESSION_CABINS, session.getCabins());
+        JSONArray jsonCabins = new JSONArray();
+        for(int i = 0; i< session.getCabins().size(); i++){
+            jsonCabins.add(getCabinJSON(session.getCabin(i)));
+        }        
+        sessionDetails.put(SESSION_CABINS, jsonCabins);
+
         sessionDetails.put(SESSION_NUM, session.getSessionNumber());
         sessionDetails.put(SESSION_END, session.getStrEnd());
         sessionDetails.put(SESSION_START, session.getStrStart());
