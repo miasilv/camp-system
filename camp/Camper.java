@@ -235,6 +235,10 @@ public class Camper {
         return allergies;
     }
 
+    /**
+     * Method to calculate and return the age of the counselor
+     * @return The age of the counselor (int)
+     */
     public int getAge() {
         // convert Date birthday to localDate birthday
         LocalDate localBirthday = convertToLocalDateViaInstant(birthday);
@@ -243,12 +247,23 @@ public class Camper {
         return calculateAge(localBirthday, curDate);
     }
 
+    /**
+     * Method to convert Date object to LocalDate object
+     * @param dateToConvert Date object to convert
+     * @return LocalDate object
+     */
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
     }
 
+    /**
+     * Calculates the time in the period from one LocalDate to another LocalDate
+     * @param birthDate The LocalDate of a birthday
+     * @param todayDate The LocalDate of today
+     * @return The time in the period from
+     */
     public int calculateAge(LocalDate birthDate, LocalDate todayDate) {
         if ((birthDate != null) && (todayDate != null)) {
             return Period.between(birthDate, todayDate).getYears();
