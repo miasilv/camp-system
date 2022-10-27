@@ -84,6 +84,10 @@ public class Camper {
         return allergies;
     }
 
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
     //****EDITED BY MIA*****
     /**
      * a method allowing the user to retrieve a session via search by index

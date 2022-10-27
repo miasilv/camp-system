@@ -169,5 +169,10 @@ public class Counselor extends User {
         return true;
     }
 
+    //**********************************PLEASE DO THIS********************************************************************
+    public ArrayList<Cabin> getCabins() {
+        return null;
+    }
+
     
 }

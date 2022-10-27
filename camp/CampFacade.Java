@@ -671,7 +671,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside director
      */
     public void updateDirector() {
-        //TODO
+        this.currentDirector = (Director)currentUser;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -685,8 +685,16 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
-    public void updateCounselor() {
-        //TODO
+    public void updateCounselor(String classFrom) {
+        if(classFrom.equals(USER) && currentUser instanceof Counselor) {
+            this.currentCounselor = (Counselor)currentUser;
+        }
+        if(classFrom.equals(CABIN)) {
+            this.currentCounselor = this.currentCabin.getCounselor();
+        }
+        currentCounselorAllergyList = currentCounselor.getAllergies();
+        currentCounselorContactHash = currentCounselor.getEmergencyContacts();
+        currentCounselorCabinList = currentCounselor.getCabins();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -834,7 +842,8 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside guardian
      */
     public void updateGuardian() {
-        //TODO
+        this.currentGuardian = (Guardian)currentUser;
+        this.currentGuardianCamperList = currentGuardian.getCampers();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------

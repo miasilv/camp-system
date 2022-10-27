@@ -122,7 +122,15 @@ public class CampDriver {
 						signIn();
 					}
 					else {
-						displayUserPortal();
+						if(user instanceof Director) {
+							displayDirectorPortal();
+						}
+						if(user instanceof Guardian) {
+							displayGuardianPortal();
+						}
+						if(user instanceof Counselor) {
+							displayCounselorPortal();
+						}						
 					}
 					break;
 			}
@@ -140,10 +148,10 @@ public class CampDriver {
 			clearOptions();
 			options.add("Name: " + facade.getCampString(NAME));
 			options.add("Pricing: $" + facade.getCampDouble(PRICE) + " per session");
-			options.add("Sessions Available:");
+			options.add("Sessions Available");
 			options.add("Campers per Counselor: " + facade.getCampInt(RATIO));
-			options.add("FAQs:"); 
-			options.add("Activities Offered:");
+			options.add("FAQs"); 
+			options.add("Activities Offered");
 			options.add("Return");
 			options.add("Quit");
 
@@ -538,7 +546,7 @@ public class CampDriver {
 			options.add("Session Number" + facade.getSessionInt(SESS_NUM));
 			options.add("Start Date:" + facade.getSessionDate(START_DATE));
 			options.add("End Date: " + facade.getSessionDate(END_DATE));
-			options.add("Cabins:" + facade.getSessionCabinList()); 
+			options.add("Cabins"); 
 			options.add("Return");
 			options.add("Quit");
 
@@ -598,7 +606,7 @@ public class CampDriver {
 					}
 				
 					clear();
-					System.out.println("Old " + START_DATE + ": " + facade.getCampDouble(START_DATE));
+					System.out.println("Old " + START_DATE + ": " + facade.getSessionDate(START_DATE));
 					Date date = setDateInformation(START_DATE);
 					if(!(date == null)) {
 						if(!facade.setSessionDate(START_DATE, date)) {
@@ -614,7 +622,7 @@ public class CampDriver {
 					}
 					
 					clear();
-					System.out.println("Old " + END_DATE + ": " + facade.getCampDouble(END_DATE));
+					System.out.println("Old " + END_DATE + ": " + facade.getSessionDate(END_DATE));
 					Date date2 = setDateInformation(END_DATE);
 					if(!(date2 == null)) {
 						if(!facade.setSessionDate(END_DATE, date2)) {
@@ -632,10 +640,334 @@ public class CampDriver {
 	}
 
 	private void displayCabinInformation() {
+		while(true) {
+			//TODO
+		}
+	}
+
+	private void displayDirectorPortal() {
+		while(true) {
+			//updating options
+			facade.updateDirector();
+			clearOptions();
+			options.add("Name: " + facade.getUserString(NAME));
+			options.add("Email: " + facade.getUserString(EMAIL));
+			options.add("Phone: " + facade.getUserString(PHONE));
+			options.add("Password: " + facade.getUserString(PASSWORD));			
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number is quit/return
+			clear();
+			System.out.println("***** User Portal (Director) *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			//switches between choices
+			switch(choice) {
+				case 0: //Name					
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getUserString(NAME));
+					String change = setStringInformation(NAME);
+					if(!change.isEmpty()) {
+						if(!facade.setCampString(NAME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+				
+				case 1: //Email				
+					clear();
+					System.out.println("Old " + EMAIL + ": " + facade.getUserString(EMAIL));
+					String change2 = setStringInformation(EMAIL);
+					if(!(change2 == null)) {
+						if(!facade.setUserString(EMAIL, change2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 2: //Phone
+					clear();
+					System.out.println("Old " + PHONE + ": " + facade.getUserString(PHONE));
+					String change3 = setStringInformation(PHONE);
+					if(!(change3 == null)) {
+						if(!facade.setUserString(PHONE, change3)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 3: //password
+					clear();
+					System.out.println("Old " + PASSWORD + ": " + facade.getUserString(PASSWORD));
+					String change4 = setStringInformation(PASSWORD);
+					if(!(change4 == null)) {
+						if(!facade.setUserString(PASSWORD, change4)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+			}	
+		}
+	}
+
+	private void displayCounselorPortal() {
+		while(true) {
+			//updating options
+			facade.updateCounselor(USER);
+			clearOptions();
+			options.add("Name: " + facade.getUserString(NAME));
+			options.add("Email: " + facade.getUserString(EMAIL));
+			options.add("Phone: " + facade.getUserString(PHONE));
+			options.add("Password: " + facade.getUserString(PASSWORD));
+			options.add("Bio: " + facade.getCounselorString(BIO));
+			options.add("Birthday: " + facade.getCounselorDate(BIRTHDAY));
+			options.add("Allergies");
+			options.add("Emergency Contacts");			
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number is quit/return
+			clear();
+			System.out.println("***** User Portal (Counselor) *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			//switches between choices
+			switch(choice) {
+				case 0: //Name					
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getUserString(NAME));
+					String change = setStringInformation(NAME);
+					if(!change.isEmpty()) {
+						if(!facade.setCampString(NAME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+				
+				case 1: //Email				
+					clear();
+					System.out.println("Old " + EMAIL + ": " + facade.getUserString(EMAIL));
+					String change2 = setStringInformation(EMAIL);
+					if(!(change2 == null)) {
+						if(!facade.setUserString(EMAIL, change2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 2: //Phone
+					clear();
+					System.out.println("Old " + PHONE + ": " + facade.getUserString(PHONE));
+					String change3 = setStringInformation(PHONE);
+					if(!(change3 == null)) {
+						if(!facade.setUserString(PHONE, change3)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 3: //password
+					clear();
+					System.out.println("Old " + PASSWORD + ": " + facade.getUserString(PASSWORD));
+					String change4 = setStringInformation(PASSWORD);
+					if(!(change4 == null)) {
+						if(!facade.setUserString(PASSWORD, change4)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 4: //bio
+					clear();
+					System.out.println("Old " + BIO + ": " + facade.getCounselorString(BIO));
+					String change5 = setStringInformation(BIO);
+					if(!(change5 == null)) {
+						if(!facade.setCounselorString(BIO, change5)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 5: //birthday
+					clear();
+					System.out.println("Old " + BIRTHDAY + ": " + facade.getCounselorDate(BIRTHDAY));
+					Date date = setDateInformation(BIRTHDAY);
+					if(!(date == null)) {
+						if(!facade.setCounselorDate(BIRTHDAY, date)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 6: //Allergies
+					displayAllergyList(COUNSELOR);
+					break;
+				
+				case 7: //emergency contacts
+					displayEmergencyContactHash(COUNSELOR);
+					break;
+			}
+		}
+	}
+
+	private void displayGuardianPortal() {
+		while(true) {
+			//updating options
+			facade.updateGuardian();
+			clearOptions();
+			options.add("Name: " + facade.getUserString(NAME));
+			options.add("Email: " + facade.getUserString(EMAIL));
+			options.add("Phone: " + facade.getUserString(PHONE)); //doesn't get the phone number for some reason?
+			options.add("Password: " + facade.getUserString(PASSWORD));
+			options.add("Total Number of Sessions Signed Up for: " + facade.getGuardianInt(SESS_NUM));
+			options.add("Price for your children(s)' sessions: $" + facade.getGuardianDouble(PRICE));
+			options.add("Camper(s) Profile");	
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number is quit/return
+			clear();
+			System.out.println("***** User Portal (Guardian) *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			//switches between choices
+			switch(choice) {
+				case 0: //Name					
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getUserString(NAME));
+					String change = setStringInformation(NAME);
+					if(!change.isEmpty()) {
+						if(!facade.setCampString(NAME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+				
+				case 1: //Email				
+					clear();
+					System.out.println("Old " + EMAIL + ": " + facade.getUserString(EMAIL));
+					String change2 = setStringInformation(EMAIL);
+					if(!(change2 == null)) {
+						if(!facade.setUserString(EMAIL, change2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 2: //Phone
+					clear();
+					System.out.println("Old " + PHONE + ": " + facade.getUserString(PHONE));
+					String change3 = setStringInformation(PHONE);
+					if(!(change3 == null)) {
+						if(!facade.setUserString(PHONE, change3)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 3: //password
+					clear();
+					System.out.println("Old " + PASSWORD + ": " + facade.getUserString(PASSWORD));
+					String change4 = setStringInformation(PASSWORD);
+					if(!(change4 == null)) {
+						if(!facade.setUserString(PASSWORD, change4)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+				
+				case 4: //session number **(might not want to allow the guardain to edit?)**
+					clear();
+					System.out.println("Old " + SESS_NUM + ": " + facade.getGuardianInt(SESS_NUM));
+					int num = setIntInformation(SESS_NUM);
+					if(!(num == -1)) {
+						if(!facade.setGuardianInt(SESS_NUM, num)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 5: //price **(might not want to allow the guardian to edit?)**
+					clear();
+					System.out.println("Old " + PRICE + ": " + facade.getGuardianDouble(PRICE));
+					double doub = setDoubleInformation(PRICE);
+					if(!(doub == -1)) {
+						if(!facade.setGuardianDouble(PRICE, doub)) {
+							System.out.println("Sorry, something when wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 6:
+					displayCamperList(GUARDIAN);
+					break;
+			}
+		}
+	}
+
+	private void displayCamperList(String classFrom) {
+		while(true) {
+			//TODO
+		}
+	}
+
+	private void displayCamperProfile() {
+		while(true) {
+			//TODO
+		}
+	}
+
+	private void displayAllergyList(String classFrom) {
 		//TODO
 	}
 
-	private void displayUserPortal() {
+	private void displayEmergencyContactHash(String classFrom) {
 		//TODO
 	}
 
