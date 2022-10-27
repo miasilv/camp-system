@@ -339,21 +339,22 @@ public class DataLoader extends DataConstants {
                 //make arraylist of schedule data
                 ArrayList<Schedule> schedules = new ArrayList<Schedule>();
                 for(int j = 0; j < schedulesJSON.size(); j++){
-                    JSONObject dscheduleJSON = (JSONObject)schedulesJSON.get(i);
+                    JSONObject dscheduleJSON = (JSONObject)schedulesJSON.get(j);
+                    
                     JSONArray  dayscheduleJSON = (JSONArray)dscheduleJSON.get(SCHEDULE_SCHEDULE);
 
 
                     ArrayList<String> activities = new ArrayList<String>() ;
                     for(int k = 0; k<dayscheduleJSON.size(); k++){
-
                         activities.add((String)dayscheduleJSON.get(k));
-
                     }
                     
                     Schedule schedule = new Schedule(activities);
+                    //System.out.println("ACTIVITIES \n" + activities);
+                    System.out.println(schedule);
                     schedules.add(schedule);
                 }
-                System.out.println("SCHEDULES: \n"+ schedules);
+            
                 //make arraylist of campers
                 ArrayList<Camper> campers = new ArrayList<Camper>();
                 for(int j = 0; j < campersJSON.size(); j++){
@@ -363,7 +364,9 @@ public class DataLoader extends DataConstants {
                 }
 				
 				cabins.add(new Cabin(campers, counselor, beds, maxAge, minAge, schedules, id));
+                //System.out.println("SCHEDULES:" + schedules);
 			}
+        
 			
 			return cabins;
 			

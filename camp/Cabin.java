@@ -36,9 +36,10 @@ public class Cabin {
         this.maxAge= maxAge;
         this.minAge = minAge; 
         this.cabinID = id;
-        this.schedule = createHash(schedules);
         this.daysStr = constructDaysStr();
         this.days = constructDays();
+        this.schedule = createHash(schedules, days);
+       
     }
 
     
@@ -82,36 +83,12 @@ public class Cabin {
         return this.days.get(index);
     }
 
-    public static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2) {
+    public static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2, ArrayList<Day> days) {
         HashMap<Day, Schedule> schedule = new HashMap<Day, Schedule>();
-        
-        int i = 0; 
-        Day day = Day.MONDAY;
-        while(i< schedules2.size()){
-            schedule.put(day, schedules2.get(i));
-            i++;
-            if (day.equals(Day.MONDAY)){
-                day = Day.TUESDAY;
-            }
-            if (day.equals(Day.TUESDAY)){
-                day = Day.WEDNESDAY;
-            }
-            if (day.equals(Day.WEDNESDAY)){
-                day = Day.THURSDAY;
-            }
-            if (day.equals(Day.THURSDAY)){
-                day = Day.FRIDAY;
-            }
-            if (day.equals(Day.FRIDAY)){
-                day = Day.SATURDAY;
-            }
-            if (day.equals(Day.SATURDAY)){
-                day = Day.SUNDAY;
-            }
-            if (day.equals(Day.SUNDAY)){
-                day = Day.MONDAY;
-            }
-        }
+
+       for(int i = 0; i< days.size(); i++){
+            schedule.put(days.get(i), schedules2.get(i));
+       }
         return schedule;
     }
 
