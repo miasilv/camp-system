@@ -68,6 +68,12 @@ public class Camper {
     public UUID getID() {
         return camperID;
     }
+
+    /**
+     * written by natalie
+     * gets a string representation of the campers uuid
+     * @return uuid to string
+     */
     public String getCamperID(){
         return getID().toString();
     }
@@ -80,6 +86,11 @@ public class Camper {
         return birthday;
     }
 
+    /**
+     * written by natalie
+     * gets a string representation of the campers birthdy 
+     * @return a string format of a date
+     */
     public String getBirthdayStr() {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(birthday);
@@ -89,6 +100,11 @@ public class Camper {
         return medications;
     }
 
+    /**
+     * written by natalie
+     * gets a string representation of medications for camper
+     * @return medications to string
+     */
     public String getMedicationsStr(){
         return medications.toString();
     }

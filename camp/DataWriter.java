@@ -11,12 +11,17 @@ import org.json.simple.JSONObject;
  * The DataWriter class
  */
 public class DataWriter extends DataConstants {
-
+    /**
+     * the tester main method for datawriter
+     * @param args
+     */
     public static void main(String[] args) {
-        saveCamp();
+       // saveCamp();
     }
 
-
+    /**
+     * saves the director data to a new json file or updates the old json file
+     */
     //save directors
     public static void saveDirectors() {
 		UserList users = UserList.getInstance();
@@ -39,6 +44,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json constants to different values
+     * @param director the director that the json file being created off of
+     * @return details relating to the json file that will be written in save directors
+     */
 	public static JSONObject getDirectorJSON(Director director) {
 		JSONObject directorDetails = new JSONObject();
 		directorDetails.put(DIRECTOR_NAME, director.getName());
@@ -51,7 +61,9 @@ public class DataWriter extends DataConstants {
         return directorDetails;
 	}
 
-
+    /**
+     * saves the guardian data to a new json file or updates the old json file
+     */
     //save guardians
     public static void saveGuardians() {
 		UserList users = UserList.getInstance();
@@ -74,6 +86,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json contstant to given values
+     * @param guardian the guardian that the json file is written based on 
+     * @return the details relating to the guardian that will be written in save guardians
+     */
 	public static JSONObject getGuardianJSON(Guardian guardian) {
 		JSONObject guardianDetails = new JSONObject();
 		guardianDetails.put(GUARDIAN_NAME, guardian.getName());
@@ -92,8 +109,9 @@ public class DataWriter extends DataConstants {
         return guardianDetails;
 	}
 
-
-
+    /**
+     * saves the counselor data to a new json file or updates the old json file
+     */
     //save counselors
     public static void saveCounselors() {
 		UserList users = UserList.getInstance();
@@ -116,6 +134,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json constants to given values
+     * @param counselor the counselor that the json file is based on
+     * @return the details relating to the counselor that will be written in save counselors
+     */
 	public static JSONObject getCounselorJSON(Counselor counselor) {
 		JSONObject counselorDetails = new JSONObject();
 		counselorDetails.put(COUNSELOR_NAME, counselor.getName());
@@ -132,6 +155,9 @@ public class DataWriter extends DataConstants {
         return counselorDetails;
 	}
 
+    /**
+     * saves the camper data to a new json file or updates the old json file
+     */
      //save campers
      public static void saveCampers() {
 		CamperList campersL = CamperList.getInstance();
@@ -154,6 +180,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json constants to given values
+     * @param camper the camper that the json file is based on
+     * @return the details realting to the camper that will be written in save campers
+     */
 	public static JSONObject getCamperJSON(Camper camper) {
 		JSONObject camperDetails = new JSONObject();
 		camperDetails.put(CAMPER_NAME, camper.getName());
@@ -167,8 +198,9 @@ public class DataWriter extends DataConstants {
         return camperDetails;
 	}
 
-
-
+    /**
+     * saves the camp data to a new json file or updates the old json files
+     */
     //save camp
     public static void saveCamp() {
 		CampList camp = CampList.getInstance();
@@ -190,6 +222,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json constants to given values
+     * @param camp the camp that the json file is based on
+     * @return the details pertaining to camp that will be written in savecamp
+     */
 	public static JSONObject getCampJSON(Camp camp) {
 		JSONObject campDetails = new JSONObject();
 		campDetails.put(CAMP_NAME, camp.getName());
@@ -216,6 +253,9 @@ public class DataWriter extends DataConstants {
         return campDetails;
 	}
 
+    /**
+     * saves the cabin data to a new json file or modifies the old one
+     */
     //save cabin
     public static void saveCabin() {
 		CabinList camp = CabinList.getInstance();
@@ -238,6 +278,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json constants to given values
+     * @param cabin the cabin that the json file is based on
+     * @return the details relating to the cabin that will be written in save cabin
+     */
 	public static JSONObject getCabinJSON(Cabin cabin) {
 		JSONObject cabinDetails = new JSONObject();
 		cabinDetails.put(CABIN_BEDS, cabin.getBeds());
@@ -277,6 +322,9 @@ public class DataWriter extends DataConstants {
         return cabinDetails;
 	}
 
+    /**
+     * saves the session data to a new json file or changes the old one
+     */
     //save session
     public static void saveSession() {
 		SessionList sesh = SessionList.getInstance();
@@ -299,6 +347,11 @@ public class DataWriter extends DataConstants {
         }
 	}
 	
+    /**
+     * assigns the json constants to given values
+     * @param session the session that the json file is based on
+     * @return the details pertaining to the session that will be written up in save session
+     */
 	public static JSONObject getSessionJSON(Session session) {
 		JSONObject sessionDetails = new JSONObject();
 		sessionDetails.put(SESSION_ID, session.getSessionID());
