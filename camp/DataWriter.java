@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants {
 
     public static void main(String[] args) {
-        saveCounselors();
+        saveSession();
     }
 
 
@@ -91,7 +91,7 @@ public class DataWriter extends DataConstants {
 
     //save counselors
     public static void saveCounselors() {
-		CounselorList users = CounselorList.getInstance();
+		UserList users = UserList.getInstance();
 		ArrayList<Counselor> counselors = users.getCounselors();
 		JSONArray jsonCounselors = new JSONArray();
 		
@@ -101,7 +101,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + COUNSELOR_FILE_NAME)) {
  
             file.write(jsonCounselors.toJSONString());
             file.flush();
@@ -201,7 +201,7 @@ public class DataWriter extends DataConstants {
 
     //save cabin
     public static void saveCabin() {
-		CampList camp = CampList.getInstance();
+		CabinList camp = CabinList.getInstance();
 		ArrayList<Cabin> cabins = camp.getCabins();
 		JSONArray jsonCabins = new JSONArray();
 		
@@ -246,7 +246,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/" + SESSION_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
  
             file.write(jsonSessions.toJSONString());
             file.flush();
@@ -262,8 +262,8 @@ public class DataWriter extends DataConstants {
 		sessionDetails.put(SESSION_THEME, session.getTheme());
         sessionDetails.put(SESSION_CABINS, session.getCabins());
         sessionDetails.put(SESSION_NUM, session.getSessionNumber());
-        sessionDetails.put(SESSION_END, session.getEndDate());
-        sessionDetails.put(SESSION_START, session.getStartDate());
+        sessionDetails.put(SESSION_END, session.getStrEnd());
+        sessionDetails.put(SESSION_START, session.getStrStart());
 		
         return sessionDetails;
 	}

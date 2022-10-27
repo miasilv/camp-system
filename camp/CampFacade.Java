@@ -115,7 +115,7 @@ public class CampFacade {
      */
     public void updateCamp() {
         this.camp = camplist.getCamps().get(0);
-        this.currentCamperSessionList = this.camp.getSessions();
+        this.currentCampSessionList = this.camp.getSessions();
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
     }

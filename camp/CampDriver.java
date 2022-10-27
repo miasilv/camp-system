@@ -12,7 +12,6 @@ import java.util.Date;
  */
 public class CampDriver {
 	SimpleDateFormat dateFormatter;
-
     private Scanner in;
 	private ArrayList<String> options;
 	private CampFacade facade;
@@ -457,11 +456,6 @@ public class CampDriver {
 			if(classFrom.equals(CAMP)) {
 				for(int i = 0; i < facade.getCampSessions().size(); i++) {
 					options.add(facade.getCampSessions().get(i).toString());
-				}
-			}
-			else if(classFrom.equals(CAMPER)) {
-				for(int i = 0; i < facade.getCamperSessions().size(); i++) {
-					options.add(facade.getCamperSessions().get(i).toString());
 				}
 			}
 			else {
@@ -920,28 +914,12 @@ public class CampDriver {
 					}
 					break;
 				
-				case 4: //session number **(might not want to allow the guardain to edit?)**
-					clear();
-					System.out.println("Old " + SESS_NUM + ": " + facade.getGuardianInt(SESS_NUM));
-					int num = setIntInformation(SESS_NUM);
-					if(!(num == -1)) {
-						if(!facade.setGuardianInt(SESS_NUM, num)) {
-							System.out.println("Sorry, something when wrong, unable to edit");
-							in.nextLine();
-						}
-					}
+				case 4:
+					System.out.println("There is no way to edit this");
 					break;
 
-				case 5: //price **(might not want to allow the guardian to edit?)**
-					clear();
-					System.out.println("Old " + PRICE + ": " + facade.getGuardianDouble(PRICE));
-					double doub = setDoubleInformation(PRICE);
-					if(!(doub == -1)) {
-						if(!facade.setGuardianDouble(PRICE, doub)) {
-							System.out.println("Sorry, something when wrong, unable to edit");
-							in.nextLine();
-						}
-					}
+				case 5: //price
+					System.out.println("There is no way to edit this");
 					break;
 
 				case 6:
