@@ -15,7 +15,6 @@ public class Camper {
     private ArrayList<String> allergies;
     private ArrayList<Session> sessions;
     private ArrayList<String> notes;
-    private ArrayList<Cabin> cabins;
     private HashMap<String, Contact> emergencyContacts;
 
     /**
