@@ -35,15 +35,15 @@ public class Session {
     }
 
     public ArrayList<Cabin> getCabins() {
-        return this.cabins;
+        return cabins;
     }
 
     public void setCabins(ArrayList<Cabin> cabins) {
         this.cabins = cabins;
     }
 
-    public double getSessionNumber() {
-        return this.sessionNumber;
+    public Double getSessionNumber() {
+        return (Double)this.sessionNumber;
     }
 
     public boolean setSessionNumber(int sessionNumber) {
@@ -57,6 +57,10 @@ public class Session {
     public Date getStartDate() {
         return this.startDate;
     }
+    public String getStrStart() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(startDate);
+    }
 
     public boolean setStartDate(Date startDate) {
         if(startDate != null){
@@ -68,6 +72,11 @@ public class Session {
 
     public Date getEndDate() {
         return this.endDate;
+    }
+
+    public String getStrEnd() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(endDate);
     }
 
     public boolean setEndDate(Date endDate) {
@@ -91,12 +100,13 @@ public class Session {
     }
     
     //overloaded
-    public Session (UUID id, String theme, double sessionNumber, Date start, Date end){
+    public Session (UUID id, String theme, ArrayList<Cabin> cabins, double sessionNumber, Date start, Date end){
         this.id = id;
         this.theme = theme;
         this.sessionNumber = sessionNumber;
         this.startDate = start;
         this.endDate = end;
+        this.cabins = cabins;
     }
 
     /**

@@ -39,13 +39,13 @@ public class Camper {
      * @param notes Notes of the camper
      * @param emergencyContacts Emergency contacts of the camper
      */
-    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<Session> sessions, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts) {
+    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts) {
         this.camperID = id;
         this.name = name;
         this.birthday = birthday;
         this.medications = medications;
         this.allergies = allergies;
-        this.sessions = sessions;
+        //this.sessions = sessions;
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         

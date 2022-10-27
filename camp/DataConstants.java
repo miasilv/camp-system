@@ -82,7 +82,7 @@ public abstract class DataConstants {
 
     //medications constants
     protected static final String MEDICATION_TYPE = "type";
-    protected static final String MEDICATION_DOSE = "does";
+    protected static final String MEDICATION_DOSE = "dose";
     protected static final String MEDICATION_TIME = "time";
 
     //schedule constants
