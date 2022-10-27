@@ -84,12 +84,28 @@ public class Counselor extends User {
         return emergencyContacts;
     }
 
+    public String getEmergencyContactsStr() {
+        String writtenSchedule = "";
+        for (String keyValue  : emergencyContacts.keySet()) {
+            writtenSchedule += keyValue + emergencyContacts.get(keyValue) + "\n";
+        }
+        return writtenSchedule + "\n";
+    }
+
     public Date getBirthday() {
         return birthday;
     }
 
+    public String getBirthdayStr() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(birthday);
+    }
+
     public ArrayList<String> getAllergies() {
         return allergies;
+    }
+    public String getAllergiesStr(){
+        return allergies.toString();
     }
 
     public boolean setName(String name) {

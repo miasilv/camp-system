@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants {
 
     public static void main(String[] args) {
-        saveSession();
+        saveCamp();
     }
 
 
@@ -64,7 +64,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/" + GUARDIAN_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
  
             file.write(jsonGuardians.toJSONString());
             file.flush();
@@ -84,7 +84,8 @@ public class DataWriter extends DataConstants {
         
         JSONArray jsonCampers = new JSONArray();
         for(int i = 0; i< guardian.getCampers().size(); i++){
-            jsonCampers.add(getCamperJSON(guardian.getCamper(i)));
+            jsonCampers.add(guardian.getCamper(i).getCamperID());
+            //jsonCampers.add(getCamperJSON(guardian.getCamper(i)));
         }
 		guardianDetails.put(GUARDIAN_CAMPERS, jsonCampers);
 		
@@ -105,7 +106,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/" + COUNSELOR_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
  
             file.write(jsonCounselors.toJSONString());
             file.flush();
@@ -123,9 +124,9 @@ public class DataWriter extends DataConstants {
         counselorDetails.put(COUNSELOR_PHONE_NUMBER, counselor.getPhoneNumber());
         counselorDetails.put(COUNSELOR_UUID, counselor.getCounselorID());
         counselorDetails.put(COUNSELOR_BIO, counselor.getBio());
-        counselorDetails.put(COUNSELOR_BIRTHDAY, counselor.getBirthday());
-        counselorDetails.put(COUNSELOR_ALLERGIES, counselor.getAllergies());
-		counselorDetails.put(COUNSELOR_EMERGENCY_CONTACTS, counselor.getEmergencyContacts());
+        counselorDetails.put(COUNSELOR_BIRTHDAY, counselor.getBirthdayStr());
+        counselorDetails.put(COUNSELOR_ALLERGIES, counselor.getAllergiesStr());
+		counselorDetails.put(COUNSELOR_EMERGENCY_CONTACTS, counselor.getEmergencyContactsStr());
     
 		
         return counselorDetails;
@@ -156,12 +157,12 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getCamperJSON(Camper camper) {
 		JSONObject camperDetails = new JSONObject();
 		camperDetails.put(CAMPER_NAME, camper.getName());
-		camperDetails.put(CAMPER_MEDICATIONS, camper.getMedications());
+		camperDetails.put(CAMPER_MEDICATIONS, camper.getMedicationsStr());
         camperDetails.put(CAMPER_NOTES, camper.getNotes());
         camperDetails.put(CAMPER_UUID, camper.getCamperID());
-        camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthday());
-        camperDetails.put(CAMPER_ALLERGIES, camper.getAllergies());
-		camperDetails.put(CAMPER_EMERGENCY_CONTACTS, camper.getEmergencyContacts());
+        camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthdayStr());
+        camperDetails.put(CAMPER_ALLERGIES, camper.getAllergiesStr());
+		camperDetails.put(CAMPER_EMERGENCY_CONTACTS, camper.getEmergencyContactsStr());
 		
         return camperDetails;
 	}
@@ -180,7 +181,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/" + CAMP_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
             file.write(jsonCamps.toJSONString());
             file.flush();
  
@@ -193,14 +194,23 @@ public class DataWriter extends DataConstants {
 		JSONObject campDetails = new JSONObject();
 		campDetails.put(CAMP_NAME, camp.getName());
 		campDetails.put(CAMP_ACTIVITIES, camp.getActivities());
-        campDetails.put(CAMP_FAQS, camp.getFAQs());
+        JSONArray jsonFaqs = new JSONArray();
+        for(int i=0; i<camp.getFAQs().size(); i++){
+            JSONObject faqDetails = new JSONObject();
+            faqDetails.put(FAQ_QUESTION, camp.getFAQbyIndex(i).getQuestion() ) ;
+            faqDetails.put(FAQ_ANSWER, camp.getFAQbyIndex(i).getAnswer()); 
+            jsonFaqs.add(faqDetails);
+        }
+
+        campDetails.put(CAMP_FAQS, jsonFaqs);
         campDetails.put(CAMP_PRICE, camp.getPrice());
         campDetails.put(CAMP_UUID, camp.getCampID());
         campDetails.put(CAMP_RATIO, camp.getRatio());
         
         JSONArray jsonSessions = new JSONArray();
         for(int i = 0; i< camp.getSessions().size(); i++){
-            jsonSessions.add(getSessionJSON(camp.getSession(i)));
+            jsonSessions.add(camp.getSession(i).getSessionID());
+            //jsonSessions.add(getSessionJSON(camp.getSession(i)));
         }
 		campDetails.put(CAMP_SESSIONS, jsonSessions);
         return campDetails;
@@ -234,11 +244,13 @@ public class DataWriter extends DataConstants {
 		
         JSONArray jsonCampers = new JSONArray();
         for(int i = 0; i< cabin.getCampers().size(); i++){
-            jsonCampers.add(getCamperJSON(cabin.getCamper(i)));
+            //jsonCampers.add(getCamperJSON(cabin.getCamper(i)));
+            jsonCampers.add(cabin.getCamper(i).getCamperID());
         }        
         cabinDetails.put(CABIN_CAMPERS, jsonCampers);
 
-        cabinDetails.put(CABIN_COUNSELOR, cabin.getCounselor());   
+        cabinDetails.put(CABIN_COUNSELOR, getCounselorJSON(cabin.getCounselor()));   
+
         cabinDetails.put(CABIN_MAX_AGE, cabin.getMaxAge());
         cabinDetails.put(CABIN_UUID, cabin.getCabinID());
         cabinDetails.put(CABIN_MIN_AGE, cabin.getMinAge());
@@ -293,7 +305,8 @@ public class DataWriter extends DataConstants {
 		sessionDetails.put(SESSION_THEME, session.getTheme());
         JSONArray jsonCabins = new JSONArray();
         for(int i = 0; i< session.getCabins().size(); i++){
-            jsonCabins.add(getCabinJSON(session.getCabin(i)));
+            //jsonCabins.add(getCabinJSON(session.getCabin(i)));
+            jsonCabins.add(session.getCabin(i).getCabinID());
         }        
         sessionDetails.put(SESSION_CABINS, jsonCabins);
 

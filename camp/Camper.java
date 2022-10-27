@@ -75,12 +75,25 @@ public class Camper {
         return birthday;
     }
 
+    public String getBirthdayStr() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(birthday);
+    }
+
     public ArrayList<Medication> getMedications() {
         return medications;
     }
 
+    public String getMedicationsStr(){
+        return medications.toString();
+    }
+
     public ArrayList<String> getAllergies() {
         return allergies;
+    }
+
+    public String getAllergiesStr(){
+        return allergies.toString();
     }
 
     public ArrayList<Session> getSessions() {
@@ -106,6 +119,15 @@ public class Camper {
 
     public HashMap<String, Contact> getEmergencyContacts() {
         return emergencyContacts;
+    }
+
+
+    public String getEmergencyContactsStr() {
+        String writtenSchedule = "";
+        for (String keyValue  : emergencyContacts.keySet()) {
+            writtenSchedule += keyValue + emergencyContacts.get(keyValue) + "\n";
+        }
+        return writtenSchedule + "\n";
     }
 
     /**

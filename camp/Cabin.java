@@ -182,8 +182,8 @@ public class Cabin {
      * @param day the day of the schedule being grabbed
      * @return the schedule for that day
      */
-    public Schedule getSchedule(Day day){
-        return schedule.get(day);
+    public ArrayList<String> getSchedule(Day day){
+        return schedule.get(day).getActivites();
     }
 
     /**
