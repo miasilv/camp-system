@@ -1254,5 +1254,21 @@ public class CampFacade {
     
     // ------------------------------ ARRAY LISTS ---------------------------
 
+    /* supposed to be done in the facade (must be for the counselor and the camper)
+    public boolean createCabinHash(ArrayList<Session> sessionList, Camper camper) {
+        // cabinHash<Session, Cabin>
+
+        for (int i = 0; i < sessionList.size(); i++) {
+            if (Session.isCamperInSession(camper)) {
+
+                if (camper.getCabin() == null) {
+                    return false;
+                }
+
+                cabinHash.put(sessionList.get(i), camper.getCabin());
+            }
+        }
+    }
+     */
 
 }
