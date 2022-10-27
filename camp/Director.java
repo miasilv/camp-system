@@ -47,6 +47,10 @@ public class Director extends User {
         return id;
     }
 
+    public String getDirectorID(){
+        return getID().toString();
+    }
+
     public boolean setName(String name) {
         this.name = name;
         return true;
