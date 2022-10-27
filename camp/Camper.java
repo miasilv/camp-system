@@ -88,6 +88,19 @@ public class Camper {
         return sessions;
     }
 
+    //****EDITED BY MIA*****
+    /**
+     * a method allowing the user to retrieve a session via search by index
+     * @param index the index of the session being retrieved
+     * @return the corresponding session
+     */
+    public Session getSession(int index){
+        if(index > sessions.size()) {
+            return null;
+        }
+        return sessions.get(index);
+    }
+
     public ArrayList<String> getNotes() {
         return notes;
     }
