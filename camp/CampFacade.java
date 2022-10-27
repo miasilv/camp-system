@@ -946,18 +946,18 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */
-    public boolean updateCamper(String classFrom) {
+    public boolean updateCamper(String classFrom, int index) {
         if (classFrom.equals(GUARDIAN) && currentUser instanceof Guardian) {
-            this.currentCamper = currentCamper;
+            this.currentCamper = currentGuardian.getCamper(index);
         }
-        if (classFrom.equals(CABIN)) {
-            this.currentCamper = currentCamper;
+        else if (classFrom.equals(CABIN)) {
+            this.currentCamper = currentCabin.getCamper(index);
         }
+        else 
         currentCamperContactHash = currentCamper.getCamperContactHash();
-        currentCamperSessionList = currentCamper.getCamperSessions();
-        currentMedicationList = ;
-        currentMedication = ;
-        currentCamperAllergyList = ;
+        currentMedicationList = currentCamper.getMedications();
+        currentCamperAllergyList = currentCamper.getAllergies();
+        currentCamperCabinHash = currentCamper.getCabinHash();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1074,7 +1074,7 @@ public class CampFacade {
         return currentMedicationList.add(new Medication(dose, type, time));
     }
 
-     /**
+    /**
      * Gets the current emergency contact hash (which should be in a camper object)
      * @return a hash map of relationships by contact
      */
@@ -1084,7 +1084,7 @@ public class CampFacade {
 
     /**
      * Removes a contact from the current contact hash (which should be in a camper object)
-     * @param day the relationship of the contact to be removed
+     * @param relationship the relationship of the contact to be removed
      * @return the removed contact object
      */
     public Contact removeCamperContact(String relationship) {
@@ -1101,6 +1101,38 @@ public class CampFacade {
         //TODO check if contact already exitsts in the list
         return currentCamperContactHash.put(relationship, contact);
     }
+
+    /**
+     * Gets the current session,cabin hash (which should be in a camper object)
+     * @return a hash map of cabins by session
+     */
+    public HashMap<Session, Cabin> getCamperCabinHash() {
+        return currentCamperCabinHash;
+    }
+
+    /**
+     * Removes a session from the current session,cabin hash (which should be in a camper object)
+     * @param session the session to be removed
+     * @return the removed cabin object
+     */
+    public Cabin removeCamperSession(Session session) {
+        return currentCamperCabinHash.remove(session);
+    }
+
+    /**
+     * Adds a contact to the current contact hash (which should be in a camper object)
+     * @param session the session being added to the camper
+     * @return true if successful, false if not successful
+     */
+    public Cabin addCamperSession(Session session) {
+        //TODO check if contact already exitsts in the list
+        return currentCamperCabinHash.put(session, session.placeCamper(currentCamper));
+    }
+
+
+
+
+
 
     // ***************************** MEDICATION CLASS *****************************************
     /**

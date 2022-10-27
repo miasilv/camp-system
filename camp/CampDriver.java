@@ -497,7 +497,7 @@ public class CampDriver {
 
 				System.out.println("Which session do you want to delete?");
 				int num = getNum();
-				if(user instanceof Guardian && facade.removeCamperCabinHash(num + 1) == null) {
+				if(user instanceof Guardian && facade.removeCamperSession(num + 1) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					break;
@@ -945,6 +945,7 @@ public class CampDriver {
 			options.add("Bio: " + facade.getCounselorString(BIO));
 			options.add("Birthday: " + facade.getCounselorDate(BIRTHDAY));
 			options.add("Allergies");
+			options.add("Sessions");
 			options.add("Emergency Contacts");			
 			options.add("Return");
 			options.add("Quit");
@@ -1040,13 +1041,22 @@ public class CampDriver {
 				case 6: //Allergies
 					displayAllergyList(COUNSELOR);
 					break;
+
+				case 7: //sessionns
+					displaySessionHash(COUNSELOR);
+					break;
 				
-				case 7: //emergency contacts
+				case 8: //emergency contacts
 					displayEmergencyContactHash(COUNSELOR);
 					break;
 			}
 		}
 	}
+
+	private void displaySessionHash(String classFrom) {
+	
+	}
+
 
 	private void displayGuardianPortal() {
 		while(true) {
@@ -1144,15 +1154,158 @@ public class CampDriver {
 	}
 
 	private void displayCamperList(String classFrom) {
+		ArrayList<Camper> campers = new ArrayList<Camper>();
+		
+		if(classFrom.equals(GUARDIAN)) {
+			campers = facade.getGuardianCamperList();
+		}
+		else if(classFrom.equals(CABIN)) {
+			campers = facade.getCabinCamperList();
+		}
+		else {
+			System.out.println("Something went wrong");
+			return;
+		}
+		
 		while(true) {
-			//TODO
+			//updating options
+			clearOptions();
+			for(int i = 0; i < campers.size(); i++) {
+				options.add(campers.get(i).toString()); 
+			}
+			options.add("Add a new Camper");
+			options.add("Remove an existing Camper");
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number
+			clear();
+			System.out.println("***** Campers *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			if(choice == options.size() - 3) { //the user wants to remove a Camper
+				if(!(user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				System.out.println("Which camper do you want to delete?");
+				int num = getNum();
+				if(facade.removeGuardianCamper(num) == null) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+				}
+				break;
+			}
+
+			if(choice == options.size() -4) { //the user wants to add a Camper
+				if(!(user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+				createCamper();
+				break;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Camper
+				facade.updateCamper(classFrom, choice);
+				displayCamperProfile();
+				break;
+        	}
 		}
 	}
 
+
 	private void displayCamperProfile() {
 		while(true) {
-			//TODO
+			clearOptions();
+			options.add("Name: " + facade.getCamperString(NAME));
+			options.add("Birthday: " + facade.getCamperDate(BIRTHDAY));
+			options.add("Medications");
+			options.add("Allergies");
+			options.add("Sessions");
+			options.add("Emergency Contacts");
+			options.add("Return");
+			options.add("Quit");
+
+			clear();
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			switch(choice) {
+				case 0: //Name
+					if(!(user instanceof Guardian)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getCamperString(NAME));
+					String change = setStringInformation(NAME);
+					if(change == null) {
+						if(!facade.setCamperString(NAME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 1: //Birthday
+					if(!(user instanceof Guardian)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+			
+					clear();
+					System.out.println("Old " + BIRTHDAY + ": " + facade.getCamperDate(BIRTHDAY));
+					Date date = setDateInformation(BIRTHDAY);
+					if(date == null) {
+						if(!facade.setCamperDate(BIRTHDAY, date)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 2: //Medications
+					displayMedicationList();
+					break;
+
+				case 3: //allergies
+					displayAllergyList(CAMPER);
+					break;
+
+				case 4: //Sessions
+					displaySessionHash(CAMPER);
+
+				case 5: //Emergency Contacts
+					displayEmergencyContactHash(CAMPER);
+					
+			}
 		}
+	}
+
+	private void displayMedicationList() {
+		
 	}
 
 	private void displayAllergyList(String classFrom) {
@@ -1254,7 +1407,7 @@ public class CampDriver {
 	}
 
 	private void displayEmergencyContactHash(String classFrom) {
-		//TODO
+		
 	}
 
 
@@ -1302,19 +1455,16 @@ public class CampDriver {
 				return;
 			}
 		}
-		if(classFrom.equals(CAMPER)) {
-			if(!facade.addCamperCabinHash(theme, sessionNumber, startDate, endDate)) {
-				System.out.println("Something went wrong, unable to add");
-				in.nextLine();
-				return;
-			}
-		}
 		System.out.println("Something went wrong, unable to add");
 		return;
 	}
 	
 	private void createCabin() {
-	
+		//TODO
+	}
+
+	private void createCamper() {
+		//TODO
 	}
 
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
