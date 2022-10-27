@@ -97,15 +97,17 @@ public class CampFacade {
     private void initArrayLists() {
         currentActivityList = new ArrayList<String>();
         currentCampSessionList = new ArrayList<Session>();
-        currentCamperSessionList = new ArrayList<Session>();
         currentSessionCabinList = new ArrayList<Cabin>();
-        currentCounselorCabinList = new ArrayList<Cabin>();
-        currentCamperCabinList = new ArrayList<Cabin>();
         currentCabinCamperList = new ArrayList<Camper>();
         currentGuardianCamperList = new ArrayList<Camper>();
         currentMedicationList = new ArrayList<Medication>();
         currentCamperAllergyList = new ArrayList<String>();
         currentCounselorAllergyList = new ArrayList<String>();
+        currentScheduleHash = new HashMap<Day, Schedule>();
+        currentCounselorContactHash = new HashMap<String, Contact>();
+        currentCamperContactHash = new HashMap<String, Contact>();
+        currentCounselorCabinHash = new HashMap<Session, Cabin>();
+        currentCamperCabinHash = new HashMap<Session, Cabin>();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -933,18 +935,18 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */
-    public boolean updateCamper(String classFrom, int index) {
+    public boolean updateCamper(String classFrom) {
         if (classFrom.equals(GUARDIAN) && currentUser instanceof Guardian) {
-            this.currentCamper = currentGuardian.getCamper(index);
+            this.currentCamper = currentCamper;
         }
-        else if (classFrom.equals(CABIN)) {
-            this.currentCamper = currentCabin.getCamper(index);
+        if (classFrom.equals(CABIN)) {
+            this.currentCamper = currentCamper;
         }
-        else {return false;}
         currentCamperContactHash = currentCamper.getCamperContactHash();
-        currentMedicationList = currentCamper.getMedications();
-        currentCamperAllergyList = currentCamper.getCamperAllergyList();
-        return true;
+        currentCamperSessionList = currentCamper.getCamperSessions();
+        currentMedicationList = ;
+        currentMedication = ;
+        currentCamperAllergyList = ;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1151,35 +1153,6 @@ public class CampFacade {
         }
         return currentCamperCabinList.add(cabin);
     }
-
-    /**
-     * Gets the current schedule hash (which should be in a cabin object)
-     * @return a hash map of days by schedules
-     */
-    public HashMap<Day, Schedule> getCabinScheduleHash() {
-        return currentCamperCabinHash;
-    }
-
-    /**
-     * Removes a schedule from the current schedule hash (which should be in a cabin object)
-     * @param day the day of the schedule to be removed
-     * @return the removed schedule object
-     */
-    public Schedule removeCabinSchedule(Session session) {
-        return currentCamperCabinHash.remove(session);
-    }
-
-    /**
-     * Adds a schedule to the current schedule hash (which should be in a cabin object)
-     * @param day the day that the new schedule should be linked to
-     * @param schedule the schedule being added to the day
-     * @return true if successful, false if not successful
-     */
-    public Schedule addCabinSchedule(Session day, Schedule schedule) {
-        return currentCamperCabinHash.put(session, schedule);
-    }
-
-
 
     // ***************************** MEDICATION CLASS *****************************************
     /**
