@@ -146,7 +146,4 @@ public class Guardian extends User {
         return true;
     }
 
-    public Camper getCamper(int index) {
-        return campers.get(index);
-    }
 }
