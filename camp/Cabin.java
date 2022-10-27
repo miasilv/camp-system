@@ -236,4 +236,5 @@ public class Cabin {
         workingString += String.valueOf(beds) + " \n" + String.valueOf(minAge) + " \n" + String.valueOf(maxAge) + " \n";
         return workingString;
     }
+
 }
