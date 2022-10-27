@@ -1,6 +1,7 @@
 [{
     "id": "d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",
     "theme": "splash week",
+    "cabins": ["a1876dff-63b7-448b-a19a-0ca4bb046c3b","9755e52b-bcb6-41e3-8f69-b840c866de19"],
     "sessionNumber": 1.0,
     "start date": "7/01/2024",
     "end date": "7/07/2024"
@@ -8,6 +9,7 @@
 {
     "id": "642bbf90-b9d8-4f67-8764-5d0eb6af30f8",
     "theme": "outdoorsy",
+    "cabins": ["a1876dff-63b7-448b-a19a-0ca4bb046c3b","9755e52b-bcb6-41e3-8f69-b840c866de19"],
     "sessionNumber": 2.0,
     "start date": "7/08/2024",
     "end date": "7/14/2024"
