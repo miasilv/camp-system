@@ -558,7 +558,6 @@ public class CampFacade {
      */
     public void updateSchedule(Day day) {
         this.currentSchedule = this.currentScheduleHash.get(day);
-        
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1151,6 +1150,33 @@ public class CampFacade {
                 return false;
         }
         return currentCamperCabinList.add(cabin);
+    }
+
+    /**
+     * Gets the current schedule hash (which should be in a cabin object)
+     * @return a hash map of days by schedules
+     */
+    public HashMap<Day, Schedule> getCabinScheduleHash() {
+        return currentCamperCabinHash;
+    }
+
+    /**
+     * Removes a schedule from the current schedule hash (which should be in a cabin object)
+     * @param day the day of the schedule to be removed
+     * @return the removed schedule object
+     */
+    public Schedule removeCabinSchedule(Session session) {
+        return currentCamperCabinHash.remove(session);
+    }
+
+    /**
+     * Adds a schedule to the current schedule hash (which should be in a cabin object)
+     * @param day the day that the new schedule should be linked to
+     * @param schedule the schedule being added to the day
+     * @return true if successful, false if not successful
+     */
+    public Schedule addCabinSchedule(Session day, Schedule schedule) {
+        return currentCamperCabinHash.put(session, schedule);
     }
 
 
