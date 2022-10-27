@@ -2,6 +2,9 @@ package camp;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +15,7 @@ public class Counselor extends User {
     private HashMap<String, Contact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
+    private HashMap<Session, Cabin> cabinHash;
 
     /**
      * Constructor for the counselor class
@@ -185,10 +189,32 @@ public class Counselor extends User {
         return true;
     }
 
+
     //**********************************PLEASE DO THIS********************************************************************
     public ArrayList<Cabin> getCabins() {
         return null;
     }
 
+    public int getAge() {
+        // convert Date birthday to localDate birthday
+        LocalDate localBirthday = convertToLocalDateViaInstant(birthday);
+        // convert to get age with local dates
+        LocalDate curDate = LocalDate.now();
+        return calculateAge(localBirthday, curDate);
+    }
+
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    public int calculateAge(LocalDate birthDate, LocalDate todayDate) {
+        if ((birthDate != null) && (todayDate != null)) {
+            return Period.between(birthDate, todayDate).getYears();
+        } else {
+            return 0;
+        }
+    }
     
 }

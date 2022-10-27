@@ -97,15 +97,17 @@ public class CampFacade {
     private void initArrayLists() {
         currentActivityList = new ArrayList<String>();
         currentCampSessionList = new ArrayList<Session>();
-        currentCamperSessionList = new ArrayList<Session>();
         currentSessionCabinList = new ArrayList<Cabin>();
-        currentCounselorCabinList = new ArrayList<Cabin>();
-        currentCamperCabinList = new ArrayList<Cabin>();
         currentCabinCamperList = new ArrayList<Camper>();
         currentGuardianCamperList = new ArrayList<Camper>();
         currentMedicationList = new ArrayList<Medication>();
         currentCamperAllergyList = new ArrayList<String>();
         currentCounselorAllergyList = new ArrayList<String>();
+        currentScheduleHash = new HashMap<Day, Schedule>();
+        currentCounselorContactHash = new HashMap<String, Contact>();
+        currentCamperContactHash = new HashMap<String, Contact>();
+        currentCounselorCabinHash = new HashMap<Session, Cabin>();
+        currentCamperCabinHash = new HashMap<Session, Cabin>();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -558,7 +560,6 @@ public class CampFacade {
      */
     public void updateSchedule(Day day) {
         this.currentSchedule = this.currentScheduleHash.get(day);
-        
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -693,7 +694,6 @@ public class CampFacade {
         }
         currentCounselorAllergyList = currentCounselor.getAllergies();
         currentCounselorContactHash = currentCounselor.getEmergencyContacts();
-        currentCounselorCabinList = currentCounselor.getCabins();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -805,36 +805,6 @@ public class CampFacade {
         return currentCounselorContactHash.put(relationship, contact);
     }
 
-    /**
-     * Gets the current cabin list, (which should be in cousnelor object)
-     * @return an arraylist of cabins
-     */
-    public ArrayList<Cabin> getCounselorCabinList() {
-        return currentCounselorCabinList;
-    }
-
-    /**
-     * Removes a cabin from the current cabin list (which should be in a counselor object)
-     * @param index the index of the cabin to be removed
-     * @return the removed cabin object
-     */
-    public Cabin removeCounselorCabin(int index) {
-        return currentCounselorCabinList.remove(index);
-    }
-
-    /**
-     * Adds a cabin to the current cabin list (which should be in a counselor object)
-     * @param cabinNum the number of the new cabin
-     * @return true if successful, false if not successful
-     */
-    public boolean addCounselorCabin(Cabin cabin) {
-        for(int i=0; i<currentCounselorCabinList.size(); i++){
-            if(currentCounselorCabinList.get(i).getCabinID() == cabin.getCabinID())
-                return false;
-        }
-        return currentCounselorCabinList.add(cabin);
-    }
-
 
     // ***************************** GUARDIAN CLASS *******************************************
     /**
@@ -934,18 +904,18 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camper
      */
-    public boolean updateCamper(String classFrom, int index) {
+    public boolean updateCamper(String classFrom) {
         if (classFrom.equals(GUARDIAN) && currentUser instanceof Guardian) {
-            this.currentCamper = currentGuardian.getCamper(index);
+            this.currentCamper = currentCamper;
         }
-        else if (classFrom.equals(CABIN)) {
-            this.currentCamper = currentCabin.getCamper(index);
+        if (classFrom.equals(CABIN)) {
+            this.currentCamper = currentCamper;
         }
-        else {return false;}
         currentCamperContactHash = currentCamper.getCamperContactHash();
-        currentMedicationList = currentCamper.getMedications();
-        currentCamperAllergyList = currentCamper.getCamperAllergyList();
-        return true;
+        currentCamperSessionList = currentCamper.getCamperSessions();
+        currentMedicationList = ;
+        currentMedication = ;
+        currentCamperAllergyList = ;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1090,71 +1060,6 @@ public class CampFacade {
         return currentCamperContactHash.put(relationship, contact);
     }
 
-    /**
-     * Gets the current session list, (which should be in camper object)
-     * @return an arraylist of sessions
-     */
-    public ArrayList<Session> getCamperSessions() {
-        return currentCamperSessionList;
-    }
-
-    /**
-     * Removes a session from the current session list (which should be in a camper object)
-     * @param index the index of the session to be removed
-     * @return the removed session object
-     */
-    public Session removeCamperSession(int index) {
-        return currentCamperSessionList.remove(index);
-    }
-
-    /**
-     * Adds an activity to the current session list (which should be in a camper object)
-     * @param theme the theme of the new sessions
-     * @param sessionNumber the session number
-     * @param startDate the start date of the session
-     * @param endDate the end date of the session
-     * @return true if successful, false if not successful
-     */
-    public boolean addCamperSession(String theme, double sessionNumber, Date startDate, Date endDate) {
-        for(int i=0; i<currentCamperSessionList.size(); i++){
-            if(currentCamperSessionList.get(i).getSessionNumber() == sessionNumber)
-                return false;
-        }
-        return currentCamperSessionList.add(new Session(theme, sessionNumber, startDate, endDate));
-    }
-
-    /**
-     * Gets the current cabin list, (which should be in camper object)
-     * @return an arraylist of cabins
-     */
-    public ArrayList<Cabin> getCamperCabinList() {
-        return currentCamperCabinList;
-    }
-
-    /**
-     * Removes a cabin from the current cabin list (which should be in a camper object)
-     * @param index the index of the cabin to be removed
-     * @return the removed cabin object
-     */
-    public Cabin removeCamperCabin(int index) {
-        return currentCamperCabinList.remove(index);
-    }
-
-    /**
-     * Adds a cabin to the current cabin list (which should be in a camper object)
-     * @param cabinNum the number of the new cabin
-     * @return true if successful, false if not successful
-     */
-    public boolean addCamperCabin(Cabin cabin) {
-        for(int i=0; i<currentCamperCabinList.size(); i++){
-            if(currentCamperCabinList.get(i).getCabinID() == cabin.getCabinID())
-                return false;
-        }
-        return currentCamperCabinList.add(cabin);
-    }
-
-
-
     // ***************************** MEDICATION CLASS *****************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside  medication
@@ -1254,5 +1159,21 @@ public class CampFacade {
     
     // ------------------------------ ARRAY LISTS ---------------------------
 
+    /* supposed to be done in the facade (must be for the counselor and the camper)
+    public boolean createCabinHash(ArrayList<Session> sessionList, Camper camper) {
+        // cabinHash<Session, Cabin>
+
+        for (int i = 0; i < sessionList.size(); i++) {
+            if (Session.isCamperInSession(camper)) {
+
+                if (camper.getCabin() == null) {
+                    return false;
+                }
+
+                cabinHash.put(sessionList.get(i), camper.getCabin());
+            }
+        }
+    }
+     */
 
 }

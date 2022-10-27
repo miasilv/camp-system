@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 
 public class Camper {
+    SimpleDateFormat dateFormatter;
     private UUID camperID;
     private String name;
     private Date birthday;
@@ -25,6 +29,7 @@ public class Camper {
     public Camper(String name, Date birthday) {
         this.name = name;
         this.birthday = birthday;
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     /**
@@ -47,7 +52,7 @@ public class Camper {
         //this.sessions = sessions;
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
-        
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     // getters because Nat needs them:
@@ -228,6 +233,28 @@ public class Camper {
 
     public ArrayList<String> getCamperAllergyList() {
         return allergies;
+    }
+
+    public int getAge() {
+        // convert Date birthday to localDate birthday
+        LocalDate localBirthday = convertToLocalDateViaInstant(birthday);
+        // convert to get age with local dates
+        LocalDate curDate = LocalDate.now();
+        return calculateAge(localBirthday, curDate);
+    }
+
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    public int calculateAge(LocalDate birthDate, LocalDate todayDate) {
+        if ((birthDate != null) && (todayDate != null)) {
+            return Period.between(birthDate, todayDate).getYears();
+        } else {
+            return 0;
+        }
     }
 
 }
