@@ -937,16 +937,16 @@ public class CampFacade {
      */
     public boolean updateCamper(String classFrom) {
         if (classFrom.equals(GUARDIAN) && currentUser instanceof Guardian) {
-            this.currentCamper = ;
+            this.currentCamper = currentCamper;
         }
         if (classFrom.equals(CABIN)) {
-            this.currentCounselor = this.currentCabin.getCounselor();
+            this.currentCamper = currentCamper;
         }
-        currentCounselorAllergyList = currentCounselor.getAllergies();
-        currentCamperContactHash = ;
-        currentCamperSessionList = ;
-        
-
+        currentCamperContactHash = currentCamper.getCamperContactHash();
+        currentCamperSessionList = currentCamper.getCamperSessions();
+        currentMedicationList = ;
+        currentMedication = ;
+        currentCamperAllergyList = ;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
