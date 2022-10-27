@@ -1,337 +1,38 @@
-[{"start date":"07\/01\/2024","sessionNumber":1.0,"end date":"00\/07\/2024","theme":"splash week","id":"d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6","cabins":[{"schedule":[{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Bracelet Making
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Archery
-12:00 - 12:45:Swimming
-
-],"day":"Monday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Archery
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Swimming
-12:00 - 12:45:Ziplining
-
-],"day":"Tuesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Painting
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Running
-12:00 - 12:45:Swimming
-
-],"day":"Wednesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Ziplining
-12:00 - 12:45:Singing
-
-],"day":"Thursday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Soccer
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Kayaking
-12:00 - 12:45:Ziplining
-
-],"day":"Friday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Gaga Ball
-12:00 - 12:45:Tie Dying
-
-],"day":"Saturday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Ziplining
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Arts and Crafts
-12:00 - 12:45:Gaga Ball
-
-],"day":"Sunday"}],"counselor":00717bd2-d5c7-4c19-9502-f35dcb343261 John Messinger johnm434@gmail.com password 1223445666 my name is john and i am 21 years old. {Neighbor=Bethany Smoak 8034556888 104 Stone Rock Circle, 24332, Florence, South Carolina} 12/03/2001 [pollen, gluten],"min age":7.0,"campers":[{"birthday":Mon Oct 08 00:00:00 EST 14,"allergies":["pollen","peanuts","strawberries"],"notes":["bobby is so nice","bobby punched another camper"],"medications":[
-type: 
- advil
-dose: 
-one pill
-time: 
- whenever he has a headache
-,
-type: 
- albuterol
-dose: 
-two pumps of inhaler
-time: 
- during an athsma attack
-],"name":"bobby smith","id":"77dfed2d-14d4-4ee9-a926-700153221541","emergency contacts":{"Neighbor":Mackenzie Smith 3897751511 12 Millburn Avenue, 23888, Camden, South Carolina}},{"birthday":Sun Feb 14 00:00:00 EST 17,"allergies":["pollen","pet dander","peaches"],"notes":["mille is so sweet","mille hurt her leg at kayaking today"],"medications":[],"name":"mille smith","id":"dd0df3f4-db7a-465e-8541-41865911d890","emergency contacts":{"Neighbor":Rebecca Wringler 2221123345 35 Brookview Street, 28990, Charleston, South Carolina,"Family Friend":John Van Dam 9882345568 23 Eagle Point, 28990, Charleston, South Carolina}},{"birthday":Mon May 24 00:00:00 EST 17,"allergies":[],"notes":["ashley is crazy","ashley did really well at ziplining today"],"medications":[
-type: 
- amoxicillian
-dose: 
-20 to 40 milligrams (mg) per kilogram (kg) of body weight per day
-time: 
- divided and given every 8 hours
-],"name":"ashley bahr","id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa","emergency contacts":{"Family Friend":Trina Beckley 3225678899 234 Rock Point Rd, 26789, Fort Mill, South Carolina}}],"max age":10.0,"id":"a1876dff-63b7-448b-a19a-0ca4bb046c3b","beds":16.0},{"schedule":[{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Bracelet Making
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Archery
-12:00 - 12:45:Swimming
-
-],"day":"Monday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Archery
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Swimming
-12:00 - 12:45:Ziplining
-
-],"day":"Tuesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Painting
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Running
-12:00 - 12:45:Swimming
-
-],"day":"Wednesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Ziplining
-12:00 - 12:45:Singing
-
-],"day":"Thursday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Soccer
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Kayaking
-12:00 - 12:45:Ziplining
-
-],"day":"Friday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Gaga Ball
-12:00 - 12:45:Tie Dying
-
-],"day":"Saturday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Ziplining
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Arts and Crafts
-12:00 - 12:45:Gaga Ball
-
-],"day":"Sunday"}],"counselor":55318676-1cb2-4886-98c4-6375a7b8ae73 Brittany Brock bb33@outlook.com dkkdibhgogg 9999993322 my name is brittany and i am 23 years old. {Family Friend=Brock Goude 4332341234 231 Treyburn Court, 23431, Columbia, SC} 03/04/1999 [pollen, pet dander, peaches],"min age":11.0,"campers":[{"birthday":Mon Oct 08 00:00:00 EST 14,"allergies":["pollen","peanuts","strawberries"],"notes":["bobby is so nice","bobby punched another camper"],"medications":[
-type: 
- advil
-dose: 
-one pill
-time: 
- whenever he has a headache
-,
-type: 
- albuterol
-dose: 
-two pumps of inhaler
-time: 
- during an athsma attack
-],"name":"bobby smith","id":"77dfed2d-14d4-4ee9-a926-700153221541","emergency contacts":{"Neighbor":Mackenzie Smith 3897751511 12 Millburn Avenue, 23888, Camden, South Carolina}},{"birthday":Sun Feb 14 00:00:00 EST 17,"allergies":["pollen","pet dander","peaches"],"notes":["mille is so sweet","mille hurt her leg at kayaking today"],"medications":[],"name":"mille smith","id":"dd0df3f4-db7a-465e-8541-41865911d890","emergency contacts":{"Neighbor":Rebecca Wringler 2221123345 35 Brookview Street, 28990, Charleston, South Carolina,"Family Friend":John Van Dam 9882345568 23 Eagle Point, 28990, Charleston, South Carolina}},{"birthday":Mon May 24 00:00:00 EST 17,"allergies":[],"notes":["ashley is crazy","ashley did really well at ziplining today"],"medications":[
-type: 
- amoxicillian
-dose: 
-20 to 40 milligrams (mg) per kilogram (kg) of body weight per day
-time: 
- divided and given every 8 hours
-],"name":"ashley bahr","id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa","emergency contacts":{"Family Friend":Trina Beckley 3225678899 234 Rock Point Rd, 26789, Fort Mill, South Carolina}}],"max age":16.0,"id":"9755e52b-bcb6-41e3-8f69-b840c866de19","beds":16.0}]},{"start date":"07\/08\/2024","sessionNumber":2.0,"end date":"00\/14\/2024","theme":"outdoorsy","id":"642bbf90-b9d8-4f67-8764-5d0eb6af30f8","cabins":[{"schedule":[{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Bracelet Making
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Archery
-12:00 - 12:45:Swimming
-
-],"day":"Monday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Archery
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Swimming
-12:00 - 12:45:Ziplining
-
-],"day":"Tuesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Painting
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Running
-12:00 - 12:45:Swimming
-
-],"day":"Wednesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Ziplining
-12:00 - 12:45:Singing
-
-],"day":"Thursday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Soccer
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Kayaking
-12:00 - 12:45:Ziplining
-
-],"day":"Friday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Gaga Ball
-12:00 - 12:45:Tie Dying
-
-],"day":"Saturday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Ziplining
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Arts and Crafts
-12:00 - 12:45:Gaga Ball
-
-],"day":"Sunday"}],"counselor":00717bd2-d5c7-4c19-9502-f35dcb343261 John Messinger johnm434@gmail.com password 1223445666 my name is john and i am 21 years old. {Neighbor=Bethany Smoak 8034556888 104 Stone Rock Circle, 24332, Florence, South Carolina} 12/03/2001 [pollen, gluten],"min age":7.0,"campers":[{"birthday":Mon Oct 08 00:00:00 EST 14,"allergies":["pollen","peanuts","strawberries"],"notes":["bobby is so nice","bobby punched another camper"],"medications":[
-type: 
- advil
-dose: 
-one pill
-time: 
- whenever he has a headache
-,
-type: 
- albuterol
-dose: 
-two pumps of inhaler
-time: 
- during an athsma attack
-],"name":"bobby smith","id":"77dfed2d-14d4-4ee9-a926-700153221541","emergency contacts":{"Neighbor":Mackenzie Smith 3897751511 12 Millburn Avenue, 23888, Camden, South Carolina}},{"birthday":Sun Feb 14 00:00:00 EST 17,"allergies":["pollen","pet dander","peaches"],"notes":["mille is so sweet","mille hurt her leg at kayaking today"],"medications":[],"name":"mille smith","id":"dd0df3f4-db7a-465e-8541-41865911d890","emergency contacts":{"Neighbor":Rebecca Wringler 2221123345 35 Brookview Street, 28990, Charleston, South Carolina,"Family Friend":John Van Dam 9882345568 23 Eagle Point, 28990, Charleston, South Carolina}},{"birthday":Mon May 24 00:00:00 EST 17,"allergies":[],"notes":["ashley is crazy","ashley did really well at ziplining today"],"medications":[
-type: 
- amoxicillian
-dose: 
-20 to 40 milligrams (mg) per kilogram (kg) of body weight per day
-time: 
- divided and given every 8 hours
-],"name":"ashley bahr","id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa","emergency contacts":{"Family Friend":Trina Beckley 3225678899 234 Rock Point Rd, 26789, Fort Mill, South Carolina}}],"max age":10.0,"id":"a1876dff-63b7-448b-a19a-0ca4bb046c3b","beds":16.0},{"schedule":[{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Bracelet Making
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Archery
-12:00 - 12:45:Swimming
-
-],"day":"Monday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Archery
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Swimming
-12:00 - 12:45:Ziplining
-
-],"day":"Tuesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Painting
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Running
-12:00 - 12:45:Swimming
-
-],"day":"Wednesday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Ziplining
-12:00 - 12:45:Singing
-
-],"day":"Thursday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Soccer
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Kayaking
-12:00 - 12:45:Ziplining
-
-],"day":"Friday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Swimming
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Gaga Ball
-12:00 - 12:45:Tie Dying
-
-],"day":"Saturday"},{"schedule":[6:00 - 6:45:Campfire Songs
-10:00 - 11:45:Lunch
-1:00 - 2:45:Snack/ Rest Time
-3:00 - 3:45:Ziplining
-8:00:Breakfast
-4:00 - 5:45:Dinner
-9:00 - 9:45:Arts and Crafts
-12:00 - 12:45:Gaga Ball
-
-],"day":"Sunday"}],"counselor":55318676-1cb2-4886-98c4-6375a7b8ae73 Brittany Brock bb33@outlook.com dkkdibhgogg 9999993322 my name is brittany and i am 23 years old. {Family Friend=Brock Goude 4332341234 231 Treyburn Court, 23431, Columbia, SC} 03/04/1999 [pollen, pet dander, peaches],"min age":11.0,"campers":[{"birthday":Mon Oct 08 00:00:00 EST 14,"allergies":["pollen","peanuts","strawberries"],"notes":["bobby is so nice","bobby punched another camper"],"medications":[
-type: 
- advil
-dose: 
-one pill
-time: 
- whenever he has a headache
-,
-type: 
- albuterol
-dose: 
-two pumps of inhaler
-time: 
- during an athsma attack
-],"name":"bobby smith","id":"77dfed2d-14d4-4ee9-a926-700153221541","emergency contacts":{"Neighbor":Mackenzie Smith 3897751511 12 Millburn Avenue, 23888, Camden, South Carolina}},{"birthday":Sun Feb 14 00:00:00 EST 17,"allergies":["pollen","pet dander","peaches"],"notes":["mille is so sweet","mille hurt her leg at kayaking today"],"medications":[],"name":"mille smith","id":"dd0df3f4-db7a-465e-8541-41865911d890","emergency contacts":{"Neighbor":Rebecca Wringler 2221123345 35 Brookview Street, 28990, Charleston, South Carolina,"Family Friend":John Van Dam 9882345568 23 Eagle Point, 28990, Charleston, South Carolina}},{"birthday":Mon May 24 00:00:00 EST 17,"allergies":[],"notes":["ashley is crazy","ashley did really well at ziplining today"],"medications":[
-type: 
- amoxicillian
-dose: 
-20 to 40 milligrams (mg) per kilogram (kg) of body weight per day
-time: 
- divided and given every 8 hours
-],"name":"ashley bahr","id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa","emergency contacts":{"Family Friend":Trina Beckley 3225678899 234 Rock Point Rd, 26789, Fort Mill, South Carolina}}],"max age":16.0,"id":"9755e52b-bcb6-41e3-8f69-b840c866de19","beds":16.0}]}]
+[
+    {
+        "faqs": [
+            {
+                "question": "what are the activities?",
+                "answer": "running, archery, swimming, ziplining"
+            },
+            {
+                "question": "what is the price",
+                "answer": "$500"
+            }
+        ],
+        "camperspercounselor": 8.0,
+        "sessions": [
+            "d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",
+            "642bbf90-b9d8-4f67-8764-5d0eb6af30f8"
+        ],
+        "activities": [
+            "ziplining",
+            "swimming",
+            "running",
+            "gaga ball",
+            "soccer",
+            "kayaking",
+            "bracelet making",
+            "arts and crafts",
+            "painting",
+            "breakfast",
+            "lunch",
+            "dinner",
+            "snack\/ rest time",
+            "campfire songs"
+        ],
+        "price": 500.5,
+        "name": "Camp 247",
+        "id": "2a73df0e-df2f-4f6a-90da-32e888383b2e"
+    }
+]
