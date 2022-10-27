@@ -19,7 +19,10 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
-    
+    /**
+     * tester main method
+     * @param args
+     */
     public static void main(String[] args) {
         /* 
         ArrayList<Camper> campers = loadCampers();
@@ -35,14 +38,14 @@ public class DataLoader extends DataConstants {
             System.out.println(c);
             System.out.println();
         }
-        */
+        
         ArrayList<Cabin> cabins = loadCabins();
         System.out.println("Cabins:\n");
         for(Cabin c: cabins){
             System.out.println(c);
             System.out.println();
         }
-        /* 
+        
         ArrayList<Session> sessions = loadSessions();
         System.out.println("Sessions:\n");
         for (Session s: sessions){
@@ -73,6 +76,10 @@ public class DataLoader extends DataConstants {
         */
     }
 
+    /**
+     * loads the session data from the session.json file
+     * @return an arraylist of sessions
+     */
     //load sessions
     public static ArrayList<Session> loadSessions() {
 		ArrayList<Session> sessions = new ArrayList<Session>();
@@ -113,6 +120,10 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
+    /**
+     * loads the director data from director.json
+     * @return an array list of directors
+     */
     //load director
     public static ArrayList<Director> loadDirector() {
 		ArrayList<Director> directors = new ArrayList<Director>();
@@ -142,6 +153,10 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
+    /**
+     * loads the guardian data from guardian.json
+     * @return an array list of guardians
+     */
     //load guardians
     public static ArrayList<Guardian> loadGuardians() {
 		ArrayList<Guardian> guardians = new ArrayList<Guardian>();
@@ -184,6 +199,10 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
+    /**
+     * loads the counselor data from counselor.json
+     * @return an array list of counselors
+     */
     //load counselors
     public static ArrayList<Counselor> loadCounselors() {
 		ArrayList<Counselor> counselors = new ArrayList<Counselor>();
@@ -240,7 +259,10 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
-
+    /**
+     * loads the camper data from camper.json
+     * @return an array list of campers
+     */
     //load campers
     public static ArrayList<Camper> loadCampers() {
 		ArrayList<Camper> campers = new ArrayList<Camper>();
@@ -314,7 +336,10 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
-
+    /**
+     * loads the cabin data from cabin.json
+     * @return an array list of cabins
+     */
     //load cabin
     public static ArrayList<Cabin> loadCabins() {
 		ArrayList<Cabin> cabins = new ArrayList<Cabin>();
@@ -377,6 +402,10 @@ public class DataLoader extends DataConstants {
 		return null;
 	}
 
+    /**
+     * loads the camp data from camp.json
+     * @return an array list of camps
+     */
     //load camp
     public static ArrayList<Camp> loadCamp() {
 	    ArrayList<Camp> camps = new ArrayList<Camp>();
