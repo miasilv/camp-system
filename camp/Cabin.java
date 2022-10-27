@@ -15,6 +15,8 @@ public class Cabin {
     private double beds;
     private double maxAge;
     private double minAge;
+    private ArrayList<String> daysStr;
+    private ArrayList<Day> days;
     
     /**
      * constructor of cabin
@@ -35,12 +37,54 @@ public class Cabin {
         this.minAge = minAge; 
         this.cabinID = id;
         this.schedule = createHash(schedules);
-        
-       
+        this.daysStr = constructDaysStr();
+        this.days = constructDays();
     }
 
-    private static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2) {
+    
+    private ArrayList<Day> constructDays() {
+        ArrayList<Day> days = new ArrayList<Day>();
+        days.add(Day.MONDAY);
+        days.add(Day.TUESDAY);
+        days.add(Day.WEDNESDAY);
+        days.add(Day.THURSDAY);
+        days.add(Day.FRIDAY);
+        days.add(Day.SATURDAY);
+        days.add(Day.SUNDAY);
+
+        return days;
+    }
+    private ArrayList<String> constructDaysStr() {
+        ArrayList<String> daysStr = new ArrayList<String>();
+        daysStr.add("Monday");
+        daysStr.add("Tuesday");
+        daysStr.add("Wednesday");
+        daysStr.add("Thursday");
+        daysStr.add("Friday");
+        daysStr.add("Saturday");
+        daysStr.add("Sunday");
+
+        return daysStr;
+    }
+
+    public ArrayList<String> getDaysStr(){
+        return this.daysStr;
+    }
+
+    public ArrayList<Day> getDays(){
+        return this.days;
+    }
+    public String getDayStr(int index){
+        return this.daysStr.get(index);
+    }
+
+    public Day getDays(int index){
+        return this.days.get(index);
+    }
+
+    public static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2) {
         HashMap<Day, Schedule> schedule = new HashMap<Day, Schedule>();
+        
         int i = 0; 
         Day day = Day.MONDAY;
         while(i< schedules2.size()){
@@ -164,6 +208,7 @@ public class Cabin {
     public Schedule getSchedule(Day day){
         return schedule.get(day);
     }
+
     /**
      * a method to get the entire schedule for the cabin
      * @return the schedule for that cabin
@@ -171,6 +216,7 @@ public class Cabin {
     public HashMap<Day, Schedule> getSchedule(){
         return this.schedule;
     }
+
     public void setSchedule(HashMap<Day, Schedule> schedule){
         this.schedule = schedule;
     }
