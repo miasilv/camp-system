@@ -448,24 +448,13 @@ public class CampDriver {
 	}
 
 	/**
-	 * @param classFrom is the class the sessions currently come from (in this instance, either CAMP or CAMPER)
+	 * Displays the session list found in camp
 	 */
-	private void displaySessionList(String classFrom) {
+	private void displaySessionList() {
 		while(true) {
 			clearOptions();
-			if(classFrom.equals(CAMP)) {
-				for(int i = 0; i < facade.getCampSessions().size(); i++) {
-					options.add(facade.getCampSessions().get(i).toString());
-				}
-			}
-			else if(classFrom.equals(CAMPER)) {
-				for(int i = 0; i < facade.getCamperCabinHash().size(); i++) {
-					options.add(facade.getCamperCabinHash());
-				}
-			}
-			else {
-				System.out.println("Something went wrong");
-				return;
+			for(int i = 0; i < facade.getCampSessions().size(); i++) {
+				options.add(facade.getCampSessions().get(i).toString());
 			}
 
 			options.add("Add a new Session");
@@ -489,7 +478,7 @@ public class CampDriver {
 			}
 
 			if(choice == options.size() - 3) { //the user wants to remove a Session
-				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					break;
@@ -497,37 +486,27 @@ public class CampDriver {
 
 				System.out.println("Which session do you want to delete?");
 				int num = getNum();
-				if(user instanceof Guardian && facade.removeCamperSession(num + 1) == null) {
+				if(facade.removeCampSession(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					break;
 				}
-				if(user instanceof Director && facade.removeCampSession(num) == null) {
-					System.out.println("Something went wrong, unable to remove");
-					in.nextLine();
-					break;
-				}
+				System.out.println("Removed session");
 				break;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add a Session
-				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to view/edit this.");
 					in.nextLine();
 					break;
 				}
-				createSession(classFrom);
+				createSession();
 				break;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Session
-				if(!classFrom.equals(CAMP) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
-					System.out.println("You do not have permission to view/edit this.");
-					in.nextLine();
-					break;
-				}
-
-				facade.updateSession(choice, classFrom);
+				facade.updateSession(choice);
 				displaySessionInformation();
 				break;
         	}
