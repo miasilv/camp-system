@@ -158,12 +158,6 @@ public class DataWriter extends DataConstants {
 		camperDetails.put(CAMPER_NAME, camper.getName());
 		camperDetails.put(CAMPER_MEDICATIONS, camper.getMedications());
         camperDetails.put(CAMPER_NOTES, camper.getNotes());
-        JSONArray jsonSessions = new JSONArray();
-        for(int i = 0; i< camper.getSessions().size(); i++){
-            jsonSessions.add(getSessionJSON(camper.getSession(i)));
-        }
-        camperDetails.put(CAMPER_SESSIONS, jsonSessions);
-
         camperDetails.put(CAMPER_UUID, camper.getCamperID());
         camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthday());
         camperDetails.put(CAMPER_ALLERGIES, camper.getAllergies());
@@ -248,7 +242,24 @@ public class DataWriter extends DataConstants {
         cabinDetails.put(CABIN_MAX_AGE, cabin.getMaxAge());
         cabinDetails.put(CABIN_UUID, cabin.getCabinID());
         cabinDetails.put(CABIN_MIN_AGE, cabin.getMinAge());
-        cabinDetails.put(CABIN_SCHEDULE, cabin.getSchedule());
+
+
+        JSONArray scheduleArray = new JSONArray();
+       
+        for(int i = 0; i< cabin.getDays().size(); i++){
+
+            JSONArray scheduleActivities = new JSONArray();
+            JSONObject scheduleDetails = new JSONObject();
+            scheduleActivities.add(cabin.getSchedule(cabin.getDays(i)));  
+            
+            scheduleDetails.put(SCHEDULE_DAY,cabin.getDayStr(i)) ;
+            scheduleDetails.put(SCHEDULE_SCHEDULE, scheduleActivities); 
+            scheduleArray.add(scheduleDetails);
+        }
+        cabinDetails.put(CABIN_SCHEDULE, scheduleArray);
+        
+        
+
         
 		
         return cabinDetails;

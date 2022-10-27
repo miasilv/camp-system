@@ -21,28 +21,28 @@ public class DataLoader extends DataConstants {
 
     
     public static void main(String[] args) {
-
+        /* 
         ArrayList<Camper> campers = loadCampers();
         System.out.println("Campers:\n");
         for(Camper c: campers){
             System.out.println(c);
             System.out.println();
         }
-        /* 
+        
         ArrayList<Counselor> counselors = loadCounselors();
         System.out.println("Counselors:\n");
         for(Counselor c: counselors){
             System.out.println(c);
             System.out.println();
         }
-
+        */
         ArrayList<Cabin> cabins = loadCabins();
         System.out.println("Cabins:\n");
         for(Cabin c: cabins){
             System.out.println(c);
             System.out.println();
         }
-
+        /* 
         ArrayList<Session> sessions = loadSessions();
         System.out.println("Sessions:\n");
         for (Session s: sessions){
@@ -339,7 +339,8 @@ public class DataLoader extends DataConstants {
                 //make arraylist of schedule data
                 ArrayList<Schedule> schedules = new ArrayList<Schedule>();
                 for(int j = 0; j < schedulesJSON.size(); j++){
-                    JSONObject dscheduleJSON = (JSONObject)schedulesJSON.get(i);
+                    JSONObject dscheduleJSON = (JSONObject)schedulesJSON.get(j);
+                    
                     JSONArray  dayscheduleJSON = (JSONArray)dscheduleJSON.get(SCHEDULE_SCHEDULE);
 
 
@@ -349,9 +350,11 @@ public class DataLoader extends DataConstants {
                     }
                     
                     Schedule schedule = new Schedule(activities);
+                    //System.out.println("ACTIVITIES \n" + activities);
+                    System.out.println(schedule);
                     schedules.add(schedule);
                 }
-
+            
                 //make arraylist of campers
                 ArrayList<Camper> campers = new ArrayList<Camper>();
                 for(int j = 0; j < campersJSON.size(); j++){
@@ -361,7 +364,9 @@ public class DataLoader extends DataConstants {
                 }
 				
 				cabins.add(new Cabin(campers, counselor, beds, maxAge, minAge, schedules, id));
+                //System.out.println("SCHEDULES:" + schedules);
 			}
+        
 			
 			return cabins;
 			

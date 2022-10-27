@@ -200,4 +200,12 @@ public class Camper {
         return true;
     }
 
+    public HashMap<String, Contact> getCamperContactHash() {
+        return emergencyContacts;
+    }
+
+    public ArrayList<String> getCamperAllergyList() {
+        return allergies;
+    }
+
 }

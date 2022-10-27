@@ -15,6 +15,8 @@ public class Cabin {
     private double beds;
     private double maxAge;
     private double minAge;
+    private ArrayList<String> daysStr;
+    private ArrayList<Day> days;
     
     /**
      * constructor of cabin
@@ -34,40 +36,59 @@ public class Cabin {
         this.maxAge= maxAge;
         this.minAge = minAge; 
         this.cabinID = id;
-        this.schedule = createHash(schedules);
-        
+        this.daysStr = constructDaysStr();
+        this.days = constructDays();
+        this.schedule = createHash(schedules, days);
        
     }
 
-    private static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2) {
+    
+    private ArrayList<Day> constructDays() {
+        ArrayList<Day> days = new ArrayList<Day>();
+        days.add(Day.MONDAY);
+        days.add(Day.TUESDAY);
+        days.add(Day.WEDNESDAY);
+        days.add(Day.THURSDAY);
+        days.add(Day.FRIDAY);
+        days.add(Day.SATURDAY);
+        days.add(Day.SUNDAY);
+
+        return days;
+    }
+    private ArrayList<String> constructDaysStr() {
+        ArrayList<String> daysStr = new ArrayList<String>();
+        daysStr.add("Monday");
+        daysStr.add("Tuesday");
+        daysStr.add("Wednesday");
+        daysStr.add("Thursday");
+        daysStr.add("Friday");
+        daysStr.add("Saturday");
+        daysStr.add("Sunday");
+
+        return daysStr;
+    }
+
+    public ArrayList<String> getDaysStr(){
+        return this.daysStr;
+    }
+
+    public ArrayList<Day> getDays(){
+        return this.days;
+    }
+    public String getDayStr(int index){
+        return this.daysStr.get(index);
+    }
+
+    public Day getDays(int index){
+        return this.days.get(index);
+    }
+
+    public static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2, ArrayList<Day> days) {
         HashMap<Day, Schedule> schedule = new HashMap<Day, Schedule>();
-        int i = 0; 
-        Day day = Day.MONDAY;
-        while(i< schedules2.size()){
-            schedule.put(day, schedules2.get(i));
-            i++;
-            if (day.equals(Day.MONDAY)){
-                day = Day.TUESDAY;
-            }
-            if (day.equals(Day.TUESDAY)){
-                day = Day.WEDNESDAY;
-            }
-            if (day.equals(Day.WEDNESDAY)){
-                day = Day.THURSDAY;
-            }
-            if (day.equals(Day.THURSDAY)){
-                day = Day.FRIDAY;
-            }
-            if (day.equals(Day.FRIDAY)){
-                day = Day.SATURDAY;
-            }
-            if (day.equals(Day.SATURDAY)){
-                day = Day.SUNDAY;
-            }
-            if (day.equals(Day.SUNDAY)){
-                day = Day.MONDAY;
-            }
-        }
+
+       for(int i = 0; i< days.size(); i++){
+            schedule.put(days.get(i), schedules2.get(i));
+       }
         return schedule;
     }
 
@@ -164,6 +185,7 @@ public class Cabin {
     public Schedule getSchedule(Day day){
         return schedule.get(day);
     }
+
     /**
      * a method to get the entire schedule for the cabin
      * @return the schedule for that cabin
@@ -171,6 +193,7 @@ public class Cabin {
     public HashMap<Day, Schedule> getSchedule(){
         return this.schedule;
     }
+
     public void setSchedule(HashMap<Day, Schedule> schedule){
         this.schedule = schedule;
     }
