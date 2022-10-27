@@ -451,10 +451,14 @@ public class CampDriver {
 					options.add(facade.getCampSessions().get(i).toString());
 				}
 			}
-			if(classFrom.equals(CAMPER)) {
+			else if(classFrom.equals(CAMPER)) {
 				for(int i = 0; i < facade.getCamperSessions().size(); i++) {
 					options.add(facade.getCamperSessions().get(i).toString());
 				}
+			}
+			else {
+				System.out.println("Something went wrong");
+				return;
 			}
 
 			options.add("Add a new Session");
@@ -650,7 +654,6 @@ public class CampDriver {
 		if(facade.signIn(email, password)) {
 			user = facade.getUser();
 			System.out.println("Successfully signed in");
-			in.nextLine();
 			return;
 		}
 		System.out.println("Could not sign you in");
