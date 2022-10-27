@@ -9,6 +9,7 @@ import java.util.HashMap;
  */
 public class Schedule {
     private HashMap<String, String> schedule;
+    private ArrayList<String> activities;
     private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
     /**
      * constructor of the daily schedule
@@ -18,15 +19,19 @@ public class Schedule {
     }
 
     //data loading talk to natalie
-    public Schedule(ArrayList<String> schedule){
+    public Schedule(ArrayList<String> acts){
+        this.activities = acts;
         HashMap<String,String> createdSchedule = new HashMap<String, String>();
-        for(int i=0; i<schedule.size(); i++){
-            createdSchedule.put(times[i], schedule.get(i));
+
+        for(int i=0; i<activities.size(); i++){
+            createdSchedule.put(times[i], activities.get(i));
         }
         this.schedule = createdSchedule;
     }
 
-    
+    public ArrayList<String> getActivites(){
+        return this.activities;
+    }
     /**
      * getter of the schedule
      * @return the schedule
@@ -53,7 +58,7 @@ public class Schedule {
         for (String keyValue  : schedule.keySet()) {
             writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
         }
-        return writtenSchedule;
+        return writtenSchedule + "\n";
     }
 
 	public String remove(String time) {

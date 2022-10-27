@@ -21,28 +21,28 @@ public class DataLoader extends DataConstants {
 
     
     public static void main(String[] args) {
-
+        /* 
         ArrayList<Camper> campers = loadCampers();
         System.out.println("Campers:\n");
         for(Camper c: campers){
             System.out.println(c);
             System.out.println();
         }
-        /* 
+        
         ArrayList<Counselor> counselors = loadCounselors();
         System.out.println("Counselors:\n");
         for(Counselor c: counselors){
             System.out.println(c);
             System.out.println();
         }
-
+        */
         ArrayList<Cabin> cabins = loadCabins();
         System.out.println("Cabins:\n");
         for(Cabin c: cabins){
             System.out.println(c);
             System.out.println();
         }
-
+        /* 
         ArrayList<Session> sessions = loadSessions();
         System.out.println("Sessions:\n");
         for (Session s: sessions){
@@ -345,13 +345,15 @@ public class DataLoader extends DataConstants {
 
                     ArrayList<String> activities = new ArrayList<String>() ;
                     for(int k = 0; k<dayscheduleJSON.size(); k++){
+
                         activities.add((String)dayscheduleJSON.get(k));
+
                     }
                     
                     Schedule schedule = new Schedule(activities);
                     schedules.add(schedule);
                 }
-
+                System.out.println("SCHEDULES: \n"+ schedules);
                 //make arraylist of campers
                 ArrayList<Camper> campers = new ArrayList<Camper>();
                 for(int j = 0; j < campersJSON.size(); j++){

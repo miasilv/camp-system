@@ -447,7 +447,6 @@ public class CampDriver {
 	}
 
 	/**
-	 * Displays a Session List
 	 * @param classFrom is the class the sessions currently come from (in this instance, either CAMP or CAMPER)
 	 */
 	private void displaySessionList(String classFrom) {
@@ -529,9 +528,6 @@ public class CampDriver {
 		}
 	}
 
-	/**
-	 * Displays a Session
-	 */
 	private void displaySessionInformation() {
 		while(true) {			
 			//updating options
@@ -626,13 +622,17 @@ public class CampDriver {
 					break;
 
 				case 4: //Cabin List
-					displayCabinInformation();
+					displayCabinList(CAMP);
 					break;
 
 			}
 		}
 	}
 
+	private void displayCabinList(String classFrom) {
+
+	}
+	
 	private void displayCabinInformation() {
 		while(true) {
 			//TODO
@@ -951,9 +951,6 @@ public class CampDriver {
 
 
 	//------------------------------------------- Methods that deal with creating new objects/users -----------------------------------------------------
-	/**
-	 * Sign in display
-	 */
 	private void signIn() {
 		clear();
 		System.out.print("Enter your email: ");
@@ -970,9 +967,6 @@ public class CampDriver {
 		return;
 	}
 
-	/**
-	 * Creates an FAQ Object
-	 */
 	private void createFAQ() {
 		System.out.println("What is the question of the new faq?");
 		String question = in.nextLine();
@@ -984,9 +978,6 @@ public class CampDriver {
 		}
 	}
 
-	/**
-	 * Creates a Session Object
-	 */
 	private void createSession(String classFrom) {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
@@ -1013,6 +1004,7 @@ public class CampDriver {
 		System.out.println("Something went wrong, unable to add");
 		return;
 	}
+	
 	
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
 	/**
