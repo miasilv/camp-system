@@ -46,12 +46,9 @@ public class Session {
         return (Double)this.sessionNumber;
     }
 
-    public boolean setSessionNumber(int sessionNumber) {
-        if(sessionNumber >= 0){
-            this.sessionNumber = sessionNumber;
-            return true;
-        }
-        return false;
+    public boolean setSessionNumber(int index) {
+        this.sessionNumber = index + 1;
+        return true;
     }
 
     public Date getStartDate() {
