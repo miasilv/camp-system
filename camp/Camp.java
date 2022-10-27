@@ -82,6 +82,14 @@ public class Camp {
         return this.FAQs;
     }
 
+    public FAQ getFAQbyIndex(int index) {
+        return this.FAQs.get(index);
+    }
+
+    public String getFAQStr() {
+        return FAQs.toString();
+    }
+
     public void addFAQ(String question, String answer){
         FAQs.add(new FAQ(question, answer));
     }
