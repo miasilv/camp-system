@@ -236,8 +236,8 @@ public class Camper {
     }
 
     /**
-     * Method to calculate and return the age of the counselor
-     * @return The age of the counselor (int)
+     * Method to calculate and return the age of the camper
+     * @return The age of the camper (int)
      */
     public int getAge() {
         // convert Date birthday to localDate birthday
