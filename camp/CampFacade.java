@@ -70,7 +70,12 @@ public class CampFacade {
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
 
-	//user instance variables
+	//cabin instance variables
+    private static final String MAX_AGE = "max age";
+    private static final String MIN_AGE = "min age";
+    private static final String NUM_BEDS = "number of beds";
+    
+    //user instance variables
 	private static final String EMAIL = "email"; //in Contact
 	private static final String PHONE = "phoneNum"; //in Contact
 	private static final String PASSWORD = "password";
@@ -477,6 +482,43 @@ public class CampFacade {
 
     // ------------------------ INSTANCE VARIALBES --------------------------
     /**
+     * Gets any int instance variable in the current cabin object
+     * @param variableName the name of the int instance variable
+     * @return the int value in the variableName, -1 if not found
+     */
+    public double getCabinInt(String variableName) {
+        if(variableName.equals(MAX_AGE)) {
+            return currentCabin.getMaxAge();
+        }
+        if(variableName.equals(MIN_AGE)) {
+            return currentCabin.getMinAge();
+        }
+        if(variableName.equals(NUM_BEDS)) {
+            return currentCabin.getBeds();
+        }
+        return -1;
+    }
+
+    /**
+     * Sets any int instance variable in the current session object with a new value
+     * @param variableName the name of the int instance variable being edited
+     * @param change the new int to place in the instance variable
+     * @return true if successful, false if not successful
+     */
+    public boolean setCabinInt(String variableName, int change) {
+        if(variableName.equals(MAX_AGE)) {
+            return currentCabin.setMaxAge(change);
+        }
+        if(variableName.equals(MIN_AGE)) {
+            return currentCabin.setMinAge(change);
+        }
+        if(variableName.equals(NUM_BEDS)) {
+            return currentCabin.setBeds(change);
+        }
+        return false;
+    }
+    
+    /**
      * Gets the counselor for the current cabin
      * @return the counselor of the cabin
      */
@@ -493,7 +535,7 @@ public class CampFacade {
         return currentCabin.setCounselor(counselor);
     }
 
-    // ------------------------------ ARRAY LISTS ---------------------------
+    // ------------------------------ ARRAY LISTS ---------------------------    
     /**
      * Gets the current camper list, (which should be in a cabin object)
      * @return an arraylist of campers
