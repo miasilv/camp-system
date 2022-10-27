@@ -57,6 +57,7 @@ public class Guardian extends User {
     public String getGuardianID(){
         return getID().toString();
     }
+
     public boolean setName(String name) {
         this.name = name;
         return true;
@@ -116,6 +117,11 @@ public class Guardian extends User {
      */
     public void signWaiver() {
 
+    }
+
+
+    public Camper getCamper(int index){
+        return campers.get(index);
     }
 
     public String toString() {
