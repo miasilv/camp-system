@@ -28,12 +28,11 @@ public class CampFacade {
     private Counselor currentCounselor;
     private HashMap<String, Contact> currentCounselorContactHash;
     private ArrayList<String> currentCounselorAllergyList;
-    private ArrayList<Cabin> currentCounselorCabinList;
+    private HashMap<Session, Cabin> currentCounselorCabinHash;
     private Guardian currentGuardian;
     private ArrayList<Camper> currentGuardianCamperList;
     private HashMap<String, Contact> currentCamperContactHash;
-    private ArrayList<Session> currentCamperSessionList;
-    private ArrayList<Cabin> currentCamperCabinList;
+    private HashMap<Session, Cabin> currentCamperCabinHash;
     private Camper currentCamper;
     private ArrayList<Medication> currentMedicationList;
     private Medication currentMedication;
