@@ -231,5 +231,8 @@ public class Counselor extends User {
             return 0;
         }
     }
+
+    public void updateCounselorCabinHash(Session session, Cabin cabin) {
+    }
     
 }

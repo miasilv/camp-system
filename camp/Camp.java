@@ -217,7 +217,7 @@ public class Camp {
         if(!isCamperEnrolled){
             return false;
         }
-        sessions.get(0).updateCamperCabinHash(camper)
+        sessions.get(0).updateCamperCabinHash(camper);
         return true;
     }
 

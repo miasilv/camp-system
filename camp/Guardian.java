@@ -145,10 +145,7 @@ public class Guardian extends User {
         return true;
     }
 
-<<<<<<< HEAD
     public double pricePerSession() {
         return numOfSessions * price;
     }
-=======
->>>>>>> 46eda501584b97d7b38f5021f1501b7519003678
 }
