@@ -237,4 +237,9 @@ public class Cabin {
         return workingString;
     }
 
+    public void updateCampersCabinHashes(){
+        for(int i=0; i<campers.size(); i++){
+            campers.get(i).update
+        }
+    }
 }

@@ -208,4 +208,5 @@ public class Camper {
         return allergies;
     }
 
+    public void updateCamperCabinHash(Session session, Cabin cabin){}
 }
