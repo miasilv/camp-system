@@ -81,6 +81,23 @@ public class Camp {
     public ArrayList<FAQ> getFAQs() {
         return this.FAQs;
     }
+    /**
+     * written by natalie
+     * gets an faq based on the index in the array list of faqs
+     * @param index index in faqs
+     * @return the faq at that index
+     */
+    public FAQ getFAQbyIndex(int index) {
+        return this.FAQs.get(index);
+    }
+    /**
+     * written by natalie
+     * gets a string representation of faqs
+     * @return faqs array list to string
+     */
+    public String getFAQStr() { 
+        return FAQs.toString();
+    }
 
     public void addFAQ(String question, String answer){
         FAQs.add(new FAQ(question, answer));
@@ -127,22 +144,6 @@ public class Camp {
         return sessions.get(index);
     }
 
-    //nat
-    public Session getSessionByUUID(UUID id){
-        for(int i=0; i<sessions.size(); i++){
-            if(sessions.get(i).getId() == id)
-                return sessions.get(i);
-        }
-        return null;
-    }
-
-    //nat 
-    public Cabin getCabinByUUID(UUID id){
-        for(int i=0; i<sessions.size(); i++){
-            sessions.get(i).getCabinByUUID(id);
-        }
-        return null;
-    }
 
     /**
      * a method to save the sessions to a JSON file
@@ -159,14 +160,29 @@ public class Camp {
         activities.add(activity);
     }
 
+    /**
+     * written by natalie
+     * gets the price for the camp
+     * @return double called price
+     */
     public double getPrice(){
         return pricePerSession;
     }
 
+    /**
+     * written by natalie
+     * gets how many campers are assigned to each counselor
+     * @return double called camperPerCounselor
+     */
     public double getRatio(){
         return campersPerCounselor;
     }
 
+    /**
+     * written by natalie
+     * gets the camps uuid converted to a string
+     * @return uuid to string
+     */
     public String getCampID(){
         return getId().toString();
     }
