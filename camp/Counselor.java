@@ -232,7 +232,16 @@ public class Counselor extends User {
         }
     }
 
-    public void updateCounselorCabinHash(Session session, Cabin cabin) {
+    public void addCounselorCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
+    }
+
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return cabinHash;
+    }
+
+    public void removeCounselorCabinHash(Session session) {
+        cabinHash.remove(session);
     }
     
 }

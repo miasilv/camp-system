@@ -21,6 +21,8 @@ public class Camper {
     private ArrayList<String> notes;
     private HashMap<String, Contact> emergencyContacts;
 
+    private HashMap<Session, Cabin> cabinHash; // i have no idea why camper has a cabin hash?
+
     /**
      * Constructor for the camper class
      * @param name Name of the camper
@@ -288,5 +290,15 @@ public class Camper {
         }
     }
 
-    public void updateCamperCabinHash(Session session, Cabin cabin){}
+    public void addCounselorCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
+    }
+
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return cabinHash;
+    }
+
+    public void removeCounselorCabinHash(Session session) {
+        cabinHash.remove(session);
+    }
 }
