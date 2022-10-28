@@ -159,7 +159,7 @@ public class CampFacade {
      */
     public double getCampInt(String variableName) {
         if(variableName.equals(RATIO)) {
-            return camp.getCampersPerCounselor();
+            return camp.getRatio();
         }
         return -1;
     }
@@ -184,7 +184,7 @@ public class CampFacade {
      */
     public double getCampDouble(String variableName) {
         if(variableName.equals(PRICE)) {
-            return camp.getPricePerSession();
+            return camp.getPrice();
         }
         return -1;
     }
