@@ -16,14 +16,6 @@ public class Camp {
     private ArrayList<String> activities;
     private UUID id;
 
-    public UUID getId() {
-        return this.id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public Camp (){}
     public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, double camperRatio, ArrayList<String> activities){
         this.id = id;
@@ -33,6 +25,21 @@ public class Camp {
         this.campersPerCounselor= camperRatio;
         this.FAQs = faqs;
         this.activities = activities;
+    }
+
+    public UUID getId() {
+        return this.id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    /**
+     * written by natalie
+     * gets the camps uuid converted to a string
+     * @return uuid to string
+     */
+    public String getCampID(){
+        return getId().toString();
     }
 
     public String getName() {
@@ -49,15 +56,13 @@ public class Camp {
     public ArrayList<Session> getSessions() {
         return this.sessions;
     }
-
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
     }
 
-    public double getPricePerSession() {
+    public double getPrice() {
         return this.pricePerSession;
     }
-
     public boolean setPricePerSession(double pricePerSession) {
         if(pricePerSession >= 0){
             this.pricePerSession = pricePerSession;
@@ -66,10 +71,9 @@ public class Camp {
         return false;
     }
 
-    public double getCampersPerCounselor() {
+    public double getRatio() {
         return this.campersPerCounselor;
     }
-
     public boolean setCampersPerCounselor(int campersPerCounselor) {
         if(campersPerCounselor >= 1){
             this.campersPerCounselor = campersPerCounselor;
@@ -80,6 +84,9 @@ public class Camp {
 
     public ArrayList<FAQ> getFAQs() {
         return this.FAQs;
+    }
+    public void setFAQs(ArrayList<FAQ> FAQs) {
+        this.FAQs = FAQs;
     }
     /**
      * written by natalie
@@ -98,14 +105,10 @@ public class Camp {
     public String getFAQStr() { 
         return FAQs.toString();
     }
-
     public void addFAQ(String question, String answer){
         FAQs.add(new FAQ(question, answer));
     }
 
-    public void setFAQs(ArrayList<FAQ> FAQs) {
-        this.FAQs = FAQs;
-    }
     /**
      * a method getting the activities of a camp
      * @return the activities of a camp
@@ -113,12 +116,16 @@ public class Camp {
     public ArrayList<String> getActivities() {
         return this.activities;
     }
-
     public void setActivities(ArrayList<String> activities) {
         this.activities = activities;
     }
-
-
+    /**
+     * a method to add an activity
+     * @param activity the activity being added
+     */
+    public void addActivity(String activity){
+        activities.add(activity);
+    }
 
     /**
      * a method to add a session
@@ -130,7 +137,6 @@ public class Camp {
         Session session = new Session(theme, sessionNumber, startDate, endDate);
         sessions.add(session);
     }
-    
     //****EDITED BY MIA*****
     /**
      * a method allowing the user to retrieve a session via search by index
@@ -143,48 +149,12 @@ public class Camp {
         }
         return sessions.get(index);
     }
-
-
     /**
      * a method to save the sessions to a JSON file
      */
     //TODO how to save session?
     public void saveSessions(){
 
-    }
-    /**
-     * a method to add an activity
-     * @param activity the activity being added
-     */
-    public void addActivity(String activity){
-        activities.add(activity);
-    }
-
-    /**
-     * written by natalie
-     * gets the price for the camp
-     * @return double called price
-     */
-    public double getPrice(){
-        return pricePerSession;
-    }
-
-    /**
-     * written by natalie
-     * gets how many campers are assigned to each counselor
-     * @return double called camperPerCounselor
-     */
-    public double getRatio(){
-        return campersPerCounselor;
-    }
-
-    /**
-     * written by natalie
-     * gets the camps uuid converted to a string
-     * @return uuid to string
-     */
-    public String getCampID(){
-        return getId().toString();
     }
     
 
@@ -220,7 +190,6 @@ public class Camp {
         sessions.get(0).updateCamperCabinHash(camper);
         return true;
     }
-
     public boolean updateCounselorCabinHash(Counselor counselor){
         boolean isCounselorEnrolled = false;
         for(int i=0; i<sessions.size(); i++){

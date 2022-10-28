@@ -75,6 +75,7 @@ public class Cabin {
     public ArrayList<Day> getDays(){
         return this.days;
     }
+
     public String getDayStr(int index){
         return this.daysStr.get(index);
     }
@@ -95,24 +96,24 @@ public class Cabin {
     public double getMinAge(){
         return minAge;
     }
-    public double getMaxAge(){
-        return maxAge;
-    }
-    public double getBeds(){
-        return beds;
-    }
-    public boolean setBeds(int beds) {
-        this.beds = beds;
+    public boolean setMinAge(int minAge) {
+        this.minAge = minAge;
         return true;
     }
 
+    public double getMaxAge(){
+        return maxAge;
+    }
     public boolean setMaxAge(int maxAge) {
         this.maxAge = maxAge;
         return true;
     }
 
-    public boolean setMinAge(int minAge) {
-        this.minAge = minAge;
+    public double getBeds(){
+        return beds;
+    }
+    public boolean setBeds(int beds) {
+        this.beds = beds;
         return true;
     }
 
@@ -123,14 +124,10 @@ public class Cabin {
         return getID().toString();
         
     }
-
     public void setCabinID(UUID cabinID) {
         this.cabinID = cabinID;
     }
-    /**
-     * getter of the counselor
-     * @return the counselor
-     */
+
     public Counselor getCounselor(){
         return counselor;
     }
@@ -141,15 +138,21 @@ public class Cabin {
         }
         return false;
      }
-    /**
-     * getter of the campers
-     * @return the list of campers
-     */
+
      public ArrayList<Camper> getCampers(){
         return campers;
     }
     public void setCampers(ArrayList<Camper> campers){
         this.campers = campers;
+    }
+
+    /**
+     * method to get a camper
+     * @param index the index of the camper to be retrieved
+     * @return the camper
+     */
+    public Camper getCamper(int index){
+        return campers.get(index);
     }
     /**
      * method to add a camper to cabin
@@ -164,14 +167,6 @@ public class Cabin {
      */
     public void removeCamper(Camper camper){
         campers.remove(camper);
-    }
-    /**
-     * method to get a camper
-     * @param index the index of the camper to be retrieved
-     * @return the camper
-     */
-    public Camper getCamper(int index){
-        return campers.get(index);
     }
     public boolean hasCamper(Camper camper){
         for(int i=0; i<campers.size(); i++){
@@ -196,7 +191,6 @@ public class Cabin {
     public HashMap<Day, Schedule> getSchedule(){
         return this.schedule;
     }
-
     public void setSchedule(HashMap<Day, Schedule> schedule){
         this.schedule = schedule;
     }
@@ -225,8 +219,6 @@ public class Cabin {
             return true;
         return false;
     }
-
-    
 
     public String toString(){
         String workingString = "";

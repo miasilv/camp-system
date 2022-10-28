@@ -17,73 +17,6 @@ public class Session {
     private Date endDate;
     private String theme;
 
-    public UUID getId() {
-        return this.id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTheme() {
-        return this.theme;
-    }
-
-    public boolean setTheme(String theme) {
-        this.theme = theme;
-        return false;
-    }
-
-    public ArrayList<Cabin> getCabins() {
-        return cabins;
-    }
-
-
-    public void setCabins(ArrayList<Cabin> cabins) {
-        this.cabins = cabins;
-    }
-
-    public Double getSessionNumber() {
-        return (Double)this.sessionNumber;
-    }
-
-    public boolean setSessionNumber(int index) {
-        this.sessionNumber = index + 1;
-        return true;
-    }
-
-    public Date getStartDate() {
-        return this.startDate;
-    }
-    public String getStrStart() {
-        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
-        return dateFormat.format(startDate);
-    }
-
-    public boolean setStartDate(Date startDate) {
-        if(startDate != null){
-            this.startDate = startDate;
-            return true;
-        }
-        return false;
-    }
-
-    public Date getEndDate() {
-        return this.endDate;
-    }
-
-    public String getStrEnd() {
-        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
-        return dateFormat.format(endDate);
-    }
-
-    public boolean setEndDate(Date endDate) {
-        if(endDate != null){
-            this.endDate = endDate;
-            return true;
-        }
-        return false;
-    }
     /**
      * constructor of session
      * @param sessionNumber which session it is
@@ -96,7 +29,6 @@ public class Session {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    
     //overloaded
     public Session (UUID id, String theme, ArrayList<Cabin> cabins, double sessionNumber, Date start, Date end){
         this.id = id;
@@ -107,6 +39,74 @@ public class Session {
         this.cabins = cabins;
     }
 
+    public UUID getId() {
+        return this.id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getTheme() {
+        return this.theme;
+    }
+    public boolean setTheme(String theme) {
+        this.theme = theme;
+        return false;
+    }
+
+    public ArrayList<Cabin> getCabins() {
+        return cabins;
+    }
+    public void setCabins(ArrayList<Cabin> cabins) {
+        this.cabins = cabins;
+    }
+
+    public Double getSessionNumber() {
+        return (Double)this.sessionNumber;
+    }
+    public boolean setSessionNumber(int index) {
+        this.sessionNumber = index + 1;
+        return true;
+    }
+
+    public Date getStartDate() {
+        return this.startDate;
+    }
+    public String getStrStart() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(startDate);
+    }
+    public boolean setStartDate(Date startDate) {
+        if(startDate != null){
+            this.startDate = startDate;
+            return true;
+        }
+        return false;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+    public String getStrEnd() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(endDate);
+    }
+    public boolean setEndDate(Date endDate) {
+        if(endDate != null){
+            this.endDate = endDate;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * a method to get a specific cabin
+     * @param index index of the cabin to be retrieved
+     * @return the cabin
+     */
+    public Cabin getCabin(int index){
+        return cabins.get(index);
+    }
     /**
      * a method to add a cabin
      * @param cabin the cabin to be added
@@ -121,14 +121,6 @@ public class Session {
     public void removeCabin(Cabin cabin){
         cabins.remove(cabin);
     }
-    /**
-     * a method to get a specific cabin
-     * @param index index of the cabin to be retrieved
-     * @return the cabin
-     */
-    public Cabin getCabin(int index){
-        return cabins.get(index);
-    }
 
     //talk to nat
     public Cabin getCabinByUUID(UUID id){
@@ -138,14 +130,13 @@ public class Session {
         }
         return null;
     }
-
     public UUID getID() {
         return id;
     }
-
     public String getSessionID(){
         return getID().toString();
     }
+
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
@@ -165,7 +156,6 @@ public class Session {
         }
         return null;
     }
-
     public Cabin placeCounselor(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
             if(!cabins.get(i).hasCounselor()){
@@ -183,7 +173,6 @@ public class Session {
         }
         return false;
     }
-
     public boolean isCounselorInSession(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCounselor(counselor))
@@ -198,7 +187,6 @@ public class Session {
                 cabins.get(i).updateCampersCabinHashes(camper, this);
         }
     }
-
     public void updateCounselorCabinHash(Counselor counselor) {
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCounselor(counselor))

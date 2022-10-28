@@ -1,6 +1,5 @@
 package camp;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -33,16 +32,13 @@ public class Schedule {
     public ArrayList<String> getActivites(){
         return this.activities;
     }
-    /**
-     * getter of the schedule
-     * @return the schedule
-     */
     public HashMap<String, String> getSchedule(){
         return this.schedule;
     }
     public void setSchedule(LinkedHashMap<String, String> schedule){
         this.schedule = schedule;
     }
+    
     /**
      * a method to edit the schedule
      * @param time the time of the activity being editted
@@ -51,10 +47,8 @@ public class Schedule {
     public void editSchedule(String time, String activity){
         schedule.put(time, activity);
     }
-    /**
-     * NOTE: does not print in order yet, need to implement linked hash map for that
-     */
-    public String toString(){ //TODO make print in right order!!!
+
+    public String toString(){ 
         String writtenSchedule = "";
         for (String keyValue  : schedule.keySet()) {
             writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
@@ -70,12 +64,4 @@ public class Schedule {
 		this.schedule.put(time, activity);
         return true;
 	}
-
-    public static void main(String[] args) {
-       Schedule tester = new Schedule();
-       tester.add("8:00", "swimming");
-       tester.add("9", "running");
-       tester.add("10", "climbing");
-       System.out.println(tester.toString());
-    }
 }
