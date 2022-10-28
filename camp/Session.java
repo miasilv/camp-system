@@ -156,7 +156,9 @@ public class Session {
 
     public Cabin placeCamper(Camper camper){
         for(int i=0; i<cabins.size(); i++){
-            if(cabins.get(i).getMinAge() <= camper.getAge() <= cabins.get(i).getMaxAge() && !cabins.get(i).isFull()){
+            int minAge = (int) cabins.get(i).getMinAge();
+            int maxAge = (int) cabins.get(i).getMaxAge();
+            if((minAge <= camper.getAge() && camper.getAge() <= maxAge && !cabins.get(i).isFull())){
                 cabins.get(i).addCamper(camper);
                 return cabins.get(i);
             }
@@ -166,7 +168,7 @@ public class Session {
 
     public Cabin placeCounselor(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
-            if(cabins.get(i).getMinAge() <= counselor.getAge() <= cabins.get(i).getMaxAge() && !cabins.get(i).hasCounselor()){
+            if(!cabins.get(i).hasCounselor()){
                 cabins.get(i).setCounselor(counselor);
                 return cabins.get(i);
             }
@@ -188,5 +190,19 @@ public class Session {
                 return true;
         }
         return false;
+    }
+
+    public void updateCamperCabinHash(Camper camper) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCamper(camper))
+                cabins.get(i).updateCampersCabinHashes(camper, this);
+        }
+    }
+
+    public void updateCounselorCabinHash(Counselor counselor) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCounselor(counselor))
+                cabins.get(i).updateCounselorsCabinHashes(counselor, this);
+        }
     }
 }

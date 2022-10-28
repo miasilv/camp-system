@@ -101,16 +101,19 @@ public class Cabin {
     public double getBeds(){
         return beds;
     }
-    public void setBeds(int beds) {
+    public boolean setBeds(int beds) {
         this.beds = beds;
+        return true;
     }
 
-    public void setMaxAge(int maxAge) {
+    public boolean setMaxAge(int maxAge) {
         this.maxAge = maxAge;
+        return true;
     }
 
-    public void setMinAge(int minAge) {
+    public boolean setMinAge(int minAge) {
         this.minAge = minAge;
+        return true;
     }
 
     public UUID getID() {
@@ -237,9 +240,11 @@ public class Cabin {
         return workingString;
     }
 
-    public void updateCampersCabinHashes(){
-        for(int i=0; i<campers.size(); i++){
-            campers.get(i).update
-        }
+    public void updateCampersCabinHashes(Camper camper, Session session){
+        camper.updateCamperCabinHash(session, this);
+    }
+
+    public void updateCounselorsCabinHashes(Counselor counselor, Session session) {
+        counselor.updateCounselorCabinHash(session, this);
     }
 }

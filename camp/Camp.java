@@ -138,7 +138,7 @@ public class Camp {
      * @return the corresponding session
      */
     public Session getSession(int index){
-        if(index > sessions.size()) {
+        if(index > sessions.size() || index < 0) {
             return null;
         }
         return sessions.get(index);
@@ -205,6 +205,34 @@ public class Camp {
         }
         workingString += "\n";
         return workingString;
+    }
+
+    public boolean updateCamperCabinHash(Camper camper){
+        boolean isCamperEnrolled = false;
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCamperInSession(camper))
+                isCamperEnrolled = true;
+                break;
+        }
+        if(!isCamperEnrolled){
+            return false;
+        }
+        sessions.get(0).updateCamperCabinHash(camper)
+        return true;
+    }
+
+    public boolean updateCounselorCabinHash(Counselor counselor){
+        boolean isCounselorEnrolled = false;
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCounselorInSession(counselor))
+                isCounselorEnrolled = true;
+                break;
+        }
+        if(!isCounselorEnrolled){
+            return false;
+        }
+        sessions.get(0).updateCounselorCabinHash(counselor);
+        return true;
     }
 }
 
