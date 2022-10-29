@@ -213,7 +213,7 @@ public class CampDriver {
 					break;
 
 				case 2: //Session List
-					displaySessionList(CAMP);
+					displaySessionList();
 					break;
 
 				case 3: //Campers per Counselor
@@ -758,12 +758,13 @@ public class CampDriver {
 					if(user instanceof Director) {
 						System.out.println("would you like to change the counselor? (y/n)");
 						if(in.nextLine().equalsIgnoreCase("y")) {
-							for(int i = 0; i < facade.getAllCounselors().size(); i++) {
-								System.out.print((i + 1) + ": " + facade.getAllCounselors().get(i) + " ");
+							ArrayList<Counselor> counselors = facade.getAllCounselors();
+							for(int i = 0; i < counselors.size(); i++) {
+								System.out.print((i + 1) + ": " + counselors.get(i) + " ");
 							}
 							System.out.println("\nWhich Cousnelor are you putting into this cabin?");
 							int choice2 = getNum();
-							facade.setCabinCounselor(facade.getAllCounselors().get(choice2));
+							facade.setCabinCounselor(counselors.get(choice2));
 						}
 					}
 					break;
@@ -1418,7 +1419,7 @@ public class CampDriver {
 		}
 	}
 
-	private void createSession(String classFrom) {
+	private void createSession() {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
 		System.out.println("What would you like the session number to be?");
@@ -1427,15 +1428,11 @@ public class CampDriver {
 		Date startDate = getDate(in.nextLine());
 		System.out.println("What would you like the end date to be?");
 		Date endDate = getDate(in.nextLine());
-		if(classFrom.equals(CAMP)) {
-			if(!facade.addCampSession(theme, sessionNumber, startDate, endDate)) {
-				System.out.println("Something went wrong, unable to add");
-				in.nextLine();
-				return;
-			}
+		if(!facade.addCampSession(theme, sessionNumber, startDate, endDate)) {
+			System.out.println("Something went wrong, unable to add");
+			in.nextLine();
+			return;
 		}
-		System.out.println("Something went wrong, unable to add");
-		return;
 	}
 	
 	private void createCabin() {

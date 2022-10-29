@@ -340,16 +340,8 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside session
      */
-    public boolean updateSession(int index, String classFrom) {
-        if(classFrom.equals(CAMP)) {
-            this.currentSession = this.camp.getSession(index);
-        }
-        else if(classFrom.equals(CAMPER)) {
-            this.currentSession = this.currentCamper.getSession(index);
-        }
-        else {
-            return false;
-        }
+    public boolean updateSession(int index) {
+        this.currentSession = this.camp.getSession(index);
         this.currentSessionCabinList = this.currentSession.getCabins();
         return true;
     }
@@ -657,6 +649,10 @@ public class CampFacade {
      */
     public User getUser() {
         return currentUser;
+    }
+
+    public ArrayList<Counselor> getAllCounselors() {
+        return userList.getCounselors();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1138,8 +1134,8 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside  medication
      */
-    public void updateMedication() {
-        
+    public void updateMedication(int index) {
+        this.currentMedication = currentMedicationList.get(index);
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
