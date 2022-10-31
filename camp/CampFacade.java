@@ -283,12 +283,8 @@ public class CampFacade {
      * @param endDate the end date of the session
      * @return true if successful, false if not successful
      */
-    public boolean addCampSession(String theme, double sessionNumber, Date startDate, Date endDate) {
-        for(int i=0; i<currentCampSessionList.size(); i++){
-            if(currentCampSessionList.get(i).getSessionNumber() == sessionNumber)
-                return false;
-        }
-        return currentCampSessionList.add(new Session(theme, sessionNumber, startDate, endDate));
+    public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
+        return currentCampSessionList.add(new Session(theme, sessionDescription, startDate, endDate));
     }
     
 

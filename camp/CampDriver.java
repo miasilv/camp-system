@@ -1427,12 +1427,12 @@ public class CampDriver {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
 		System.out.println("What would you like the session number to be?");
-		double sessionNumber = (double)getNum();
+		String description = in.nextLine();
 		System.out.println("What would you like the start date to be?");
 		Date startDate = getDate(in.nextLine());
 		System.out.println("What would you like the end date to be?");
 		Date endDate = getDate(in.nextLine());
-		if(!facade.addCampSession(theme, sessionNumber, startDate, endDate)) {
+		if(!facade.addCampSession(theme, description, startDate, endDate)) {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
 			return;

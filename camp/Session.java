@@ -15,7 +15,7 @@ public class Session {
     private Date startDate;
     private Date endDate;
     private String theme;
-    private double sessionNumber;
+    private String sessionDescription;
 
     /**
      * constructor of session
@@ -23,17 +23,18 @@ public class Session {
      * @param startDate the date the session starts
      * @param endDate the date the session ends
      */
-    public Session(String theme, double sessionNumber, Date startDate, Date endDate){
+    public Session(String theme, String sessionNumber, Date startDate, Date endDate){
+        this.id = new UUID(0, 0);
         this.theme = theme;
-        this.sessionNumber = sessionNumber;
+        this.sessionDescription = sessionNumber;
         this.startDate = startDate;
         this.endDate = endDate;
     }
     //overloaded
-    public Session (UUID id, String theme, ArrayList<Cabin> cabins, double sessionNumber, Date start, Date end){
+    public Session (UUID id, String theme, ArrayList<Cabin> cabins, String sessionDescription, Date start, Date end){
         this.id = id;
         this.theme = theme;
-        this.sessionNumber = sessionNumber;
+        this.sessionDescription = sessionDescription;
         this.startDate = start;
         this.endDate = end;
         this.cabins = cabins;
@@ -189,5 +190,11 @@ public class Session {
     }
     public boolean setSessionNumber(int change) {
         return false;
+    }
+    public boolean setDescription(String change) {
+        return false;
+    }
+    public String getDescription() {
+        return null;
     }
 }

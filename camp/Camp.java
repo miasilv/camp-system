@@ -133,8 +133,8 @@ public class Camp {
      * @param startDate the session's start date
      * @param endDate the session's end date
      */
-    public void addSession(String theme, int sessionNumber, Date startDate, Date endDate){
-        Session session = new Session(theme, sessionNumber, startDate, endDate);
+    public void addSession(String theme, String sessionDescription, Date startDate, Date endDate){
+        Session session = new Session(theme, sessionDescription, startDate, endDate);
         sessions.add(session);
     }
     //****EDITED BY MIA*****
