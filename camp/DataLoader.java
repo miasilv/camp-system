@@ -96,7 +96,7 @@ public class DataLoader extends DataConstants {
                 String seshDescript = (String)sessionJSON.get(SESSION_DESCRIPTION);
                 
                 Date start= new SimpleDateFormat("mm/dd/yyyy").parse((String)sessionJSON.get(SESSION_START));
-                Date end = new SimpleDateFormat("MM/dd/yyyy").parse((String)sessionJSON.get(SESSION_END));
+                Date end = new SimpleDateFormat("mm/dd/yyyy").parse((String)sessionJSON.get(SESSION_END));
                 
                 JSONArray cabinsJSON = (JSONArray)sessionJSON.get(SESSION_CABINS);
                 ArrayList<Cabin> cabins = new ArrayList<Cabin>();
