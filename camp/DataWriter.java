@@ -76,7 +76,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
+        try (FileWriter file = new FileWriter("./camp/json files/"+ GUARDIAN_FILE_NAME)) {
  
             file.write(jsonGuardians.toJSONString());
             file.flush();
@@ -124,7 +124,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
+        try (FileWriter file = new FileWriter("./camp/json files/"+COUNSELOR_FILE_NAME)) {
  
             file.write(jsonCounselors.toJSONString());
             file.flush();
@@ -213,7 +213,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
+        try (FileWriter file = new FileWriter("./camp/jso files/" + CAMPER_FILE_NAME)) {
             file.write(jsonCamps.toJSONString());
             file.flush();
  
@@ -337,7 +337,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files"+ SESSION_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/"+ SESSION_FILE_NAME)) {
  
             file.write(jsonSessions.toJSONString());
             file.flush();
