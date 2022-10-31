@@ -376,7 +376,7 @@ public class DataLoader extends DataConstants {
                     
                     Schedule schedule = new Schedule(activities);
                     //System.out.println("ACTIVITIES \n" + activities);
-                    System.out.println(schedule);
+                    //System.out.println(schedule);
                     schedules.add(schedule);
                 }
             

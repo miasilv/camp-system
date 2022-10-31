@@ -337,7 +337,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/tester.json")) {
+        try (FileWriter file = new FileWriter("./camp/json files"+ SESSION_FILE_NAME)) {
  
             file.write(jsonSessions.toJSONString());
             file.flush();
