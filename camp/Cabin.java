@@ -97,8 +97,8 @@ public class Cabin {
         String workingString = "";
         for (Day keyValue  : schedule.keySet()) {
             System.out.println(keyValue);
-            //workingString += keyValue.toString() + "\n"; 
-            //workingString += schedule.get(keyValue).toString() + "\n";
+            workingString += keyValue.toString() + "\n"; 
+            workingString += schedule.get(keyValue).toString() + "\n";
         }
         return workingString;
     }
