@@ -232,7 +232,7 @@ public class Cabin {
 
     public String toString(){
         String workingString = "";
-        workingString +=  "Minimum Age: " + String.valueOf(Math.round(minAge)) + " \n" + "Maximum Age: " +  String.valueOf(Math.round(maxAge)) + " \n";
+        workingString +=  String.valueOf(Math.round(minAge)) +  "-" + String.valueOf(Math.round(maxAge)) + " \n";
         return workingString;
     }
 
