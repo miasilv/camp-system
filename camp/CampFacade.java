@@ -55,43 +55,43 @@ public class CampFacade {
 
     //------------- INSTANCE VARIABLES (NOT OBJECTS) ------------------------
     //camp instance variables
-	private static final String NAME = "name"; //in User, Camper, and Contact
-    private static final String PRICE = "price"; //in Guardian
-    private static final String RATIO = "ratio";
-	private static final String ACTIVITIES = "activities"; //(array list)
+	private static final String NAME = "name"; //can also use for User, Camper, and Contact
+    private static final String PRICE = "price"; //can also use for Guardian
+    private static final String RATIO = "campers per counselor";
+	private static final String ACTIVITIES = "activitiy";
 
 	//FAQ instance variables
 	private static final String QUESTION = "question";
 	private static final String ANSWER = "answer";
 	
 	//session instance variables
-	private static final String THEME = "theme";
-    private static final String SESS_DESCR = "session description"; 
-	private static final String START_DATE = "startD";
-	private static final String END_DATE = "endD";
+	private static final String THEME = "session theme";
+	private static final String SESS_DESCR = "session description"; 
+	private static final String START_DATE = "start date";
+	private static final String END_DATE = "enddate";
 
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
     private static final String NUM_BEDS = "number of beds";
-    
-    //user instance variables
-	private static final String EMAIL = "email"; //in Contact
-	private static final String PHONE = "phoneNum"; //in Contact
+
+	//user instance variables
+	private static final String EMAIL = "email"; //can also be used for Contact
+	private static final String PHONE = "phone number"; //can also be used for Contact
 	private static final String PASSWORD = "password";
 
-    //Guardian
-    private static final String SESS_NUM = "total number of sessions"; //in Guardian
+	//guardian instance variables
+	private static final String SESS_NUM = "total number of sessions";
 
 	//counselor instance variables
 	private static final String BIO = "bio";
-	private static final String BIRTHDAY = "birthday"; //in Camper
-	private static final String ALLERGIES = "allergies"; //in Camper (array list)
+	private static final String BIRTHDAY = "birthday"; //can also be used for Camper
+	private static final String ALLERGIES = "allergy"; //can also be used for Camper
 
 	//contact instance variables
 	private static final String RELATIONSHIP = "relationship";
 
-    //medication instance variables
+	//medication instance variables
     private static final String DOSE = "dose";
     private static final String TYPE = "type";
     private static final String TIME = "time";

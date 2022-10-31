@@ -16,6 +16,7 @@ public class Session {
     private Date endDate;
     private String theme;
     private String sessionDescription;
+    SimpleDateFormat dateFormatter;
 
     /**
      * constructor of session
@@ -29,6 +30,7 @@ public class Session {
         this.sessionDescription = sessionDescription;
         this.startDate = startDate;
         this.endDate = endDate;
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
     //overloaded
     public Session (UUID id, String theme, ArrayList<Cabin> cabins, String sessionDescription, Date start, Date end){
@@ -38,6 +40,7 @@ public class Session {
         this.startDate = start;
         this.endDate = end;
         this.cabins = cabins;
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     public UUID getId() {

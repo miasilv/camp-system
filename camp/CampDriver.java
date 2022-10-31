@@ -137,9 +137,11 @@ public class CampDriver {
 						if(facade.signIn(email, password)) {
 							user = facade.getUser();
 							System.out.println("Successfully signed in");
+							in.nextLine();
 							break;
 						}
 						System.out.println("Could not sign you in");
+						in.nextLine();
 						break;
 					}
 					else { //user portal
@@ -250,7 +252,7 @@ public class CampDriver {
 					}
 					
 					clear();
-					System.out.println("Old " + RATIO + ": " + facade.getCampDouble(RATIO));
+					System.out.println("Old " + RATIO + ": " + facade.getCampInt(RATIO));
 					int num = setIntInformation(RATIO);
 					if(!(num == -1)) {
 						if(!facade.setCampInt(RATIO, num)) {
@@ -486,7 +488,7 @@ public class CampDriver {
 		while(true) {
 			clearOptions();
 			for(int i = 0; i < facade.getCampSessions().size(); i++) {
-				options.add(facade.getCampSessions().get(i).toString());
+				options.add("Session " + (i + 1) + "- " + facade.getCampSessions().get(i).toString());
 			}
 
 			options.add("Add a new Session");
@@ -557,7 +559,7 @@ public class CampDriver {
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
 			options.add("Session Descripton: " + facade.getSessionString(SESS_DESCR));
-			options.add("Start Date:" + facade.getSessionDate(START_DATE));
+			options.add("Start Date: " + facade.getSessionDate(START_DATE));
 			options.add("End Date: " + facade.getSessionDate(END_DATE));
 			options.add("Cabins"); 
 			options.add("Return");
@@ -660,7 +662,7 @@ public class CampDriver {
 			//updating options
 			clearOptions();
 			for(int i = 0; i < cabins.size(); i++) {
-				options.add(cabins.get(i).toString()); 
+				options.add("Cabin " + (i + 1) + ": " + cabins.get(i).toString()); 
 			}
 			options.add("Add a new Cabin");
 			options.add("Remove an existing Cabin");
@@ -698,7 +700,7 @@ public class CampDriver {
 				break;
 			}
 
-			if(choice == options.size() -4) { //the user wants to add an FAQ
+			if(choice == options.size() -4) { //the user wants to add a Cabin
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
@@ -709,7 +711,7 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing cabin
-				facade.updateFAQ(choice);
+				facade.updateCabin(choice);
 				displayCabinInformation();
 				break;
         	}
