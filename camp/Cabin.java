@@ -232,12 +232,7 @@ public class Cabin {
 
     public String toString(){
         String workingString = "";
-        workingString += "Campers:\n";
-        for (int i=0; i<campers.size(); i++){
-            workingString += String.valueOf(campers.get(i)) + "\n";
-        }
-        workingString += "Counselor: " + counselor + " \n";
-        workingString += "Number of Beds: " + String.valueOf(Math.round(beds)) + " \n" + "Minimum Age: " + String.valueOf(Math.round(minAge)) + " \n" + "Maximum Age: " +  String.valueOf(Math.round(maxAge)) + " \n";
+        workingString +=  "Minimum Age: " + String.valueOf(Math.round(minAge)) + " \n" + "Maximum Age: " +  String.valueOf(Math.round(maxAge)) + " \n";
         return workingString;
     }
 
