@@ -152,9 +152,8 @@ public class Camp {
     /**
      * a method to save the sessions to a JSON file
      */
-    //TODO how to save session?
-    public void saveSessions(){
-
+    public void saveCamp(){
+        DataWriter.saveCamp();
     }
     
 
