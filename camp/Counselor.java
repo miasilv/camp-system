@@ -243,5 +243,8 @@ public class Counselor extends User {
     public void removeCounselorCabinHash(Session session) {
         cabinHash.remove(session);
     }
+
+    public void updateCounselorCabinHash(Session session, Cabin cabin) {
+    }
     
 }

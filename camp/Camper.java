@@ -301,4 +301,11 @@ public class Camper {
     public void removeCounselorCabinHash(Session session) {
         cabinHash.remove(session);
     }
+
+    public void updateCamperCabinHash(Session session, Cabin cabin) {
+    }
+
+    public HashMap<Session, Cabin> getCabinHash() {
+        return null;
+    }
 }

@@ -949,11 +949,14 @@ public class CampFacade {
         else if (classFrom.equals(CABIN)) {
             this.currentCamper = currentCabin.getCamper(index);
         }
-        else 
+        else {
+            return false;
+        }
         currentCamperContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
         currentCamperCabinHash = currentCamper.getCabinHash();
+        return true;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
