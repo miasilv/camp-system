@@ -118,6 +118,16 @@ public class CampFacade {
         currentCamperCabinHash = new HashMap<Session, Cabin>();
     }
 
+    public void save() {
+        DataLoader.loadCamp();
+        DataLoader.loadSessions();
+        DataLoader.loadCabins();
+        DataLoader.loadDirector();
+        DataLoader.loadCounselors();
+        DataLoader.loadGuardians();
+        DataLoader.loadCampers();
+    }
+
     // ***************************** CAMP CLASS ***********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camp
