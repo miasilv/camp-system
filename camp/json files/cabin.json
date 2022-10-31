@@ -8,31 +8,31 @@
         "min age": 7.0,
         "schedule": [{
                         "day": "Monday",
-                        "schedule": ["Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up", "Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Tuesday",
-                        "schedule": ["Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Wednesday",
-                        "schedule": ["Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Thursday",
-                        "schedule": ["Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Friday",
-                        "schedule": ["Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Saturday",
-                        "schedule": ["Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Sunday",
-                        "schedule": ["Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs", "Lights Out"]
                     }]
     },
     {
@@ -44,31 +44,31 @@
         "min age": 11.0,
         "schedule": [{
                         "day": "Monday",
-                        "schedule": ["Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Tuesday",
-                        "schedule": ["Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Wednesday",
-                        "schedule": ["Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Thursday",
-                        "schedule": ["Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs"]
-                    },
+                        "schedule": ["Wake Up","Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs", "Lights Out"]
+                    }
                     {
                         "day": "Friday",
-                        "schedule": ["Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Saturday",
-                        "schedule": ["Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs", "Lights Out"]
                     },
                     {
                         "day": "Sunday",
-                        "schedule": ["Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs"]
+                        "schedule": ["Wake Up","Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs", "Lights Out"]
                     }]
     }
 ]
