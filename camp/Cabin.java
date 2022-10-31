@@ -250,4 +250,7 @@ public class Cabin {
         counselor.updateCounselorCabinHash(session, this);
     }
 
+    public void saveCabin(){
+        DataWriter.saveCabin();
+    }
 }
