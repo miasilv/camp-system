@@ -363,7 +363,7 @@ public class DataWriter extends DataConstants {
         }        
         sessionDetails.put(SESSION_CABINS, jsonCabins);
 
-        sessionDetails.put(SESSION_NUM, session.getSessionNumber());
+        sessionDetails.put(SESSION_DESCRIPTION, session.getDescription());
         sessionDetails.put(SESSION_END, session.getStrEnd());
         sessionDetails.put(SESSION_START, session.getStrStart());
 		

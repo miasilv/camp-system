@@ -94,7 +94,7 @@ public abstract class DataConstants {
     protected static final String SESSION_ID = "id";
     protected static final String SESSION_THEME = "theme";
     protected static final String SESSION_CABINS = "cabins";
-    protected static final String SESSION_NUM = "sessionNumber";
+    protected static final String SESSION_DESCRIPTION = "sessionDescription";
     protected static final String SESSION_START = "start date";
     protected static final String SESSION_END = "end date";
 

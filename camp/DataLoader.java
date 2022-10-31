@@ -93,7 +93,7 @@ public class DataLoader extends DataConstants {
 				JSONObject sessionJSON = (JSONObject)sessionsJSON.get(i);
                 UUID seshid = UUID.fromString((String)sessionJSON.get(SESSION_ID));
                 String theme = (String)sessionJSON.get(SESSION_THEME);
-                Double seshNum = (Double)sessionJSON.get(SESSION_NUM);
+                String seshDescript = (String)sessionJSON.get(SESSION_DESCRIPTION);
                 
                 Date start= new SimpleDateFormat("mm/dd/yyyy").parse((String)sessionJSON.get(SESSION_START));
                 Date end = new SimpleDateFormat("MM/dd/yyyy").parse((String)sessionJSON.get(SESSION_END));
@@ -107,7 +107,7 @@ public class DataLoader extends DataConstants {
                     cabins.add(cabin);
                 }
 
-                Session session = new Session (seshid, theme, cabins, seshNum, start, end);
+                Session session = new Session (seshid, theme, cabins, seshDescript, start, end);
                 sessions.add(session);    
 			}
 			
