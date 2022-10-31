@@ -141,6 +141,7 @@ public class Session {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
         workingString += theme + ": " + dateFormat.format(startDate) + "-" + dateFormat.format(endDate) + "\n";
+        workingString += "\t" + sessionDescription;
         return workingString;
     }
 
