@@ -12,10 +12,10 @@ import java.util.UUID;
 public class Session {
     private UUID id;
     private ArrayList<Cabin> cabins;
-    private double sessionNumber;
     private Date startDate;
     private Date endDate;
     private String theme;
+    private double sessionNumber;
 
     /**
      * constructor of session
@@ -59,14 +59,6 @@ public class Session {
     }
     public void setCabins(ArrayList<Cabin> cabins) {
         this.cabins = cabins;
-    }
-
-    public Double getSessionNumber() {
-        return (Double)this.sessionNumber;
-    }
-    public boolean setSessionNumber(int index) {
-        this.sessionNumber = index + 1;
-        return true;
     }
 
     public Date getStartDate() {
@@ -140,8 +132,7 @@ public class Session {
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
-        workingString += id + "\n";
-        workingString += String.valueOf(sessionNumber) + "\n" + dateFormat.format(startDate) + "\n" + dateFormat.format(endDate) + "\n" + theme;
+        workingString += "Session " + theme + ":" + dateFormat.format(startDate) + dateFormat.format(endDate) + "\n";
         return workingString;
     }
 
@@ -192,5 +183,11 @@ public class Session {
             if(cabins.get(i).hasCounselor(counselor))
                 cabins.get(i).updateCounselorsCabinHashes(counselor, this);
         }
+    }
+    public double getSessionNumber() {
+        return 0;
+    }
+    public boolean setSessionNumber(int change) {
+        return false;
     }
 }
