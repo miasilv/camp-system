@@ -117,7 +117,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//TODO save
 				System.exit(0);
 			}
 
@@ -193,7 +193,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//TODO save
 				System.exit(0);
 			}
 			
@@ -406,6 +406,12 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing FAQ
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+				
 				facade.updateFAQ(choice);
 				displayFAQ();
 				break;
@@ -532,6 +538,12 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Session
+				if(user == null) {
+					System.out.println("You do not have permission to view/edit this.");
+					in.nextLine();
+					break;
+				}
+				
 				facade.updateSession(choice);
 				displaySessionInformation();
 				break;
