@@ -208,8 +208,13 @@ public class Camper {
      * Returns a string representation. Returns all instance variables
      */
     public String toString() {
-        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy"); 
-        return camperID + " " + name + " " + dateFormat.format(birthday) + " " + medications + " " + allergies + " " + sessions + " " + notes + " " + emergencyContacts;
+        return name;
+        /*
+         * DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+         * return camperID + " " + name + " " + dateFormat.format(birthday) + " " +
+         * medications + " " + allergies + " " + sessions + " " + notes + " " +
+         * emergencyContacts;
+         */
     }
 
     /**

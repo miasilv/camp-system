@@ -124,7 +124,8 @@ public class Guardian extends User {
     }
 
     public String toString() {
-        return id + " " + name + " " + email + " " + password + " " + campers;
+        //return id + " " + name + " " + email + " " + password + " " + campers;
+        return name;
     }
 
     public int getTotalSessions() {
