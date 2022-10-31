@@ -140,7 +140,7 @@ public class Session {
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
-        workingString += "Session " + theme + ":" + dateFormat.format(startDate) + dateFormat.format(endDate) + "\n";
+        workingString += "Session " + theme + ": " + dateFormat.format(startDate) + "-" + dateFormat.format(endDate) + "\n";
         return workingString;
     }
 
