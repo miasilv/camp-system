@@ -23,10 +23,10 @@ public class Session {
      * @param startDate the date the session starts
      * @param endDate the date the session ends
      */
-    public Session(String theme, String sessionNumber, Date startDate, Date endDate){
+    public Session(String theme, String sessionDescription, Date startDate, Date endDate){
         this.id = new UUID(0, 0);
         this.theme = theme;
-        this.sessionDescription = sessionNumber;
+        this.sessionDescription = sessionDescription;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -90,6 +90,13 @@ public class Session {
             return true;
         }
         return false;
+    }
+    public boolean setDescription(String change) {
+        this.sessionDescription = change;
+        return true;
+    }
+    public String getDescription() {
+        return this.sessionDescription;
     }
 
     /**
@@ -184,17 +191,5 @@ public class Session {
             if(cabins.get(i).hasCounselor(counselor))
                 cabins.get(i).updateCounselorsCabinHashes(counselor, this);
         }
-    }
-    public double getSessionNumber() {
-        return 0;
-    }
-    public boolean setSessionNumber(int change) {
-        return false;
-    }
-    public boolean setDescription(String change) {
-        return false;
-    }
-    public String getDescription() {
-        return null;
     }
 }
