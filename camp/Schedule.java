@@ -51,7 +51,7 @@ public class Schedule {
     public String toString(){ 
         String writtenSchedule = "";
         for (String keyValue  : schedule.keySet()) {
-            writtenSchedule += keyValue + schedule.get(keyValue) + "\n";
+            writtenSchedule += keyValue + " " + schedule.get(keyValue) + "\n";
         }
         return writtenSchedule + "\n";
     }
