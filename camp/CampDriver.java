@@ -42,7 +42,7 @@ public class CampDriver {
 	
 	//session instance variables
 	private static final String THEME = "theme";
-	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
+	private static final String SESS_DESCR = "session description"; 
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
 
@@ -55,6 +55,9 @@ public class CampDriver {
 	private static final String EMAIL = "email"; //can also be used for Contact
 	private static final String PHONE = "phoneNum"; //can also be used for Contact
 	private static final String PASSWORD = "password";
+
+	//Guardian
+	private static final String SESS_NUM = "total number of sessions";
 
 	//counselor instance variables
 	private static final String BIO = "bio";
@@ -518,7 +521,7 @@ public class CampDriver {
 			//updating options
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
-			options.add("Session Number" + facade.getSessionInt(SESS_NUM));
+			options.add("Session Descripton: " + facade.getSessionString(SESS_DESCR));
 			options.add("Start Date:" + facade.getSessionDate(START_DATE));
 			options.add("End Date: " + facade.getSessionDate(END_DATE));
 			options.add("Cabins"); 
@@ -565,13 +568,14 @@ public class CampDriver {
 					}
 					
 					clear();
-					System.out.println("Old " + SESS_NUM + ": " + facade.getCampDouble(SESS_NUM));
-					int num = setIntInformation(SESS_NUM);
-					if(!(num == -1)) {
-						if(!facade.setSessionInt(SESS_NUM, num)) {
+					System.out.println("Old " + SESS_DESCR + ": " + facade.getCampDouble(SESS_DESCR));
+					String change2 = setStringInformation(SESS_DESCR);
+					if(!(change2 == null)) {
+						if(!facade.setSessionString(SESS_DESCR, change2)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
 					}
+					System.out.println("Sorry, somethig went wrong, unable to edit");
 					break;
 
 				case 2: //Start Date
@@ -1285,7 +1289,7 @@ public class CampDriver {
 	}
 
 	private void displayMedicationList() {
-		
+		//TODO
 	}
 
 	private void displayAllergyList(String classFrom) {

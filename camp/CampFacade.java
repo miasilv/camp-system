@@ -66,7 +66,7 @@ public class CampFacade {
 	
 	//session instance variables
 	private static final String THEME = "theme";
-    private static final String SESS_NUM = "sessNum"; //in Guardian
+    private static final String SESS_DESCR = "session description"; 
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
 
@@ -79,6 +79,9 @@ public class CampFacade {
 	private static final String EMAIL = "email"; //in Contact
 	private static final String PHONE = "phoneNum"; //in Contact
 	private static final String PASSWORD = "password";
+
+    //Guardian
+    private static final String SESS_NUM = "total number of sessions"; //in Guardian
 
 	//counselor instance variables
 	private static final String BIO = "bio";
@@ -356,6 +359,9 @@ public class CampFacade {
         if(variableName.equals(THEME)) {
             return currentSession.getTheme();
         }
+        if(variableName.equals(SESS_DESCR)) {
+            return currentSession.getDescription();
+        }
         return null;
     }
 
@@ -369,30 +375,8 @@ public class CampFacade {
         if(variableName.equals(THEME)) {
             return currentSession.setTheme(change);
         }
-        return false;
-    }
-    
-    /**
-     * Gets any int instance variable in the current session object
-     * @param variableName the name of the int instance variable
-     * @return the int value in the variableName, -1 if not found
-     */
-    public double getSessionInt(String variableName) {
-        if(variableName.equals(SESS_NUM)) {
-            return currentSession.getSessionNumber();
-        }
-        return -1;
-    }
-
-    /**
-     * Sets any int instance variable in the current session object with a new value
-     * @param variableName the name of the int instance variable being edited
-     * @param change the new int to place in the instance variable
-     * @return true if successful, false if not successful
-     */
-    public boolean setSessionInt(String variableName, int change) {
-        if(variableName.equals(SESS_NUM)) {
-            return currentSession.setSessionNumber(change);
+        if(variableName.equals(SESS_DESCR)) {
+            return currentSession.setDescription(change);
         }
         return false;
     }
