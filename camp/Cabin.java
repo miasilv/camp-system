@@ -93,6 +93,16 @@ public class Cabin {
         return schedule;
     }
 
+    public String cabinHashToString(){
+        String workingString = "";
+        for (Day keyValue  : schedule.keySet()) {
+            System.out.println(keyValue);
+            workingString += keyValue.toString() + "\n"; 
+            workingString += schedule.get(keyValue).toString() + "\n";
+        }
+        return workingString;
+    }
+
     public double getMinAge(){
         return minAge;
     }
@@ -222,13 +232,13 @@ public class Cabin {
 
     public String toString(){
         String workingString = "";
-        workingString += cabinID + " \n";
+        workingString += "Campers:\n";
         for (int i=0; i<campers.size(); i++){
-            workingString += String.valueOf(campers.get(i)) + " ";
+            workingString += String.valueOf(campers.get(i)) + "\n";
         }
-        workingString += counselor + " \n";
-        workingString += schedule.toString() + " \n";
-        workingString += String.valueOf(beds) + " \n" + String.valueOf(minAge) + " \n" + String.valueOf(maxAge) + " \n";
+        workingString += "Counselor: " + counselor + " \n";
+        workingString += "Schedule: " + schedule.toString() + " \n";
+        workingString += "Number of Beds: " + String.valueOf(Math.round(beds)) + " \n" + "Minimum Age: " + String.valueOf(Math.round(minAge)) + " \n" + "Maximum Age: " +  String.valueOf(Math.round(maxAge)) + " \n";
         return workingString;
     }
 
@@ -238,5 +248,9 @@ public class Cabin {
 
     public void updateCounselorsCabinHashes(Counselor counselor, Session session) {
         counselor.updateCounselorCabinHash(session, this);
+    }
+
+    public void saveCabin(){
+        DataWriter.saveCabin();
     }
 }

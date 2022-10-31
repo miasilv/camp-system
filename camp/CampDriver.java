@@ -33,18 +33,18 @@ public class CampDriver {
 	//camp instance variables
 	private static final String NAME = "name"; //can also use for User, Camper, and Contact
     private static final String PRICE = "price"; //can also use for Guardian
-    private static final String RATIO = "ratio";
-	private static final String ACTIVITIES = "activities";
+    private static final String RATIO = "campers per counselor";
+	private static final String ACTIVITIES = "activitiy";
 
 	//FAQ instance variables
 	private static final String QUESTION = "question";
 	private static final String ANSWER = "answer";
 	
 	//session instance variables
-	private static final String THEME = "theme";
+	private static final String THEME = "session theme";
 	private static final String SESS_DESCR = "session description"; 
-	private static final String START_DATE = "startD";
-	private static final String END_DATE = "endD";
+	private static final String START_DATE = "start date";
+	private static final String END_DATE = "enddate";
 
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
@@ -53,16 +53,16 @@ public class CampDriver {
 
 	//user instance variables
 	private static final String EMAIL = "email"; //can also be used for Contact
-	private static final String PHONE = "phoneNum"; //can also be used for Contact
+	private static final String PHONE = "phone number"; //can also be used for Contact
 	private static final String PASSWORD = "password";
 
-	//Guardian
+	//guardian instance variables
 	private static final String SESS_NUM = "total number of sessions";
 
 	//counselor instance variables
 	private static final String BIO = "bio";
 	private static final String BIRTHDAY = "birthday"; //can also be used for Camper
-	private static final String ALLERGIES = "allergies"; //can also be used for Camper
+	private static final String ALLERGIES = "allergy"; //can also be used for Camper
 
 	//contact instance variables
 	private static final String RELATIONSHIP = "relationship";
@@ -72,13 +72,8 @@ public class CampDriver {
     private static final String TYPE = "type";
     private static final String TIME = "time";
 
-	//edits for array lists
-    private static final String ADD = "add";
-    private static final String REMOVE = "remove";
-    private static final String EDIT = "edit";
-
     /**
-	 * Constructs a new driver
+	 * Constructs a new driver, construct this in the main method and it will create a new facade
 	 */
 	public CampDriver() {
         in = new Scanner(System.in); 
@@ -90,14 +85,16 @@ public class CampDriver {
 
 	//--------------------------------------------------------- Loops and display methods ----------------------------------------------------------
     /**
-	 * Runs the driver and displays the camp home page
+	 * Call this method to start the loop in the main method, this is the welcome screen 
+	 * which holds camp information, sign in, user portal, and log out. 
+	 * Sign in switches with user portal and log out if a user is detected.
 	 */
 	public void runDriver() {
         clear();
         System.out.println("***** Welcome to the Camp Website! *****");
 
         while(true) {
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			options.add("View Camp Information");
 			if(user == null) {
@@ -105,30 +102,47 @@ public class CampDriver {
 			}
 			else {
 				options.add("User Portal");
+				options.add("Log out");
 			}
 			options.add("Quit");
 
-			//displays choices and checks if the number is quit/return
+			//printing choices and getting choice----------------------------------------
+			clear();
 			System.out.println("***** Home Screen *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				facade.save();
 				System.exit(0);
 			}
 
-			//switches between choices
 			switch(choice) {
-				case 0:
+				case 0: //camp information
 					displayCampInformation();
 					break;
-				case 1:
-					if(user == null) {
-						signIn();
+				
+				case 1: //either sign in or user portal
+					if(user == null) { //sign in
+						clear();
+						System.out.print("Enter your email: ");
+						String email = in.nextLine();
+						System.out.print("Enter your password: ");
+						String password = in.nextLine();
+				
+						if(facade.signIn(email, password)) {
+							user = facade.getUser();
+							System.out.println("Successfully signed in");
+							break;
+						}
+						System.out.println("Could not sign you in");
+						break;
 					}
-					else {
+					else { //user portal
 						if(user instanceof Director) {
 							displayDirectorPortal();
 						}
@@ -140,17 +154,23 @@ public class CampDriver {
 						}						
 					}
 					break;
+				
+				case 2: //Log Out
+					user = null;
+					break;
 			}
         }
     }
 
 
 	/**
-	 * Displays the Camp Information
+	 * This method is called when displaying camp instance variables. It includes the name of the camp
+	 * price per session, an array list of sessions, how many campers are per counselor roughly, an array list of faqs
+	 * and an array list of activities offered.
 	 */
 	private void displayCampInformation() {
 		while(true) {
-			//updating options
+			//updating options and Camp object----------------------------------------
 			facade.updateCamp();
 			clearOptions();
 			options.add("Name: " + facade.getCampString(NAME));
@@ -162,24 +182,27 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Camp Information *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				facade.save();
 				System.exit(0);
 			}
+			
 			if(choice == options.size() - 2) { //the user chose return
 				return;
 			}
 
-			//switches between choices
 			switch(choice) {
-				case 0: //Name
+				case 0: //the user chose name
 					if(!(user instanceof Director)) { 
 						System.out.println("You do not have permission to edit this.");
 						in.nextLine();
@@ -197,7 +220,7 @@ public class CampDriver {
 					}
 					break;
 				
-				case 1: //Price
+				case 1: //the user chose price
 					if(!(user instanceof Director)) {
 						System.out.println("You do not have permission to edit this.");
 						in.nextLine();
@@ -1395,22 +1418,7 @@ public class CampDriver {
 	}
 
 
-	//------------------------------------------- Methods that deal with creating new objects/users -----------------------------------------------------
-	private void signIn() {
-		clear();
-		System.out.print("Enter your email: ");
-		String email = in.nextLine();
-		System.out.print("Enter your password: ");
-		String password = in.nextLine();
-
-		if(facade.signIn(email, password)) {
-			user = facade.getUser();
-			System.out.println("Successfully signed in");
-			return;
-		}
-		System.out.println("Could not sign you in");
-		return;
-	}
+	//------------------------------------------- Creating new objects -----------------------------------------------------
 
 	private void createFAQ() {
 		System.out.println("What is the question of the new faq?");

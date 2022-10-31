@@ -192,4 +192,8 @@ public class Session {
                 cabins.get(i).updateCounselorsCabinHashes(counselor, this);
         }
     }
+
+    public void saveSession(){
+        DataWriter.saveSession();
+    }
 }
