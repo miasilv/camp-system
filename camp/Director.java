@@ -72,6 +72,7 @@ public class Director extends User {
     }
 
     public String toString() {
-        return id + " " + name + " " + email + " " + password + " " + phoneNumber;
+        //return id + " " + name + " " + email + " " + password + " " + phoneNumber;
+        return name;
     }
 }

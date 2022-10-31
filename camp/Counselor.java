@@ -180,8 +180,13 @@ public class Counselor extends User {
      * Returns a string representation of the counselor
      */
     public String toString() {
-        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy"); 
-        return id + " " + name + " " + email + " " + password + " " + phoneNumber + " " + bio + " " + emergencyContacts + " " + dateFormat.format(birthday) + " " + allergies;
+        return name;
+        /*
+         * DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+         * return camperID + " " + name + " " + dateFormat.format(birthday) + " " +
+         * medications + " " + allergies + " " + sessions + " " + notes + " " +
+         * emergencyContacts;
+         */
     }
 
     public boolean setBirthday(Date change) {
