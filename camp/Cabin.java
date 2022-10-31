@@ -237,7 +237,6 @@ public class Cabin {
             workingString += String.valueOf(campers.get(i)) + "\n";
         }
         workingString += "Counselor: " + counselor + " \n";
-        workingString += "Schedule: " + schedule.toString() + " \n";
         workingString += "Number of Beds: " + String.valueOf(Math.round(beds)) + " \n" + "Minimum Age: " + String.valueOf(Math.round(minAge)) + " \n" + "Maximum Age: " +  String.valueOf(Math.round(maxAge)) + " \n";
         return workingString;
     }
