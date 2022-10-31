@@ -2,6 +2,9 @@ package camp;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +15,7 @@ public class Counselor extends User {
     private HashMap<String, Contact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
+    private HashMap<Session, Cabin> cabinHash;
 
     /**
      * Constructor for the counselor class
@@ -84,12 +88,28 @@ public class Counselor extends User {
         return emergencyContacts;
     }
 
+    public String getEmergencyContactsStr() {
+        String writtenSchedule = "";
+        for (String keyValue  : emergencyContacts.keySet()) {
+            writtenSchedule += keyValue + emergencyContacts.get(keyValue) + "\n";
+        }
+        return writtenSchedule + "\n";
+    }
+
     public Date getBirthday() {
         return birthday;
     }
 
+    public String getBirthdayStr() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(birthday);
+    }
+
     public ArrayList<String> getAllergies() {
         return allergies;
+    }
+    public String getAllergiesStr(){
+        return allergies.toString();
     }
 
     public boolean setName(String name) {
@@ -169,10 +189,62 @@ public class Counselor extends User {
         return true;
     }
 
+
     //**********************************PLEASE DO THIS********************************************************************
     public ArrayList<Cabin> getCabins() {
         return null;
     }
 
+    /**
+     * Method to calculate and return the age of the counselor
+     * @return The age of the counselor (int)
+     */
+    public int getAge() {
+        // convert Date birthday to localDate birthday
+        LocalDate localBirthday = convertToLocalDateViaInstant(birthday);
+        // convert to get age with local dates
+        LocalDate curDate = LocalDate.now();
+        return calculateAge(localBirthday, curDate);
+    }
+
+    /**
+     * Method to convert Date object to LocalDate object
+     * @param dateToConvert Date object to convert
+     * @return LocalDate object
+     */
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    /**
+     * Calculates the time in the period from one LocalDate to another LocalDate
+     * @param birthDate The LocalDate of a birthday
+     * @param todayDate The LocalDate of today
+     * @return The time in the period from
+     */
+    public int calculateAge(LocalDate birthDate, LocalDate todayDate) {
+        if ((birthDate != null) && (todayDate != null)) {
+            return Period.between(birthDate, todayDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    public void addCounselorCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
+    }
+
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return cabinHash;
+    }
+
+    public void removeCounselorCabinHash(Session session) {
+        cabinHash.remove(session);
+    }
+
+    public void updateCounselorCabinHash(Session session, Cabin cabin) {
+    }
     
 }

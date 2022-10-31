@@ -16,14 +16,6 @@ public class Camp {
     private ArrayList<String> activities;
     private UUID id;
 
-    public UUID getId() {
-        return this.id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public Camp (){}
     public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, double camperRatio, ArrayList<String> activities){
         this.id = id;
@@ -33,6 +25,21 @@ public class Camp {
         this.campersPerCounselor= camperRatio;
         this.FAQs = faqs;
         this.activities = activities;
+    }
+
+    public UUID getId() {
+        return this.id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    /**
+     * written by natalie
+     * gets the camps uuid converted to a string
+     * @return uuid to string
+     */
+    public String getCampID(){
+        return getId().toString();
     }
 
     public String getName() {
@@ -49,15 +56,13 @@ public class Camp {
     public ArrayList<Session> getSessions() {
         return this.sessions;
     }
-
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
     }
 
-    public double getPricePerSession() {
+    public double getPrice() {
         return this.pricePerSession;
     }
-
     public boolean setPricePerSession(double pricePerSession) {
         if(pricePerSession >= 0){
             this.pricePerSession = pricePerSession;
@@ -66,10 +71,9 @@ public class Camp {
         return false;
     }
 
-    public double getCampersPerCounselor() {
+    public double getRatio() {
         return this.campersPerCounselor;
     }
-
     public boolean setCampersPerCounselor(int campersPerCounselor) {
         if(campersPerCounselor >= 1){
             this.campersPerCounselor = campersPerCounselor;
@@ -81,14 +85,30 @@ public class Camp {
     public ArrayList<FAQ> getFAQs() {
         return this.FAQs;
     }
-
+    public void setFAQs(ArrayList<FAQ> FAQs) {
+        this.FAQs = FAQs;
+    }
+    /**
+     * written by natalie
+     * gets an faq based on the index in the array list of faqs
+     * @param index index in faqs
+     * @return the faq at that index
+     */
+    public FAQ getFAQbyIndex(int index) {
+        return this.FAQs.get(index);
+    }
+    /**
+     * written by natalie
+     * gets a string representation of faqs
+     * @return faqs array list to string
+     */
+    public String getFAQStr() { 
+        return FAQs.toString();
+    }
     public void addFAQ(String question, String answer){
         FAQs.add(new FAQ(question, answer));
     }
 
-    public void setFAQs(ArrayList<FAQ> FAQs) {
-        this.FAQs = FAQs;
-    }
     /**
      * a method getting the activities of a camp
      * @return the activities of a camp
@@ -96,60 +116,8 @@ public class Camp {
     public ArrayList<String> getActivities() {
         return this.activities;
     }
-
     public void setActivities(ArrayList<String> activities) {
         this.activities = activities;
-    }
-
-
-
-    /**
-     * a method to add a session
-     * @param sessionNumber the session's number
-     * @param startDate the session's start date
-     * @param endDate the session's end date
-     */
-    public void addSession(String theme, int sessionNumber, Date startDate, Date endDate){
-        Session session = new Session(theme, sessionNumber, startDate, endDate);
-        sessions.add(session);
-    }
-    
-    //****EDITED BY MIA*****
-    /**
-     * a method allowing the user to retrieve a session via search by index
-     * @param index the index of the session being retrieved
-     * @return the corresponding session
-     */
-    public Session getSession(int index){
-        if(index > sessions.size()) {
-            return null;
-        }
-        return sessions.get(index);
-    }
-
-    //nat
-    public Session getSessionByUUID(UUID id){
-        for(int i=0; i<sessions.size(); i++){
-            if(sessions.get(i).getId() == id)
-                return sessions.get(i);
-        }
-        return null;
-    }
-
-    //nat 
-    public Cabin getCabinByUUID(UUID id){
-        for(int i=0; i<sessions.size(); i++){
-            sessions.get(i).getCabinByUUID(id);
-        }
-        return null;
-    }
-
-    /**
-     * a method to save the sessions to a JSON file
-     */
-    //TODO how to save session?
-    public void saveSessions(){
-
     }
     /**
      * a method to add an activity
@@ -159,16 +127,34 @@ public class Camp {
         activities.add(activity);
     }
 
-    public double getPrice(){
-        return pricePerSession;
+    /**
+     * a method to add a session
+     * @param sessionNumber the session's number
+     * @param startDate the session's start date
+     * @param endDate the session's end date
+     */
+    public void addSession(String theme, String sessionDescription, Date startDate, Date endDate){
+        Session session = new Session(theme, sessionDescription, startDate, endDate);
+        sessions.add(session);
     }
-
-    public double getRatio(){
-        return campersPerCounselor;
+    //****EDITED BY MIA*****
+    /**
+     * a method allowing the user to retrieve a session via search by index
+     * @param index the index of the session being retrieved
+     * @return the corresponding session
+     */
+    public Session getSession(int index){
+        if(index > sessions.size() || index < 0) {
+            return null;
+        }
+        return sessions.get(index);
     }
+    /**
+     * a method to save the sessions to a JSON file
+     */
+    //TODO how to save session?
+    public void saveSessions(){
 
-    public String getCampID(){
-        return getId().toString();
     }
     
 
@@ -189,6 +175,33 @@ public class Camp {
         }
         workingString += "\n";
         return workingString;
+    }
+
+    public boolean updateCamperCabinHash(Camper camper){
+        boolean isCamperEnrolled = false;
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCamperInSession(camper))
+                isCamperEnrolled = true;
+                break;
+        }
+        if(!isCamperEnrolled){
+            return false;
+        }
+        sessions.get(0).updateCamperCabinHash(camper);
+        return true;
+    }
+    public boolean updateCounselorCabinHash(Counselor counselor){
+        boolean isCounselorEnrolled = false;
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCounselorInSession(counselor))
+                isCounselorEnrolled = true;
+                break;
+        }
+        if(!isCounselorEnrolled){
+            return false;
+        }
+        sessions.get(0).updateCounselorCabinHash(counselor);
+        return true;
     }
 }
 

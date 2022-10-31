@@ -12,15 +12,37 @@ import java.util.UUID;
 public class Session {
     private UUID id;
     private ArrayList<Cabin> cabins;
-    private double sessionNumber;
     private Date startDate;
     private Date endDate;
     private String theme;
+    private String sessionDescription;
+
+    /**
+     * constructor of session
+     * @param sessionNumber which session it is
+     * @param startDate the date the session starts
+     * @param endDate the date the session ends
+     */
+    public Session(String theme, String sessionDescription, Date startDate, Date endDate){
+        this.id = new UUID(0, 0);
+        this.theme = theme;
+        this.sessionDescription = sessionDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    //overloaded
+    public Session (UUID id, String theme, ArrayList<Cabin> cabins, String sessionDescription, Date start, Date end){
+        this.id = id;
+        this.theme = theme;
+        this.sessionDescription = sessionDescription;
+        this.startDate = start;
+        this.endDate = end;
+        this.cabins = cabins;
+    }
 
     public UUID getId() {
         return this.id;
     }
-
     public void setId(UUID id) {
         this.id = id;
     }
@@ -28,7 +50,6 @@ public class Session {
     public String getTheme() {
         return this.theme;
     }
-
     public boolean setTheme(String theme) {
         this.theme = theme;
         return false;
@@ -37,19 +58,8 @@ public class Session {
     public ArrayList<Cabin> getCabins() {
         return cabins;
     }
-
-
     public void setCabins(ArrayList<Cabin> cabins) {
         this.cabins = cabins;
-    }
-
-    public Double getSessionNumber() {
-        return (Double)this.sessionNumber;
-    }
-
-    public boolean setSessionNumber(int index) {
-        this.sessionNumber = index + 1;
-        return true;
     }
 
     public Date getStartDate() {
@@ -59,7 +69,6 @@ public class Session {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(startDate);
     }
-
     public boolean setStartDate(Date startDate) {
         if(startDate != null){
             this.startDate = startDate;
@@ -71,12 +80,10 @@ public class Session {
     public Date getEndDate() {
         return this.endDate;
     }
-
     public String getStrEnd() {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(endDate);
     }
-
     public boolean setEndDate(Date endDate) {
         if(endDate != null){
             this.endDate = endDate;
@@ -84,29 +91,22 @@ public class Session {
         }
         return false;
     }
-    /**
-     * constructor of session
-     * @param sessionNumber which session it is
-     * @param startDate the date the session starts
-     * @param endDate the date the session ends
-     */
-    public Session(String theme, double sessionNumber, Date startDate, Date endDate){
-        this.theme = theme;
-        this.sessionNumber = sessionNumber;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public boolean setDescription(String change) {
+        this.sessionDescription = change;
+        return true;
     }
-    
-    //overloaded
-    public Session (UUID id, String theme, ArrayList<Cabin> cabins, double sessionNumber, Date start, Date end){
-        this.id = id;
-        this.theme = theme;
-        this.sessionNumber = sessionNumber;
-        this.startDate = start;
-        this.endDate = end;
-        this.cabins = cabins;
+    public String getDescription() {
+        return this.sessionDescription;
     }
 
+    /**
+     * a method to get a specific cabin
+     * @param index index of the cabin to be retrieved
+     * @return the cabin
+     */
+    public Cabin getCabin(int index){
+        return cabins.get(index);
+    }
     /**
      * a method to add a cabin
      * @param cabin the cabin to be added
@@ -121,14 +121,6 @@ public class Session {
     public void removeCabin(Cabin cabin){
         cabins.remove(cabin);
     }
-    /**
-     * a method to get a specific cabin
-     * @param index index of the cabin to be retrieved
-     * @return the cabin
-     */
-    public Cabin getCabin(int index){
-        return cabins.get(index);
-    }
 
     //talk to nat
     public Cabin getCabinByUUID(UUID id){
@@ -138,35 +130,34 @@ public class Session {
         }
         return null;
     }
-
     public UUID getID() {
         return id;
     }
-
     public String getSessionID(){
         return getID().toString();
     }
+
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
-        workingString += id + "\n";
-        workingString += String.valueOf(sessionNumber) + "\n" + dateFormat.format(startDate) + "\n" + dateFormat.format(endDate) + "\n" + theme;
+        workingString += "Session " + theme + ":" + dateFormat.format(startDate) + dateFormat.format(endDate) + "\n";
         return workingString;
     }
 
     public Cabin placeCamper(Camper camper){
         for(int i=0; i<cabins.size(); i++){
-            if(cabins.get(i).getMinAge() <= camper.getAge() <= cabins.get(i).getMaxAge() && !cabins.get(i).isFull()){
+            int minAge = (int) cabins.get(i).getMinAge();
+            int maxAge = (int) cabins.get(i).getMaxAge();
+            if((minAge <= camper.getAge() && camper.getAge() <= maxAge && !cabins.get(i).isFull())){
                 cabins.get(i).addCamper(camper);
                 return cabins.get(i);
             }
         }
         return null;
     }
-
     public Cabin placeCounselor(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
-            if(cabins.get(i).getMinAge() <= counselor.getAge() <= cabins.get(i).getMaxAge() && !cabins.get(i).hasCounselor()){
+            if(!cabins.get(i).hasCounselor()){
                 cabins.get(i).setCounselor(counselor);
                 return cabins.get(i);
             }
@@ -181,12 +172,24 @@ public class Session {
         }
         return false;
     }
-
     public boolean isCounselorInSession(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCounselor(counselor))
                 return true;
         }
         return false;
+    }
+
+    public void updateCamperCabinHash(Camper camper) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCamper(camper))
+                cabins.get(i).updateCampersCabinHashes(camper, this);
+        }
+    }
+    public void updateCounselorCabinHash(Counselor counselor) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCounselor(counselor))
+                cabins.get(i).updateCounselorsCabinHashes(counselor, this);
+        }
     }
 }

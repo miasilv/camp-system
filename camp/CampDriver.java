@@ -42,14 +42,22 @@ public class CampDriver {
 	
 	//session instance variables
 	private static final String THEME = "theme";
-	private static final String SESS_NUM = "sessNum"; //can also be used in Guardian
+	private static final String SESS_DESCR = "session description"; 
 	private static final String START_DATE = "startD";
 	private static final String END_DATE = "endD";
+
+	//cabin instance variables
+    private static final String MAX_AGE = "max age";
+    private static final String MIN_AGE = "min age";
+    private static final String NUM_BEDS = "number of beds";
 
 	//user instance variables
 	private static final String EMAIL = "email"; //can also be used for Contact
 	private static final String PHONE = "phoneNum"; //can also be used for Contact
 	private static final String PASSWORD = "password";
+
+	//Guardian
+	private static final String SESS_NUM = "total number of sessions";
 
 	//counselor instance variables
 	private static final String BIO = "bio";
@@ -208,7 +216,7 @@ public class CampDriver {
 					break;
 
 				case 2: //Session List
-					displaySessionList(CAMP);
+					displaySessionList();
 					break;
 
 				case 3: //Campers per Counselor
@@ -310,11 +318,7 @@ public class CampDriver {
 				}
 
 				System.out.print(facade.getCampActivities().get(choice));
-				String change = setStringInformation(ACTIVITIES);
-				if(facade.removeCampActivity(choice).isEmpty() && !facade.addCampActivity(change)) {
-					System.out.println("Something went wrong, unable to change");
-					in.nextLine();
-				}
+				facade.getCampActivities().set(choice, setStringInformation(ACTIVITIES));
 				break;
         	}
 		}
@@ -392,8 +396,8 @@ public class CampDriver {
 	private void displayFAQ() {
 		while(true) {
 			clearOptions();
-			options.add(facade.getFAQString(QUESTION));
-			options.add(facade.getFAQString(ANSWER));
+			options.add("Question: " + facade.getFAQString(QUESTION));
+			options.add("Answer: " + facade.getFAQString(ANSWER));
 			options.add("Return");
 			options.add("Quit");
 
@@ -447,20 +451,13 @@ public class CampDriver {
 	}
 
 	/**
-	 * Displays a Session List
-	 * @param classFrom is the class the sessions currently come from (in this instance, either CAMP or CAMPER)
+	 * Displays the session list found in camp
 	 */
-	private void displaySessionList(String classFrom) {
+	private void displaySessionList() {
 		while(true) {
 			clearOptions();
-			if(classFrom.equals(CAMP)) {
-				for(int i = 0; i < facade.getCampSessions().size(); i++) {
-					options.add(facade.getCampSessions().get(i).toString());
-				}
-			}
-			else {
-				System.out.println("Something went wrong");
-				return;
+			for(int i = 0; i < facade.getCampSessions().size(); i++) {
+				options.add(facade.getCampSessions().get(i).toString());
 			}
 
 			options.add("Add a new Session");
@@ -484,7 +481,7 @@ public class CampDriver {
 			}
 
 			if(choice == options.size() - 3) { //the user wants to remove a Session
-				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					break;
@@ -492,52 +489,39 @@ public class CampDriver {
 
 				System.out.println("Which session do you want to delete?");
 				int num = getNum();
-				if(user instanceof Guardian && facade.removeCamperSession(num) == null) {
+				if(facade.removeCampSession(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					break;
 				}
-				if(user instanceof Director && facade.removeCampSession(num) == null) {
-					System.out.println("Something went wrong, unable to remove");
-					in.nextLine();
-					break;
-				}
+				System.out.println("Removed session");
 				break;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add a Session
-				if(!(classFrom.equals(CAMP) && user instanceof Director) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
+				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to view/edit this.");
 					in.nextLine();
 					break;
 				}
-				createSession(classFrom);
+				createSession();
 				break;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Session
-				if(!classFrom.equals(CAMP) || !(classFrom.equals(CAMPER) && user instanceof Guardian)) {
-					System.out.println("You do not have permission to view/edit this.");
-					in.nextLine();
-					break;
-				}
-
-				facade.updateSession(choice, classFrom);
+				facade.updateSession(choice);
 				displaySessionInformation();
 				break;
         	}
 		}
 	}
 
-	/**
-	 * Displays a Session
-	 */
 	private void displaySessionInformation() {
 		while(true) {			
 			//updating options
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
-			options.add("Session Number" + facade.getSessionInt(SESS_NUM));
+			options.add("Session Descripton: " + facade.getSessionString(SESS_DESCR));
 			options.add("Start Date:" + facade.getSessionDate(START_DATE));
 			options.add("End Date: " + facade.getSessionDate(END_DATE));
 			options.add("Cabins"); 
@@ -584,13 +568,14 @@ public class CampDriver {
 					}
 					
 					clear();
-					System.out.println("Old " + SESS_NUM + ": " + facade.getCampDouble(SESS_NUM));
-					int num = setIntInformation(SESS_NUM);
-					if(!(num == -1)) {
-						if(!facade.setSessionInt(SESS_NUM, num)) {
+					System.out.println("Old " + SESS_DESCR + ": " + facade.getCampDouble(SESS_DESCR));
+					String change2 = setStringInformation(SESS_DESCR);
+					if(!(change2 == null)) {
+						if(!facade.setSessionString(SESS_DESCR, change2)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
 					}
+					System.out.println("Sorry, somethig went wrong, unable to edit");
 					break;
 
 				case 2: //Start Date
@@ -626,18 +611,231 @@ public class CampDriver {
 					break;
 
 				case 4: //Cabin List
-					displayCabinInformation();
+					displayCabinList();
 					break;
 
 			}
 		}
 	}
 
-	private void displayCabinInformation() {
+	private void displayCabinList() {
+		ArrayList<Cabin> cabins = facade.getSessionCabinList();
+		
 		while(true) {
-			//TODO
+			//updating options
+			clearOptions();
+			for(int i = 0; i < cabins.size(); i++) {
+				options.add(cabins.get(i).toString()); 
+			}
+			options.add("Add a new Cabin");
+			options.add("Remove an existing Cabin");
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number
+			clear();
+			System.out.println("***** Cabins *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			if(choice == options.size() - 3) { //the user wants to remove a Cabin
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				System.out.println("Which cabin do you want to delete?");
+				int num = getNum();
+				if(facade.removeSessionCabin(num) == null) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+				}
+				break;
+			}
+
+			if(choice == options.size() -4) { //the user wants to add an FAQ
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+				createCabin();
+				break;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing cabin
+				facade.updateFAQ(choice);
+				displayCabinInformation();
+				break;
+        	}
 		}
 	}
+
+	private void displayCabinInformation() {
+		while(true) {
+			clearOptions();
+			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
+			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
+			options.add("Number of beds: " + facade.getCabinInt(NUM_BEDS));
+			options.add("Counselor: " + facade.getCabinCounselor());
+			options.add("Campers");
+			options.add("Schedule");
+			options.add("Return");
+			options.add("Quit");
+
+			clear();
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			switch(choice) {
+				case 0: //min age
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + MIN_AGE + ": " + facade.getCabinInt(MIN_AGE));
+					int num = setIntInformation(MIN_AGE);
+					if(num == -1) {
+						if(!facade.setCabinInt(MIN_AGE, num)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 1: //max age
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+			
+					clear();
+					System.out.println("Old " + MAX_AGE + ": " + facade.getCabinInt(MAX_AGE));
+					int num2 = setIntInformation(MAX_AGE);
+					if(num2 == -1) {
+						if(!facade.setCabinInt(MAX_AGE, num2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 2: //bed numbers
+					if(!(user instanceof Director)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+			
+					clear();
+					System.out.println("Old " + NUM_BEDS + ": " + facade.getCabinInt(NUM_BEDS));
+					int num3 = setIntInformation(NUM_BEDS);
+					if(num3 == -1) {
+						if(!facade.setCabinInt(NUM_BEDS, num3)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 3: //counselor				
+					clear();
+					System.out.println(facade.getCabinCounselor().toString());
+
+					if(user instanceof Director) {
+						System.out.println("would you like to change the counselor? (y/n)");
+						if(in.nextLine().equalsIgnoreCase("y")) {
+							ArrayList<Counselor> counselors = facade.getAllCounselors();
+							for(int i = 0; i < counselors.size(); i++) {
+								System.out.print((i + 1) + ": " + counselors.get(i) + " ");
+							}
+							System.out.println("\nWhich Cousnelor are you putting into this cabin?");
+							int choice2 = getNum();
+							facade.setCabinCounselor(counselors.get(choice2));
+						}
+					}
+					break;
+				
+				case 4: //campers
+					displayCamperList(CABIN);
+					break;
+
+				case 5: //schedule
+					displayScheduleDays();
+					break;
+			}
+		}
+	}
+
+	private void displayScheduleDays() {
+		while(true) {
+			clearOptions();
+			options.add("Monday");
+			options.add("Tuesday");
+			options.add("Wednesday");
+			options.add("Thursday");
+			options.add("Friday");
+			options.add("Saturday");
+			options.add("Sunday");
+			
+			clear();			
+			int choice3 = getChoice();
+			
+			switch(choice3) {
+				case 0:
+					displaySchedule(Day.MONDAY);
+					break;
+				
+				case 1:
+					displaySchedule(Day.TUESDAY);
+					break;
+				
+				case 2:
+					displaySchedule(Day.WEDNESDAY);
+					break;
+				
+				case 3:
+					displaySchedule(Day.THURSDAY);
+					break;
+				
+				case 4:
+					displaySchedule(Day.FRIDAY);
+					break;
+				
+				case 5:
+					displaySchedule(Day.SATURDAY);
+					break;
+				
+				case 6:
+					displaySchedule(Day.SUNDAY);
+					break;
+			}
+
+		}
+	}
+
+	private void displaySchedule(Day day) {
+		facade.updateSchedule(day);
+		//TODO
+	}
+
 
 	private void displayDirectorPortal() {
 		while(true) {
@@ -731,6 +929,7 @@ public class CampDriver {
 			options.add("Bio: " + facade.getCounselorString(BIO));
 			options.add("Birthday: " + facade.getCounselorDate(BIRTHDAY));
 			options.add("Allergies");
+			options.add("Sessions");
 			options.add("Emergency Contacts");			
 			options.add("Return");
 			options.add("Quit");
@@ -826,13 +1025,22 @@ public class CampDriver {
 				case 6: //Allergies
 					displayAllergyList(COUNSELOR);
 					break;
+
+				case 7: //sessionns
+					displaySessionHash(COUNSELOR);
+					break;
 				
-				case 7: //emergency contacts
+				case 8: //emergency contacts
 					displayEmergencyContactHash(COUNSELOR);
 					break;
 			}
 		}
 	}
+
+	private void displaySessionHash(String classFrom) {
+	
+	}
+
 
 	private void displayGuardianPortal() {
 		while(true) {
@@ -930,30 +1138,264 @@ public class CampDriver {
 	}
 
 	private void displayCamperList(String classFrom) {
+		ArrayList<Camper> campers = new ArrayList<Camper>();
+		
+		if(classFrom.equals(GUARDIAN)) {
+			campers = facade.getGuardianCamperList();
+		}
+		else if(classFrom.equals(CABIN)) {
+			campers = facade.getCabinCamperList();
+		}
+		else {
+			System.out.println("Something went wrong");
+			return;
+		}
+		
 		while(true) {
-			//TODO
+			//updating options
+			clearOptions();
+			for(int i = 0; i < campers.size(); i++) {
+				options.add(campers.get(i).toString()); 
+			}
+			options.add("Add a new Camper");
+			options.add("Remove an existing Camper");
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number
+			clear();
+			System.out.println("***** Campers *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			if(choice == options.size() - 3) { //the user wants to remove a Camper
+				if(!(user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				System.out.println("Which camper do you want to delete?");
+				int num = getNum();
+				if(facade.removeGuardianCamper(num) == null) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+				}
+				break;
+			}
+
+			if(choice == options.size() -4) { //the user wants to add a Camper
+				if(!(user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+				createCamper();
+				break;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Camper
+				facade.updateCamper(classFrom, choice);
+				displayCamperProfile();
+				break;
+        	}
 		}
 	}
+
 
 	private void displayCamperProfile() {
 		while(true) {
-			//TODO
+			clearOptions();
+			options.add("Name: " + facade.getCamperString(NAME));
+			options.add("Birthday: " + facade.getCamperDate(BIRTHDAY));
+			options.add("Medications");
+			options.add("Allergies");
+			options.add("Sessions");
+			options.add("Emergency Contacts");
+			options.add("Return");
+			options.add("Quit");
+
+			clear();
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			switch(choice) {
+				case 0: //Name
+					if(!(user instanceof Guardian)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getCamperString(NAME));
+					String change = setStringInformation(NAME);
+					if(change == null) {
+						if(!facade.setCamperString(NAME, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+				
+				case 1: //Birthday
+					if(!(user instanceof Guardian)) { 
+						System.out.println("You do not have permission to edit this.");
+						break;
+					}
+			
+					clear();
+					System.out.println("Old " + BIRTHDAY + ": " + facade.getCamperDate(BIRTHDAY));
+					Date date = setDateInformation(BIRTHDAY);
+					if(date == null) {
+						if(!facade.setCamperDate(BIRTHDAY, date)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+						}
+					}
+					break;
+
+				case 2: //Medications
+					displayMedicationList();
+					break;
+
+				case 3: //allergies
+					displayAllergyList(CAMPER);
+					break;
+
+				case 4: //Sessions
+					displaySessionHash(CAMPER);
+
+				case 5: //Emergency Contacts
+					displayEmergencyContactHash(CAMPER);
+					
+			}
 		}
 	}
 
-	private void displayAllergyList(String classFrom) {
+	private void displayMedicationList() {
 		//TODO
 	}
 
+	private void displayAllergyList(String classFrom) {
+		ArrayList<String> allergies = new ArrayList<String>();
+		if(classFrom.equals(CAMPER)) {
+			allergies = facade.getCamperAllergyList();
+		}
+		else if (classFrom.equals(COUNSELOR)) {
+			allergies = facade.getCounselorAllergyList();
+		}
+		else {
+			System.out.println("Something went wrong)");
+			return;
+		}
+
+		while(true) {
+			//updating options
+			clearOptions();
+			for(int i = 0; i < allergies.size(); i++) {
+				options.add(allergies.get(i));
+			}
+			options.add("Add a new Allergy");
+			options.add("Remove an existing Allergy");
+			options.add("Return");
+			options.add("Quit");
+
+			//displays choices and checks number is quit/return
+			clear();
+			System.out.println("***** Camp Allergies *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+			if(choice == options.size() - 3) { //the user wants to remove an Allergy
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				System.out.println("Which allergy do you want to delete?");
+				int num = getNum();
+				if(user instanceof Guardian && facade.removeCamperAllergy(num) == null) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					break;
+				}
+				if(user instanceof Counselor && facade.removeCounselorAllergy(num) == null) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					break;
+				}
+				break;
+			}
+			
+			if(choice == options.size() -4) { //the user wants to add an Activity
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				System.out.println("What activity do you want to add?");
+				if(!facade.addCampActivity(in.nextLine())) {
+					System.out.println("Something went wrong, unable to add");
+					in.nextLine();
+				}
+				break;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing activity
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					break;
+				}
+
+				if(user instanceof Guardian) {
+					System.out.println(facade.getCamperAllergyList().get(choice));
+					facade.getCamperAllergyList().set(choice, setStringInformation(ALLERGIES));
+				}
+				else if(user instanceof Counselor) {
+					System.out.println(facade.getCounselorAllergyList().get(choice));
+					facade.getCounselorAllergyList().set(choice, setStringInformation(ALLERGIES));
+				}
+				else {
+					System.out.println("Something went wrong");
+				}
+				break;
+        	}
+		}
+	}
+
 	private void displayEmergencyContactHash(String classFrom) {
-		//TODO
+		
 	}
 
 
 	//------------------------------------------- Methods that deal with creating new objects/users -----------------------------------------------------
-	/**
-	 * Sign in display
-	 */
 	private void signIn() {
 		clear();
 		System.out.print("Enter your email: ");
@@ -970,9 +1412,6 @@ public class CampDriver {
 		return;
 	}
 
-	/**
-	 * Creates an FAQ Object
-	 */
 	private void createFAQ() {
 		System.out.println("What is the question of the new faq?");
 		String question = in.nextLine();
@@ -984,36 +1423,30 @@ public class CampDriver {
 		}
 	}
 
-	/**
-	 * Creates a Session Object
-	 */
-	private void createSession(String classFrom) {
+	private void createSession() {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
 		System.out.println("What would you like the session number to be?");
-		double sessionNumber = (double)getNum();
+		String description = in.nextLine();
 		System.out.println("What would you like the start date to be?");
 		Date startDate = getDate(in.nextLine());
 		System.out.println("What would you like the end date to be?");
 		Date endDate = getDate(in.nextLine());
-		if(classFrom.equals(CAMP)) {
-			if(!facade.addCampSession(theme, sessionNumber, startDate, endDate)) {
-				System.out.println("Something went wrong, unable to add");
-				in.nextLine();
-				return;
-			}
+		if(!facade.addCampSession(theme, description, startDate, endDate)) {
+			System.out.println("Something went wrong, unable to add");
+			in.nextLine();
+			return;
 		}
-		if(classFrom.equals(CAMPER)) {
-			if(!facade.addCamperSession(theme, sessionNumber, startDate, endDate)) {
-				System.out.println("Something went wrong, unable to add");
-				in.nextLine();
-				return;
-			}
-		}
-		System.out.println("Something went wrong, unable to add");
-		return;
 	}
 	
+	private void createCabin() {
+		//TODO
+	}
+
+	private void createCamper() {
+		//TODO
+	}
+
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
 	/**
 	 * User inputs a new string to replace a string variable and verifies the change

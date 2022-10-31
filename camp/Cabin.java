@@ -15,6 +15,8 @@ public class Cabin {
     private double beds;
     private double maxAge;
     private double minAge;
+    private ArrayList<String> daysStr;
+    private ArrayList<Day> days;
     
     /**
      * constructor of cabin
@@ -34,62 +36,85 @@ public class Cabin {
         this.maxAge= maxAge;
         this.minAge = minAge; 
         this.cabinID = id;
-        this.schedule = createHash(schedules);
-        
+        this.daysStr = constructDaysStr();
+        this.days = constructDays();
+        this.schedule = createHash(schedules, days);
        
     }
 
-    private static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2) {
+    
+    private ArrayList<Day> constructDays() {
+        ArrayList<Day> days = new ArrayList<Day>();
+        days.add(Day.MONDAY);
+        days.add(Day.TUESDAY);
+        days.add(Day.WEDNESDAY);
+        days.add(Day.THURSDAY);
+        days.add(Day.FRIDAY);
+        days.add(Day.SATURDAY);
+        days.add(Day.SUNDAY);
+
+        return days;
+    }
+    private ArrayList<String> constructDaysStr() {
+        ArrayList<String> daysStr = new ArrayList<String>();
+        daysStr.add("Monday");
+        daysStr.add("Tuesday");
+        daysStr.add("Wednesday");
+        daysStr.add("Thursday");
+        daysStr.add("Friday");
+        daysStr.add("Saturday");
+        daysStr.add("Sunday");
+
+        return daysStr;
+    }
+
+    public ArrayList<String> getDaysStr(){
+        return this.daysStr;
+    }
+
+    public ArrayList<Day> getDays(){
+        return this.days;
+    }
+
+    public String getDayStr(int index){
+        return this.daysStr.get(index);
+    }
+
+    public Day getDays(int index){
+        return this.days.get(index);
+    }
+
+    public static HashMap<Day, Schedule> createHash(ArrayList<Schedule> schedules2, ArrayList<Day> days) {
         HashMap<Day, Schedule> schedule = new HashMap<Day, Schedule>();
-        int i = 0; 
-        Day day = Day.MONDAY;
-        while(i< schedules2.size()){
-            schedule.put(day, schedules2.get(i));
-            i++;
-            if (day.equals(Day.MONDAY)){
-                day = Day.TUESDAY;
-            }
-            if (day.equals(Day.TUESDAY)){
-                day = Day.WEDNESDAY;
-            }
-            if (day.equals(Day.WEDNESDAY)){
-                day = Day.THURSDAY;
-            }
-            if (day.equals(Day.THURSDAY)){
-                day = Day.FRIDAY;
-            }
-            if (day.equals(Day.FRIDAY)){
-                day = Day.SATURDAY;
-            }
-            if (day.equals(Day.SATURDAY)){
-                day = Day.SUNDAY;
-            }
-            if (day.equals(Day.SUNDAY)){
-                day = Day.MONDAY;
-            }
-        }
+
+       for(int i = 0; i< days.size(); i++){
+            schedule.put(days.get(i), schedules2.get(i));
+       }
         return schedule;
     }
 
     public double getMinAge(){
         return minAge;
     }
+    public boolean setMinAge(int minAge) {
+        this.minAge = minAge;
+        return true;
+    }
+
     public double getMaxAge(){
         return maxAge;
     }
+    public boolean setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+        return true;
+    }
+
     public double getBeds(){
         return beds;
     }
-    public void setBeds(int beds) {
+    public boolean setBeds(int beds) {
         this.beds = beds;
-    }
-
-    public void setMaxAge(int maxAge) {
-        this.maxAge = maxAge;
-    }
-
-    public void setMinAge(int minAge) {
-        this.minAge = minAge;
+        return true;
     }
 
     public UUID getID() {
@@ -99,14 +124,10 @@ public class Cabin {
         return getID().toString();
         
     }
-
     public void setCabinID(UUID cabinID) {
         this.cabinID = cabinID;
     }
-    /**
-     * getter of the counselor
-     * @return the counselor
-     */
+
     public Counselor getCounselor(){
         return counselor;
     }
@@ -117,15 +138,21 @@ public class Cabin {
         }
         return false;
      }
-    /**
-     * getter of the campers
-     * @return the list of campers
-     */
+
      public ArrayList<Camper> getCampers(){
         return campers;
     }
     public void setCampers(ArrayList<Camper> campers){
         this.campers = campers;
+    }
+
+    /**
+     * method to get a camper
+     * @param index the index of the camper to be retrieved
+     * @return the camper
+     */
+    public Camper getCamper(int index){
+        return campers.get(index);
     }
     /**
      * method to add a camper to cabin
@@ -141,14 +168,6 @@ public class Cabin {
     public void removeCamper(Camper camper){
         campers.remove(camper);
     }
-    /**
-     * method to get a camper
-     * @param index the index of the camper to be retrieved
-     * @return the camper
-     */
-    public Camper getCamper(int index){
-        return campers.get(index);
-    }
     public boolean hasCamper(Camper camper){
         for(int i=0; i<campers.size(); i++){
             if(campers.get(i).equals(camper))
@@ -161,9 +180,10 @@ public class Cabin {
      * @param day the day of the schedule being grabbed
      * @return the schedule for that day
      */
-    public Schedule getSchedule(Day day){
-        return schedule.get(day);
+    public ArrayList<String> getSchedule(Day day){
+        return schedule.get(day).getActivites();
     }
+
     /**
      * a method to get the entire schedule for the cabin
      * @return the schedule for that cabin
@@ -200,8 +220,6 @@ public class Cabin {
         return false;
     }
 
-    
-
     public String toString(){
         String workingString = "";
         workingString += cabinID + " \n";
@@ -212,5 +230,13 @@ public class Cabin {
         workingString += schedule.toString() + " \n";
         workingString += String.valueOf(beds) + " \n" + String.valueOf(minAge) + " \n" + String.valueOf(maxAge) + " \n";
         return workingString;
+    }
+
+    public void updateCampersCabinHashes(Camper camper, Session session){
+        camper.updateCamperCabinHash(session, this);
+    }
+
+    public void updateCounselorsCabinHashes(Counselor counselor, Session session) {
+        counselor.updateCounselorCabinHash(session, this);
     }
 }

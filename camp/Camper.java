@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 
 public class Camper {
+    SimpleDateFormat dateFormatter;
     private UUID camperID;
     private String name;
     private Date birthday;
@@ -17,6 +21,8 @@ public class Camper {
     private ArrayList<String> notes;
     private HashMap<String, Contact> emergencyContacts;
 
+    private HashMap<Session, Cabin> cabinHash; // i have no idea why camper has a cabin hash?
+
     /**
      * Constructor for the camper class
      * @param name Name of the camper
@@ -25,6 +31,7 @@ public class Camper {
     public Camper(String name, Date birthday) {
         this.name = name;
         this.birthday = birthday;
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     /**
@@ -47,7 +54,7 @@ public class Camper {
         //this.sessions = sessions;
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
-        
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     // getters because Nat needs them:
@@ -63,6 +70,12 @@ public class Camper {
     public UUID getID() {
         return camperID;
     }
+
+    /**
+     * written by natalie
+     * gets a string representation of the campers uuid
+     * @return uuid to string
+     */
     public String getCamperID(){
         return getID().toString();
     }
@@ -75,12 +88,35 @@ public class Camper {
         return birthday;
     }
 
+    /**
+     * written by natalie
+     * gets a string representation of the campers birthdy 
+     * @return a string format of a date
+     */
+    public String getBirthdayStr() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(birthday);
+    }
+
     public ArrayList<Medication> getMedications() {
         return medications;
     }
 
+    /**
+     * written by natalie
+     * gets a string representation of medications for camper
+     * @return medications to string
+     */
+    public String getMedicationsStr(){
+        return medications.toString();
+    }
+
     public ArrayList<String> getAllergies() {
         return allergies;
+    }
+
+    public String getAllergiesStr(){
+        return allergies.toString();
     }
 
     public ArrayList<Session> getSessions() {
@@ -106,6 +142,15 @@ public class Camper {
 
     public HashMap<String, Contact> getEmergencyContacts() {
         return emergencyContacts;
+    }
+
+
+    public String getEmergencyContactsStr() {
+        String writtenSchedule = "";
+        for (String keyValue  : emergencyContacts.keySet()) {
+            writtenSchedule += keyValue + emergencyContacts.get(keyValue) + "\n";
+        }
+        return writtenSchedule + "\n";
     }
 
     /**
@@ -200,4 +245,67 @@ public class Camper {
         return true;
     }
 
+    public HashMap<String, Contact> getCamperContactHash() {
+        return emergencyContacts;
+    }
+
+    public ArrayList<String> getCamperAllergyList() {
+        return allergies;
+    }
+
+    /**
+     * Method to calculate and return the age of the camper
+     * @return The age of the camper (int)
+     */
+    public int getAge() {
+        // convert Date birthday to localDate birthday
+        LocalDate localBirthday = convertToLocalDateViaInstant(birthday);
+        // convert to get age with local dates
+        LocalDate curDate = LocalDate.now();
+        return calculateAge(localBirthday, curDate);
+    }
+
+    /**
+     * Method to convert Date object to LocalDate object
+     * @param dateToConvert Date object to convert
+     * @return LocalDate object
+     */
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    /**
+     * Calculates the time in the period from one LocalDate to another LocalDate
+     * @param birthDate The LocalDate of a birthday
+     * @param todayDate The LocalDate of today
+     * @return The time in the period from
+     */
+    public int calculateAge(LocalDate birthDate, LocalDate todayDate) {
+        if ((birthDate != null) && (todayDate != null)) {
+            return Period.between(birthDate, todayDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    public void addCounselorCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
+    }
+
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return cabinHash;
+    }
+
+    public void removeCounselorCabinHash(Session session) {
+        cabinHash.remove(session);
+    }
+
+    public void updateCamperCabinHash(Session session, Cabin cabin) {
+    }
+
+    public HashMap<Session, Cabin> getCabinHash() {
+        return null;
+    }
 }
