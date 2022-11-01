@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @author Mia Silver
@@ -51,6 +52,9 @@ public class CampDriver {
     private static final String MIN_AGE = "min age";
     private static final String NUM_BEDS = "number of beds";
 
+	//schedule times
+	private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
+	
 	//user instance variables
 	private static final String EMAIL = "email"; //can also be used for Contact
 	private static final String PHONE = "phone number"; //can also be used for Contact
@@ -168,7 +172,7 @@ public class CampDriver {
 	/**
 	 * This method is called when displaying camp instance variables. It includes the name of the camp
 	 * price per session, an array list of sessions, how many campers are per counselor roughly, an array list of faqs
-	 * and an array list of activities offered.
+	 * and an array list of activities offered. You can go into activities, faq, and sessions
 	 */
 	private void displayCampInformation() {
 		while(true) {
@@ -274,13 +278,13 @@ public class CampDriver {
 	}
 
 	/**
-	 * Displays an activity list (only exists in camp currently)
+	 * Displays a list of activities, only the director has access to edit the list of activites
 	 */
 	private void displayActivitiesList() {
 		ArrayList<String> activities = facade.getCampActivities();
 
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < activities.size(); i++) {
 				options.add(activities.get(i));
@@ -290,15 +294,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Camp Activities *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -308,7 +315,7 @@ public class CampDriver {
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("Which activity do you want to delete?");
@@ -317,14 +324,14 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
-				break;
+				continue;
 			}
 			
 			if(choice == options.size() -4) { //the user wants to add an Activity
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("What activity do you want to add?");
@@ -332,31 +339,32 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 				}
-				break;
+				continue;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing activity
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.print(facade.getCampActivities().get(choice));
 				facade.getCampActivities().set(choice, setStringInformation(ACTIVITIES));
-				break;
+				continue;
         	}
 		}
 	}
 
 	/**
-	 * Displays an FAQ list (only exists in camp currently)
+	 * Displays an FAQ list (the display includes question and answer but to edit you must
+	 * go into the faq object)
 	 */
 	private void displayFAQList() {
 		ArrayList<FAQ> faqs = facade.getCampFAQ();
 		
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < faqs.size(); i++) {
 				options.add(faqs.get(i).toString()); 
@@ -366,15 +374,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** FAQs *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -385,7 +396,7 @@ public class CampDriver {
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("Which faq do you want to delete?");
@@ -394,51 +405,56 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
-				break;
+				continue;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add an FAQ
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 				createFAQ();
-				break;
+				continue;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing FAQ
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 				
 				facade.updateFAQ(choice);
 				displayFAQ();
-				break;
+				continue;
         	}
 		}
 	}
 
 	/**
-	 * Displays an FAQ
+	 * Displays an FAQ object including the question and answer strings
 	 */
 	private void displayFAQ() {
 		while(true) {
+			//updating options----------------------------------------
 			clearOptions();
 			options.add("Question: " + facade.getFAQString(QUESTION));
 			options.add("Answer: " + facade.getFAQString(ANSWER));
 			options.add("Return");
 			options.add("Quit");
 
+			//printing choices and getting choice----------------------------------------
 			clear();
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO SAVE
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -482,29 +498,33 @@ public class CampDriver {
 	}
 
 	/**
-	 * Displays the session list found in camp
+	 * Displays the array list of sessions inside the camp object.
+	 * The session shows the theme, dates, and description
 	 */
 	private void displaySessionList() {
 		while(true) {
+			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < facade.getCampSessions().size(); i++) {
 				options.add("Session " + (i + 1) + "- " + facade.getCampSessions().get(i).toString());
 			}
-
 			options.add("Add a new Session");
 			options.add("Remove an existing Session");
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Sessions *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO Save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -515,7 +535,7 @@ public class CampDriver {
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("Which session do you want to delete?");
@@ -523,39 +543,43 @@ public class CampDriver {
 				if(facade.removeCampSession(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
-					break;
+					continue;
 				}
 				System.out.println("Removed session");
-				break;
+				continue;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add a Session
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to view/edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 				createSession();
-				break;
+				continue;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Session
 				if(user == null) {
 					System.out.println("You do not have permission to view/edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 				
 				facade.updateSession(choice);
 				displaySessionInformation();
-				break;
+				continue;
         	}
 		}
 	}
 
+	/**
+	 * Displays a session object's instance variables, including theme, description, start date, end date,
+	 * and cabins. You can go into cabins
+	 */
 	private void displaySessionInformation() {
 		while(true) {			
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
 			options.add("Session Descripton: " + facade.getSessionString(SESS_DESCR));
@@ -565,22 +589,24 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Session Information *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
 				return;
 			}
 
-			//switches between choices
 			switch(choice) {
 				case 0: //Theme
 					if(!(user instanceof Director)) { 
@@ -648,18 +674,26 @@ public class CampDriver {
 					break;
 
 				case 4: //Cabin List
+					if(!(user instanceof Director)) {
+						System.out.println("Sorry, you don't have permission to view this.");
+						in.nextLine();
+						break;
+					}
+				
 					displayCabinList();
 					break;
-
 			}
 		}
 	}
 
+	/**
+	 * Displays the array list of cabins inside the session object.
+	 * The cabin shows the cabin number and also the age range of campers in that cabin.
+	 */
 	private void displayCabinList() {
 		ArrayList<Cabin> cabins = facade.getSessionCabinList();
-		
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < cabins.size(); i++) {
 				options.add("Cabin " + (i + 1) + ": " + cabins.get(i).toString()); 
@@ -669,15 +703,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Cabins *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -688,7 +725,7 @@ public class CampDriver {
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("Which cabin do you want to delete?");
@@ -697,29 +734,41 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
-				break;
+				continue;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add a Cabin
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 				createCabin();
-				break;
+				continue;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing cabin
+				if(!(user instanceof Director)) {
+					System.out.println("You do not have permission to view this");
+					in.nextLine();
+					continue;
+				}
+				
 				facade.updateCabin(choice);
 				displayCabinInformation();
-				break;
+				continue;
         	}
 		}
 	}
 
+	/**
+	 * Displays a cabin object's instance variables, including min age, max age, number of beds, 
+	 * the counselor for this cabin, the campers in the cabin, and the schedule. You can go
+	 * into campers and schedule
+	 */
 	private void displayCabinInformation() {
 		while(true) {
+			//updating options----------------------------------------
 			clearOptions();
 			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
 			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
@@ -730,13 +779,17 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
+			//printing choices and getting choice----------------------------------------
 			clear();
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -793,20 +846,23 @@ public class CampDriver {
 					break;
 
 				case 3: //counselor				
+					if(!(user instanceof Director)) {
+						System.out.println("You don't have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+					
 					clear();
 					System.out.println(facade.getCabinCounselor().toString());
-
-					if(user instanceof Director) {
-						System.out.println("would you like to change the counselor? (y/n)");
-						if(in.nextLine().equalsIgnoreCase("y")) {
-							ArrayList<Counselor> counselors = facade.getAllCounselors();
-							for(int i = 0; i < counselors.size(); i++) {
-								System.out.print((i + 1) + ": " + counselors.get(i) + " ");
-							}
-							System.out.println("\nWhich Cousnelor are you putting into this cabin?");
-							int choice2 = getNum();
-							facade.setCabinCounselor(counselors.get(choice2));
+					System.out.println("would you like to change the counselor? (y/n)");
+					if(in.nextLine().equalsIgnoreCase("y")) {
+						ArrayList<Counselor> counselors = facade.getAllCounselors();
+						for(int i = 0; i < counselors.size(); i++) {
+							System.out.print((i + 1) + ": " + counselors.get(i) + " ");
 						}
+						System.out.println("\nWhich Cousnelor are you putting into this cabin?");
+						int choice2 = getNum();
+						facade.setCabinCounselor(counselors.get(choice2));
 					}
 					break;
 				
@@ -821,8 +877,12 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Displays the days of the week for the user to choose from to see that specific cabin's schedule
+	 */
 	private void displayScheduleDays() {
 		while(true) {
+			//updating options----------------------------------------
 			clearOptions();
 			options.add("Monday");
 			options.add("Tuesday");
@@ -831,11 +891,27 @@ public class CampDriver {
 			options.add("Friday");
 			options.add("Saturday");
 			options.add("Sunday");
+			options.add("Return");
+			options.add("Quit");
 			
+			//printing choices and getting choice----------------------------------------
 			clear();			
-			int choice3 = getChoice();
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
 			
-			switch(choice3) {
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+			
+			switch(choice) {
 				case 0:
 					displaySchedule(Day.MONDAY);
 					break;
@@ -868,15 +944,136 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Displays the schedule of a specific day for a specific cabin
+	 * @param day the day of the schedule being displayed
+	 */
 	private void displaySchedule(Day day) {
 		facade.updateSchedule(day);
-		//TODO
+		HashMap<String, String> schedule = facade.getSchedule();
+		
+		while(true) {
+			//updating options----------------------------------------
+			clearOptions();
+			for(int i = 0; i < schedule.size(); i++) {
+				options.add(times[i] + " " + schedule.get(times[i]));
+			}
+			options.add("Return");
+			options.add("Quit");
+
+			//printing choices and getting choice----------------------------------------
+			clear();
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			ArrayList<String> activities = facade.getCampActivities();
+			switch(choice) {
+				case 0: //wake up
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+				
+				case 1: //breakfast
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+				
+				case 2: //activity 1
+					if(!(user instanceof Director)) {
+						System.out.println("Sorry, you do not have permission to edit this.");
+						break;
+					}
+
+					clear();
+					System.out.println(options.get(choice));
+					System.out.println("would you like to change the activity? (y/n)");
+					if(in.nextLine().equalsIgnoreCase("y")) {
+						for(int i = 0; i < activities.size(); i++) {
+							System.out.print((i + 1) + ": " + activities.get(i) + " ");
+						}
+						System.out.println("\nWhich Cousnelor are you putting into this cabin?");
+						int choice2 = getNum();
+						facade.addScheduleActivity(times[choice], activities.get(choice2));
+					}
+					break;
+
+				case 3: //lunch
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+
+				case 4: //activity 2
+					if(!(user instanceof Director)) {
+						System.out.println("Sorry, you do not have permission to edit this.");
+						break;
+					}
+
+					clear();
+					System.out.println(options.get(choice));
+					System.out.println("would you like to change the activity? (y/n)");
+					if(in.nextLine().equalsIgnoreCase("y")) {
+						for(int i = 0; i < activities.size(); i++) {
+							System.out.print((i + 1) + ": " + activities.get(i) + " ");
+						}
+						System.out.println("\nWhich Cousnelor are you putting into this cabin?");
+						int choice2 = getNum();
+						facade.addScheduleActivity(times[choice], activities.get(choice2));
+					}
+					break;
+
+				case 5: //afternoon snack
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+
+				case 6: //activity 3
+					if(!(user instanceof Director)) {
+						System.out.println("Sorry, you do not have permission to edit this.");
+						break;
+					}
+
+					clear();
+					System.out.println(options.get(choice));
+					System.out.println("would you like to change the activity? (y/n)");
+					if(in.nextLine().equalsIgnoreCase("y")) {
+						for(int i = 0; i < activities.size(); i++) {
+							System.out.print((i + 1) + ": " + activities.get(i) + " ");
+						}
+						System.out.println("\nWhich Cousnelor are you putting into this cabin?");
+						int choice2 = getNum();
+						facade.addScheduleActivity(times[choice], activities.get(choice2));
+					}
+					break;
+
+				case 7: //dinner
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+
+				case 8: //evening activity
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+
+				case 9: //lights out
+					System.out.println("Sorry, you do not have permission to edit this.");
+					break;
+			}
+		}		
 	}
 
-
+	/**
+	 * Displays the user portal for a director, including name, email, phone, and password
+	 */
 	private void displayDirectorPortal() {
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			facade.updateDirector();
 			clearOptions();
 			options.add("Name: " + facade.getUserString(NAME));
@@ -886,15 +1083,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** User Portal (Director) *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -954,9 +1154,14 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Displays the user portal for a counselor, including name, email, phone, password,
+	 * bio, birthday, allergies, a session-cabin hash, and emergency contacts. 
+	 * You can go into allergies, session-cabin hash, and emergency contacts.
+	 */
 	private void displayCounselorPortal() {
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			facade.updateCounselor(USER);
 			clearOptions();
 			options.add("Name: " + facade.getUserString(NAME));
@@ -971,15 +1176,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** User Portal (Counselor) *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1074,14 +1282,13 @@ public class CampDriver {
 		}
 	}
 
-	private void displaySessionHash(String classFrom) {
-	
-	}
-
-
+	/**
+	 * Displays the user portal for a guardian, including name, email, phone, password,
+	 * session number, price to pay, and camperlist. You can go into camper list.
+	 */
 	private void displayGuardianPortal() {
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			facade.updateGuardian();
 			clearOptions();
 			options.add("Name: " + facade.getUserString(NAME));
@@ -1094,13 +1301,15 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** User Portal (Guardian) *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
 				System.exit(0);
@@ -1109,7 +1318,6 @@ public class CampDriver {
 				return;
 			}
 
-			//switches between choices
 			switch(choice) {
 				case 0: //Name					
 					clear();
@@ -1174,6 +1382,10 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Displays a list of campers. This can either come from a cabin or a guardian. 
+	 * @param classFrom the class that the camper list is coming from, either GUARDIAN or CABIN
+	 */
 	private void displayCamperList(String classFrom) {
 		ArrayList<Camper> campers = new ArrayList<Camper>();
 		
@@ -1189,7 +1401,7 @@ public class CampDriver {
 		}
 		
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < campers.size(); i++) {
 				options.add(campers.get(i).toString()); 
@@ -1199,15 +1411,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Campers *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1218,7 +1433,7 @@ public class CampDriver {
 				if(!(user instanceof Guardian)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("Which camper do you want to delete?");
@@ -1227,30 +1442,34 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
-				break;
+				continue;
 			}
 
 			if(choice == options.size() -4) { //the user wants to add a Camper
 				if(!(user instanceof Guardian)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 				createCamper();
-				break;
+				continue;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Camper
 				facade.updateCamper(classFrom, choice);
 				displayCamperProfile();
-				break;
+				continue;
         	}
 		}
 	}
 
-
+	/**
+	 * Displays a camper object's instance variables, including name, birthday, medications, allergies,
+	 * a session-cabin hash, and emergency contacts. You can go into everything after birthday.
+	 */
 	private void displayCamperProfile() {
 		while(true) {
+			//updating options----------------------------------------
 			clearOptions();
 			options.add("Name: " + facade.getCamperString(NAME));
 			options.add("Birthday: " + facade.getCamperDate(BIRTHDAY));
@@ -1261,13 +1480,17 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
+			//printing choices and getting choice----------------------------------------
 			clear();
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1325,10 +1548,25 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Displays a list of medications in a camper object
+	 */
 	private void displayMedicationList() {
 		//TODO
 	}
 
+	private void displayMedication() {
+		//TODO
+	}
+
+	private void displaySessionHash(String classFrom) {
+		//TODO
+	}
+
+	/**
+	 * Displays an allergy list of either a counselor or camper
+	 * @param classFrom the class the allergy list is coming from, either CAMPER or COUNSELOR
+	 */
 	private void displayAllergyList(String classFrom) {
 		ArrayList<String> allergies = new ArrayList<String>();
 		if(classFrom.equals(CAMPER)) {
@@ -1343,7 +1581,7 @@ public class CampDriver {
 		}
 
 		while(true) {
-			//updating options
+			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < allergies.size(); i++) {
 				options.add(allergies.get(i));
@@ -1353,15 +1591,18 @@ public class CampDriver {
 			options.add("Return");
 			options.add("Quit");
 
-			//displays choices and checks number is quit/return
+			//printing choices and getting choice----------------------------------------
 			clear();
 			System.out.println("***** Camp Allergies *****");
 			int choice = getChoice();
 			if(choice == -1) {
 				continue;
 			}
+			
+			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//TODO save
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1371,29 +1612,29 @@ public class CampDriver {
 				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("Which allergy do you want to delete?");
 				int num = getNum();
-				if(user instanceof Guardian && facade.removeCamperAllergy(num) == null) {
+				if(user instanceof Guardian && facade.removeCamperAllergy(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
-					break;
+					continue;
 				}
 				if(user instanceof Counselor && facade.removeCounselorAllergy(num) == null) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
-					break;
+					continue;
 				}
-				break;
+				continue;
 			}
 			
 			if(choice == options.size() -4) { //the user wants to add an Activity
 				if(!(user instanceof Director)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				System.out.println("What activity do you want to add?");
@@ -1401,14 +1642,14 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 				}
-				break;
+				continue;
 			}
 
-			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing activity
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing allergy
 				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
-					break;
+					continue;
 				}
 
 				if(user instanceof Guardian) {
@@ -1422,17 +1663,116 @@ public class CampDriver {
 				else {
 					System.out.println("Something went wrong");
 				}
-				break;
+				continue;
         	}
 		}
 	}
 
 	private void displayEmergencyContactHash(String classFrom) {
-		
+		HashMap<String, Contact> eContacts;
+		if(classFrom.equals(CAMPER)) {
+			eContacts = facade.getCamperContactHash();
+		}
+		else if (classFrom.equals(COUNSELOR)) {
+			eContacts = facade.getCounselorContactHash();
+		}
+		else {
+			System.out.println("Something went wrong)");
+			return;
+		}
+
+		while(true) {
+			//updating options----------------------------------------
+			clearOptions();
+			Object[] key = eContacts.keySet().toArray();
+			for(int i = 0; i < eContacts.size(); i++) {
+				options.add(key[i].toString() + ": " + eContacts.get(key[i].toString()));
+			}
+			options.add("Add a new Emergency Contact");
+			options.add("Remove an existing Emergency Contact");
+			options.add("Return");
+			options.add("Quit");
+
+			//printing choices and getting choice----------------------------------------
+			clear();
+			System.out.println("***** Emergency Contacts *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+			if(choice == options.size() - 3) { //the user wants to remove an Emergency Contact
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				System.out.println("Which Emergency Contact do you want to delete (enter the relationship)?");
+				String relationship = in.nextLine();
+				if(user instanceof Guardian && facade.removeCamperContact(relationship)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					continue;
+				}
+				if(user instanceof Counselor && facade.removeCounselorContact(relationship)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					continue;
+				}
+				continue;
+			}
+			
+			if(choice == options.size() -4) { //the user wants to add an Emergency 
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				createContact();
+				continue;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing allergy
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				if(user instanceof Guardian) {
+					System.out.println(facade.getCamperAllergyList().get(choice));
+					facade.getCamperAllergyList().set(choice, setStringInformation(ALLERGIES));
+				}
+				else if(user instanceof Counselor) {
+					System.out.println(facade.getCounselorAllergyList().get(choice));
+					facade.getCounselorAllergyList().set(choice, setStringInformation(ALLERGIES));
+				}
+				else {
+					System.out.println("Something went wrong");
+				}
+				continue;
+        	}
+		}
 	}
 
 
-	//------------------------------------------- Creating new objects -----------------------------------------------------
+	private void displayContact() {
+		//TODO
+	}
+
+
+	//------------------------------------------- Creating new objects ----------------------------------------------------------------------------------
 
 	private void createFAQ() {
 		System.out.println("What is the question of the new faq?");
@@ -1469,6 +1809,14 @@ public class CampDriver {
 		//TODO
 	}
 
+	private void createContact() {
+
+	}
+
+	private void createMedication() {
+
+	}
+
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
 	/**
 	 * User inputs a new string to replace a string variable and verifies the change
@@ -1496,7 +1844,7 @@ public class CampDriver {
 	 */
 	private int setIntInformation(String variableName) {
 		System.out.print("Enter what you would like to change this to: ");
-		int num = getNum();
+		int num = getNum() + 1;
 		
 		System.out.println("You would like to change it to " + num);
 		System.out.print("Is this right? (y/n): ");
@@ -1546,7 +1894,7 @@ public class CampDriver {
 			System.out.println("Something went wrong");
 			return null;
 		}
-		System.out.println("You would like to change it to " + date);
+		System.out.println("You would like to change it to " + date.toString());
 		System.out.print("Is this right? (y/n): ");
 		String answer = in.nextLine();
 		if(answer.equalsIgnoreCase("y")) {
@@ -1579,6 +1927,7 @@ public class CampDriver {
 		if (num < 0 || num > options.size() - 1) {
 			clear();
 			System.out.println("Sorry, your option is not in the valid range.\n");
+			in.nextLine();
 			return -1;
 		}
 		clear();
@@ -1594,6 +1943,7 @@ public class CampDriver {
 			num = Integer.parseInt(in.nextLine()) - 1;
 		} catch (Exception e) {
 			System.out.println("You need to enter a valid number\n");
+			in.nextLine();
 			clear();
 			return -1;
 		}
