@@ -148,10 +148,9 @@ public class Session {
         return null;
     }
 
-    public String toString(){
-        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+    public String toString(){  
         String workingString = "";
-        workingString += theme + ": " + dateFormat.format(startDate) + "-" + dateFormat.format(endDate) + "\n";
+        workingString += theme + ": " + displayDate(startDate) + "-" + displayDate(endDate) + "\n";
         workingString += "\t" + sessionDescription;
         return workingString;
     }
@@ -229,5 +228,14 @@ public class Session {
                 cabins.get(i).updateCounselorsCabinHashes(counselor, this);
         }
     }
-
+    
+    /**
+	 * Converts a date to a string
+	 * @param date the date to be converted
+	 * @return the string version of the date
+	 */
+	private String displayDate(Date date) {
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+        return dateFormatter.format(date);
+	}
 }
