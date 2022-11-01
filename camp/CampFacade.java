@@ -136,6 +136,7 @@ public class CampFacade {
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
 
+        //this is only for 
         this.currentSession = this.currentCampSessionList.get(0);
         this.currentSessionCabinList = this.currentSession.getCabins();
         this.currentCabin = this.currentSessionCabinList.get(0);
