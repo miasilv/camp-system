@@ -778,7 +778,7 @@ public class CampFacade {
      * @param day the relationship of the contact to be removed
      * @return true if successful, false if not
      */
-    public Contact removeCounselorContact(String relationship) {
+    public boolean removeCounselorContact(String relationship) {
         return currentCounselor.removeEmergencyContact(relationship);
     }
 

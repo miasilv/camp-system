@@ -320,7 +320,7 @@ public class CampDriver {
 
 				System.out.println("Which activity do you want to delete?");
 				int num = getNum();
-				if(facade.removeCampActivity(num).isEmpty()) {
+				if(!facade.removeCampActivity(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
@@ -401,7 +401,7 @@ public class CampDriver {
 
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
-				if(facade.removeCampFAQ(num) == null) {
+				if(facade.removeCampFAQ(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
@@ -730,7 +730,7 @@ public class CampDriver {
 
 				System.out.println("Which cabin do you want to delete?");
 				int num = getNum();
-				if(facade.removeSessionCabin(num) == null) {
+				if(facade.removeSessionCabin(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
