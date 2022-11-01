@@ -252,5 +252,29 @@ public class Counselor extends User {
     public void updateCounselorCabinHash(Session session, Cabin cabin) {
         cabinHash.put(session, cabin);
     }
+
+    public String removeAllergy(int index) {
+        return null;
+    }
+
+    public boolean addAllergy(String allergy) {
+        return false;
+    }
+
+    public boolean removeEmergencyContact(String relationship) {
+        return false;
+    }
+
+    public boolean addEmergencyContact(String relationship, String name, String email, String phone, String address) {
+        return false;
+    }
+
+    public boolean removeSession(String theme) {
+        return false;
+    }
+
+    public boolean addSession(String theme) {
+        return false;
+    }
     
 }

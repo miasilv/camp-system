@@ -105,8 +105,9 @@ public class Camp {
     public String getFAQStr() { 
         return FAQs.toString();
     }
-    public void addFAQ(String question, String answer){
+    public boolean addFAQ(String question, String answer){
         FAQs.add(new FAQ(question, answer));
+        return true;
     }
 
     /**
@@ -122,9 +123,11 @@ public class Camp {
     /**
      * a method to add an activity
      * @param activity the activity being added
+     * @return 
      */
-    public void addActivity(String activity){
+    public boolean addActivity(String activity){
         activities.add(activity);
+        return true;
     }
 
     /**
@@ -132,10 +135,12 @@ public class Camp {
      * @param sessionNumber the session's number
      * @param startDate the session's start date
      * @param endDate the session's end date
+     * @return 
      */
-    public void addSession(String theme, String sessionDescription, Date startDate, Date endDate){
+    public boolean addSession(String theme, String sessionDescription, Date startDate, Date endDate){
         Session session = new Session(theme, sessionDescription, startDate, endDate);
         sessions.add(session);
+        return true;
     }
     //****EDITED BY MIA*****
     /**
@@ -201,6 +206,25 @@ public class Camp {
         }
         sessions.get(0).updateCounselorCabinHash(counselor);
         return true;
+    }
+    public boolean removeFAQ(int index) {
+        FAQs.remove(index);
+        return true;
+    }
+    public boolean removeActivity(int index) {
+        activities.remove(index);
+        return false;
+    }
+    public Session getSession(String theme) {
+        for(int i=0; i<sessions.size(); i++){
+            if(sessions.get(i).getTheme().equalsIgnoreCase(theme))
+                return sessions.get(i);
+        }
+        return null;
+    }
+    public Session removeSession(int index) {
+        sessions.remove(index);
+        return null;
     }
 }
 

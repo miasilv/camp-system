@@ -16,6 +16,7 @@ public class Session {
     private Date endDate;
     private String theme;
     private String sessionDescription;
+    SimpleDateFormat dateFormatter;
 
     /**
      * constructor of session
@@ -29,6 +30,7 @@ public class Session {
         this.sessionDescription = sessionDescription;
         this.startDate = startDate;
         this.endDate = endDate;
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
     //overloaded
     public Session (UUID id, String theme, ArrayList<Cabin> cabins, String sessionDescription, Date start, Date end){
@@ -38,6 +40,7 @@ public class Session {
         this.startDate = start;
         this.endDate = end;
         this.cabins = cabins;
+        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     public UUID getId() {
@@ -110,9 +113,11 @@ public class Session {
     /**
      * a method to add a cabin
      * @param cabin the cabin to be added
+     * @return 
      */
-    public void addCabin(Cabin cabin){
+    public boolean addCabin(Cabin cabin){
         cabins.add(cabin);
+        return true;
     }
     /**
      * a method to remove a cabin
@@ -140,7 +145,8 @@ public class Session {
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         String workingString = "";
-        workingString += "Session " + theme + ": " + dateFormat.format(startDate) + "-" + dateFormat.format(endDate) + "\n";
+        workingString += theme + ": " + dateFormat.format(startDate) + "-" + dateFormat.format(endDate) + "\n";
+        workingString += "\t" + sessionDescription;
         return workingString;
     }
 
@@ -193,7 +199,7 @@ public class Session {
         }
     }
 
-    public void saveSession(){
-        DataWriter.saveSession();
+    public boolean removeCabin(int index) {
+        return false;
     }
 }

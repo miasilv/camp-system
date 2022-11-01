@@ -58,4 +58,9 @@ public class Contact {
         this.phoneNumber = change;
         return true;
     }
+
+    public boolean setAddress(String change) {
+        this.address = change;
+        return true;
+    }
 }

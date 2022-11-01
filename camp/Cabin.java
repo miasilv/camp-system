@@ -28,6 +28,15 @@ public class Cabin {
         schedule = new HashMap<Day, Schedule>();
     }
 
+    public Cabin(int minAge, int maxAge, int numBeds){
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+        this.beds = numBeds;
+        cabinID = new UUID(0, 0);
+        campers = new ArrayList<Camper>();
+        schedule = new HashMap<Day, Schedule>();
+    }
+
     //overloaded constructor for dataloader
     public Cabin(ArrayList<Camper> campers, Counselor counselor, double beds, double maxAge, double minAge, ArrayList<Schedule> schedules, UUID id){
         this.campers = campers;
@@ -232,13 +241,7 @@ public class Cabin {
 
     public String toString(){
         String workingString = "";
-        workingString += "Campers:\n";
-        for (int i=0; i<campers.size(); i++){
-            workingString += String.valueOf(campers.get(i)) + "\n";
-        }
-        workingString += "Counselor: " + counselor + " \n";
-        workingString += "Schedule: " + schedule.toString() + " \n";
-        workingString += "Number of Beds: " + String.valueOf(Math.round(beds)) + " \n" + "Minimum Age: " + String.valueOf(Math.round(minAge)) + " \n" + "Maximum Age: " +  String.valueOf(Math.round(maxAge)) + " \n";
+        workingString +=  String.valueOf(Math.round(minAge)) +  "-" + String.valueOf(Math.round(maxAge)) + " \n";
         return workingString;
     }
 

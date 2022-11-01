@@ -56,8 +56,9 @@ public class Schedule {
         return writtenSchedule + "\n";
     }
 
-	public String remove(String time) {
-		return this.schedule.remove(time);
+	public boolean remove(String time) {
+		this.schedule.remove(time);
+        return true;
 	}
 
 	public boolean add(String time, String activity) {
