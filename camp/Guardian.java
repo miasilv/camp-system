@@ -36,7 +36,6 @@ public class Guardian extends User {
         super(name, email, password, phoneNumber);
         this.id = id;
         this.campers = campers;
-        this.price = pricePerSession* campers.size();
         updatePrice();
         updateTotalSessions();
     }
@@ -93,15 +92,6 @@ public class Guardian extends User {
         return campers;
     }
 
-    /**
-     * Method to discount the price of the camp
-     */
-    public void discount() {
-        if (campers.size() > 1) {
-            price *= 0.80;
-        }
-    }
-
     public Camper getCamper(int index){
         return campers.get(index);
     }
@@ -109,14 +99,6 @@ public class Guardian extends User {
     public String toString() {
         //return id + " " + name + " " + email + " " + password + " " + campers;
         return name;
-    }
-
-    public int getTotalSessions() {
-        return numOfSessions;
-    }
-
-    public double getPrice() {
-        return price;
     }
 
     public boolean removeCamper(int index) {
@@ -129,8 +111,27 @@ public class Guardian extends User {
         return true;
     }
 
+    /**
+     * Method to discount the price of the camp
+     */
+    public void discount() {
+        if (campers.size() > 1) {
+            price *= 0.80;
+        }
+    }
+
+    public int getTotalSessions() {
+        return numOfSessions;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
     private double updatePrice() {
-        return numOfSessions * pricePerSession;
+        price =  numOfSessions * pricePerSession;
+        discount();
+        return price;
     }
 
     private boolean updateTotalSessions() {

@@ -37,7 +37,7 @@ public class Contact {
     }
 
     public String toString() {
-        return name + " " + phoneNumber + " " + address;
+        return name + "\n" + phoneNumber + "\n" + address;
     }
 
     public String getEmail() {

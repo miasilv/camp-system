@@ -365,7 +365,6 @@ public class DataLoader extends DataConstants {
            
 			for(int i=0; i < cabinsJSON.size(); i++) {
 				JSONObject cabinJSON = (JSONObject)cabinsJSON.get(i);
-				Double beds = (Double)cabinJSON.get(CABIN_BEDS);
                 Double maxAge = (Double)cabinJSON.get(CABIN_MAX_AGE);
                 Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
@@ -402,7 +401,7 @@ public class DataLoader extends DataConstants {
                     campers.add(camper);
                 }
 				
-				cabins.add(new Cabin(campers, counselor, beds, maxAge, minAge, schedules, id));
+				cabins.add(new Cabin(campers, counselor, maxAge, minAge, schedules, id));
                 //System.out.println("SCHEDULES:" + schedules);
 			}
         
