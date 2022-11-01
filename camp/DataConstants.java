@@ -28,6 +28,7 @@ public abstract class DataConstants {
     protected static final String CAMP_FAQS = "faqs";
     protected static final String CAMP_RATIO = "camperspercounselor";
     protected static final String CAMP_ACTIVITIES = "activities";
+    protected static final String CAMP_ACTIVITIESNAMES = "activitiesname";
 
     //camper data constants
     protected static final String CAMPER_FILE_NAME = "camper.json";
@@ -53,6 +54,7 @@ public abstract class DataConstants {
 	protected static final String COUNSELOR_BIRTHDAY = "birthday";
     protected static final String COUNSELOR_ALLERGIES = "allergies";
     protected static final String COUNSELOR_EMERGENCY_CONTACTS = "emergency contacts";
+    protected static final String COUNSELOR_SESSIONS = "sessions";
 
     //director data constants
     protected static final String DIRECTOR_FILE_NAME = "director.json";
