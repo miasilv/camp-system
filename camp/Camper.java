@@ -21,6 +21,7 @@ public class Camper {
     private ArrayList<String> notes;
     private HashMap<String, Contact> emergencyContacts;
     private HashMap<Session, Cabin> cabinHash;
+    private ArrayList<String> sessionThemes;
 
     /**
      * Constructor for the camper class
@@ -45,7 +46,7 @@ public class Camper {
      * @param notes Notes of the camper
      * @param emergencyContacts Emergency contacts of the camper
      */
-    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts) {
+    public Camper(UUID id, String name, Date birthday, ArrayList<Medication> medications, ArrayList<String> allergies, ArrayList<String> notes, ArrayList<String> relationships, ArrayList<Contact> contacts, ArrayList<String> sessionThemes) {
         this.camperID = id;
         this.name = name;
         this.birthday = birthday;
@@ -56,6 +57,7 @@ public class Camper {
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         this.cabinHash = new HashMap<Session, Cabin>();
+        this.sessionThemes = sessionThemes;
     }
 
     // getters because Nat needs them:
@@ -133,6 +135,22 @@ public class Camper {
 
     public ArrayList<Session> getSessions() {
         return sessions;
+    }
+
+    /**
+     * written by natalie
+     * @return the array list of themes for the camper
+     */
+    public ArrayList<String> getSessionThemes(){
+        return sessionThemes;
+    }
+
+    /**
+     * written by natalie
+     * @return to string of session themes 
+     */
+    public String getSessionThemesStr(){
+        return sessionThemes.toString();
     }
 
     //****EDITED BY MIA*****

@@ -290,7 +290,7 @@ public class DataLoader extends DataConstants {
                 JSONArray emergencycontactsJSON = (JSONArray)camperJSON.get(CAMPER_EMERGENCY_CONTACTS);
                 JSONArray medicationsJSON = (JSONArray)camperJSON.get(CAMPER_MEDICATIONS);
                 JSONArray notesJSON = (JSONArray)camperJSON.get(CAMPER_NOTES);
-                JSONArray sessionsJSON= (JSONArray)camper.JSON.get(CAMPER_SESSIONS);
+                JSONArray sessionsJSON= (JSONArray)camperJSON.get(CAMPER_SESSIONS);
                 
                 //make arraylist of allergies
                 ArrayList<String> allergies = new ArrayList<String>();

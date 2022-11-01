@@ -17,6 +17,7 @@ public class Counselor extends User {
     private Date birthday;
     private ArrayList<String> allergies;
     private HashMap<Session, Cabin> cabinHash;
+    private ArrayList<String> sessionThemes;
 
     // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
 
@@ -45,7 +46,7 @@ public class Counselor extends User {
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies) {
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies, ArrayList<String> sessionThemes) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
@@ -53,6 +54,7 @@ public class Counselor extends User {
         this.allergies = allergies;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         this.cabinHash = new HashMap<Session, Cabin>();
+        this.sessionThemes = sessionThemes;
     }
 
     // ----------------------------------ACCESSORS-------------------------------------------------------------
@@ -138,6 +140,22 @@ public class Counselor extends User {
      */
     public String getAllergiesStr(){
         return allergies.toString();
+    }
+
+    /**
+     * written by natalie
+     * @return the array list of themes for the camper
+     */
+    public ArrayList<String> getSessionThemes(){
+        return sessionThemes;
+    }
+
+    /**
+     * written by natalie
+     * @return to string of session themes 
+     */
+    public String getSessionThemesStr(){
+        return sessionThemes.toString();
     }
 
     public boolean setName(String name) {
