@@ -9,7 +9,6 @@ import java.util.HashMap;
  * A Camp Facade object
  */
 public class CampFacade {
-    SimpleDateFormat dateFormatter;
     // ------------------------- CURRENT ARRAYLISTS/OBJECTS -----------------
     private UserList userList;
     private CampList camplist;
@@ -101,7 +100,6 @@ public class CampFacade {
         userList = UserList.getInstance();
         camplist = CampList.getInstance();
         initArrayLists();
-        dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
     private void initArrayLists() {
@@ -840,7 +838,7 @@ public class CampFacade {
 
 
 
-    
+   
     // ***************************** GUARDIAN CLASS *******************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside guardian
@@ -1119,7 +1117,7 @@ public class CampFacade {
         if(cabin == null) {
             return false;
         }
-        return currentCamper.addSession(session, cabin);
+        return currentCamper.addSession(session, cabin, camp.getPrice());
     }
 
 
