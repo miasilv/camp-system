@@ -247,11 +247,18 @@ public class Session {
     /**
      * Finds a specific counselor's cabin in a session
      * @param counselor the couselor to find
-     * @return either the cabin the cousnelor is in or null if no such cabin is found
+     * @return either the cabin the counselor is in or null if no such cabin is found
      */
     public Cabin findCounselor(Counselor counselor) {
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).getCounselor().equals(counselor))
+                return cabins.get(i);
+        }
+        return null;
+    }
+    public Cabin findCamper(Camper camper) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCamper(camper))
                 return cabins.get(i);
         }
         return null;
