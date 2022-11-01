@@ -856,8 +856,14 @@ public class CampDriver {
 					}
 					
 					clear();
-					System.out.println(facade.getCabinCounselor().toString());
-					System.out.println("would you like to change the counselor? (y/n)");
+					if(facade.getCabinCounselor() == null) {
+						System.out.println("Would you like to add a cousnelor? (y/n)");
+					}
+					else {
+						System.out.println(facade.getCabinCounselor().toString());
+						System.out.println("would you like to change the counselor? (y/n)");
+					}
+					
 					if(in.nextLine().equalsIgnoreCase("y")) {
 						ArrayList<Counselor> counselors = facade.getAllCounselors();
 						for(int i = 0; i < counselors.size(); i++) {

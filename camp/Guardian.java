@@ -17,6 +17,9 @@ public class Guardian extends User {
      */
     public Guardian(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        campers = new ArrayList<Camper>();
+        updatePrice();
+        updateTotalSessions();
     }
 
     /**
@@ -33,6 +36,8 @@ public class Guardian extends User {
         super(name, email, password, phoneNumber);
         this.id = id;
         this.campers = campers;
+        updatePrice();
+        updateTotalSessions();
     }
 
     public String getName() {
