@@ -942,11 +942,11 @@ public class CampFacade {
         ArrayList<String> sessionThemes = currentCamper.getSessionThemes();
         for(int i = 0; i < sessionThemes.size(); i++) {
             currentSession = camp.getSession(sessionThemes.get(i));
-            currentCabin = currentSession.placeCamper(currentCamper);
+            currentCabin = currentSession.findCamper(currentCamper);
             if(currentCabin == null) {
-                break;
+                currentSession.placeCamper(currentCamper);
             }
-            currentCounselor.updateCounselorCabinHash(currentSession, currentCabin);
+            currentCamper.updateCamperCabinHash(currentSession, currentCabin);
         }
 
         return true;
