@@ -17,6 +17,9 @@ public class Counselor extends User {
     private Date birthday;
     private ArrayList<String> allergies;
     private HashMap<Session, Cabin> cabinHash;
+    private ArrayList<String> sessionThemes;
+
+    // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
 
     /**
      * Constructor for the counselor class
@@ -28,6 +31,7 @@ public class Counselor extends User {
      */
     public Counselor(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        this.cabinHash = new HashMap<Session, Cabin>();
     }
 
     /**
@@ -42,20 +46,24 @@ public class Counselor extends User {
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies) {
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies, ArrayList<String> sessionThemes) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
         this.id = id;
         this.allergies = allergies;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
+        this.cabinHash = new HashMap<Session, Cabin>();
+        this.sessionThemes = sessionThemes;
     }
+
+    // ----------------------------------ACCESSORS-------------------------------------------------------------
 
     /**
      * written by natalie
      * @param relationships the key values in the hash
      * @param contacts the contact information for those key values
-     * @return the array list of emergency contacts
+     * @return the hashmap of emergency contacts
      */
     public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
         HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
@@ -132,6 +140,22 @@ public class Counselor extends User {
      */
     public String getAllergiesStr(){
         return allergies.toString();
+    }
+
+    /**
+     * written by natalie
+     * @return the array list of themes for the camper
+     */
+    public ArrayList<String> getSessionThemes(){
+        return sessionThemes;
+    }
+
+    /**
+     * written by natalie
+     * @return to string of session themes 
+     */
+    public String getSessionThemesStr(){
+        return sessionThemes.toString();
     }
 
     public boolean setName(String name) {
@@ -303,6 +327,4 @@ public class Counselor extends User {
         updateCounselorCabinHash(session, cabin);
         return true;
     }
-
-    
 }

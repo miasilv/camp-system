@@ -13,7 +13,8 @@
                             "erelationship": "Neighbor"
                         }],
     "birthday": "12/3/2001",
-    "allergies": ["pollen", "gluten"]
+    "allergies": ["pollen", "gluten"],
+    "sessions": ["outdoorsy", "splash week"]
 },
 {
     "id": "55318676-1cb2-4886-98c4-6375a7b8ae73",
@@ -30,6 +31,7 @@
                             "erelationship": "Family Friend"
                         }],
     "birthday": "3/4/1999",
-    "allergies": ["pollen", "pet dander", "peaches"]
+    "allergies": ["pollen", "pet dander", "peaches"],
+    "sessions": ["outdoorsy", "splash week"]
 }
 ]

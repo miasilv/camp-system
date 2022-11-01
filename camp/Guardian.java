@@ -7,6 +7,7 @@ public class Guardian extends User {
     private ArrayList<Camper> campers;
     private int numOfSessions;
     private double price;
+    private final static double pricePerSession = 500;
 
     /**
      * Constructor for the guardian class
@@ -16,6 +17,9 @@ public class Guardian extends User {
      */
     public Guardian(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        campers = new ArrayList<Camper>();
+        updatePrice();
+        updateTotalSessions();
     }
 
     /**
@@ -32,6 +36,8 @@ public class Guardian extends User {
         super(name, email, password, phoneNumber);
         this.id = id;
         this.campers = campers;
+        updatePrice();
+        updateTotalSessions();
     }
 
     public String getName() {
@@ -85,36 +91,6 @@ public class Guardian extends User {
     public ArrayList<Camper> getCampers(){
         return campers;
     }
-    
-    /**
-     * Method to register a camper
-     */
-    public void registerCamper() {
-
-    }
-
-    /**
-     * Method to unregister a camper
-     */
-    public void unregisterCamper() {
-
-    }
-
-    /**
-     * Method to add a session for a camper
-     * @param camper Camper of the guardian to add session to
-     * @param session The session to add the camper to
-     */
-    public void addSession(Camper camper, Session session) {
-
-    }
-
-    /**
-     * Method to discount the price of the camp
-     */
-    public void discount() {
-
-    }
 
     public Camper getCamper(int index){
         return campers.get(index);
@@ -125,33 +101,43 @@ public class Guardian extends User {
         return name;
     }
 
-    public int getTotalSessions() {
-        return numOfSessions;
+    public boolean removeCamper(int index) {
+        campers.remove(index);
+        return true;
     }
 
-    public boolean setTotalSessions(int change) {
-        this.numOfSessions = change;
+    public boolean addCamper(Camper camper) {
+        campers.add(camper);
         return true;
+    }
+
+    /**
+     * Method to discount the price of the camp
+     */
+    public void discount() {
+        if (campers.size() > 1) {
+            price *= 0.80;
+        }
+    }
+
+    public int getTotalSessions() {
+        return numOfSessions;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public boolean setPrice(double change) {
-        this.price = change;
+    private double updatePrice() {
+        price =  numOfSessions * pricePerSession;
+        discount();
+        return price;
+    }
+
+    private boolean updateTotalSessions() {
+        for (int i=0; i<campers.size(); i++) {
+            numOfSessions += (campers.get(i).getNumOfSessions());
+        }
         return true;
-    }
-
-    public double pricePerSession() {
-        return numOfSessions * price;
-    }
-
-    public boolean removeCamper(int index) {
-        return false;
-    }
-
-    public boolean addCamper(Camper camper) {
-        return false;
     }
 }

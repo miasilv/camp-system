@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Mia Silver
@@ -49,7 +50,6 @@ public class CampDriver {
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
-    private static final String NUM_BEDS = "number of beds";
 
 	//schedule times
 	private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
@@ -95,6 +95,7 @@ public class CampDriver {
 	public void runDriver() {
         clear();
         System.out.println("***** Welcome to the Camp Website! *****");
+		facade.updateCamp();
 
         while(true) {
 			//updating options----------------------------------------
@@ -149,12 +150,15 @@ public class CampDriver {
 					}
 					else { //user portal
 						if(user instanceof Director) {
+							facade.updateDirector();
 							displayDirectorPortal();
 						}
 						if(user instanceof Guardian) {
+							facade.updateGuardian();
 							displayGuardianPortal();
 						}
 						if(user instanceof Counselor) {
+							facade.updateCounselor();
 							displayCounselorPortal();
 						}						
 					}
@@ -319,6 +323,10 @@ public class CampDriver {
 
 				System.out.println("Which activity do you want to delete?");
 				int num = getNum();
+				if(num >= 0 && num <= 6) {
+					System.out.println("These activities cannot be deleted.");
+					in.nextLine();
+				}
 				if(!facade.removeCampActivity(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
@@ -771,7 +779,6 @@ public class CampDriver {
 			clearOptions();
 			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
 			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
-			options.add("Number of beds: " + facade.getCabinInt(NUM_BEDS));
 			options.add("Counselor: " + facade.getCabinCounselor());
 			options.add("Campers");
 			options.add("Schedule");
@@ -828,23 +835,7 @@ public class CampDriver {
 					}
 					break;
 
-				case 2: //bed numbers
-					if(!(user instanceof Director)) { 
-						System.out.println("You do not have permission to edit this.");
-						break;
-					}
-			
-					clear();
-					System.out.println("Old " + NUM_BEDS + ": " + facade.getCabinInt(NUM_BEDS));
-					int num3 = setIntInformation(NUM_BEDS);
-					if(num3 == -1) {
-						if(!facade.setCabinInt(NUM_BEDS, num3)) {
-							System.out.println("Sorry, something went wrong, unable to edit");
-						}
-					}
-					break;
-
-				case 3: //counselor				
+				case 2: //counselor				
 					if(!(user instanceof Director)) {
 						System.out.println("You don't have permission to edit this.");
 						in.nextLine();
@@ -852,8 +843,14 @@ public class CampDriver {
 					}
 					
 					clear();
-					System.out.println(facade.getCabinCounselor().toString());
-					System.out.println("would you like to change the counselor? (y/n)");
+					if(facade.getCabinCounselor() == null) {
+						System.out.println("Would you like to add a cousnelor? (y/n)");
+					}
+					else {
+						System.out.println(facade.getCabinCounselor().toString());
+						System.out.println("would you like to change the counselor? (y/n)");
+					}
+					
 					if(in.nextLine().equalsIgnoreCase("y")) {
 						ArrayList<Counselor> counselors = facade.getAllCounselors();
 						for(int i = 0; i < counselors.size(); i++) {
@@ -865,11 +862,11 @@ public class CampDriver {
 					}
 					break;
 				
-				case 4: //campers
+				case 3: //campers
 					displayCamperList(CABIN);
 					break;
 
-				case 5: //schedule
+				case 4: //schedule
 					displayScheduleDays();
 					break;
 			}
@@ -1161,7 +1158,7 @@ public class CampDriver {
 	private void displayCounselorPortal() {
 		while(true) {
 			//updating options----------------------------------------
-			facade.updateCounselor(USER);
+			facade.updateCounselor();
 			clearOptions();
 			options.add("Name: " + facade.getUserString(NAME));
 			options.add("Email: " + facade.getUserString(EMAIL));
@@ -1506,7 +1503,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + NAME + ": " + facade.getCamperString(NAME));
 					String change = setStringInformation(NAME);
-					if(change == null) {
+					if(!(change == null)) {
 						if(!facade.setCamperString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -1725,10 +1722,19 @@ public class CampDriver {
 		while(true) {
 			//updating options----------------------------------------
 			clearOptions();
-			Object[] key = cabinHash.keySet().toArray();
-			for(int i = 0; i < cabinHash.size(); i++) {
-				options.add(key[i].toString() + ": " + cabinHash.get(key[i].toString()));
+			/*
+			 * Object[] key = cabinHash.keySet().toArray();
+			 * for(int i = 0; i < cabinHash.size(); i++) {
+			 * options.add(key[i].toString() + ": " + cabinHash.get(key[i].toString()));
+			 * }
+			 */
+			
+			for (Map.Entry<Session, Cabin> entry : cabinHash.entrySet()) {
+				Session s = entry.getKey();
+				Cabin c = entry.getValue();
+				options.add(s.toString() + ": " + c.toString());
 			}
+
 			options.add("Add a new Session");
 			options.add("Remove an existing Session");
 			options.add("Return");
@@ -1874,7 +1880,7 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && facade.removeCounselorAllergy(num) == null) {
+				if(user instanceof Counselor && !facade.removeCounselorAllergy(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -2163,11 +2169,11 @@ public class CampDriver {
 	 */
 	private void createCabin() {
 		System.out.println("Enter the minimum age for the cabin: ");
-		int maxAge = getNum();
+		int minAge = getNum() + 1;
 		System.out.println("Enter the maximum age for the cabin: ");
-		int minAge = getNum();
+		int maxAge = getNum() + 1;
 		System.out.println("Enter the number of beds for the cabin: ");
-		int bedNum = getNum();
+		int bedNum = getNum() + 1;
 		if(!facade.addSessionCabin(minAge, maxAge, bedNum)) {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
@@ -2272,7 +2278,7 @@ public class CampDriver {
 		System.out.print("Enter what you would like to change this to: ");
 		double doub;
 		try {
-			doub = Double.parseDouble(in.nextLine()) - 1;
+			doub = Double.parseDouble(in.nextLine());
 		} catch (Exception e) {
 			System.out.println("You need to enter a valid number\n");
 			clear();

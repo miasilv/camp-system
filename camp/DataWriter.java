@@ -150,7 +150,8 @@ public class DataWriter extends DataConstants {
         counselorDetails.put(COUNSELOR_BIRTHDAY, counselor.getBirthdayStr());
         counselorDetails.put(COUNSELOR_ALLERGIES, counselor.getAllergiesStr());
 		counselorDetails.put(COUNSELOR_EMERGENCY_CONTACTS, counselor.getEmergencyContactsStr());
-    
+        counselorDetails.put(COUNSELOR_SESSIONS, counselor.getSessionThemesStr());
+
 		
         return counselorDetails;
 	}
@@ -194,6 +195,7 @@ public class DataWriter extends DataConstants {
         camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthdayStr());
         camperDetails.put(CAMPER_ALLERGIES, camper.getAllergiesStr());
 		camperDetails.put(CAMPER_EMERGENCY_CONTACTS, camper.getEmergencyContactsStr());
+        camperDetails.put(CAMPER_SESSIONS, camper.getSessionThemesStr());
 		
         return camperDetails;
 	}
@@ -285,7 +287,6 @@ public class DataWriter extends DataConstants {
      */
 	public static JSONObject getCabinJSON(Cabin cabin) {
 		JSONObject cabinDetails = new JSONObject();
-		cabinDetails.put(CABIN_BEDS, cabin.getBeds());
 		
         JSONArray jsonCampers = new JSONArray();
         for(int i = 0; i< cabin.getCampers().size(); i++){

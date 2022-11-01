@@ -72,7 +72,6 @@ public class CampFacade {
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
-    private static final String NUM_BEDS = "number of beds";
 
 	//user instance variables
 	private static final String EMAIL = "email"; //can also be used for Contact
@@ -135,6 +134,14 @@ public class CampFacade {
         this.currentCampSessionList = this.camp.getSessions();
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
+
+        //this is only for 
+        this.currentSession = this.currentCampSessionList.get(0);
+        this.currentSessionCabinList = this.currentSession.getCabins();
+        this.currentCabin = this.currentSessionCabinList.get(0);
+        this.currentScheduleHash = this.currentCabin.getSchedule();
+        this.currentSchedule = this.currentScheduleHash.get(Day.MONDAY);
+        this.currentSchedule.setActivityList(currentActivityList);
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -483,9 +490,6 @@ public class CampFacade {
         if(variableName.equals(MIN_AGE)) {
             return currentCabin.getMinAge();
         }
-        if(variableName.equals(NUM_BEDS)) {
-            return currentCabin.getBeds();
-        }
         return -1;
     }
 
@@ -501,9 +505,6 @@ public class CampFacade {
         }
         if(variableName.equals(MIN_AGE)) {
             return currentCabin.setMinAge(change);
-        }
-        if(variableName.equals(NUM_BEDS)) {
-            return currentCabin.setBeds(change);
         }
         return false;
     }
@@ -550,6 +551,7 @@ public class CampFacade {
      */
     public void updateSchedule(Day day) {
         this.currentSchedule = this.currentScheduleHash.get(day);
+        currentSchedule.setActivityList(camp.getActivities());
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -681,16 +683,20 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
-    public void updateCounselor(String classFrom) {
-        if(classFrom.equals(USER) && currentUser instanceof Counselor) {
-            this.currentCounselor = (Counselor)currentUser;
-        }
-        if(classFrom.equals(CABIN)) {
-            this.currentCounselor = this.currentCabin.getCounselor();
-        }
+    public void updateCounselor() {
+        this.currentCounselor = (Counselor)currentUser;
         currentCounselorAllergyList = currentCounselor.getAllergies();
         currentContactHash = currentCounselor.getEmergencyContacts();
         currentCabinHash = currentCounselor.getCounselorCabinHash();
+
+        for(int i = 0; i < currentCounselor.getSessionThemes().size(); i++) {
+            currentSession = camp.getSession(currentCounselor.getSessionThemes().get(i));
+            currentCabin = currentSession.findCounselor(currentCounselor);
+            if(currentCabin == null) {
+                currentSession.placeCounselor(currentCounselor);
+            }
+            currentCounselor.updateCounselorCabinHash(currentSession, currentCabin);
+        }
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -862,19 +868,6 @@ public class CampFacade {
     }
 
     /**
-     * Sets any int instance variable in the current guardian object with a new value
-     * @param variableName the name of the int instance variable being edited
-     * @param change the new int to place in the instance variable
-     * @return true if successful, false if not successful
-     */
-    public boolean setGuardianInt(String variableName, int change) {
-        if(variableName.equals(SESS_NUM)) {
-            return currentGuardian.setTotalSessions(change);
-        }
-        return false;
-    }
-
-    /**
      * Gets any double instance variable in the current guardian object
      * @param variableName the name of the double instance variable
      * @return the double value in the variableName, -1 if not found
@@ -886,18 +879,6 @@ public class CampFacade {
         return -1;
     }
 
-    /**
-     * Sets any double instance variable in the current guardian object with a new value
-     * @param variableName the name of the double instance variable being edited
-     * @param change the new dobule to place in the instance variable
-     * @return true if successful, false if not successful
-     */
-    public boolean setGuardianDouble(String variableName, double change) {
-        if(variableName.equals(PRICE)) {
-            return currentGuardian.setPrice(change);
-        }
-        return false;
-    }
     
     // ------------------------------ ARRAY LISTS ---------------------------
     /**
@@ -947,6 +928,17 @@ public class CampFacade {
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
         currentCabinHash = currentCamper.getCabinHash();
+
+        ArrayList<String> sessionThemes = currentCamper.getSessionThemes();
+        for(int i = 0; i < sessionThemes.size(); i++) {
+            currentSession = camp.getSession(sessionThemes.get(i));
+            currentCabin = currentSession.placeCamper(currentCamper);
+            if(currentCabin == null) {
+                break;
+            }
+            currentCounselor.updateCounselorCabinHash(currentSession, currentCabin);
+        }
+
         return true;
     }
 
@@ -983,7 +975,7 @@ public class CampFacade {
      */
     public Date getCamperDate(String variableName) {
         if(variableName.equals(BIRTHDAY)) {
-            return currentCounselor.getBirthday();
+            return currentCamper.getBirthday();
         } 
         return null;
     }
@@ -1117,7 +1109,7 @@ public class CampFacade {
         if(cabin == null) {
             return false;
         }
-        return currentCamper.addSession(session, cabin, camp.getPrice());
+        return currentCamper.addSession(session, cabin);
     }
 
 
