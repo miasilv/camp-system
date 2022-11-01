@@ -1874,7 +1874,7 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && facade.removeCounselorAllergy(num) == null) {
+				if(user instanceof Counselor && !facade.removeCounselorAllergy(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
