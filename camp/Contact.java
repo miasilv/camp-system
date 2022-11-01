@@ -60,6 +60,7 @@ public class Contact {
     }
 
     public boolean setAddress(String change) {
-        return false;
+        this.address = change;
+        return true;
     }
 }
