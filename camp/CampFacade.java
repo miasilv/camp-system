@@ -827,8 +827,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCounselorSession(String theme) {
-        //TODO check if contact already exitsts in the list
-        return currentCounselor.addSession(theme);
+        return currentCounselor.addSession(camp.getSession(theme));
     }
 
 
@@ -1107,8 +1106,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperSession(String theme) {
-        //TODO check if contact already exitsts in the list
-        return currentCamper.addSession(theme);
+        return currentCamper.addSession(camp.getSession(theme));
     }
 
 
