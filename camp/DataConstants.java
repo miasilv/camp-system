@@ -72,7 +72,7 @@ public abstract class DataConstants {
 	protected static final String GUARDIAN_NAME = "name";
     protected static final String GUARDIAN_EMAIL = "email";
     protected static final String GUARDIAN_PASSWORD = "password";
-    protected static final String GUARDIAN_PHONE_NUMBER = "phonenumber";
+    protected static final String GUARDIAN_PHONE_NUMBER = "phone number";
     protected static final String GUARDIAN_CAMPERS = "campers";
 
     //emergency contact constants
