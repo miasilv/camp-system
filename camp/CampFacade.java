@@ -641,6 +641,7 @@ public class CampFacade {
         if(variableName.equals(PHONE)) {
             return currentUser.getPhoneNumber();
         }
+        
         if(variableName.equals(PASSWORD)) {
             return currentUser.getPassword();
         }

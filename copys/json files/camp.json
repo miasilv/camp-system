@@ -1,0 +1,22 @@
+[
+    {
+        "id": "2a73df0e-df2f-4f6a-90da-32e888383b2e",
+        "name": "Camp 247",
+        "sessions": [ "d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6","642bbf90-b9d8-4f67-8764-5d0eb6af30f8"],
+        "price": 500.50,
+        "faqs": [{
+                    "question": "what are the activities?",
+                    "answer": "running, archery, swimming, ziplining"
+                },
+                {
+                    "question": "what is the price",
+                    "answer": "$500"
+                }],
+        "camperspercounselor": 8.0,
+        "activities": ["wake up", "breakfast at the mess hall", "lunch at the mess hall", "snack/rest time at cabin", "dinner at the mess hall", "campfire songs at firepit", "lights out",
+                        "ziplining at zipline track", "swimming in lake", "running on the field", "gaga ball at the gaga ball pit", "soccer on the field", "kayaking in the lake", "bracelet making in the mess hall",
+                        "arts and crafts at craft building", "painting at the craft building", "archery at the archery range", "tie dying at the craft building", "singing at the mess hall"],
+        "activitiesnames": ["campfire songs", "ziplining", "swimming", "running", "gaga ball", "soccer", "kayaking", "bracelet making", "arts and crafts", "painting", "archery", "tie dying", "singing"]
+                    
+    }
+]
