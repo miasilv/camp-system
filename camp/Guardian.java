@@ -149,4 +149,12 @@ public class Guardian extends User {
     public double pricePerSession() {
         return numOfSessions * price;
     }
+
+    public boolean removeCamper(int index) {
+        return false;
+    }
+
+    public boolean addCamper(Camper camper) {
+        return false;
+    }
 }

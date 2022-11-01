@@ -113,9 +113,11 @@ public class Session {
     /**
      * a method to add a cabin
      * @param cabin the cabin to be added
+     * @return 
      */
-    public void addCabin(Cabin cabin){
+    public boolean addCabin(Cabin cabin){
         cabins.add(cabin);
+        return true;
     }
     /**
      * a method to remove a cabin
@@ -197,7 +199,7 @@ public class Session {
         }
     }
 
-    public void saveSession(){
-        DataWriter.saveSession();
+    public boolean removeCabin(int index) {
+        return false;
     }
 }

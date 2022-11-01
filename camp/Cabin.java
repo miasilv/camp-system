@@ -28,6 +28,15 @@ public class Cabin {
         schedule = new HashMap<Day, Schedule>();
     }
 
+    public Cabin(int minAge, int maxAge, int numBeds){
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+        this.beds = numBeds;
+        cabinID = new UUID(0, 0);
+        campers = new ArrayList<Camper>();
+        schedule = new HashMap<Day, Schedule>();
+    }
+
     //overloaded constructor for dataloader
     public Cabin(ArrayList<Camper> campers, Counselor counselor, double beds, double maxAge, double minAge, ArrayList<Schedule> schedules, UUID id){
         this.campers = campers;

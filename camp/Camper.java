@@ -156,9 +156,11 @@ public class Camper {
     /**
      * Adds a medication for the camper
      * @param medication The medication to add
+     * @return 
      */
-    public void addMedication(Medication medication) {
+    public boolean addMedication(Medication medication) {
         medications.add(medication);
+        return true;
     }
 
     /**
@@ -181,9 +183,11 @@ public class Camper {
     /**
      * Adds an allergy for the camper
      * @param allergy The allergy to add
+     * @return 
      */
-    public void addAllergy(String allergy) {
+    public boolean addAllergy(String allergy) {
         allergies.add(allergy);
+        return true;
     }
 
     /**
@@ -222,7 +226,7 @@ public class Camper {
      * 
      * @param emergencyContact The emergency contact to add
      */
-    public void addEmergencyContact(EmergencyContact emergencyContact) {
+    public void addEmergencyContact(Contact emergencyContact) {
 
     }
 
@@ -231,7 +235,7 @@ public class Camper {
      * 
      * @param emergencyContact The emergency contact to remove
      */
-    public void removeEmergencyContact(EmergencyContact emergencyContact) {
+    public void removeEmergencyContact(Contact emergencyContact) {
 
     }
 
@@ -241,7 +245,7 @@ public class Camper {
      * @param index            Index of the emergency contact to edit
      * @param emergencyContact The emergency contact to replace the index with
      */
-    public void editEmergencyContact(int index, EmergencyContact emergencyContact) {
+    public void editEmergencyContact(int index, Contact emergencyContact) {
 
     }
 
@@ -312,5 +316,29 @@ public class Camper {
 
     public HashMap<Session, Cabin> getCabinHash() {
         return null;
+    }
+
+    public boolean removeAllergy(int index) {
+        return false;
+    }
+
+    public boolean removeMedication(int index) {
+        return false;
+    }
+
+    public boolean removeSession(String theme) {
+        return false;
+    }
+
+    public boolean addSession(String theme) {
+        return false;
+    }
+
+    public boolean removeEmergencyContact(String relationship) {
+        return false;
+    }
+
+    public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
+        return false;
     }
 }

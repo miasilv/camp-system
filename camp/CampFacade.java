@@ -467,8 +467,8 @@ public class CampFacade {
      * updates the cabin object from a session-cabin hash
      * @param key the session theme for the cabin you're looking for
      */ 
-    public void updateCabinHash(String key) {
-        Session session = camp.getSession(key);
+    public void updateCabinHash(String theme) {
+        Session session = camp.getSession(theme);
         currentCabin = currentCabinHash.get(session);
     }
     
