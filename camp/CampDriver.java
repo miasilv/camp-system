@@ -750,8 +750,24 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-				createCabin();
-				continue;
+				
+				clear();
+				System.out.println("Would you like to create a new cabin or add a pre-existing cabin? (enter 1 or 2 respectively)");
+				if(getNum() + 1 == 1) { //user wants to create a new cabin
+					createCabin();
+					continue;
+				}
+				else {
+					ArrayList<Cabin> allCabins = facade.getAllCabins();
+					for(int i = 0; i < allCabins.size(); i++) {
+						System.out.println((i + 1) + ": " + allCabins.get(i) + "\n");
+					}
+					System.out.println("\nWhich cabin are you adding to this session?");
+					int choice2 = getNum();
+					facade.addSessionCabin(allCabins.get(choice2));
+					continue;
+				}
+
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing cabin
@@ -2172,9 +2188,7 @@ public class CampDriver {
 		int minAge = getNum() + 1;
 		System.out.println("Enter the maximum age for the cabin: ");
 		int maxAge = getNum() + 1;
-		System.out.println("Enter the number of beds for the cabin: ");
-		int bedNum = getNum() + 1;
-		if(!facade.addSessionCabin(minAge, maxAge, bedNum)) {
+		if(!facade.addSessionCabin(minAge, maxAge)) {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
 		}
@@ -2348,7 +2362,7 @@ public class CampDriver {
 	}
 
 	/**
-	 * User entered int
+	 * User entered int minus 1 for arraylists
 	 */
 	private int getNum() {
 		int num;

@@ -447,14 +447,20 @@ public class CampFacade {
      * @param bedNum the number of beds in the cabin
      * @return true if successful, false if not successful
      */
-    public boolean addSessionCabin(int minAge, int maxAge, int bedNum) {
-        /*
-        for(int i=0; i<currentSessionCabinList.size(); i++){
-            if(currentSessionCabinList.get(i).getCabinID() == cabin.getCabinID())
-                return false;
-        } */
-        return currentSession.addCabin(new Cabin(minAge, maxAge, bedNum));
+    public boolean addSessionCabin(int minAge, int maxAge) {
+        return currentSession.addCabin(new Cabin(minAge, maxAge));
     }
+
+    /**
+     * Adds a cabin to the current caibn list (which should be in a session object)
+     * @param cabin the cabin to add
+     * @return true if successful, false if not successful
+     */
+    public boolean addSessionCabin(Cabin cabin) {
+        return currentSession.addCabin(cabin);
+    }
+
+    
 
 
 
@@ -475,6 +481,10 @@ public class CampFacade {
     public void updateCabinHash(String theme) {
         Session session = camp.getSession(theme);
         currentCabin = currentCabinHash.get(session);
+    }
+    
+    public ArrayList<Cabin> getAllCabins() {
+        return CabinList.getInstance().getCabins();
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------
