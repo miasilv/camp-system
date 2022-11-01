@@ -319,6 +319,10 @@ public class CampDriver {
 
 				System.out.println("Which activity do you want to delete?");
 				int num = getNum();
+				if(num >= 0 && num <= 6) {
+					System.out.println("These activities cannot be deleted.");
+					in.nextLine();
+				}
 				if(!facade.removeCampActivity(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();

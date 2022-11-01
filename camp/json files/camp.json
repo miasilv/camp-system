@@ -13,8 +13,8 @@
                     "answer": "$500"
                 }],
         "camperspercounselor": 8.0,
-        "activities": ["ziplining", "swimming", "running", "gaga ball", "soccer", 
-                        "kayaking", "bracelet making","arts and crafts", "painting", 
-                        "breakfast", "lunch", "dinner", "snack/ rest time","campfire songs"]
+        "activities": ["wake up", "breakfast", "lunch", "snack/rest time", "dinner", "campfire songs", "lights out",
+                        "ziplining", "swimming", "running", "gaga ball", "soccer", "kayaking", "bracelet making",
+                        "arts and crafts", "painting"]
     }
 ]

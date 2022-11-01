@@ -16,6 +16,25 @@ public class Schedule {
      */
     public Schedule(){
         this.schedule = new LinkedHashMap<String, String>();
+        times[0] = activities.get(0);
+        times[1] = activities.get(1);
+        times[3] = activities.get(2);
+        times[5] = activities.get(3);
+        times[7] = activities.get(4);
+        times[8] = activities.get(5);
+        times[9] = activities.get(6);
+
+        times[2] = getRandomActivity();
+        times[4] = getRandomActivity();
+        times[6] = getRandomActivity();
+
+    }
+
+    private String getRandomActivity() {
+        if(times[2] == null) {
+            
+        }
+        return "";
     }
 
     //data loading talk to natalie
