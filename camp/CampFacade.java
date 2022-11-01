@@ -758,7 +758,7 @@ public class CampFacade {
      * @param index the index of the cabin to be removed
      * @return true if successful, false if not
      */
-    public String removeCounselorAllergy(int index) {
+    public boolean removeCounselorAllergy(int index) {
         return currentCounselor.removeAllergy(index);
     }
 
