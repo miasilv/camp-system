@@ -50,7 +50,6 @@ public class CampDriver {
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
-    private static final String NUM_BEDS = "number of beds";
 
 	//schedule times
 	private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
@@ -96,6 +95,7 @@ public class CampDriver {
 	public void runDriver() {
         clear();
         System.out.println("***** Welcome to the Camp Website! *****");
+		facade.updateCamp();
 
         while(true) {
 			//updating options----------------------------------------
@@ -750,8 +750,24 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-				createCabin();
-				continue;
+				
+				clear();
+				System.out.println("Would you like to create a new cabin or add a pre-existing cabin? (enter 1 or 2 respectively)");
+				if(getNum() + 1 == 1) { //user wants to create a new cabin
+					createCabin();
+					continue;
+				}
+				else {
+					ArrayList<Cabin> allCabins = facade.getAllCabins();
+					for(int i = 0; i < allCabins.size(); i++) {
+						System.out.println((i + 1) + ": " + allCabins.get(i) + "\n");
+					}
+					System.out.println("\nWhich cabin are you adding to this session?");
+					int choice2 = getNum();
+					facade.addSessionCabin(allCabins.get(choice2));
+					continue;
+				}
+
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing cabin
@@ -779,7 +795,6 @@ public class CampDriver {
 			clearOptions();
 			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
 			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
-			options.add("Number of beds: " + facade.getCabinInt(NUM_BEDS));
 			options.add("Counselor: " + facade.getCabinCounselor());
 			options.add("Campers");
 			options.add("Schedule");
@@ -836,23 +851,7 @@ public class CampDriver {
 					}
 					break;
 
-				case 2: //bed numbers
-					if(!(user instanceof Director)) { 
-						System.out.println("You do not have permission to edit this.");
-						break;
-					}
-			
-					clear();
-					System.out.println("Old " + NUM_BEDS + ": " + facade.getCabinInt(NUM_BEDS));
-					int num3 = setIntInformation(NUM_BEDS);
-					if(num3 == -1) {
-						if(!facade.setCabinInt(NUM_BEDS, num3)) {
-							System.out.println("Sorry, something went wrong, unable to edit");
-						}
-					}
-					break;
-
-				case 3: //counselor				
+				case 2: //counselor				
 					if(!(user instanceof Director)) {
 						System.out.println("You don't have permission to edit this.");
 						in.nextLine();
@@ -879,11 +878,11 @@ public class CampDriver {
 					}
 					break;
 				
-				case 4: //campers
+				case 3: //campers
 					displayCamperList(CABIN);
 					break;
 
-				case 5: //schedule
+				case 4: //schedule
 					displayScheduleDays();
 					break;
 			}
@@ -1520,7 +1519,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + NAME + ": " + facade.getCamperString(NAME));
 					String change = setStringInformation(NAME);
-					if(change == null) {
+					if(!(change == null)) {
 						if(!facade.setCamperString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -2189,9 +2188,7 @@ public class CampDriver {
 		int minAge = getNum() + 1;
 		System.out.println("Enter the maximum age for the cabin: ");
 		int maxAge = getNum() + 1;
-		System.out.println("Enter the number of beds for the cabin: ");
-		int bedNum = getNum() + 1;
-		if(!facade.addSessionCabin(minAge, maxAge, bedNum)) {
+		if(!facade.addSessionCabin(minAge, maxAge)) {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
 		}
@@ -2365,7 +2362,7 @@ public class CampDriver {
 	}
 
 	/**
-	 * User entered int
+	 * User entered int minus 1 for arraylists
 	 */
 	private int getNum() {
 		int num;
