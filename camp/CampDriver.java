@@ -150,12 +150,15 @@ public class CampDriver {
 					}
 					else { //user portal
 						if(user instanceof Director) {
+							facade.updateDirector();
 							displayDirectorPortal();
 						}
 						if(user instanceof Guardian) {
+							facade.updateGuardian();
 							displayGuardianPortal();
 						}
 						if(user instanceof Counselor) {
+							facade.updateCounselor();
 							displayCounselorPortal();
 						}						
 					}
@@ -1172,7 +1175,7 @@ public class CampDriver {
 	private void displayCounselorPortal() {
 		while(true) {
 			//updating options----------------------------------------
-			facade.updateCounselor(USER);
+			facade.updateCounselor();
 			clearOptions();
 			options.add("Name: " + facade.getUserString(NAME));
 			options.add("Email: " + facade.getUserString(EMAIL));

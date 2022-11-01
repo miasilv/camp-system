@@ -690,16 +690,17 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
-    public void updateCounselor(String classFrom) {
-        if(classFrom.equals(USER) && currentUser instanceof Counselor) {
-            this.currentCounselor = (Counselor)currentUser;
-        }
-        if(classFrom.equals(CABIN)) {
-            this.currentCounselor = this.currentCabin.getCounselor();
-        }
+    public void updateCounselor() {
+        this.currentCounselor = (Counselor)currentUser;
         currentCounselorAllergyList = currentCounselor.getAllergies();
         currentContactHash = currentCounselor.getEmergencyContacts();
         currentCabinHash = currentCounselor.getCounselorCabinHash();
+
+        for(int i = 0; i < currentCounselor.getSessions().size(); i++) {
+            currentSession = camp.getSession(currentCounselor.getSessions().get(i));
+            currentCabin = currentSession.findCounselor(currentCounselor);
+            currentCounselor.updateCounselorCabinHash(currentSession, currentCabin);
+        }
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
