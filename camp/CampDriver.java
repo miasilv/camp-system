@@ -1841,7 +1841,7 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove a Session
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -1863,7 +1863,7 @@ public class CampDriver {
 			}
 			
 			if(choice == options.size() -4) { //the user wants to add a Session
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -1890,7 +1890,7 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to view the cabin
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -1950,7 +1950,7 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove an Allergy
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -1976,23 +1976,32 @@ public class CampDriver {
 				continue;
 			}
 			
-			if(choice == options.size() -4) { //the user wants to add an Activity
-				if(!(user instanceof Director)) {
+			if(choice == options.size() -4) { //the user wants to add an allergy
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
 				}
 
-				System.out.println("What activity do you want to add?");
-				if(!facade.addCampActivity(in.nextLine())) {
+				String allergy = in.nextLine();
+				System.out.println("What allergy do you want to add?");
+				if(user instanceof Guardian && !facade.addCamperAllergy(allergy)) {
 					System.out.println("Something went wrong, unable to add");
+					in.nextLine();
+				}
+				else if(user instanceof Counselor && !facade.addCounselorAllergy(allergy)) {
+					System.out.println("Something went wrong, unable to add");
+					in.nextLine();
+				}
+				else {
+					System.out.println("Something went wrong");
 					in.nextLine();
 				}
 				continue;
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing allergy
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -2008,6 +2017,7 @@ public class CampDriver {
 				}
 				else {
 					System.out.println("Something went wrong");
+					in.nextLine();
 				}
 				continue;
         	}
@@ -2061,7 +2071,7 @@ public class CampDriver {
 				return;
 			}
 			if(choice == options.size() - 3) { //the user wants to remove an Emergency Contact
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -2083,7 +2093,7 @@ public class CampDriver {
 			}
 			
 			if(choice == options.size() -4) { //the user wants to add an Emergency 
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
@@ -2094,7 +2104,7 @@ public class CampDriver {
 			}
 
 			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit a pre-existing allergy
-				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) && !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
 					continue;
