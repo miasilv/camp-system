@@ -33,6 +33,7 @@ public class Camper {
         this.birthday = birthday;
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         this.cabinHash = new HashMap<Session, Cabin>();
+        this.sessionThemes = new ArrayList<String>();
     }
 
     /**
@@ -96,6 +97,11 @@ public class Camper {
 
     public Date getBirthday() {
         return birthday;
+    }
+
+    public boolean setBirthday(Date date) {
+        this.birthday = date;
+        return true;
     }
 
     /**
