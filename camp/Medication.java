@@ -45,6 +45,6 @@ public class Medication {
     }
 
     public String toString() {
-        return "\ntype: \n " + type + "\ndose: \n" + dose + "\ntime: \n " + time + "\n";
+        return "type: " + type + "\ndose: " + dose + "\ntime: " + time;
     }
 }
