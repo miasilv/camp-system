@@ -248,13 +248,6 @@ public class UserList {
 
     }
 
-    public Camper getCamperByUUID(UUID id){
-        return null;
-    }
-
-    public Counselor getCounselorByUUID(UUID id){
-        return null;
-    }
 
     public void editUser() {
 

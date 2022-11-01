@@ -55,6 +55,10 @@ public class Guardian extends User {
         return id;
     }
     
+    /**
+     * written by natalie
+     * @return the id of the guardian in string format
+     */
     public String getGuardianID(){
         return getID().toString();
     }
