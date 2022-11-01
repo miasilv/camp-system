@@ -29,11 +29,10 @@ public class CampFacade {
     private Director currentDirector;
     private Counselor currentCounselor;
     private HashMap<String, Contact> currentContactHash;
+    private HashMap<Session, Cabin> currentCabinHash;
     private ArrayList<String> currentCounselorAllergyList;
-    private HashMap<Session, Cabin> currentCounselorCabinHash;
     private Guardian currentGuardian;
     private ArrayList<Camper> currentGuardianCamperList;
-    private HashMap<Session, Cabin> currentCamperCabinHash;
     private Camper currentCamper;
     private ArrayList<Medication> currentMedicationList;
     private Medication currentMedication;
@@ -91,6 +90,7 @@ public class CampFacade {
 
 	//contact instance variables
 	private static final String RELATIONSHIP = "relationship";
+    private static final String ADDRESS = "address";
 
 	//medication instance variables
     private static final String DOSE = "dose";
@@ -115,8 +115,7 @@ public class CampFacade {
         currentCounselorAllergyList = new ArrayList<String>();
         currentScheduleHash = new HashMap<Day, Schedule>();
         currentContactHash = new HashMap<String, Contact>();
-        currentCounselorCabinHash = new HashMap<Session, Cabin>();
-        currentCamperCabinHash = new HashMap<Session, Cabin>();
+        currentCabinHash = new HashMap<Session, Cabin>();
     }
 
     public void save() {
@@ -438,15 +437,18 @@ public class CampFacade {
 
     /**
      * Adds a cabin to the current cabin list (which should be in a session object)
-     * @param cabinNum the number of the new cabin
+     * @param minAge the minimum age for the cabin
+     * @param maxAge the maximum age for the cabin
+     * @param bedNum the number of beds in the cabin
      * @return true if successful, false if not successful
      */
-    public boolean addSessionCabin(Cabin cabin) {
+    public boolean addSessionCabin(int minAge, int maxAge, int bedNum) {
+        /*
         for(int i=0; i<currentSessionCabinList.size(); i++){
             if(currentSessionCabinList.get(i).getCabinID() == cabin.getCabinID())
                 return false;
-        }
-        return currentSession.addCabin(cabin);
+        } */
+        return currentSession.addCabin(new Cabin(minAge, maxAge, bedNum));
     }
 
 
@@ -461,6 +463,15 @@ public class CampFacade {
         this.currentScheduleHash = this.currentCabin.getSchedule();
     }
 
+    /**
+     * updates the cabin object from a session-cabin hash
+     * @param key the session theme for the cabin you're looking for
+     */ 
+    public void updateCabinHash(String key) {
+        Session session = camp.getSession(key);
+        currentCabin = currentCabinHash.get(session);
+    }
+    
     // ------------------------ INSTANCE VARIALBES --------------------------
     /**
      * Gets any int instance variable in the current cabin object
@@ -681,6 +692,7 @@ public class CampFacade {
         }
         currentCounselorAllergyList = currentCounselor.getAllergies();
         currentContactHash = currentCounselor.getEmergencyContacts();
+        currentCabinHash = currentCounselor.getCounselorCabinHash();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -792,6 +804,36 @@ public class CampFacade {
         return currentCounselor.addEmergencyContact(relationship, name, email, phone, address);
     }
 
+    /**
+     * Gets the current session,cabin hash (which should be in a counselor object)
+     * @return a hash map of cabins by session
+     */
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return currentCounselor.getCounselorCabinHash();
+    }
+
+    /**
+     * Removes a session from the current session,cabin hash (which should be in a counselor object)
+     * @param session the session to be removed
+     * @return true if successful, false if not
+     */
+    public boolean removeCounselorSession(String theme) {
+        return currentCounselor.removeSession(theme);
+    }
+
+    /**
+     * Adds a contact to the current contact hash (which should be in a counselor object)
+     * @param session the session being added to the camper
+     * @return true if successful, false if not successful
+     */
+    public boolean addCounselorSession(String theme) {
+        //TODO check if contact already exitsts in the list
+        return currentCounselor.addSession(theme);
+    }
+
+
+
+    
     // ***************************** GUARDIAN CLASS *******************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside guardian
@@ -866,7 +908,7 @@ public class CampFacade {
      * @param index the index of the camper to be removed
      * @return the removed camper object
      */
-    public Camper removeGuardianCamper(int index) {
+    public boolean removeGuardianCamper(int index) {
         return currentGuardian.removeCamper(index);
     }
 
@@ -875,12 +917,8 @@ public class CampFacade {
      * @param camper the new camper object
      * @return true if successful, false if not successful
      */
-    public boolean addGuardianCamper(Camper camper) {
-        for(int i=0; i<currentGuardianCamperList.size(); i++){
-            if(currentGuardianCamperList.get(i).getID() == camper.getID())
-                return false;
-        }
-        return currentGuardian.addCamper(camper);
+    public boolean addGuardianCamper(String name, Date birthday) {
+        return currentGuardian.addCamper(new Camper(name, birthday));
     }
 
 
@@ -903,7 +941,7 @@ public class CampFacade {
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
-        currentCamperCabinHash = currentCamper.getCabinHash();
+        currentCabinHash = currentCamper.getCabinHash();
         return true;
     }
 
@@ -1153,6 +1191,9 @@ public class CampFacade {
         if(variableName.equals(PHONE)) {
             return currentContact.getPhoneNumber();
         }
+        if(variableName.equals(ADDRESS)) {
+            return currentContact.getAddress();
+        }
         return null;
     }
     
@@ -1171,6 +1212,9 @@ public class CampFacade {
         }
         if(variableName.equals(PHONE)) {
             return currentContact.setPhoneNumber(change);
+        }
+        if(variableName.equals(ADDRESS)) {
+            return currentContact.setAddress(change);
         }
         return false;
     }

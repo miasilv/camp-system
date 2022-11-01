@@ -70,6 +70,7 @@ public class CampDriver {
 
 	//contact instance variables
 	private static final String RELATIONSHIP = "relationship";
+	private static final String ADDRESS = "address";
 
 	//medication instance variables
     private static final String DOSE = "dose";
@@ -1438,7 +1439,7 @@ public class CampDriver {
 
 				System.out.println("Which camper do you want to delete?");
 				int num = getNum();
-				if(facade.removeGuardianCamper(num) == null) {
+				if(!facade.removeGuardianCamper(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
@@ -1552,15 +1553,268 @@ public class CampDriver {
 	 * Displays a list of medications in a camper object
 	 */
 	private void displayMedicationList() {
-		//TODO
+		ArrayList<Medication> medications = facade.getCamperMedicationList();
+		while(true) {
+			//updating options----------------------------------------
+			clearOptions();
+			for(int i = 0; i < medications.size(); i++) {
+				options.add(medications.get(i).toString()); 
+			}
+			options.add("Add a new Medication");
+			options.add("Remove an existing Medication");
+			options.add("Return");
+			options.add("Quit");
+
+			//printing choices and getting choice----------------------------------------
+			clear();
+			System.out.println("***** Medications *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			if(choice == options.size() - 3) { //the user wants to remove a medication
+				if(!(user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				System.out.println("Which medication do you want to delete?");
+				int num = getNum();
+				if(!facade.removeCamperMedication(choice)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+				}
+				continue;
+			}
+
+			if(choice == options.size() -4) { //the user wants to add a Medication
+				if(!(user instanceof Guardian)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+				createMedication();
+				continue;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Medication
+				facade.updateMedication(choice);
+				displayMedication();
+				continue;
+        	}
+		}
 	}
 
+	/**
+	 * Displays a medication object's instance variables, including dose, time, and type.
+	 */
 	private void displayMedication() {
-		//TODO
+		while(true) {
+			//updating options and Camp object----------------------------------------
+			clearOptions();
+			options.add("Type: " + facade.getMedicationString(TYPE));
+			options.add("Time: " + facade.getMedicationString(TIME));
+			options.add("Dose: " + facade.getMedicationString(DOSE));
+			options.add("Return");
+			options.add("Quit");
+
+			//printing choices and getting choice----------------------------------------
+			clear();
+			System.out.println("***** Medication Information *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			switch(choice) {
+				case 0: //the user chose type
+					if(!(user instanceof Guardian)) { 
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + TYPE + ": " + facade.getMedicationString(TYPE));
+					String change = setStringInformation(TYPE);
+					if(!change.isEmpty()) {
+						if(!facade.setMedicationString(TYPE, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+				
+				case 1: //the user chose time
+					if(!(user instanceof Guardian)) {
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + TIME + ": " + facade.getMedicationString(TIME));
+					String change2 = setStringInformation(TIME);
+					if(!(change2.isEmpty())) {
+						if(!facade.setMedicationString(TIME, change2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 2: //the user chose dose
+					if(!(user instanceof Guardian)) {
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + DOSE + ": " + facade.getMedicationString(DOSE));
+					String change3 = setStringInformation(DOSE);
+					if(!(change3.isEmpty())) {
+						if(!facade.setMedicationString(DOSE, change3)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+			}
+		}
 	}
 
+	/**
+	 * Displays a session hash about either from campers or counselors
+	 * @param classFrom the class the session-cabin hash is coming from, either CAMPER or COUNSELOR
+	 */
 	private void displaySessionHash(String classFrom) {
-		//TODO
+		HashMap<Session, Cabin> cabinHash;
+		if(classFrom.equals(CAMPER)) {
+			cabinHash = facade.getCamperCabinHash();
+		}
+		else if (classFrom.equals(COUNSELOR)) {
+			cabinHash = facade.getCounselorCabinHash();
+		}
+		else {
+			System.out.println("Something went wrong)");
+			return;
+		}
+
+		while(true) {
+			//updating options----------------------------------------
+			clearOptions();
+			Object[] key = cabinHash.keySet().toArray();
+			for(int i = 0; i < cabinHash.size(); i++) {
+				options.add(key[i].toString() + ": " + cabinHash.get(key[i].toString()));
+			}
+			options.add("Add a new Session");
+			options.add("Remove an existing Session");
+			options.add("Return");
+			options.add("Quit");
+
+			//printing choices and getting choice----------------------------------------
+			clear();
+			System.out.println("***** Session, Cabin Hash *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+			if(choice == options.size() - 3) { //the user wants to remove a Session
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				System.out.println("Which Session do you want to delete (enter the theme)?");
+				String theme = in.nextLine();
+				if(user instanceof Guardian && !facade.removeCamperSession(theme)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					continue;
+				}
+				if(user instanceof Counselor && !facade.removeCounselorSession(theme)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					continue;
+				}
+				continue;
+			}
+			
+			if(choice == options.size() -4) { //the user wants to add a Session
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				facade.updateCamp();
+				ArrayList<Session> sessions = facade.getCampSessions();
+				for(int i = 0; i < sessions.size(); i++) {
+					System.out.println(sessions.get(i).toString());
+				}
+				System.out.println("Enter the theme of the session you would like to add:");
+				String theme = in.nextLine();
+				if(user instanceof Guardian && !facade.addCamperSession(theme)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					continue;
+				}
+				if(user instanceof Counselor && !facade.addCounselorSession(theme)) {
+					System.out.println("Something went wrong, unable to remove");
+					in.nextLine();
+					continue;
+				}
+				continue;
+			}
+
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to view the cabin
+				if(!(classFrom.equals(CAMPER) && user instanceof Guardian) || !(classFrom.equals(COUNSELOR) && user instanceof Counselor)) {
+					System.out.println("You do not have permission to edit this.");
+					in.nextLine();
+					continue;
+				}
+
+				System.out.println("Which Session's cabin do you want to view? (enter the session theme)");
+				String theme = in.nextLine();				
+				facade.updateCabinHash(theme);
+				displayCabinInformation();
+        	}
+		}
 	}
 
 	/**
@@ -1668,6 +1922,10 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Displays the emergency contact hash of either a counselor or camper
+	 * @param classFrom the class the emergency contact hash is coming from, either CAMPER or COUNSELOR
+	 */
 	private void displayEmergencyContactHash(String classFrom) {
 		HashMap<String, Contact> eContacts;
 		if(classFrom.equals(CAMPER)) {
@@ -1719,12 +1977,12 @@ public class CampDriver {
 
 				System.out.println("Which Emergency Contact do you want to delete (enter the relationship)?");
 				String relationship = in.nextLine();
-				if(user instanceof Guardian && facade.removeCamperContact(relationship)) {
+				if(user instanceof Guardian && !facade.removeCamperContact(relationship)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && facade.removeCounselorContact(relationship)) {
+				if(user instanceof Counselor && !facade.removeCounselorContact(relationship)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -1750,30 +2008,129 @@ public class CampDriver {
 					continue;
 				}
 
-				if(user instanceof Guardian) {
-					System.out.println(facade.getCamperAllergyList().get(choice));
-					facade.getCamperAllergyList().set(choice, setStringInformation(ALLERGIES));
-				}
-				else if(user instanceof Counselor) {
-					System.out.println(facade.getCounselorAllergyList().get(choice));
-					facade.getCounselorAllergyList().set(choice, setStringInformation(ALLERGIES));
-				}
-				else {
-					System.out.println("Something went wrong");
-				}
-				continue;
+				System.out.println("Which Emergency Contact do you want to delete (enter the relationship)?");
+				String relationship = in.nextLine();
+				facade.updateContacts(relationship);
+				displayContact();
         	}
 		}
 	}
 
-
+	/**
+	 * Displays a contact object's instance variable, including name, email, and phone
+	 */
 	private void displayContact() {
-		//TODO
+		while(true) {
+			//updating options and Camp object----------------------------------------
+			clearOptions();
+			options.add("Name: " + facade.getContactString(NAME));
+			options.add("Email: " + facade.getContactString(EMAIL));
+			options.add("Phone: " + facade.getContactString(PHONE));
+			options.add("Address: " + facade.getContactString(ADDRESS));
+			options.add("Return");
+			options.add("Quit");
+
+			//printing choices and getting choice----------------------------------------
+			clear();
+			System.out.println("***** Contact Information *****");
+			int choice = getChoice();
+			if(choice == -1) {
+				continue;
+			}
+			
+			//doing what the user chose----------------------------------------
+			if(choice == options.size() - 1) { //the user chose quit
+				System.out.println("Goodbye!");
+				//TODO save
+				System.exit(0);
+			}
+			
+			if(choice == options.size() - 2) { //the user chose return
+				return;
+			}
+
+			switch(choice) {
+				case 0: //the user chose type
+					if(!(user instanceof Guardian) || !(user instanceof Counselor)) { 
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + NAME + ": " + facade.getContactString(NAME));
+					String change = setStringInformation(NAME);
+					if(!change.isEmpty()) {
+						if(!facade.setContactString(TYPE, change)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+				
+				case 1: //the user chose time
+					if(!(user instanceof Guardian) || !(user instanceof Counselor)) {
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+					
+					clear();
+					System.out.println("Old " + EMAIL + ": " + facade.getContactString(EMAIL));
+					String change2 = setStringInformation(TIME);
+					if(!(change2.isEmpty())) {
+						if(!facade.setContactString(EMAIL, change2)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 2: //the user chose dose
+					if(!(user instanceof Guardian) || !(user instanceof Counselor)) {
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + PHONE + ": " + facade.getContactString(PHONE));
+					String change3 = setStringInformation(PHONE);
+					if(!(change3.isEmpty())) {
+						if(!facade.setContactString(PHONE, change3)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+
+				case 3: //the user chose address
+					if(!(user instanceof Guardian) || !(user instanceof Counselor)) {
+						System.out.println("You do not have permission to edit this.");
+						in.nextLine();
+						break;
+					}
+				
+					clear();
+					System.out.println("Old " + ADDRESS + ": " + facade.getContactString(ADDRESS));
+					String change4 = setStringInformation(ADDRESS);
+					if(!(change4.isEmpty())) {
+						if(!facade.setContactString(ADDRESS, change4)) {
+							System.out.println("Sorry, something went wrong, unable to edit");
+							in.nextLine();
+						}
+					}
+					break;
+			}
+		}
 	}
 
 
 	//------------------------------------------- Creating new objects ----------------------------------------------------------------------------------
 
+	/**
+	 * Creates an faq object
+	 */
 	private void createFAQ() {
 		System.out.println("What is the question of the new faq?");
 		String question = in.nextLine();
@@ -1785,6 +2142,9 @@ public class CampDriver {
 		}
 	}
 
+	/**
+	 * Creates a Session object
+	 */
 	private void createSession() {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
@@ -1797,24 +2157,73 @@ public class CampDriver {
 		if(!facade.addCampSession(theme, description, startDate, endDate)) {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
-			return;
 		}
 	}
 	
+	/**
+	 * Creates a cabin object
+	 */
 	private void createCabin() {
-		//TODO
+		System.out.println("Enter the minimum age for the cabin: ");
+		int maxAge = getNum();
+		System.out.println("Enter the maximum age for the cabin: ");
+		int minAge = getNum();
+		System.out.println("Enter the number of beds for the cabin: ");
+		int bedNum = getNum();
+		if(!facade.addSessionCabin(minAge, maxAge, bedNum)) {
+			System.out.println("Something went wrong, unable to add");
+			in.nextLine();
+		}
 	}
 
+	/*
+	 * Creates a camper object
+	 */
 	private void createCamper() {
-		//TODO
+		System.out.println("Enter the name of the camper: ");
+		String name = in.nextLine();
+		System.out.println("Enter the birthday of the camper: (MM/DD/YYYY) ");
+		Date birthday = getDate(in.nextLine());
+		if(!facade.addGuardianCamper(name, birthday)) {
+			System.out.println("Something went wrong");
+			in.nextLine();
+		}
 	}
 
+	/*
+	 * Creates a contact object
+	 */
 	private void createContact() {
-
+		System.out.println("Enter the relationship: ");
+		String relationship = in.nextLine();
+		System.out.println("Enter the name for the contact: ");
+		String name = in.nextLine();
+		System.out.println("Enter the phone number for the contact: ");
+		String email = in.nextLine();
+		System.out.println("Enter the email for the contact: ");
+		String phone = in.nextLine();
+		System.out.println("Enter the address of the contact: ");
+		String address = in.nextLine();
+		if(!facade.addCamperContact(relationship, name, email, phone, address)) {
+			System.out.println("Something went wrong");
+			in.nextLine();
+		}
 	}
 
+	/*
+	 * Creates a medication object
+	 */
 	private void createMedication() {
-
+		System.out.println("Enter the dose for the medication: ");
+		String dose = in.nextLine();
+		System.out.println("Enter the type for the medication: ");
+		String type = in.nextLine();
+		System.out.println("Enter the number of beds for the cabin: ");
+		String time = in.nextLine();
+		if(!facade.addCamperMedication(dose, type, time)) {
+			System.out.println("Something went wrong");
+			in.nextLine();
+		}
 	}
 
 	//------------------------------------------- Methods that change an instance variable/array list ----------------------------------------------
