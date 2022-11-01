@@ -87,7 +87,9 @@ public class Guardian extends User {
      * Method to discount the price of the camp
      */
     public void discount() {
-        //if multiple kids, discount
+        if (campers.size() > 1) {
+            price *= 0.75;
+        }
     }
 
     public Camper getCamper(int index){
@@ -108,13 +110,14 @@ public class Guardian extends User {
     }
 
     public boolean removeCamper(int index) {
-        return false;
+        campers.remove(index);
+        return true;
     }
 
     public boolean addCamper(Camper camper) {
-        return false;
+        campers.add(camper);
+        return true;
     }
-
 
     public double updatePrice() {
         return numOfSessions * pricePerSession;
