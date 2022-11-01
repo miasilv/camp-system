@@ -391,12 +391,12 @@ public class CampFacade {
      * @param variableName the name of the date instance variable
      * @return the date value in the variableName, null if not found
      */
-    public String getSessionDate(String variableName) {
+    public Date getSessionDate(String variableName) {
         if(variableName.equals(START_DATE)) {
-            return currentSession.getStrStart();
+            return currentSession.getStartDate();
         }
         if(variableName.equals(END_DATE)) {
-            return currentSession.getStrEnd();
+            return currentSession.getEndDate();
         }
         return null;
     }
