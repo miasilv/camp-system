@@ -59,6 +59,13 @@ public class Camper {
 
     // getters because Nat needs them:
 
+    /**
+     * written by natalie
+     * creates a hash map for emergency contacts of the camper
+     * @param relationships the relationships of the contacts
+     * @param contacts the contacts information
+     * @return the list of emergency contacts
+     */
     public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
         HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
         for (int i=0; i<contacts.size(); i++) {
@@ -115,6 +122,10 @@ public class Camper {
         return allergies;
     }
 
+    /**
+     * written by natalie
+     * @return a string format of allergies
+     */
     public String getAllergiesStr(){
         return allergies.toString();
     }
@@ -221,34 +232,6 @@ public class Camper {
          */
     }
 
-    /**
-     * Adds an emergency contact to the camper
-     * 
-     * @param emergencyContact The emergency contact to add
-     */
-    public void addEmergencyContact(Contact emergencyContact) {
-
-    }
-
-    /**
-     * Removes an emergency contact from the camper
-     * 
-     * @param emergencyContact The emergency contact to remove
-     */
-    public void removeEmergencyContact(Contact emergencyContact) {
-
-    }
-
-    /**
-     * Edits an emergency contact of the camper
-     * 
-     * @param index            Index of the emergency contact to edit
-     * @param emergencyContact The emergency contact to replace the index with
-     */
-    public void editEmergencyContact(int index, Contact emergencyContact) {
-
-    }
-
     public boolean setName(String change) {
         this.name = change;
         return true;
@@ -312,33 +295,46 @@ public class Camper {
     }
 
     public void updateCamperCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
     }
 
     public HashMap<Session, Cabin> getCabinHash() {
-        return null;
+        return cabinHash;
     }
 
     public boolean removeAllergy(int index) {
-        return false;
+        allergies.remove(index);
+        return true;
     }
 
     public boolean removeMedication(int index) {
-        return false;
+        medications.remove(index);
+        return true;
     }
 
     public boolean removeSession(String theme) {
+        for (Session s : cabinHash.keySet()) {
+            if (theme.equals(s.getTheme())) {
+                cabinHash.remove(s);
+                return true;
+            }
+        }
         return false;
     }
 
-    public boolean addSession(String theme) {
-        return false;
+    public boolean addSession(Session s, Cabin c) {
+        cabinHash.put(s, c);
+        return true;
     }
 
     public boolean removeEmergencyContact(String relationship) {
-        return false;
+        emergencyContacts.remove(relationship);
+        return true;
     }
 
     public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
-        return false;
+        Contact nContact = new Contact(name, phone, email, address);
+        emergencyContacts.put(relationship, nContact);
+        return true;
     }
 }

@@ -50,6 +50,10 @@ public class Session {
     public void setId(UUID id) {
         this.id = id;
     }
+    /**
+     * written by natalie
+     * @return a string representation of the id for data writer
+     */
     public String getSessionID(){
         return getID().toString();
     }
@@ -81,6 +85,11 @@ public class Session {
     public Date getStartDate() {
         return this.startDate;
     }
+
+    /**
+     * written by natalie
+     * @return a string format of the start date
+     */
     public String getStrStart() {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(startDate);
@@ -96,6 +105,11 @@ public class Session {
     public Date getEndDate() {
         return this.endDate;
     }
+
+    /**
+     * written by natalie
+     * @return a string format of the end date
+     */
     public String getStrEnd() {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(endDate);

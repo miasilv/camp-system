@@ -54,6 +54,10 @@ public class Guardian extends User {
         return id;
     }
     
+    /**
+     * written by natalie
+     * @return the id of the guardian in string format
+     */
     public String getGuardianID(){
         return getID().toString();
     }
@@ -109,13 +113,6 @@ public class Guardian extends User {
      * Method to discount the price of the camp
      */
     public void discount() {
-
-    }
-
-    /**
-     * Method to sign the waiver for the child
-     */
-    public void signWaiver() {
 
     }
 

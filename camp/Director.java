@@ -47,6 +47,10 @@ public class Director extends User {
         return id;
     }
 
+    /**
+     * written by natalie
+     * @return the uuid of the director in string format
+     */
     public String getDirectorID(){
         return getID().toString();
     }

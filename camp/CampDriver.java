@@ -2146,7 +2146,7 @@ public class CampDriver {
 	private void createSession() {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
-		System.out.println("What would you like the session number to be?");
+		System.out.println("What would you like the session description to be?");
 		String description = in.nextLine();
 		System.out.println("What would you like the start date to be?");
 		Date startDate = getDate(in.nextLine());

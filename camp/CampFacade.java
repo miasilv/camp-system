@@ -827,8 +827,15 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCounselorSession(String theme) {
-        //TODO check if contact already exitsts in the list
-        return currentCounselor.addSession(theme);
+        Session session = camp.getSession(theme);
+        Cabin cabin;
+        for(int i = 0; i < currentSessionCabinList.size(); i++) {
+            if(currentSessionCabinList.get(i).hasCounselor()) {
+                cabin = currentSessionCabinList.get(i);
+                return currentCounselor.addSession(session, cabin);
+            }
+        }
+        return false;
     }
 
 
@@ -1107,8 +1114,12 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperSession(String theme) {
-        //TODO check if contact already exitsts in the list
-        return currentCamper.addSession(theme);
+        Session session = camp.getSession(theme);
+        Cabin cabin = session.placeCamper(currentCamper);
+        if(cabin == null) {
+            return false;
+        }
+        return currentCamper.addSession(session, cabin);
     }
 
 
