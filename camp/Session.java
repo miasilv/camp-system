@@ -43,11 +43,14 @@ public class Session {
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
-    public UUID getId() {
+    public UUID getID() {
         return this.id;
     }
     public void setId(UUID id) {
         this.id = id;
+    }
+    public String getSessionID(){
+        return getID().toString();
     }
 
     public String getTheme() {
@@ -63,6 +66,15 @@ public class Session {
     }
     public void setCabins(ArrayList<Cabin> cabins) {
         this.cabins = cabins;
+    }
+    /**
+     * method to remove a cabin from a cabin list
+     * @param index the index of the cabin being removed
+     * @return whether or not the cabin was removed
+     */
+    public boolean removeCabin(int index) {
+        cabins.remove(index);
+        return true;
     }
 
     public Date getStartDate() {
@@ -94,12 +106,12 @@ public class Session {
         }
         return false;
     }
+    public String getDescription() {
+        return this.sessionDescription;
+    }
     public boolean setDescription(String change) {
         this.sessionDescription = change;
         return true;
-    }
-    public String getDescription() {
-        return this.sessionDescription;
     }
 
     /**
@@ -135,12 +147,6 @@ public class Session {
         }
         return null;
     }
-    public UUID getID() {
-        return id;
-    }
-    public String getSessionID(){
-        return getID().toString();
-    }
 
     public String toString(){
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
@@ -149,7 +155,11 @@ public class Session {
         workingString += "\t" + sessionDescription;
         return workingString;
     }
-
+    /**
+     * a method to place a camper in a cabin based on age/if the cabin is full
+     * @param camper the camper being placed
+     * @return the cabin the camper was placed in, null if failed to do so
+     */
     public Cabin placeCamper(Camper camper){
         for(int i=0; i<cabins.size(); i++){
             int minAge = (int) cabins.get(i).getMinAge();
@@ -161,6 +171,11 @@ public class Session {
         }
         return null;
     }
+    /**
+     * a method to place a counselor in a cabin based on if the cabin has a counselor
+     * @param counselor the counselor being placed
+     * @return the cabin the counselor is placed in, null if failed to do so
+     */
     public Cabin placeCounselor(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
             if(!cabins.get(i).hasCounselor()){
@@ -170,7 +185,11 @@ public class Session {
         }
         return null;
     }
-
+    /**
+     * checks if a camper is enrolled in a particular session
+     * @param camper the camper being searched for
+     * @return whether or not the camper is in the session
+     */
     public boolean isCamperInSession(Camper camper){
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCamper(camper))
@@ -178,6 +197,11 @@ public class Session {
         }
         return false;
     }
+    /**
+     * checks if a counselor is enrolled in a particular session
+     * @param counselor the counselor being searched for
+     * @return whether or not the counselor is in the session
+     */
     public boolean isCounselorInSession(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCounselor(counselor))
@@ -185,13 +209,20 @@ public class Session {
         }
         return false;
     }
-
+    /**
+     * determines which cabin a camper is in, calls method to update that camper's cabin hash
+     * @param camper the camper being updated
+     */
     public void updateCamperCabinHash(Camper camper) {
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCamper(camper))
                 cabins.get(i).updateCampersCabinHashes(camper, this);
         }
     }
+    /**
+     * determines which cabin a counselor is in, calls method to update that counselor's cabin hash
+     * @param counselor the counselor being updated
+     */
     public void updateCounselorCabinHash(Counselor counselor) {
         for(int i=0; i<cabins.size(); i++){
             if(cabins.get(i).hasCounselor(counselor))
@@ -199,7 +230,4 @@ public class Session {
         }
     }
 
-    public boolean removeCabin(int index) {
-        return false;
-    }
 }

@@ -541,7 +541,7 @@ public class CampDriver {
 
 				System.out.println("Which session do you want to delete?");
 				int num = getNum();
-				if(facade.removeCampSession(num) == null) {
+				if(!facade.removeCampSession(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
