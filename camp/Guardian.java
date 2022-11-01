@@ -7,7 +7,7 @@ public class Guardian extends User {
     private ArrayList<Camper> campers;
     private int numOfSessions;
     private double price;
-    private double pricePerSession = 500;
+    private final static double pricePerSession = 500;
 
     /**
      * Constructor for the guardian class
@@ -128,15 +128,11 @@ public class Guardian extends User {
         return true;
     }
 
-    public double updatePrice() {
+    private double updatePrice() {
         return numOfSessions * pricePerSession;
     }
 
-    public double getPricePerSession() {
-        return pricePerSession; // figure out how to get pricepersession
-    }
-
-    public boolean updateTotalSessions() {
+    private boolean updateTotalSessions() {
         for (int i=0; i<campers.size(); i++) {
             numOfSessions += (campers.get(i).getNumOfSessions());
         }
