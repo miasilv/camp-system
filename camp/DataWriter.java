@@ -287,7 +287,6 @@ public class DataWriter extends DataConstants {
      */
 	public static JSONObject getCabinJSON(Cabin cabin) {
 		JSONObject cabinDetails = new JSONObject();
-		cabinDetails.put(CABIN_BEDS, cabin.getBeds());
 		
         JSONArray jsonCampers = new JSONArray();
         for(int i = 0; i< cabin.getCampers().size(); i++){

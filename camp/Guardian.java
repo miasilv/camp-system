@@ -36,7 +36,6 @@ public class Guardian extends User {
         super(name, email, password, phoneNumber);
         this.id = id;
         this.campers = campers;
-        this.price = pricePerSession* campers.size();
         updatePrice();
         updateTotalSessions();
     }
