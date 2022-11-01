@@ -1436,10 +1436,12 @@ public class CampDriver {
 				
 				case 4:
 					System.out.println("There is no way to edit this");
+					in.nextLine();
 					break;
 
 				case 5: //price
 					System.out.println("There is no way to edit this");
+					in.nextLine();
 					break;
 
 				case 6:
@@ -1614,9 +1616,11 @@ public class CampDriver {
 
 				case 4: //Sessions
 					displaySessionHash(CAMPER);
+					break;
 
 				case 5: //Emergency Contacts
 					displayEmergencyContactHash(CAMPER);
+					break;
 					
 			}
 		}
@@ -2389,7 +2393,7 @@ public class CampDriver {
 			System.out.println("Something went wrong");
 			return null;
 		}
-		System.out.println("You would like to change it to " + date.toString());
+		System.out.println("You would like to change it to " + displayDate(date));
 		System.out.print("Is this right? (y/n): ");
 		String answer = in.nextLine();
 		if(answer.equalsIgnoreCase("y")) {

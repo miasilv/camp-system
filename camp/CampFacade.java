@@ -998,7 +998,7 @@ public class CampFacade {
      */
     public boolean setCamperDate(String variableName, Date change) {
         if(variableName.equals(BIRTHDAY)) {
-            return currentCounselor.setBirthday(change);
+            return currentCamper.setBirthday(change);
         } 
         return false;
     }
