@@ -326,4 +326,5 @@ public class Camper {
         emergencyContacts.put(relationship, nContact);
         return true;
     }
+
 }

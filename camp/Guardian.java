@@ -7,6 +7,7 @@ public class Guardian extends User {
     private ArrayList<Camper> campers;
     private int numOfSessions;
     private double price;
+    private double pricePerSession = 500;
 
     /**
      * Constructor for the guardian class
@@ -81,35 +82,12 @@ public class Guardian extends User {
     public ArrayList<Camper> getCampers(){
         return campers;
     }
-    
-    /**
-     * Method to register a camper
-     */
-    public void registerCamper() {
-
-    }
-
-    /**
-     * Method to unregister a camper
-     */
-    public void unregisterCamper() {
-
-    }
-
-    /**
-     * Method to add a session for a camper
-     * @param camper Camper of the guardian to add session to
-     * @param session The session to add the camper to
-     */
-    public void addSession(Camper camper, Session session) {
-
-    }
 
     /**
      * Method to discount the price of the camp
      */
     public void discount() {
-
+        //if multiple kids, discount
     }
 
     public Camper getCamper(int index){
@@ -125,22 +103,8 @@ public class Guardian extends User {
         return numOfSessions;
     }
 
-    public boolean setTotalSessions(int change) {
-        this.numOfSessions = change;
-        return true;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public boolean setPrice(double change) {
-        this.price = change;
-        return true;
-    }
-
-    public double pricePerSession() {
-        return numOfSessions * price;
     }
 
     public boolean removeCamper(int index) {
@@ -150,4 +114,24 @@ public class Guardian extends User {
     public boolean addCamper(Camper camper) {
         return false;
     }
+
+
+    public double updatePrice() {
+        return numOfSessions * pricePerSession;
+    }
+
+    public double getPricePerSession() {
+        return pricePerSession; // figure out how to get pricepersession
+    }
+
+    public boolean updateTotalSessions() {
+        return true;
+    }
+    // update total sessions
+    /*
+    loop through campers
+    get how many sessions they have campers.getSession
+    hasSession method in campe
+
+    */
 }
