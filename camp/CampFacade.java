@@ -282,7 +282,7 @@ public class CampFacade {
      * @param index the index of the session to be removed
      * @return true if successful, false if not
      */
-    public Session removeCampSession(int index) {
+    public boolean removeCampSession(int index) {
         return camp.removeSession(index);
     }
 
