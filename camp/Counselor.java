@@ -89,7 +89,6 @@ public class Counselor extends User {
      * written by natalie
      * @return a string representation 
      */
-
     public String getCounselorID(){
         return getID().toString();
     }
