@@ -8,31 +8,31 @@
         "min age": 7.0,
         "schedule": [{
                         "day": "Monday",
-                        "schedule": ["Wake Up", "Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up", "Breakfast at the mess hall","Archery at the archery range","Lunch at the mess hall", "Swimming in the lake","Snack/ Rest Time at cabin","Bracelet Making at the mess hall","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Tuesday",
-                        "schedule": ["Wake Up","Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Swimming in the lake","Lunch at the mess hall","Ziplining at the zipline track","Snack/ Rest Time at cabin","Archery at the archery range","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Wednesday",
-                        "schedule": ["Wake Up","Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Running on the field","Lunch at the mess hall","Swimming in the lake","Snack/ Rest Time at cabin","Painting at the Craft Building","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Thursday",
-                        "schedule": ["Wake Up","Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Ziplining at the zipline track","Lunch at the mess hall","Singing at the mess hall","Snack/ Rest Time at cabin","Swimming in the lake","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Friday",
-                        "schedule": ["Wake Up","Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Kayaking on the lake","Lunch at the mess hall","Ziplining at the zipline track","Snack/ Rest Time at cabin","Soccer on the field","Dinner at the mess hall", "Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Saturday",
-                        "schedule": ["Wake Up","Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall", "Gaga Ball at the Gaga Ball Pit","Lunch at the mess hall", "Tie Dying at the craft building","Snack/ Rest Time at cabin", "Swimming in the lake","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Sunday",
-                        "schedule": ["Wake Up","Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Arts and Crafts at the craft building", "Lunch at the mess hall", "Gaga Ball at the Gaga Ball Pit", "Snack/ Rest Time at cabin", "Ziplining at the zipline track", "Dinner at the mess hall", "Campfire Songs at the firepit", "Lights Out"]
                     }]
     },
     {
@@ -44,31 +44,31 @@
         "min age": 11.0,
         "schedule": [{
                         "day": "Monday",
-                        "schedule": ["Wake Up","Breakfast","Archery","Lunch", "Swimming","Snack/ Rest Time","Bracelet Making","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Archery at the archery range","Lunch at the mess hall", "Swimming in the lake","Snack/ Rest Time at cabin","Bracelet Making at the mess hall","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Tuesday",
-                        "schedule": ["Wake Up","Breakfast","Swimming","Lunch","Ziplining","Snack/ Rest Time","Archery","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Swimming in the lake","Lunch at the mess hall","Ziplining at the zipline track","Snack/ Rest Time at cabin","Archery at the archery range","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Wednesday",
-                        "schedule": ["Wake Up","Breakfast","Running","Lunch","Swimming","Snack/ Rest Time","Painting","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Running on the field","Lunch at the mess hall","Swimming in the lake","Snack/ Rest Time at cabin","Painting at the Craft Building","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Thursday",
-                        "schedule": ["Wake Up","Breakfast","Ziplining","Lunch","Singing","Snack/ Rest Time","Swimming","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Ziplining at the zipline track","Lunch at the mess hall","Singing at the mess hall","Snack/ Rest Time at cabin","Swimming in the lake","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Friday",
-                        "schedule": ["Wake Up","Breakfast","Kayaking","Lunch","Ziplining","Snack/ Rest Time","Soccer","Dinner", "Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Kayaking on the lake","Lunch at the mess hall","Ziplining at the zipline track","Snack/ Rest Time at cabin","Soccer on the field","Dinner at the mess hall", "Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Saturday",
-                        "schedule": ["Wake Up","Breakfast", "Gaga Ball","Lunch", "Tie Dying","Snack/ Rest Time", "Swimming","Dinner","Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall", "Gaga Ball at the Gaga Ball Pit","Lunch at the mess hall", "Tie Dying at the craft building","Snack/ Rest Time at cabin", "Swimming in the lake","Dinner at the mess hall","Campfire Songs at the firepit", "Lights Out"]
                     },
                     {
                         "day": "Sunday",
-                        "schedule": ["Wake Up","Breakfast","Arts and Crafts", "Lunch", "Gaga Ball", "Snack/ Rest Time", "Ziplining", "Dinner", "Campfire Songs", "Lights Out"]
+                        "schedule": ["Wake Up","Breakfast at the mess hall","Arts and Crafts at the craft building", "Lunch at the mess hall", "Gaga Ball at the Gaga Ball Pit", "Snack/ Rest Time at cabin", "Ziplining at the zipline track", "Dinner at the mess hall", "Campfire Songs at the firepit", "Lights Out"]
                     }]
     }
 ]
