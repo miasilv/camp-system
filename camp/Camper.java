@@ -59,6 +59,13 @@ public class Camper {
 
     // getters because Nat needs them:
 
+    /**
+     * written by natalie
+     * creates a hash map for emergency contacts of the camper
+     * @param relationships the relationships of the contacts
+     * @param contacts the contacts information
+     * @return the list of emergency contacts
+     */
     public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
         HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
         for (int i=0; i<contacts.size(); i++) {
@@ -115,6 +122,10 @@ public class Camper {
         return allergies;
     }
 
+    /**
+     * written by natalie
+     * @return a string format of allergies
+     */
     public String getAllergiesStr(){
         return allergies.toString();
     }

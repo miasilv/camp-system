@@ -151,6 +151,11 @@ public class Cabin {
     public UUID getID() {
         return cabinID;
     }
+
+    /**
+     * written by natalie
+     * @return a string representation of the cabin uuid
+     */
     public String getCabinID() {
         return getID().toString();
         

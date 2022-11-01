@@ -50,6 +50,12 @@ public class Counselor extends User {
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
     }
 
+    /**
+     * written by natalie
+     * @param relationships the key values in the hash
+     * @param contacts the contact information for those key values
+     * @return the array list of emergency contacts
+     */
     public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
         HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
         for (int i=0; i<contacts.size(); i++) {
@@ -77,6 +83,11 @@ public class Counselor extends User {
     public UUID getID() {
         return id;
     }
+
+    /**
+     * written by natalie
+     * @return a string representation 
+     */
     public String getCounselorID(){
         return getID().toString();
     }
@@ -100,6 +111,10 @@ public class Counselor extends User {
         return birthday;
     }
 
+    /**
+     * written by natalie
+     * @return the birthday in string format
+     */
     public String getBirthdayStr() {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(birthday);
@@ -108,6 +123,11 @@ public class Counselor extends User {
     public ArrayList<String> getAllergies() {
         return allergies;
     }
+
+    /**
+     * written by natalie
+     * @return the allergies in string format
+     */
     public String getAllergiesStr(){
         return allergies.toString();
     }

@@ -29,9 +29,17 @@ public class Schedule {
         this.schedule = createdSchedule;
     }
 
+    /**
+     * written by natalie
+     * @return the array list of activities
+     */
     public ArrayList<String> getActivites(){
         return this.activities;
     }
+    /**
+     * written by natalie
+     * @return the schedule
+     */
     public HashMap<String, String> getSchedule(){
         return this.schedule;
     }
