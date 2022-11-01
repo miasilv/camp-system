@@ -758,7 +758,7 @@ public class CampFacade {
      * @param index the index of the cabin to be removed
      * @return true if successful, false if not
      */
-    public String removeCounselorAllergy(int index) {
+    public boolean removeCounselorAllergy(int index) {
         return currentCounselor.removeAllergy(index);
     }
 
@@ -862,19 +862,6 @@ public class CampFacade {
     }
 
     /**
-     * Sets any int instance variable in the current guardian object with a new value
-     * @param variableName the name of the int instance variable being edited
-     * @param change the new int to place in the instance variable
-     * @return true if successful, false if not successful
-     */
-    public boolean setGuardianInt(String variableName, int change) {
-        if(variableName.equals(SESS_NUM)) {
-            return currentGuardian.setTotalSessions(change);
-        }
-        return false;
-    }
-
-    /**
      * Gets any double instance variable in the current guardian object
      * @param variableName the name of the double instance variable
      * @return the double value in the variableName, -1 if not found
@@ -886,18 +873,6 @@ public class CampFacade {
         return -1;
     }
 
-    /**
-     * Sets any double instance variable in the current guardian object with a new value
-     * @param variableName the name of the double instance variable being edited
-     * @param change the new dobule to place in the instance variable
-     * @return true if successful, false if not successful
-     */
-    public boolean setGuardianDouble(String variableName, double change) {
-        if(variableName.equals(PRICE)) {
-            return currentGuardian.setPrice(change);
-        }
-        return false;
-    }
     
     // ------------------------------ ARRAY LISTS ---------------------------
     /**
@@ -1117,7 +1092,7 @@ public class CampFacade {
         if(cabin == null) {
             return false;
         }
-        return currentCamper.addSession(session, cabin, camp.getPrice());
+        return currentCamper.addSession(session, cabin);
     }
 
 
