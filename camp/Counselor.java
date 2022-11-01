@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+//import java.util.Map;
 import java.util.UUID;
 
 public class Counselor extends User {
@@ -88,9 +89,11 @@ public class Counselor extends User {
      * written by natalie
      * @return a string representation 
      */
+
     public String getCounselorID(){
         return getID().toString();
     }
+
     public String getBio() {
         return bio;
     }
@@ -153,17 +156,10 @@ public class Counselor extends User {
     }
 
     /**
-     * Method to sign the waiver for the counselor
-     */
-    public void SignWaiver() {
-
-    }
-
-    /**
      * Method to add the bio of the counselor
      */
-    public void addBio() {
-
+    public void addBio(String bio) {
+        this.bio = bio;
     }
 
     /**
@@ -171,7 +167,7 @@ public class Counselor extends User {
      * @param allergy Allergy to take care of
      */
     public void addAllergies(String allergy) {
-
+        allergies.add(allergy);
     }
 
     /**
@@ -179,7 +175,7 @@ public class Counselor extends User {
      * @param allergy Allergy to remove
      */
     public void removeAllergy(String allergy) {
-
+        allergies.remove(allergy);
     }
 
     /**
@@ -188,7 +184,7 @@ public class Counselor extends User {
      * @param allergy Allergy to replace with
      */
     public void editAllergy(int index, String allergy) {
-
+        allergies.set(index, allergy);
     }
 
     public boolean setBio(String change) {
@@ -273,28 +269,41 @@ public class Counselor extends User {
         cabinHash.put(session, cabin);
     }
 
-    public String removeAllergy(int index) {
-        return null;
+    public boolean removeAllergy(int index) {
+        allergies.remove(index);
+        return true;
     }
 
     public boolean addAllergy(String allergy) {
-        return false;
+        allergies.add(allergy);
+        return true;
     }
 
     public boolean removeEmergencyContact(String relationship) {
-        return false;
+        emergencyContacts.remove(relationship);
+        return true;
     }
 
     public boolean addEmergencyContact(String relationship, String name, String email, String phone, String address) {
-        return false;
+        Contact nContact = new Contact(name, phone, email, address);
+        emergencyContacts.put(relationship, nContact);
+        return true;
     }
 
     public boolean removeSession(String theme) {
+        for (Session s : cabinHash.keySet()) {
+            if (theme.equals(s.getTheme())) {
+                cabinHash.remove(s);
+                return true;
+            }
+        }
         return false;
     }
 
-    public boolean addSession(String theme) {
-        return false;
+    public boolean addSession(Session session, Cabin cabin) {
+        updateCounselorCabinHash(session, cabin);
+        return true;
     }
+
     
 }

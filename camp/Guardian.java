@@ -116,13 +116,6 @@ public class Guardian extends User {
 
     }
 
-    /**
-     * Method to sign the waiver for the child
-     */
-    public void signWaiver() {
-
-    }
-
     public Camper getCamper(int index){
         return campers.get(index);
     }
