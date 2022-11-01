@@ -30,6 +30,7 @@ public class Session {
         this.sessionDescription = sessionDescription;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.cabins = new ArrayList<Cabin>();
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
     //overloaded
@@ -228,7 +229,7 @@ public class Session {
                 cabins.get(i).updateCounselorsCabinHashes(counselor, this);
         }
     }
-    
+
     /**
 	 * Converts a date to a string
 	 * @param date the date to be converted

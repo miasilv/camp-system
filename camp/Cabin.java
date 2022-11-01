@@ -232,6 +232,7 @@ public class Cabin {
         }
         return false;
     }
+
     /**
      * method checking whether the cabin is full
      * @return if the cabin is full or not
