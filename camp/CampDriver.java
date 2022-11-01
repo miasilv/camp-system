@@ -50,7 +50,6 @@ public class CampDriver {
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
-    private static final String NUM_BEDS = "number of beds";
 
 	//schedule times
 	private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
@@ -96,6 +95,7 @@ public class CampDriver {
 	public void runDriver() {
         clear();
         System.out.println("***** Welcome to the Camp Website! *****");
+		facade.updateCamp();
 
         while(true) {
 			//updating options----------------------------------------
@@ -779,7 +779,6 @@ public class CampDriver {
 			clearOptions();
 			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
 			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
-			options.add("Number of beds: " + facade.getCabinInt(NUM_BEDS));
 			options.add("Counselor: " + facade.getCabinCounselor());
 			options.add("Campers");
 			options.add("Schedule");
@@ -836,23 +835,7 @@ public class CampDriver {
 					}
 					break;
 
-				case 2: //bed numbers
-					if(!(user instanceof Director)) { 
-						System.out.println("You do not have permission to edit this.");
-						break;
-					}
-			
-					clear();
-					System.out.println("Old " + NUM_BEDS + ": " + facade.getCabinInt(NUM_BEDS));
-					int num3 = setIntInformation(NUM_BEDS);
-					if(num3 == -1) {
-						if(!facade.setCabinInt(NUM_BEDS, num3)) {
-							System.out.println("Sorry, something went wrong, unable to edit");
-						}
-					}
-					break;
-
-				case 3: //counselor				
+				case 2: //counselor				
 					if(!(user instanceof Director)) {
 						System.out.println("You don't have permission to edit this.");
 						in.nextLine();
@@ -879,11 +862,11 @@ public class CampDriver {
 					}
 					break;
 				
-				case 4: //campers
+				case 3: //campers
 					displayCamperList(CABIN);
 					break;
 
-				case 5: //schedule
+				case 4: //schedule
 					displayScheduleDays();
 					break;
 			}
@@ -1520,7 +1503,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + NAME + ": " + facade.getCamperString(NAME));
 					String change = setStringInformation(NAME);
-					if(change == null) {
+					if(!(change == null)) {
 						if(!facade.setCamperString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}

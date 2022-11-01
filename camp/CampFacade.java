@@ -72,7 +72,6 @@ public class CampFacade {
 	//cabin instance variables
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
-    private static final String NUM_BEDS = "number of beds";
 
 	//user instance variables
 	private static final String EMAIL = "email"; //can also be used for Contact
@@ -491,9 +490,6 @@ public class CampFacade {
         if(variableName.equals(MIN_AGE)) {
             return currentCabin.getMinAge();
         }
-        if(variableName.equals(NUM_BEDS)) {
-            return currentCabin.getBeds();
-        }
         return -1;
     }
 
@@ -509,9 +505,6 @@ public class CampFacade {
         }
         if(variableName.equals(MIN_AGE)) {
             return currentCabin.setMinAge(change);
-        }
-        if(variableName.equals(NUM_BEDS)) {
-            return currentCabin.setBeds(change);
         }
         return false;
     }
@@ -936,8 +929,9 @@ public class CampFacade {
         currentCamperAllergyList = currentCamper.getAllergies();
         currentCabinHash = currentCamper.getCabinHash();
 
-        for(int i = 0; i < currentCounselor.getSessionThemes().size(); i++) {
-            currentSession = camp.getSession(currentCamper.getSessionThemes().get(i));
+        ArrayList<String> sessionThemes = currentCamper.getSessionThemes();
+        for(int i = 0; i < sessionThemes.size(); i++) {
+            currentSession = camp.getSession(sessionThemes.get(i));
             currentCabin = currentSession.placeCamper(currentCamper);
             if(currentCabin == null) {
                 break;
@@ -981,7 +975,7 @@ public class CampFacade {
      */
     public Date getCamperDate(String variableName) {
         if(variableName.equals(BIRTHDAY)) {
-            return currentCounselor.getBirthday();
+            return currentCamper.getBirthday();
         } 
         return null;
     }
