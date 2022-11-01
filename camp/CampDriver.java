@@ -1454,6 +1454,7 @@ public class CampDriver {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 				}
+
 				continue;
 			}
 

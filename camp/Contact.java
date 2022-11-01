@@ -37,7 +37,10 @@ public class Contact {
     }
 
     public String toString() {
-        return name + "\n" + phoneNumber + "\n" + address;
+        return name + "\n" + "\t" +
+        "Email: " + email + "\n" + "\t" +
+        "Phone Number: " + phoneNumber + "\n" + "\t" +
+        "Address: " + address;
     }
 
     public String getEmail() {
