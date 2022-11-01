@@ -18,6 +18,8 @@ public class Counselor extends User {
     private ArrayList<String> allergies;
     private HashMap<Session, Cabin> cabinHash;
 
+    // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
+
     /**
      * Constructor for the counselor class
      * Not touching this for now, but most data read through JSON
@@ -51,11 +53,13 @@ public class Counselor extends User {
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
     }
 
+    // ----------------------------------ACCESSORS-------------------------------------------------------------
+
     /**
      * written by natalie
      * @param relationships the key values in the hash
      * @param contacts the contact information for those key values
-     * @return the array list of emergency contacts
+     * @return the hashmap of emergency contacts
      */
     public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
         HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
@@ -303,6 +307,4 @@ public class Counselor extends User {
         updateCounselorCabinHash(session, cabin);
         return true;
     }
-
-    
 }

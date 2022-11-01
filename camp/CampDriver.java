@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Mia Silver
@@ -1729,10 +1730,19 @@ public class CampDriver {
 		while(true) {
 			//updating options----------------------------------------
 			clearOptions();
-			Object[] key = cabinHash.keySet().toArray();
-			for(int i = 0; i < cabinHash.size(); i++) {
-				options.add(key[i].toString() + ": " + cabinHash.get(key[i].toString()));
+			/*
+			 * Object[] key = cabinHash.keySet().toArray();
+			 * for(int i = 0; i < cabinHash.size(); i++) {
+			 * options.add(key[i].toString() + ": " + cabinHash.get(key[i].toString()));
+			 * }
+			 */
+			
+			for (Map.Entry<Session, Cabin> entry : cabinHash.entrySet()) {
+				Session s = entry.getKey();
+				Cabin c = entry.getValue();
+				options.add(s.toString() + ": " + c.toString());
 			}
+
 			options.add("Add a new Session");
 			options.add("Remove an existing Session");
 			options.add("Return");
