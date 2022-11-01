@@ -760,7 +760,7 @@ public class CampDriver {
 				else {
 					ArrayList<Cabin> allCabins = facade.getAllCabins();
 					for(int i = 0; i < allCabins.size(); i++) {
-						System.out.println((i + 1) + ": " + allCabins.get(i) + "\n");
+						System.out.println("Cabin " + (i + 1) + ": " + allCabins.get(i) + "\n");
 					}
 					System.out.println("\nWhich cabin are you adding to this session?");
 					int choice2 = getNum();
