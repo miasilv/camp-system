@@ -36,7 +36,7 @@ public class Guardian extends User {
         super(name, email, password, phoneNumber);
         this.id = id;
         this.campers = campers;
-        this.price = pricePerSession* campers.size();
+        this.price = pricePerSession * campers.size();
         updatePrice();
         updateTotalSessions();
     }
@@ -120,7 +120,7 @@ public class Guardian extends User {
             price *= 0.80;
         }
     }
-    
+
     public int getTotalSessions() {
         return numOfSessions;
     }
@@ -130,7 +130,9 @@ public class Guardian extends User {
     }
 
     private double updatePrice() {
-        return numOfSessions * pricePerSession;
+        price =  numOfSessions * pricePerSession;
+        discount();
+        return price;
     }
 
     private boolean updateTotalSessions() {
