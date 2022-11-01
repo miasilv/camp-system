@@ -12,7 +12,6 @@ import java.util.HashMap;
  * The Camp Driver (the front end of the system)
  */
 public class CampDriver {
-	SimpleDateFormat dateFormatter;
     private Scanner in;
 	private ArrayList<String> options;
 	private CampFacade facade;
@@ -84,7 +83,6 @@ public class CampDriver {
         in = new Scanner(System.in); 
 		options = new ArrayList<String>();
 		facade = new CampFacade();
-		dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
 
 
@@ -541,7 +539,7 @@ public class CampDriver {
 
 				System.out.println("Which session do you want to delete?");
 				int num = getNum();
-				if(facade.removeCampSession(num) == null) {
+				if(!facade.removeCampSession(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -584,8 +582,8 @@ public class CampDriver {
 			clearOptions();
 			options.add("Theme: " + facade.getSessionString(THEME));
 			options.add("Session Descripton: " + facade.getSessionString(SESS_DESCR));
-			options.add("Start Date: " + facade.getSessionDate(START_DATE));
-			options.add("End Date: " + facade.getSessionDate(END_DATE));
+			options.add("Start Date: " + displayDate(facade.getSessionDate(START_DATE)));
+			options.add("End Date: " + displayDate(facade.getSessionDate(END_DATE)));
 			options.add("Cabins"); 
 			options.add("Return");
 			options.add("Quit");
@@ -1170,7 +1168,7 @@ public class CampDriver {
 			options.add("Phone: " + facade.getUserString(PHONE));
 			options.add("Password: " + facade.getUserString(PASSWORD));
 			options.add("Bio: " + facade.getCounselorString(BIO));
-			options.add("Birthday: " + facade.getCounselorDate(BIRTHDAY));
+			options.add("Birthday: " + displayDate(facade.getCounselorDate(BIRTHDAY)));
 			options.add("Allergies");
 			options.add("Sessions");
 			options.add("Emergency Contacts");			
@@ -1473,7 +1471,7 @@ public class CampDriver {
 			//updating options----------------------------------------
 			clearOptions();
 			options.add("Name: " + facade.getCamperString(NAME));
-			options.add("Birthday: " + facade.getCamperDate(BIRTHDAY));
+			options.add("Birthday: " + displayDate(facade.getCamperDate(BIRTHDAY)));
 			options.add("Medications");
 			options.add("Allergies");
 			options.add("Sessions");
@@ -2148,7 +2146,7 @@ public class CampDriver {
 	private void createSession() {
 		System.out.println("What would you like the theme to be?");
 		String theme = in.nextLine();
-		System.out.println("What would you like the session number to be?");
+		System.out.println("What would you like the session description to be?");
 		String description = in.nextLine();
 		System.out.println("What would you like the start date to be?");
 		Date startDate = getDate(in.nextLine());
@@ -2357,6 +2355,16 @@ public class CampDriver {
 			return -1;
 		}
 		return num;
+	}
+
+	/**
+	 * Converts a date to a string
+	 * @param date the date to be converted
+	 * @return the string version of the date
+	 */
+	private String displayDate(Date date) {
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+        return dateFormatter.format(date);
 	}
 
 	/**

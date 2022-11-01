@@ -15,8 +15,11 @@ public class Camp {
     private ArrayList<FAQ> FAQs;
     private ArrayList<String> activities;
     private UUID id;
-
+    /**
+     * constructor of camp
+     */
     public Camp (){}
+    //overloaded constructor for dataLoader
     public Camp(UUID id, String name, ArrayList<Session> sessions, double price, ArrayList<FAQ> faqs, double camperRatio, ArrayList<String> activities){
         this.id = id;
         this.name = name;
@@ -105,15 +108,27 @@ public class Camp {
     public String getFAQStr() { 
         return FAQs.toString();
     }
+    /**
+     * a method to add a new FAQ to the list of FAQs
+     * @param question the question being added
+     * @param answer the answer being added
+     * @return whether the FAQ was successfully added
+     */
     public boolean addFAQ(String question, String answer){
         FAQs.add(new FAQ(question, answer));
         return true;
     }
-
     /**
-     * a method getting the activities of a camp
-     * @return the activities of a camp
+     * a method to remove an FAQ from the FAQ list
+     * @param index the index of the FAQ being removed
+     * @return whether or not the FAQ was successfully removed
      */
+    public boolean removeFAQ(int index) {
+        FAQs.remove(index);
+        return true;
+    }
+
+
     public ArrayList<String> getActivities() {
         return this.activities;
     }
@@ -123,11 +138,20 @@ public class Camp {
     /**
      * a method to add an activity
      * @param activity the activity being added
-     * @return 
+     * @return whether or not the activity was successfully added
      */
     public boolean addActivity(String activity){
         activities.add(activity);
         return true;
+    }
+    /**
+     * a method to remove an activity
+     * @param index the index of the activity being removed
+     * @return whether or not the activity was successfully removed
+     */
+    public boolean removeActivity(int index) {
+        activities.remove(index);
+        return false;
     }
 
     /**
@@ -135,11 +159,32 @@ public class Camp {
      * @param sessionNumber the session's number
      * @param startDate the session's start date
      * @param endDate the session's end date
-     * @return 
+     * @return whether or not the session was successfully added
      */
     public boolean addSession(String theme, String sessionDescription, Date startDate, Date endDate){
         Session session = new Session(theme, sessionDescription, startDate, endDate);
         sessions.add(session);
+        return true;
+    }
+    /**
+     * method to get a session by theme
+     * @param theme the theme of the desired session
+     * @return returns the session, null if no such session exists
+     */
+    public Session getSession(String theme) {
+        for(int i=0; i<sessions.size(); i++){
+            if(sessions.get(i).getTheme().equalsIgnoreCase(theme))
+                return sessions.get(i);
+        }
+        return null;
+    }
+    /**
+     * method to remove a session
+     * @param index the index of the session being removed
+     * @return whether the session was successfully removed
+     */
+    public boolean removeSession(int index) {
+        sessions.remove(index);
         return true;
     }
     //****EDITED BY MIA*****
@@ -154,14 +199,7 @@ public class Camp {
         }
         return sessions.get(index);
     }
-    /**
-     * a method to save the sessions to a JSON file
-     */
-    public void saveCamp(){
-        DataWriter.saveCamp();
-    }
     
-
     public String toString(){
         String workingString = "";
         workingString += "id: " + id.toString() + "\n";
@@ -180,7 +218,11 @@ public class Camp {
         workingString += "\n";
         return workingString;
     }
-
+    /**
+     * determines which session a camper is in, calls method to update cabin hash on that session
+     * @param camper the camper being updated
+     * @return whether or not the cabin hash was updated successfully
+     */
     public boolean updateCamperCabinHash(Camper camper){
         boolean isCamperEnrolled = false;
         for(int i=0; i<sessions.size(); i++){
@@ -194,6 +236,11 @@ public class Camp {
         sessions.get(0).updateCamperCabinHash(camper);
         return true;
     }
+    /**
+     * determines which session a counselor is in, calls method to update cabin hash on that session
+     * @param counselor the counselor being updated
+     * @return whether or not the cabin hash was updated successfully
+     */
     public boolean updateCounselorCabinHash(Counselor counselor){
         boolean isCounselorEnrolled = false;
         for(int i=0; i<sessions.size(); i++){
@@ -207,24 +254,6 @@ public class Camp {
         sessions.get(0).updateCounselorCabinHash(counselor);
         return true;
     }
-    public boolean removeFAQ(int index) {
-        FAQs.remove(index);
-        return true;
-    }
-    public boolean removeActivity(int index) {
-        activities.remove(index);
-        return false;
-    }
-    public Session getSession(String theme) {
-        for(int i=0; i<sessions.size(); i++){
-            if(sessions.get(i).getTheme().equalsIgnoreCase(theme))
-                return sessions.get(i);
-        }
-        return null;
-    }
-    public Session removeSession(int index) {
-        sessions.remove(index);
-        return null;
-    }
+
 }
 

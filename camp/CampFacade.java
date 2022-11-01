@@ -282,7 +282,7 @@ public class CampFacade {
      * @param index the index of the session to be removed
      * @return true if successful, false if not
      */
-    public Session removeCampSession(int index) {
+    public boolean removeCampSession(int index) {
         return camp.removeSession(index);
     }
 
@@ -391,12 +391,12 @@ public class CampFacade {
      * @param variableName the name of the date instance variable
      * @return the date value in the variableName, null if not found
      */
-    public String getSessionDate(String variableName) {
+    public Date getSessionDate(String variableName) {
         if(variableName.equals(START_DATE)) {
-            return currentSession.getStrStart();
+            return currentSession.getStartDate();
         }
         if(variableName.equals(END_DATE)) {
-            return currentSession.getStrEnd();
+            return currentSession.getEndDate();
         }
         return null;
     }
@@ -827,8 +827,15 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCounselorSession(String theme) {
-        //TODO check if contact already exitsts in the list
-        return currentCounselor.addSession(theme);
+        Session session = camp.getSession(theme);
+        Cabin cabin;
+        for(int i = 0; i < currentSessionCabinList.size(); i++) {
+            if(currentSessionCabinList.get(i).hasCounselor()) {
+                cabin = currentSessionCabinList.get(i);
+                return currentCounselor.addSession(session, cabin);
+            }
+        }
+        return false;
     }
 
 
@@ -1107,8 +1114,12 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperSession(String theme) {
-        //TODO check if contact already exitsts in the list
-        return currentCamper.addSession(theme);
+        Session session = camp.getSession(theme);
+        Cabin cabin = session.placeCamper(currentCamper);
+        if(cabin == null) {
+            return false;
+        }
+        return currentCamper.addSession(session, cabin);
     }
 
 
