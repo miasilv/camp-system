@@ -30,6 +30,7 @@ public class Counselor extends User {
      */
     public Counselor(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        this.cabinHash = new HashMap<Session, Cabin>();
     }
 
     /**
@@ -51,6 +52,7 @@ public class Counselor extends User {
         this.id = id;
         this.allergies = allergies;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
+        this.cabinHash = new HashMap<Session, Cabin>();
     }
 
     // ----------------------------------ACCESSORS-------------------------------------------------------------

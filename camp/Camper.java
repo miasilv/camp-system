@@ -20,8 +20,7 @@ public class Camper {
     private ArrayList<Session> sessions;
     private ArrayList<String> notes;
     private HashMap<String, Contact> emergencyContacts;
-
-    private HashMap<Session, Cabin> cabinHash; // i have no idea why camper has a cabin hash?
+    private HashMap<Session, Cabin> cabinHash;
 
     /**
      * Constructor for the camper class
@@ -32,6 +31,7 @@ public class Camper {
         this.name = name;
         this.birthday = birthday;
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
+        this.cabinHash = new HashMap<Session, Cabin>();
     }
 
     /**
@@ -55,6 +55,7 @@ public class Camper {
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
+        this.cabinHash = new HashMap<Session, Cabin>();
     }
 
     // getters because Nat needs them:
@@ -339,6 +340,6 @@ public class Camper {
     }
 
     public int getNumOfSessions() {
-        return sessions.size();
+        return cabinHash.size();
     }
 }
