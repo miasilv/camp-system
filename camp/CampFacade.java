@@ -135,6 +135,14 @@ public class CampFacade {
         this.currentCampSessionList = this.camp.getSessions();
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
+
+        //this is only for 
+        this.currentSession = this.currentCampSessionList.get(0);
+        this.currentSessionCabinList = this.currentSession.getCabins();
+        this.currentCabin = this.currentSessionCabinList.get(0);
+        this.currentScheduleHash = this.currentCabin.getSchedule();
+        this.currentSchedule = this.currentScheduleHash.get(Day.MONDAY);
+        this.currentSchedule.setActivityList(currentActivityList);
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -550,6 +558,7 @@ public class CampFacade {
      */
     public void updateSchedule(Day day) {
         this.currentSchedule = this.currentScheduleHash.get(day);
+        currentSchedule.setActivityList(camp.getActivities());
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------

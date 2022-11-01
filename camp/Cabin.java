@@ -27,7 +27,15 @@ public class Cabin {
         this.beds = numBeds;
         cabinID = new UUID(0, 0);
         campers = new ArrayList<Camper>();
-        schedule = new HashMap<Day, Schedule>();
+        this.counselor = null;
+        this.daysStr = constructDaysStr();
+        this.days = constructDays();
+        
+        ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+        for(int i = 0; i < days.size(); i++) {
+            schedules.add(new Schedule());
+        }
+        this.schedule = createHash(schedules, days);
     }
 
     //overloaded constructor for dataloader

@@ -2177,11 +2177,11 @@ public class CampDriver {
 	 */
 	private void createCabin() {
 		System.out.println("Enter the minimum age for the cabin: ");
-		int maxAge = getNum();
+		int minAge = getNum() + 1;
 		System.out.println("Enter the maximum age for the cabin: ");
-		int minAge = getNum();
+		int maxAge = getNum() + 1;
 		System.out.println("Enter the number of beds for the cabin: ");
-		int bedNum = getNum();
+		int bedNum = getNum() + 1;
 		if(!facade.addSessionCabin(minAge, maxAge, bedNum)) {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
@@ -2286,7 +2286,7 @@ public class CampDriver {
 		System.out.print("Enter what you would like to change this to: ");
 		double doub;
 		try {
-			doub = Double.parseDouble(in.nextLine()) - 1;
+			doub = Double.parseDouble(in.nextLine());
 		} catch (Exception e) {
 			System.out.println("You need to enter a valid number\n");
 			clear();
