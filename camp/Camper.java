@@ -338,4 +338,7 @@ public class Camper {
         return true;
     }
 
+    public int getNumOfSessions() {
+        return sessions.size();
+    }
 }

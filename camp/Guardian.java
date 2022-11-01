@@ -92,7 +92,7 @@ public class Guardian extends User {
      */
     public void discount() {
         if (campers.size() > 1) {
-            price *= 0.75;
+            price *= 0.80;
         }
     }
 
@@ -132,13 +132,9 @@ public class Guardian extends User {
     }
 
     public boolean updateTotalSessions() {
+        for (int i=0; i<campers.size(); i++) {
+            numOfSessions += (campers.get(i).getNumOfSessions());
+        }
         return true;
     }
-    // update total sessions
-    /*
-    loop through campers
-    get how many sessions they have campers.getSession
-    hasSession method in campe
-
-    */
 }
