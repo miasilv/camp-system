@@ -175,6 +175,10 @@ public class Cabin {
         return false;
      }
 
+     public void removeCounselor(Counselor counselor) {
+        counselor = null;
+     }
+
      public ArrayList<Camper> getCampers(){
         return campers;
     }
@@ -250,7 +254,7 @@ public class Cabin {
 
     public String toString(){
         String workingString = "";
-        workingString +=  String.valueOf(Math.round(minAge)) +  "-" + String.valueOf(Math.round(maxAge)) + "year olds\n";
+        workingString +=  String.valueOf(Math.round(minAge)) +  "-" + String.valueOf(Math.round(maxAge)) + " year olds\n";
         return workingString;
     }
     /**
@@ -268,5 +272,17 @@ public class Cabin {
      */
     public void updateCounselorsCabinHashes(Counselor counselor, Session session) {
         counselor.updateCounselorCabinHash(session, this);
+    }
+
+    public String getVitals() {
+        String str = "";
+        if(counselor != null) {
+            str  = counselor.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
+        }
+        for(int i = 0; i < campers.size(); i++) {
+            Camper c = campers.get(i);
+            str += "\n" + c.getName() + ":\n" + "\tAllergies: " + c.getAllergiesStr() + "\n\tEmergencyContacts:" + c.getEmergencyContactsStr() + "\n\tMedications: " + c.getMedicationsStr();
+        }
+        return str;
     }
 }

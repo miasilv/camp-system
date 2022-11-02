@@ -255,6 +255,23 @@ public class Camp {
         sessions.get(0).updateCounselorCabinHash(counselor);
         return true;
     }
+    
+    public ArrayList<Session> getCampersSessions(Camper camper){
+        ArrayList<Session> campersSessions = new ArrayList<Session>();
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCamperInSession(camper))
+                campersSessions.add(sessions.get(i));
+        }
+        return campersSessions;
+    }
+    public ArrayList<Session> getCounselorsSessions(Counselor counselor){
+        ArrayList<Session> counselorsSessions = new ArrayList<Session>();
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCounselorInSession(counselor))
+                counselorsSessions.add(sessions.get(i));
+        }
+        return counselorsSessions;
+    }
 
 }
 
