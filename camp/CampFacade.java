@@ -574,7 +574,7 @@ public class CampFacade {
      * @return the counselor of the cabin
      */
     public Counselor getCabinCounselor() {
-        return currentCabin.getCounselor();
+        return currentCabin.getCounselor(0);
     }
     
     /**
