@@ -175,6 +175,10 @@ public class Cabin {
         return false;
      }
 
+     public void removeCounselor(Counselor counselor) {
+        counselor = null;
+     }
+
      public ArrayList<Camper> getCampers(){
         return campers;
     }
@@ -250,7 +254,7 @@ public class Cabin {
 
     public String toString(){
         String workingString = "";
-        workingString +=  String.valueOf(Math.round(minAge)) +  "-" + String.valueOf(Math.round(maxAge)) + "year olds\n";
+        workingString +=  String.valueOf(Math.round(minAge)) +  "-" + String.valueOf(Math.round(maxAge)) + " year olds\n";
         return workingString;
     }
     /**

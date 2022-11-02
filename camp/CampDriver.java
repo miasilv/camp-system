@@ -1824,7 +1824,7 @@ public class CampDriver {
 			for (Map.Entry<Session, Cabin> entry : cabinHash.entrySet()) {
 				Session session = entry.getKey();
 				Cabin cabin = entry.getValue();
-				options.add("Session " + session.getTheme() + ": Cabin" + cabin.toString());
+				options.add("Session " + session.getTheme() + ": Cabin of " + cabin.toString());
 			}
 
 			options.add("Add a new Session");
@@ -1856,14 +1856,22 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.println("Which Session do you want to delete (enter the theme)?");
-				String theme = in.nextLine();
-				if(user instanceof Guardian && !facade.removeCamperSession(theme)) {
+				System.out.println("Which Session do you want to delete?");
+				int num = getNum();
+				if(user instanceof Guardian && !facade.removeCamperSession(num)) {
+					if(0 > num || num >= facade.getCamperSessions().size()) {
+						System.out.println("Not a valid number");
+						in.nextLine();
+					}
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
-				}
-				if(user instanceof Counselor && !facade.removeCounselorSession(theme)) {
+				}		
+				else if(user instanceof Counselor && !facade.removeCounselorSession(num)) {
+					if(0 > num || num >= facade.getCounselorSessions().size()) {
+						System.out.println("Not a valid number");
+						in.nextLine();
+					}
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -1878,19 +1886,24 @@ public class CampDriver {
 					continue;
 				}
 
+				clear();
 				facade.updateCamp();
 				ArrayList<Session> sessions = facade.getCampSessions();
 				for(int i = 0; i < sessions.size(); i++) {
-					System.out.println(sessions.get(i).toString());
+					System.out.println("Session " + (i + 1) + ": " + sessions.get(i).toString());
 				}
-				System.out.println("Enter the theme of the session you would like to add:");
-				String theme = in.nextLine();
-				if(user instanceof Guardian && !facade.addCamperSession(theme)) {
-					System.out.println("Something went wrong, unable to remove");
+				System.out.println("Enter the number of the session you would like to add: ");
+				int num = getNum();
+				if(0 > num || num >= facade.getCampSessions().size()) {
+					System.out.println("Not a valid number");
+					in.nextLine();
+				}
+				if(user instanceof Guardian && !facade.addCamperSession(num)) {
+					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && !facade.addCounselorSession(theme)) {
+				if(user instanceof Counselor && !facade.addCounselorSession(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -1904,10 +1917,24 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-
-				System.out.println("Which Session's cabin do you want to view? (enter the session theme)");
-				String theme = in.nextLine();				
-				facade.updateCabinHash(theme);
+				
+				if(user instanceof Guardian) {
+					Session session = facade.getCamperSessions().get(choice);
+					if (!facade.updateCabinHash(session)) {
+						System.out.println("Cabin not found");
+						in.nextLine();
+						continue;
+					}
+				}
+				else if(user instanceof Counselor) {
+					//Session session = facade.getCounsleorSessions().get(choice);
+					//facade.updateCabinHash(session);
+				}
+				else {
+					System.out.println("No user found");
+					in.nextLine();
+					continue;
+				}
 				displayCabinInformation();
         	}
 		}
@@ -2447,7 +2474,6 @@ public class CampDriver {
 			in.nextLine();
 			return -1;
 		}
-		clear();
 		return num;
 	}
 
@@ -2473,7 +2499,7 @@ public class CampDriver {
 	 * @return the string version of the date
 	 */
 	private String displayDate(Date date) {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         return dateFormatter.format(date);
 	}
 
@@ -2482,7 +2508,7 @@ public class CampDriver {
 	 */
 	private Date getDate(String date) {
 		try {
-			return new SimpleDateFormat("MM/dd/yyyy").parse(date);
+			return new SimpleDateFormat("mm/dd/yyyy").parse(date);
 		} catch (ParseException e) {
 			System.out.println("Sorry " + date + " is not parsable");
 			return null;

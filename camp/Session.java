@@ -114,6 +114,7 @@ public class Session {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(endDate);
     }
+
     public boolean setEndDate(Date endDate) {
         if(endDate != null){
             this.endDate = endDate;
@@ -270,7 +271,22 @@ public class Session {
 	 * @return the string version of the date
 	 */
 	private String displayDate(Date date) {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         return dateFormatter.format(date);
 	}
+
+    public boolean removeCamper(Camper camper){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCamper(camper))
+                cabins.get(i).removeCamper(camper);
+        }
+        return true;
+    }
+    public boolean removeCounselor(Counselor counselor) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCounselor(counselor))
+                cabins.get(i).removeCounselor(counselor);
+        }
+        return true;
+    }
 }
