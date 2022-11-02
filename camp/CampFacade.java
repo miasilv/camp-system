@@ -817,7 +817,7 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean setCounselorAllergy(int index, String change) {
-        return currentCounselor.editAllergy(index, change);
+        return currentCounselor.setAllergy(index, change);
     }
 
     /**
@@ -1071,7 +1071,7 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean setCamperAllergy(int index, String change) {
-        return currentCamper.editAllergy(index, change);
+        return currentCamper.setAllergy(index, change);
     }
 
     /**
