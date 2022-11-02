@@ -25,7 +25,7 @@ public class Session {
      * @param endDate the date the session ends
      */
     public Session(String theme, String sessionDescription, Date startDate, Date endDate){
-        this.id = new UUID(0, 0);
+        this.id = UUID.randomUUID();
         this.theme = theme;
         this.sessionDescription = sessionDescription;
         this.startDate = startDate;
