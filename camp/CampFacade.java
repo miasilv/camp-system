@@ -482,12 +482,13 @@ public class CampFacade {
      * updates the cabin object from a session-cabin hash
      * @param key the session theme for the cabin you're looking for
      */ 
-    public boolean updateCabinHash(String theme) {
-        if(camp.getSession(theme) == null) {
+    public boolean updateCabinHash(Session session) {
+        this.currentCabin = this.currentCabinHash.get(session);
+        if(this.currentCabin == null) {
             return false;
         }
-        Session session = camp.getSession(theme);
-        currentCabin = currentCabinHash.get(session);
+        this.currentCabinCamperList = this.currentCabin.getCampers();
+        this.currentScheduleHash = this.currentCabin.getSchedule();
         return true;
     }
     
@@ -949,8 +950,7 @@ public class CampFacade {
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
-        
-        //currentCabinHash = currentCamper.getCabinHash();
+        currentCabinHash = currentCamper.getCabinHash();
 
         currentCamperSessions = camp.getCampersSessions(currentCamper);
         currentCamperCabins = new ArrayList<>();
@@ -1138,10 +1138,12 @@ public class CampFacade {
      * @param session the session being added to the camper
      * @return true if successful, false if not successful
      */
-    public boolean addCamperSession(String theme) {
-        Session session = camp.getSession(theme);
+    public boolean addCamperSession(int index) {
+        Session session = camp.getSession(index);
+        System.out.println(session);
         Cabin cabin = session.placeCamper(currentCamper);
         if(cabin == null) {
+            System.out.println("place cabin doesn't work");
             return false;
         }
         return currentCamper.addSession(session, cabin);

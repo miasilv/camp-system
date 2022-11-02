@@ -1824,7 +1824,7 @@ public class CampDriver {
 			for (Map.Entry<Session, Cabin> entry : cabinHash.entrySet()) {
 				Session session = entry.getKey();
 				Cabin cabin = entry.getValue();
-				options.add("Session " + session.getTheme() + ": Cabin" + cabin.toString());
+				options.add("Session " + session.getTheme() + ": Cabin of " + cabin.toString());
 			}
 
 			options.add("Add a new Session");
@@ -1883,15 +1883,21 @@ public class CampDriver {
 					continue;
 				}
 
+				clear();
 				facade.updateCamp();
 				ArrayList<Session> sessions = facade.getCampSessions();
 				for(int i = 0; i < sessions.size(); i++) {
-					System.out.println(sessions.get(i).toString());
+					System.out.println("Session " + (i + 1) + ": " + sessions.get(i).toString());
 				}
-				System.out.println("Enter the theme of the session you would like to add:");
-				String theme = in.nextLine();
-				if(user instanceof Guardian && !facade.addCamperSession(theme)) {
-					System.out.println("Something went wrong, unable to remove");
+				System.out.println("Enter the number of the session you would like to add: ");
+				int num = getNum();
+				String theme = "";
+				if(0 > num || num >= facade.getCampSessions().size()) {
+					System.out.println("Not a valid number");
+					in.nextLine();
+				}
+				if(user instanceof Guardian && !facade.addCamperSession(num)) {
+					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 					continue;
 				}
@@ -1909,10 +1915,24 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-
-				System.out.println("Which Session's cabin do you want to view? (enter the session theme)");
-				String theme = in.nextLine();				
-				facade.updateCabinHash(theme);
+				
+				if(user instanceof Guardian) {
+					Session session = facade.getCamperSessions().get(choice);
+					if (!facade.updateCabinHash(session)) {
+						System.out.println("Cabin not found");
+						in.nextLine();
+						continue;
+					}
+				}
+				else if(user instanceof Counselor) {
+					//Session session = facade.getCounsleorSessions().get(choice);
+					//facade.updateCabinHash(session);
+				}
+				else {
+					System.out.println("No user found");
+					in.nextLine();
+					continue;
+				}
 				displayCabinInformation();
         	}
 		}
