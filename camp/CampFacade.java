@@ -33,6 +33,8 @@ public class CampFacade {
     private Guardian currentGuardian;
     private ArrayList<Camper> currentGuardianCamperList;
     private Camper currentCamper;
+    private ArrayList<Session> currentCamperSessions;
+    private ArrayList<Cabin> currentCamperCabins;
     private ArrayList<Medication> currentMedicationList;
     private Medication currentMedication;
     private ArrayList<String> currentCamperAllergyList;
@@ -1098,6 +1100,14 @@ public class CampFacade {
     public boolean addCamperContact(String relationship, String name, String email, String phone, String address) {
         //TODO check if contact already exitsts in the list
         return currentCamper.addEmergencyContact(relationship, name, email, phone, address);
+    }
+
+    /**
+     * Returns the array list of all the sessions the camper is in
+     * @return an array list of sessions
+     */
+    public ArrayList<Session> getCamperSessions() {
+        return currentCamperSessions;
     }
 
     /**
