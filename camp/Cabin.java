@@ -270,7 +270,7 @@ public class Cabin {
 
     public String getVitals() {
         String str = "";
-        if(!counselor.equals(counselorBlank)) {
+        if(counselors.get(0)) {
             str  = counselors.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
         }
         for(int i = 0; i < campers.size(); i++) {
