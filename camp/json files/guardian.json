@@ -1,18 +1,1 @@
-[
-    {
-        "id": "39fb1b37-17ec-4d4a-9dbd-d8b0dc293be4",
-        "name": "Karen Smith",
-        "email": "karensmith82@gmail.com",
-        "password": "password",
-        "phone number": "8035555555",
-        "campers": ["77dfed2d-14d4-4ee9-a926-700153221541", "dd0df3f4-db7a-465e-8541-41865911d890"]
-    },
-    {
-        "id": "fa4e6a66-52a2-421e-a371-56982226abaa",
-        "name": "John Bahr",
-        "email": "johnbahr@gmail.com",
-        "password": "akfjdakfhoiakands",
-        "phone number": "9425552390",
-        "campers": ["6fca9504-e805-411f-a7b0-3d51fb8b07fa"]
-    }
-]
+[{"password":"password","campers":["77dfed2d-14d4-4ee9-a926-700153221541","dd0df3f4-db7a-465e-8541-41865911d890"],"name":"Karen Smith","id":"39fb1b37-17ec-4d4a-9dbd-d8b0dc293be4","phone number":"803-555-5555","email":"karensmith82@gmail.com"},{"password":"akfjdakfhoiakands","campers":["6fca9504-e805-411f-a7b0-3d51fb8b07fa"],"name":"John Bahr","id":"fa4e6a66-52a2-421e-a371-56982226abaa","phone number":"942-555-2390","email":"johnbahr@gmail.com"}]

@@ -16,7 +16,7 @@ public class DataWriter extends DataConstants {
      * @param args
      */
     public static void main(String[] args) {
-       saveSession();
+        saveSessions();
     }
 
     /**
@@ -294,6 +294,7 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getCampJSON(Camp camp) {
 		JSONObject campDetails = new JSONObject();
 		campDetails.put(CAMP_NAME, camp.getName());
+        
         JSONArray activitiesArray = new JSONArray();
         for(int i = 0; i<camp.getActivities().size(); i++){
             activitiesArray.add(camp.getActivities().get(i));
@@ -374,7 +375,10 @@ public class DataWriter extends DataConstants {
 
             JSONArray scheduleActivities = new JSONArray();
             JSONObject scheduleDetails = new JSONObject();
-            scheduleActivities.add(cabin.getSchedule(cabin.getDays(i)));  
+            for (int j = 0; j<cabin.getSchedule(cabin.getDays(i)).size(); j++){
+                scheduleActivities.add(cabin.getSchedule(cabin.getDays(i)).get(j));  
+            }
+           
             
             scheduleDetails.put(SCHEDULE_DAY,cabin.getDayStr(i)) ;
             scheduleDetails.put(SCHEDULE_SCHEDULE, scheduleActivities); 
@@ -393,7 +397,7 @@ public class DataWriter extends DataConstants {
      * saves the session data to a new json file or changes the old one
      */
     //save session
-    public static void saveSession() {
+    public static void saveSessions() {
 		SessionList sesh = SessionList.getInstance();
 		ArrayList<Session> sessions = sesh.getSessions();
 		JSONArray jsonSessions = new JSONArray();

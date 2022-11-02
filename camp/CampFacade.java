@@ -116,13 +116,14 @@ public class CampFacade {
     }
 
     public void save() {
-        DataWriter.saveDirectors();
-        DataWriter.saveSession();
         DataWriter.saveCounselors();;
         DataWriter.saveCampers();
-        DataWriter.saveGuardians();
         DataWriter.saveCabin();
+        DataWriter.saveSessions();
+        DataWriter.saveDirectors();
         DataWriter.saveCamp();
+        DataWriter.saveGuardians();
+       
     }
 
     // ***************************** CAMP CLASS ***********************************************
