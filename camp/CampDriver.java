@@ -362,7 +362,13 @@ public class CampDriver {
 				}
 
 				System.out.println(facade.getCampActivities().get(choice));
-				facade.getCampActivities().set(choice, setStringInformation(ACTIVITIES));
+				String change = setStringInformation(ACTIVITIES);
+				if(!(change == null)) {
+					if(!facade.setCampActivity(choice, change)) {
+						System.out.println("Sorry, something went wrong, unable to add.");
+						in.nextLine();
+					}
+				}
 				continue;
         	}
 		}
@@ -413,7 +419,7 @@ public class CampDriver {
 
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
-				if(0 > num || num <= faqs.size()) {
+				if(0 >= num || num < faqs.size()) {
 					System.out.println("Not a valid number");
 					in.nextLine();
 				}
@@ -487,7 +493,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + QUESTION + ": " + facade.getFAQString(QUESTION));
 					String change = setStringInformation(QUESTION);
-					if(!change.isEmpty()) {
+					if(!(change == null)) {
 						if(!facade.setFAQString(QUESTION, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -503,7 +509,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + ANSWER + ": " + facade.getFAQString(ANSWER));
 					String change2 = setStringInformation(ANSWER);
-					if(!change2.isEmpty()) {
+					if(!(change2 == null)) {
 						if(!facade.setFAQString(ANSWER, change2)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -638,7 +644,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + THEME + ": " + facade.getSessionString(THEME));
 					String change = setStringInformation(THEME);
-					if(!change.isEmpty()) {
+					if(!(change == null)) {
 						if(!facade.setSessionString(THEME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}

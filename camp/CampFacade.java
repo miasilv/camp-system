@@ -275,6 +275,16 @@ public class CampFacade {
     }
 
     /**
+     * Edits a camp activity
+     * @param index the index being edited
+     * @param change the new string being placed in there
+     * @return
+     */
+    public boolean setCampActivity(int index, String change) {
+        return camp.editActivity(index, change);
+    }
+
+    /**
      * Gets the current session list, (which should be in camp object)
      * @return an arraylist of sessions
      */
