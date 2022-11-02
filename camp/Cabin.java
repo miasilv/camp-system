@@ -172,12 +172,10 @@ public class Cabin {
         return counselors.get(index);
     }
     public boolean setCounselor(Counselor counselor){
+        counselors.clear();
         counselors.add(counselor);
         return true;
      }
-    public void addCounselor(Counselor counselor){
-        counselors.add(counselor);
-    }
     public void removeCounselor(Counselor counselor) {
         counselors.remove(counselor);
     }
