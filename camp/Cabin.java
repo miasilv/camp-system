@@ -224,23 +224,14 @@ public class Cabin {
         return false;
     }
     /**
-     * method to determine whether the cabin has a counselor
-     * @return whether the cabin has a counselor
-     */
-    public boolean hasCounselor(){
-        if(counselor.equals(counselorBlank)){
-            return true;
-        }
-        return false;
-    }
-    /**
      * method to determine whether a specific counselor is assigned to a cabin
      * @param counselor the counselor being searched for
      * @return whether or not that counselor is in the cabin
      */
     public boolean hasCounselor(Counselor counselor){
-        if(this.counselor.equals(counselor)){
-            return true;
+        for(int i=0; i<counselors.size(); i++){
+           if(counselors.get(i).equals(counselor))
+                return true; 
         }
         return false;
     }
@@ -250,7 +241,7 @@ public class Cabin {
      * @return if the cabin is full or not
      */
     public boolean isFull(){
-        if(!counselor.equals(counselorBlank) && campers.size() == 8)
+        if(counselors.size() == 1 && campers.size() == 8)
             return true;
         return false;
     }
@@ -280,7 +271,7 @@ public class Cabin {
     public String getVitals() {
         String str = "";
         if(!counselor.equals(counselorBlank)) {
-            str  = counselor.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
+            str  = counselors.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
         }
         for(int i = 0; i < campers.size(); i++) {
             Camper c = campers.get(i);
