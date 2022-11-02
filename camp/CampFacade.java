@@ -151,10 +151,10 @@ public class CampFacade {
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
 
-        //this is only for 
-        this.currentSession = this.currentCampSessionList.get(0);
-        this.currentSessionCabinList = this.currentSession.getCabins();
-        this.currentCabin = this.currentSessionCabinList.get(0);
+        //this is only for schedule and data writer
+        this.currentCamper = camperList.getCampers().get(0);
+        this.currentSession = sessionList.getSessions().get(0);
+        this.currentCabin = cabinList.getCabins().get(0);
         this.currentScheduleHash = this.currentCabin.getSchedule();
         this.currentSchedule = this.currentScheduleHash.get(Day.MONDAY);
         this.currentSchedule.setActivityList(currentActivityList);
