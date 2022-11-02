@@ -15,6 +15,7 @@ public class CampFacade {
     private SessionList sessionList;
     private CabinList cabinList;
     private CamperList camperList;
+    private CounselorList counselorList;
 
 
     private Camp camp; 
@@ -26,6 +27,7 @@ public class CampFacade {
     private ArrayList<Cabin> currentSessionCabinList;
     private Cabin currentCabin;
     private ArrayList<Camper> currentCabinCamperList;
+    private ArrayList<Counselor> currentCabinCounselorList;
     private HashMap<Day, Schedule> currentScheduleHash;
     private Schedule currentSchedule;
     
@@ -111,6 +113,7 @@ public class CampFacade {
         sessionList = SessionList.getInstance();
         cabinList = CabinList.getInstance();
         camperList = CamperList.getInstance();
+        counselorList = CounselorList.getInstance();
         initArrayLists();
     }
 
@@ -119,6 +122,7 @@ public class CampFacade {
         currentCampSessionList = new ArrayList<Session>();
         currentSessionCabinList = new ArrayList<Cabin>();
         currentCabinCamperList = new ArrayList<Camper>();
+        currentCabinCounselorList = new ArrayList<Counselor>();
         currentGuardianCamperList = new ArrayList<Camper>();
         currentMedicationList = new ArrayList<Medication>();
         currentCamperAllergyList = new ArrayList<String>();
@@ -513,6 +517,7 @@ public class CampFacade {
             return false;
         }
         this.currentCabinCamperList = this.currentCabin.getCampers();
+        this.currentCabinCounselorList = this.currentCabin.getCounselors();
         this.currentScheduleHash = this.currentCabin.getSchedule();
         return true;
     }
@@ -573,8 +578,8 @@ public class CampFacade {
      * Gets the counselor for the current cabin
      * @return the counselor of the cabin
      */
-    public Counselor getCabinCounselor() {
-        return currentCabin.getCounselor(0);
+    public ArrayList<Counselor> getCabinCounselor() {
+        return currentCabin.getCounselors();
     }
     
     /**
