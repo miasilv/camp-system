@@ -242,6 +242,22 @@ public class Camp {
         sessions.get(indexOfSession).updateCamperCabinHash(camper);
         return true;
     }
+    public ArrayList<Session> getCampersSessions(Camper camper){
+        ArrayList<Session> campersSessions = new ArrayList<Session>();
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCamperInSession(camper))
+                campersSessions.add(sessions.get(i));
+        }
+        return campersSessions;
+    }
+    public ArrayList<Session> getCounselorsSessions(Counselor counselor){
+        ArrayList<Session> counselorsSessions = new ArrayList<Session>();
+        for(int i=0; i<sessions.size(); i++){
+            if (sessions.get(i).isCounselorInSession(counselor))
+                counselorsSessions.add(sessions.get(i));
+        }
+        return counselorsSessions;
+    }
     /**
      * determines which session a counselor is in, calls method to update cabin hash on that session
      * @param counselor the counselor being updated
