@@ -12,6 +12,11 @@ public class CampFacade {
     // ------------------------- CURRENT ARRAYLISTS/OBJECTS -----------------
     private UserList userList;
     private CampList camplist;
+    private SessionList sessionList;
+    private CabinList cabinList;
+    private CamperList camperList;
+
+
     private Camp camp; 
     private ArrayList<FAQ> currentFaqList;
     private FAQ currentFaq;
@@ -103,6 +108,9 @@ public class CampFacade {
     public CampFacade() {
         userList = UserList.getInstance();
         camplist = CampList.getInstance();
+        sessionList = SessionList.getInstance();
+        cabinList = CabinList.getInstance();
+        camperList = CamperList.getInstance();
         initArrayLists();
     }
 
@@ -279,6 +287,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCampActivity(String activity) {
+        CampList.getInstance().getCamps().get(0).addActivity(activity);
         return camp.addActivity(activity);
     }
 
@@ -297,7 +306,7 @@ public class CampFacade {
      */
     public boolean removeCampSession(int index) {
         Session session = camp.removeSession(index);
-        return SessionList.getInstance().getSessions().remove(session);
+        return sessionList.getSessions().remove(session);
     }
 
     /**
@@ -309,7 +318,7 @@ public class CampFacade {
      */
     public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
         boolean bool =  camp.addSession(theme, sessionDescription, startDate, endDate);
-        SessionList.getInstance().getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
+        sessionList.getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
         return bool;
     }
     
@@ -366,6 +375,11 @@ public class CampFacade {
      */
     public boolean updateSession(int index) {
         this.currentSession = this.camp.getSession(index);
+        for(int i = 0; i < sessionList.getSessions().size(); i++) {
+            if(currentSession.equals(sessionList.getSessions().get(i))) {
+                currentSession = sessionList.getSessions().get(i);
+            }
+        }
         this.currentSessionCabinList = this.currentSession.getCabins();
         return true;
     }
@@ -448,7 +462,8 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean removeSessionCabin(int index) {
-        return currentSession.removeCabin(index);
+        Cabin cabin = currentSession.removeCabin(index);
+        return cabinList.getCabins().remove(cabin);
     }
 
     /**
@@ -458,8 +473,10 @@ public class CampFacade {
      * @param bedNum the number of beds in the cabin
      * @return true if successful, false if not successful
      */
-    public boolean addSessionCabin(int minAge, int maxAge) {
-        return currentSession.addCabin(new Cabin(minAge, maxAge));
+    public boolean addSessionCabin(int minAge, int maxAge) {        
+        boolean bool2 = currentSession.addCabin(new Cabin(minAge, maxAge));
+        cabinList.getCabins().add(new Cabin(minAge, maxAge));
+        return bool2;
     }
 
     /**
@@ -468,7 +485,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addSessionCabin(Cabin cabin) {
-        return currentSession.addCabin(cabin);
+        boolean bool3 = currentSession.addCabin(cabin);
+        cabinList.getCabins().add(cabin);
+        return bool3;
     }
 
     
@@ -480,7 +499,12 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside cabin
      */
     public void updateCabin(int index) {
-        this.currentCabin = this.currentSessionCabinList.get(index);
+        this.currentCabin = currentSessionCabinList.get(index);
+        for(int i = 0; i < cabinList.getCabins().size(); i++) {
+            if(currentCabin.equals(cabinList.getCabins().get(i))) {
+                currentCabin = cabinList.getCabins().get(i);
+            }
+        }
         this.currentCabinCamperList = this.currentCabin.getCampers();
         this.currentScheduleHash = this.currentCabin.getSchedule();
     }
@@ -491,6 +515,11 @@ public class CampFacade {
      */ 
     public boolean updateCabinHash(Session session) {
         this.currentCabin = this.currentCabinHash.get(session);
+        for(int i = 0; i < cabinList.getCabins().size(); i++) {
+            if(currentCabin.equals(cabinList.getCabins().get(i))) {
+                this.currentCabin = cabinList.getCabins().get(i);
+            }
+        }
         if(this.currentCabin == null) {
             return false;
         }
@@ -951,7 +980,8 @@ public class CampFacade {
      * @return the removed camper object
      */
     public boolean removeGuardianCamper(int index) {
-        return currentGuardian.removeCamper(index);
+        Camper camper = currentGuardian.removeCamper(index);
+        return camperList.getCampers().remove(camper);
     }
 
     /**
@@ -960,10 +990,10 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addGuardianCamper(String name, Date birthday) {
-        CamperList.getInstance().getCampers().add(new Camper(name, birthday));
-        return currentGuardian.addCamper(new Camper(name, birthday));
+        boolean bool4 = currentGuardian.addCamper(new Camper(name, birthday));
+        camperList.getCampers().add(new Camper(name, birthday));
+        return bool4;
     }
-
 
 
 
@@ -981,6 +1011,14 @@ public class CampFacade {
         else {
             return false;
         }
+
+        for(int i =0; i < camperList.getCampers().size(); i++) {
+            if(currentCamper.equals(camperList.getCampers().get(index))) {
+                this.currentCamper = camperList.getCampers().get(index);
+            }
+        }
+
+
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();

@@ -104,9 +104,10 @@ public class Guardian extends User {
         return name;
     }
 
-    public boolean removeCamper(int index) {
+    public Camper removeCamper(int index) {
+        Camper rCamper = campers.get(index);
         campers.remove(index);
-        return true;
+        return rCamper;
     }
 
     public boolean addCamper(Camper camper) {
