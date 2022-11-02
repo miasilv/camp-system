@@ -131,13 +131,14 @@ public class CampFacade {
     }
 
     public void save() {
-        DataWriter.saveCabin();
-        DataWriter.saveCamp();
+        
         DataWriter.saveCampers();
         DataWriter.saveCounselors();
+        DataWriter.saveCabin();
         DataWriter.saveDirectors();
         DataWriter.saveGuardians();
         DataWriter.saveSessions();
+        DataWriter.saveCamp();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -1021,7 +1022,7 @@ public class CampFacade {
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
-        currentCabinHash = currentCamper.getCabinHash();
+        currentCabinHash = currentCamper.getCamperCabinHash();
 
         currentCamperSessions = camp.getCampersSessions(currentCamper);
         currentCamperCabins = new ArrayList<>();
@@ -1035,7 +1036,7 @@ public class CampFacade {
             }
         }
         for(int i = 0; i < currentCamperSessions.size(); i++) {
-            currentCamper.updateCamperCabinHash(currentCamperSessions.get(i), currentCamperCabins.get(i));
+            currentCamper.addSession(currentCamperSessions.get(i), currentCamperCabins.get(i));
         }
         return true;
     }
@@ -1191,7 +1192,7 @@ public class CampFacade {
      * @return a hash map of cabins by session
      */
     public HashMap<Session, Cabin> getCamperCabinHash() {
-        return currentCamper.getCabinHash();
+        return currentCamper.getCamperCabinHash();
     }
 
     /**

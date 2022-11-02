@@ -263,7 +263,7 @@ public class Cabin {
      * @param session the session the cabin is in
      */
     public void updateCampersCabinHashes(Camper camper, Session session){
-        camper.updateCamperCabinHash(session, this);
+        camper.addSession(session, this);
     }
     /**
      * method that passes the cabin object to the counselor to allow them to update their cabin hash
