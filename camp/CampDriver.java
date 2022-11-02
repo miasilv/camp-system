@@ -324,7 +324,7 @@ public class CampDriver {
 
 				System.out.println("Which activity do you want to delete?");
 				int num = getNum();
-				if(0 >= num && num <= 6) {
+				if(num >= 0 || num <= 6) {
 					System.out.println("These activities cannot be deleted.");
 					in.nextLine();
 				}
@@ -361,14 +361,8 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.println(facade.getCampActivities().get(choice));
-				String change = setStringInformation(ACTIVITIES);
-				if(!(change == null)) {
-					if(!facade.setCampActivity(choice, change)) {
-						System.out.println("Sorry, something went wrong, unable to add.");
-						in.nextLine();
-					}
-				}
+				System.out.print(facade.getCampActivities().get(choice));
+				facade.getCampActivities().set(choice, setStringInformation(ACTIVITIES));
 				continue;
         	}
 		}
@@ -419,7 +413,7 @@ public class CampDriver {
 
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
-				if(0 > num || num >= faqs.size()) {
+				if(0 > num || num <= faqs.size()) {
 					System.out.println("Not a valid number");
 					in.nextLine();
 				}
@@ -491,9 +485,9 @@ public class CampDriver {
 					}
 				
 					clear();
-					System.out.println("Old " + QUESTION + ": " + facade.getFAQString(QUESTION));
+					System.out.println("Old " + QUESTION + ": " + facade.getCampString(QUESTION));
 					String change = setStringInformation(QUESTION);
-					if(!(change == null)) {
+					if(!change.isEmpty()) {
 						if(!facade.setFAQString(QUESTION, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -507,9 +501,9 @@ public class CampDriver {
 					}
 			
 					clear();
-					System.out.println("Old " + ANSWER + ": " + facade.getFAQString(ANSWER));
+					System.out.println("Old " + ANSWER + ": " + facade.getCampString(ANSWER));
 					String change2 = setStringInformation(ANSWER);
-					if(!(change2 == null)) {
+					if(!change2.isEmpty()) {
 						if(!facade.setFAQString(ANSWER, change2)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -644,7 +638,7 @@ public class CampDriver {
 					clear();
 					System.out.println("Old " + THEME + ": " + facade.getSessionString(THEME));
 					String change = setStringInformation(THEME);
-					if(!(change == null)) {
+					if(!change.isEmpty()) {
 						if(!facade.setSessionString(THEME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 						}
@@ -1177,7 +1171,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				//facade.save();
+				facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -2021,21 +2015,11 @@ public class CampDriver {
 
 				if(user instanceof Guardian) {
 					System.out.println(facade.getCamperAllergyList().get(choice));
-					String change = setStringInformation(ALLERGIES);
-					if(!facade.setCamperAllergy(choice, change)) {
-						System.out.println("Something went wrong, unable to edit");
-						in.nextLine();
-					}
-					continue;
+					facade.getCamperAllergyList().set(choice, setStringInformation(ALLERGIES));
 				}
 				else if(user instanceof Counselor) {
 					System.out.println(facade.getCounselorAllergyList().get(choice));
-					String change = setStringInformation(ALLERGIES);
-					if(!facade.setCounselorAllergy(choice, change)) {
-						System.out.println("Something went wrong, unable to edit");
-						in.nextLine();
-					}
-					continue;
+					facade.getCounselorAllergyList().set(choice, setStringInformation(ALLERGIES));
 				}
 				else {
 					System.out.println("Something went wrong");
@@ -2307,7 +2291,7 @@ public class CampDriver {
 	private void createCamper() {
 		System.out.println("Enter the name of the camper: ");
 		String name = in.nextLine();
-		System.out.println("Enter the birthday of the camper: (MM/DD/YYYY) ");
+		System.out.println("Enter the birthday of the camper: (mm/dd/yyyy) ");
 		Date birthday = getDate(in.nextLine());
 		if(!facade.addGuardianCamper(name, birthday)) {
 			System.out.println("Something went wrong");
@@ -2490,7 +2474,7 @@ public class CampDriver {
 	 * @return the string version of the date
 	 */
 	private String displayDate(Date date) {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         return dateFormatter.format(date);
 	}
 
@@ -2499,7 +2483,7 @@ public class CampDriver {
 	 */
 	private Date getDate(String date) {
 		try {
-			return new SimpleDateFormat("MM/dd/yyyy").parse(date);
+			return new SimpleDateFormat("mm/dd/yyyy").parse(date);
 		} catch (ParseException e) {
 			System.out.println("Sorry " + date + " is not parsable");
 			return null;
