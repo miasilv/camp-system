@@ -4,7 +4,7 @@
         "name": "Karen Smith",
         "email": "karensmith82@gmail.com",
         "password": "password",
-        "phone number": "8035555555",
+        "phone number": "803-555-5555",
         "campers": ["77dfed2d-14d4-4ee9-a926-700153221541", "dd0df3f4-db7a-465e-8541-41865911d890"]
     },
     {
@@ -12,7 +12,7 @@
         "name": "John Bahr",
         "email": "johnbahr@gmail.com",
         "password": "akfjdakfhoiakands",
-        "phone number": "9425552390",
+        "phone number": "942-555-2390",
         "campers": ["6fca9504-e805-411f-a7b0-3d51fb8b07fa"]
     }
 ]

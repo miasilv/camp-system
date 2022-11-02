@@ -1,7 +1,1 @@
-[{
-    "id": "347949cd-c8e3-45ba-ba93-c7996f25ed05",
-    "name": "Bob Wright",
-    "email": "bobwright88@yahoo.com",
-    "password": "password",
-    "phonenumber": "7984342233"
-}]
+[{"password":"password","name":"Bob Wright","phonenumber":"7984342233","id":"347949cd-c8e3-45ba-ba93-c7996f25ed05","email":"bobwright88@yahoo.com"}]

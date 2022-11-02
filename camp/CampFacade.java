@@ -120,13 +120,14 @@ public class CampFacade {
     }
 
     public void save() {
-        DataWriter.saveDirectors();
-        DataWriter.saveSession();
         DataWriter.saveCounselors();;
         DataWriter.saveCampers();
-        DataWriter.saveGuardians();
         DataWriter.saveCabin();
+        DataWriter.saveSessions();
+        DataWriter.saveDirectors();
         DataWriter.saveCamp();
+        DataWriter.saveGuardians();
+       
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -276,16 +277,6 @@ public class CampFacade {
      */
     public boolean addCampActivity(String activity) {
         return camp.addActivity(activity);
-    }
-
-    /**
-     * Edits a camp activity
-     * @param index the index being edited
-     * @param change the new string being placed in there
-     * @return
-     */
-    public boolean setCampActivity(int index, String change) {
-        return camp.editActivity(index, change);
     }
 
     /**
@@ -815,16 +806,6 @@ public class CampFacade {
     }
 
     /**
-     * Edits a pre-existing allergy in counselor
-     * @param index the index of the allergy being edited
-     * @param change the new string being inputed
-     * @return true if successful, false if not
-     */
-    public boolean setCounselorAllergy(int index, String change) {
-        return currentCounselor.setAllergy(index, change);
-    }
-
-    /**
      * Gets the current emergency contact hash (which should be in a counselor object)
      * @return a hash map of relationships by contact
      */
@@ -1061,16 +1042,6 @@ public class CampFacade {
         }
         currentCamper.addAllergy(allergy);
         return true;
-    }
-
-    /**
-     * Edits a pre-existing allergy in camper
-     * @param index the index of the allergy being edited
-     * @param change the new string being inputed
-     * @return true if successful, false if not
-     */
-    public boolean setCamperAllergy(int index, String change) {
-        return currentCamper.setAllergy(index, change);
     }
 
     /**

@@ -2,7 +2,7 @@
     {
         "id": "77dfed2d-14d4-4ee9-a926-700153221541",
         "name" : "bobby smith",
-        "birthday": "10/08/2014",
+        "birthday": "10/08/14",
         "medications": [{
                         "type": "advil",
                         "dose": "one pill",
@@ -28,7 +28,7 @@
     {
         "id": "dd0df3f4-db7a-465e-8541-41865911d890",
         "name" : "mille smith",
-        "birthday": "2/14/2017",
+        "birthday": "2/14/17",
         "age": 5,
         "medications": [],
         "allergies": ["pollen", "pet dander", "peaches"],
@@ -52,7 +52,7 @@
     {
         "id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa",
         "name" : "ashley bahr",
-        "birthday": "5/24/2017",
+        "birthday": "5/24/17",
         "age": 5,
         "medications": [{
                         "type": "amoxicillian",
@@ -60,7 +60,6 @@
                         "time": "divided and given every 8 hours"
                         }],
         "allergies": [],
-    
         "notes": ["ashley is crazy", "ashley did really well at ziplining today"],
         "emergency contacts": [{
                                 "ename": "Trina Beckley",
