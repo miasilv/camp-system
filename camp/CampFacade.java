@@ -111,6 +111,8 @@ public class CampFacade {
         currentGuardianCamperList = new ArrayList<Camper>();
         currentMedicationList = new ArrayList<Medication>();
         currentCamperAllergyList = new ArrayList<String>();
+        currentCamperSessions = new ArrayList<Session>();
+        currentCamperCabins = new ArrayList<Cabin>();
         currentCounselorAllergyList = new ArrayList<String>();
         currentScheduleHash = new HashMap<Day, Schedule>();
         currentContactHash = new HashMap<String, Contact>();
