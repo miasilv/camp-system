@@ -11,7 +11,7 @@ public abstract class DataConstants {
     protected static final String CABIN_UUID = "id";
 	protected static final String CABIN = "cabin";
 	protected static final String CABIN_CAMPERS = "campers";
-	protected static final String CABIN_COUNSELOR = "counselor";
+	protected static final String CABIN_COUNSELORS = "counselors";
 	protected static final String CABIN_BEDS = "beds";
     protected static final String CABIN_MAX_AGE = "max age";
     protected static final String CABIN_MIN_AGE = "min age";

@@ -368,9 +368,9 @@ public class DataLoader extends DataConstants {
                 Double maxAge = (Double)cabinJSON.get(CABIN_MAX_AGE);
                 Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
-                UUID counselorID = UUID.fromString((String)cabinJSON.get(CABIN_COUNSELOR));
-                Counselor counselor = UserList.getInstance().getCounselor(counselorID);
-
+               // UUID counselorID = UUID.fromString((String)cabinJSON.get(CABIN_COUNSELORs));
+                
+                JSONArray counselorsJSON = (JSONArray)cabinJSON.get(CABIN_COUNSELORS);
                 JSONArray campersJSON = (JSONArray)cabinJSON.get(CABIN_CAMPERS);
                 JSONArray schedulesJSON = (JSONArray)cabinJSON.get(CABIN_SCHEDULE);
                 
@@ -400,8 +400,15 @@ public class DataLoader extends DataConstants {
                     Camper camper = CamperList.getInstance().getCamper(camperID);
                     campers.add(camper);
                 }
+                //make arraylist of counselors
+                ArrayList<Counselor> counselors = new ArrayList<Counselor>();
+                for(int j = 0; j < counselorsJSON.size(); j++){
+                    UUID counselorID = UUID.fromString((String)counselorsJSON.get(j));
+                    Counselor counselor = CounselorList.getInstance().getCounselor(counselorID);
+                    counselors.add(counselor);
+                }
 				
-				cabins.add(new Cabin(campers, counselor, maxAge, minAge, schedules, id));
+				cabins.add(new Cabin(campers, counselors, maxAge, minAge, schedules, id));
                 //System.out.println("SCHEDULES:" + schedules);
 			}
         

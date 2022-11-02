@@ -363,7 +363,11 @@ public class DataWriter extends DataConstants {
         }        
         cabinDetails.put(CABIN_CAMPERS, jsonCampers);
 
-        cabinDetails.put(CABIN_COUNSELOR, cabin.getCounselor().getCounselorID());   
+        JSONArray jsonCounselors = new JSONArray();
+        for(int i = 0; i<cabin.getCounselors().size(); i++){
+            jsonCounselors.add(cabin.getCounselor(i).getCounselorID());
+        }
+        cabinDetails.put(CABIN_COUNSELORS, jsonCounselors);   
 
         cabinDetails.put(CABIN_MAX_AGE, cabin.getMaxAge());
         cabinDetails.put(CABIN_UUID, cabin.getCabinID());

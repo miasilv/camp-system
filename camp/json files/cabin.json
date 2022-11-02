@@ -107,7 +107,7 @@
                 "day": "Sunday"
             }
         ],
-        "counselor": "00717bd2-d5c7-4c19-9502-f35dcb343261",
+        "counselors": ["00717bd2-d5c7-4c19-9502-f35dcb343261"],
         "min age": 7.0,
         "campers": [
             "77dfed2d-14d4-4ee9-a926-700153221541",
@@ -225,7 +225,7 @@
                 "day": "Sunday"
             }
         ],
-        "counselor": "55318676-1cb2-4886-98c4-6375a7b8ae73",
+        "counselors": ["55318676-1cb2-4886-98c4-6375a7b8ae73"],
         "min age": 11.0,
         "campers": [
             "77dfed2d-14d4-4ee9-a926-700153221541",
@@ -343,7 +343,7 @@
                 "day": "Sunday"
             }
         ],
-        "counselor": "c3f9d64b-0564-425f-93bf-ddfc96b47767",
+        "counselors": ["c3f9d64b-0564-425f-93bf-ddfc96b47767"],
         "min age": 60.0,
         "campers": [],
         "max age": 65.0,
