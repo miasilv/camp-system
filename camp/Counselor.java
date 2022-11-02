@@ -174,6 +174,16 @@ public class Counselor extends User {
         return sessionThemes.toString();
     }
 
+    /**
+     * Returns the <session, cabin> hash of the counselor
+     * @return The <session, cabin> hash
+     */
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return cabinHash;
+    }
+
+    // ----------------------------------MUTATORS-------------------------------------------------------------
+
     public boolean setName(String name) {
         this.name = name;
         return true;
@@ -193,6 +203,18 @@ public class Counselor extends User {
         this.phoneNumber = phoneNumber;
         return true;
     }
+
+    public boolean setBio(String change) {
+        this.bio = change;
+        return true;
+    }
+
+    public boolean setBirthday(Date change) {
+        this.birthday = change;
+        return true;
+    }
+
+    // ----------------------------------MISC-------------------------------------------------------------
 
     /**
      * Method to add the bio of the counselor
@@ -218,17 +240,12 @@ public class Counselor extends User {
     }
 
     /**
-     * Method to edit the allergy a counselor has to take care of
+     * Method to change the allergy of a counselor
      * @param index Index of the allergy of the counselor
      * @param allergy Allergy to replace with
      */
     public void editAllergy(int index, String allergy) {
         allergies.set(index, allergy);
-    }
-
-    public boolean setBio(String change) {
-        this.bio = change;
-        return true;
     }
 
     /**
@@ -238,20 +255,7 @@ public class Counselor extends User {
         if(this.name.equals("")) {
             return "no counselor";
         }
-        
         return name + ": " + bio;
-        
-    }
-
-    public boolean setBirthday(Date change) {
-        this.birthday = change;
-        return true;
-    }
-
-
-    //**********************************PLEASE DO THIS********************************************************************
-    public ArrayList<Cabin> getCabins() {
-        return null;
     }
 
     /**
@@ -268,6 +272,7 @@ public class Counselor extends User {
 
     /**
      * Method to convert Date object to LocalDate object
+     * This is because the LocalDate allows us to do operations on it
      * @param dateToConvert Date object to convert
      * @return LocalDate object
      */
@@ -291,47 +296,92 @@ public class Counselor extends User {
         }
     }
 
+    /**
+     * Adds in an item to the <session, cabin> hash
+     * @param session Session to add in
+     * @param cabin Cabin to add in
+     */
     public void addCounselorCabinHash(Session session, Cabin cabin) {
         cabinHash.put(session, cabin);
     }
 
-    public HashMap<Session, Cabin> getCounselorCabinHash() {
-        return cabinHash;
-    }
-
+    /**
+     * Removes an item from the <session, cabin> hash
+     * @param session The session (key) to remove
+     */
     public void removeCounselorCabinHash(Session session) {
         cabinHash.remove(session);
     }
 
+    /**
+     * Adds in an item to the <session, cabin> hash
+     * @param session Session (key) to update to
+     * @param cabin Cabin (value) to update to
+     */
     public void updateCounselorCabinHash(Session session, Cabin cabin) {
         cabinHash.put(session, cabin);
     }
 
+    /**
+     * Removes an allergy from the allergies AL
+     * @param index The index of the allergy to remove
+     * @return true if successful
+     */
     public boolean removeAllergy(int index) {
         allergies.remove(index);
         return true;
     }
 
+    /**
+     * Adds an allergy to the allergies AL
+     * @param allergy The allergy to add
+     * @return true if successful
+     */
     public boolean addAllergy(String allergy) {
         allergies.add(allergy);
         return true;
     }
 
+    /**
+     * Removes an emergency contact from the <relation, contact> hash
+     * @param relationship The relationship (key)
+     * @return true if successful
+     */
     public boolean removeEmergencyContact(String relationship) {
         emergencyContacts.remove(relationship);
         return true;
     }
 
+    /**
+     * Creates and adds in a contact to the emergency contact hash
+     * @param relationship The relationship to the camper (key)
+     * @param name2 Name of the contact
+     * @param email Email of the contact
+     * @param phone Phone of the contact
+     * @param address Address of the contact
+     * @return true if successful
+     */
     public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
         Contact nContact = new Contact(name2, phone, address, email);
         emergencyContacts.put(relationship, nContact);
         return true;
     }
 
+    /**
+     * Removes a session from the <session, cabin> hash
+     * @param session The session (key) to remove
+     * @return true if successful
+     */
     public boolean removeSession(Session session) {
         return cabinHash.remove(session, cabinHash.get(session));
     }
 
+    /**
+     * Adds in a new session into the <session, cabin> hash
+     * @param session The session (key) to add
+     * @param cabin The cabin (val) to add
+     * @return true if successful
+     */
     public boolean addSession(Session session, Cabin cabin) {
         updateCounselorCabinHash(session, cabin);
         return true;
