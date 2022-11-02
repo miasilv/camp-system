@@ -1,1 +1,10 @@
-[{"start date":"07\/01\/2023","sessionDescription":"Tropical Paradise","end date":"07\/07\/2023","theme":"Hawaiin","id":"0e0e3312-c6a1-4f96-9a9d-dfc0993c4830","cabins":["fa3dfc75-8cb0-4e9f-8b24-9e1d9369397d","9945d8f7-2055-4853-85d2-35512c74b66c","0b996f1a-0a79-4bad-8554-315e54302828","239e6ef2-b034-4fde-b1e1-98459629c47e","7d2b3588-b38a-4336-a170-0b553499ae76","2ac032d9-1714-43f7-98ed-254350f0be44"]},{"start date":"07\/08\/2023","sessionDescription":"Instruments!!","end date":"07\/14\/2023","theme":"Rockstars","id":"6774fc11-3712-492a-bc84-9015b407e3b1","cabins":["8ad79c8e-4092-4f7f-97a7-8091fa678c02","24b98a85-2913-41b2-a860-22d2cb95fbd8","3d8fb085-ebc1-4913-a755-8ba8fd585502","2b5b17f6-b416-4e69-8677-411823dc6de1","a53a5167-79ab-406b-b6e9-4845806a4a78","c77403d8-62c4-49b8-bb24-a5794a05afbd"]},{"start date":"07\/15\/2023","sessionDescription":"Fight","end date":"07\/21\/2023","theme":"Ninja Warriors","id":"11e2ce26-f948-466c-9c69-2c82c5519780","cabins":["f95afefc-4bfc-47d6-a914-debe5b6fd778"]},{"start date":"07\/22\/2023","sessionDescription":"Candy","end date":"07\/28\/2023","theme":"Willy Wonka","id":"8c775ad3-1da2-43af-9fc4-21e409d8c8e6","cabins":[]},{"start date":"07\/29\/2023","sessionDescription":"movie stars","end date":"08\/01\/2023","theme":"Hollywood","id":"fb949777-c961-4a90-8331-480ccd9f9839","cabins":[]},{"start date":"08\/01\/2023","sessionDescription":"build it up","end date":"08\/07\/2023","theme":"Legos","id":"82a4b9b1-42f1-459e-bfa1-18689cb614a8","cabins":[]},{"start date":"08\/08\/2023","sessionDescription":"fight","end date":"08\/14\/2023","theme":"Cops and Robbers","id":"30320ff0-3297-4e3e-9ae6-4d34e1b46b4c","cabins":[]},{"start date":"08\/15\/2023","sessionDescription":"blood","end date":"08\/21\/2023","theme":"Shark Tank","id":"ba9f0428-33c5-4434-a664-c8c6b737047a","cabins":[]},{"start date":"08\/22\/2023","sessionDescription":"yummy","end date":"08\/28\/2023","theme":"Smores","id":"d71c9984-ac81-4a85-959a-1e210813b709","cabins":[]}]
+[
+    {
+        "start date": "07\/03\/2023",
+        "sessionDescription": "Tropical Paradise",
+        "end date": "07\/09\/2023",
+        "theme": "Hawaiian",
+        "id": "0e0e3312-c6a1-4f96-9a9d-dfc0993c4830",
+        "cabins": [ "a1876dff-63b7-448b-a19a-0ca4bb046c3b"]
+    }
+]
