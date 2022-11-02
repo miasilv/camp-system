@@ -312,30 +312,60 @@ public class Camper {
         }
     }
 
+    /**
+     * Removes an allergy of the camper
+     * @param index The index of the allergy to remove
+     * @return true if successful
+     */
     public boolean removeAllergy(int index) {
         allergies.remove(index);
         return true;
     }
 
+    /**
+     * Removes a medication from the camper
+     * @param index The index of the medication to remove
+     * @return true if successful
+     */
     public boolean removeMedication(int index) {
         medications.remove(index);
         return true;
     }
 
+    /**
+     * Removes a session from the <session, cabin> hash
+     * @param session The session to remove (key)
+     * @return true if successful
+     */
     public boolean removeSession(Session session) {
         return cabinHash.remove(session, cabinHash.get(session));
     }
 
+    /**
+     * Adds a session to the <session, cabin> hash
+     * @param s The session (key) to add
+     * @param c The cabin (val) to add
+     * @return true if successful
+     */
     public boolean addSession(Session s, Cabin c) {
         cabinHash.put(s, c);
         return true;
     }
 
+    /**
+     * Removes an emergency contact from the emergency contacts hash
+     * @param relationship The relationship to remove (key)
+     * @return true if successful
+     */
     public boolean removeEmergencyContact(String relationship) {
         emergencyContacts.remove(relationship);
         return true;
     }
 
+    /**
+     * Adds an emergency contact
+     * @return true if successful
+     */
     public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
         Contact nContact = new Contact(name2, phone, address, email);
         emergencyContacts.put(relationship, nContact);
