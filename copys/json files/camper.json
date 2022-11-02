@@ -32,7 +32,6 @@
         "age": 5,
         "medications": [],
         "allergies": ["pollen", "pet dander", "peaches"],
-        "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8"],
         "notes": ["mille is so sweet", "mille hurt her leg at kayaking today"],
         "emergency contacts": [{
                                 "ename": "Rebecca Wringler",
@@ -61,7 +60,7 @@
                         "time": "divided and given every 8 hours"
                         }],
         "allergies": [],
-        "sessions": ["642bbf90-b9d8-4f67-8764-5d0eb6af30f8"],
+    
         "notes": ["ashley is crazy", "ashley did really well at ziplining today"],
         "emergency contacts": [{
                                 "ename": "Trina Beckley",
