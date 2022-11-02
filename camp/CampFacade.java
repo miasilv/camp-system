@@ -143,6 +143,7 @@ public class CampFacade {
         this.currentScheduleHash = this.currentCabin.getSchedule();
         this.currentSchedule = this.currentScheduleHash.get(Day.MONDAY);
         this.currentSchedule.setActivityList(currentActivityList);
+        this.save();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
