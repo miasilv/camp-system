@@ -321,8 +321,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
-        boolean bool =  camp.addSession(theme, sessionDescription, startDate, endDate);
-        sessionList.getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
+        Session session = new Session(theme, sessionDescription, startDate, endDate);
+        boolean bool =  camp.addSession(session);
+        sessionList.getSessions().add(session);
         return bool;
     }
     
@@ -478,8 +479,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addSessionCabin(int minAge, int maxAge) {        
-        boolean bool2 = currentSession.addCabin(new Cabin(minAge, maxAge));
-        cabinList.getCabins().add(new Cabin(minAge, maxAge));
+        Cabin cabin = new Cabin(minAge, maxAge);
+        boolean bool2 = currentSession.addCabin(cabin);
+        cabinList.getCabins().add(cabin);
         return bool2;
     }
 
@@ -984,8 +986,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addGuardianCamper(String name, Date birthday) {
-        boolean bool4 = currentGuardian.addCamper(new Camper(name, birthday));
-        camperList.getCampers().add(new Camper(name, birthday));
+        Camper camper = new Camper(name, birthday);
+        boolean bool4 = currentGuardian.addCamper(camper);
+        camperList.getCampers().add(camper);
         return bool4;
     }
 
