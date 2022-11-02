@@ -18,6 +18,9 @@ public class Counselor extends User {
     private ArrayList<String> allergies;
     private HashMap<Session, Cabin> cabinHash;
     private ArrayList<String> sessionThemes;
+    private ArrayList<String> relationships;
+    private ArrayList<Contact> contacts;
+    
 
     // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
 
@@ -55,6 +58,8 @@ public class Counselor extends User {
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         this.cabinHash = new HashMap<Session, Cabin>();
         this.sessionThemes = sessionThemes;
+        this.contacts = contacts;
+        this.relationships = relationships;
     }
 
     // ----------------------------------ACCESSORS-------------------------------------------------------------
@@ -91,6 +96,14 @@ public class Counselor extends User {
 
     public UUID getID() {
         return id;
+    }
+
+    public ArrayList<String> getRelationships(){
+        return this.relationships;
+    }
+
+    public ArrayList<Contact> getContacts(){
+        return this.contacts;
     }
 
     /**

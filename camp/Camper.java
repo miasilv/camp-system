@@ -22,6 +22,8 @@ public class Camper {
     private HashMap<String, Contact> emergencyContacts;
     private HashMap<Session, Cabin> cabinHash;
     private ArrayList<String> sessionThemes;
+    private ArrayList<String> relationships;
+    private ArrayList<Contact> contacts;
 
     /**
      * Constructor for the camper class
@@ -59,6 +61,8 @@ public class Camper {
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         this.cabinHash = new HashMap<Session, Cabin>();
         this.sessionThemes = sessionThemes;
+        this.contacts = contacts;
+        this.relationships = relationships;
     }
 
     // getters because Nat needs them:
@@ -102,6 +106,14 @@ public class Camper {
     public boolean setBirthday(Date date) {
         this.birthday = date;
         return true;
+    }
+
+    public ArrayList<String> getRelationships(){
+        return this.relationships;
+    }
+
+    public ArrayList<Contact> getContacts(){
+        return this.contacts;
     }
 
     /**
