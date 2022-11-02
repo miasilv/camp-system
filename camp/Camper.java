@@ -325,28 +325,8 @@ public class Camper {
             return 0;
         }
     }
-    /**
-     * puts the session and corresponding cabin in the counselors list
-     * @param session the session the counsel
-     * @param cabin
-     */
-    //public void addCounselorCabinHash(Session session, Cabin cabin) {
-        //cabinHash.put(session, cabin);
-    //}
 
-    public HashMap<Session, Cabin> getCounselorCabinHash() {
-        return cabinHash;
-    }
-
-    public void removeCounselorCabinHash(Session session) {
-        cabinHash.remove(session);
-    }
-
-    public void updateCamperCabinHash(Session session, Cabin cabin) {
-        cabinHash.put(session, cabin);
-    }
-
-    public HashMap<Session, Cabin> getCabinHash() {
+    public HashMap<Session, Cabin> getCamperCabinHash() {
         return cabinHash;
     }
 
