@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class CampFacade {
     // ------------------------- CURRENT ARRAYLISTS/OBJECTS -----------------
     private UserList userList;
-    private CampList camplist;
+    private CampList campList;
     private Camp camp; 
     private ArrayList<FAQ> currentFaqList;
     private FAQ currentFaq;
@@ -99,7 +99,7 @@ public class CampFacade {
 
     public CampFacade() {
         userList = UserList.getInstance();
-        camplist = CampList.getInstance();
+        campList = CampList.getInstance();
         initArrayLists();
     }
 
@@ -117,17 +117,6 @@ public class CampFacade {
         currentScheduleHash = new HashMap<Day, Schedule>();
         currentContactHash = new HashMap<String, Contact>();
         currentCabinHash = new HashMap<Session, Cabin>();
-    }
-
-    public void save() {
-        DataWriter.saveCounselors();;
-        DataWriter.saveCampers();
-        DataWriter.saveCabin();
-        DataWriter.saveSessions();
-        DataWriter.saveDirectors();
-        DataWriter.saveCamp();
-        DataWriter.saveGuardians();
-       
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -293,7 +282,8 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean removeCampSession(int index) {
-        return camp.removeSession(index);
+        Session session = camp.removeSession(index);
+        return SessionList.getInstance().getSessions().remove(session);
     }
 
     /**
@@ -304,7 +294,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
-        return camp.addSession(theme, sessionDescription, startDate, endDate);
+        boolean bool = camp.addSession(theme, sessionDescription, startDate, endDate);
+        SessionList.getInstance().getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
+        return bool;
     }
     
 
@@ -1127,11 +1119,8 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean removeCamperSession(int index) {
-        if(index >= currentCamperSessions.size()) {
-            return false;
-        }
         Session session = this.currentCamperSessions.get(index);
-        return currentCamper.removeSession(session);
+        return (currentCamper.removeSession(session) && currentSession.removeCamper(currentCamper));
     }
 
     /**

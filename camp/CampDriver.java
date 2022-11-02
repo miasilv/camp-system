@@ -1916,7 +1916,7 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.println("Which Session's cabin do you want to view? (enter the session theme)");
+				System.out.println("Which Session's cabin do you want to view?");
 				String theme = in.nextLine();				
 				facade.updateCabinHash(theme);
 				displayCabinInformation();
@@ -2458,7 +2458,6 @@ public class CampDriver {
 			in.nextLine();
 			return -1;
 		}
-		clear();
 		return num;
 	}
 
