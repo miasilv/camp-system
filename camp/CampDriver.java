@@ -824,7 +824,12 @@ public class CampDriver {
 			clearOptions();
 			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
 			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
-			options.add("Counselor: " + facade.getCabinCounselor().get(0));
+			if(facade.getCabinCounselor().isEmpty()) {
+				options.add("Counselor: no cousnelor");
+			}
+			else {
+				options.add("Counselor: " + facade.getCabinCounselor().get(0));
+			}
 			options.add("Campers");
 			options.add("Schedule");
 			options.add("Vitals Information");
@@ -889,7 +894,7 @@ public class CampDriver {
 					}
 					
 					clear();
-					if(facade.getCabinCounselor().size() == 0) {
+					if(facade.getCabinCounselor().isEmpty()) {
 						System.out.println("Would you like to add a cousnelor? (y/n)");
 					}
 					else {

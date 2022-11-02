@@ -150,6 +150,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside camp
      */
     public void updateCamp() {
+        System.out.println("Size" + camplist.getCamps().size());
         this.camp = camplist.getCamps().get(0);
         this.currentCampSessionList = this.camp.getSessions();
         this.currentFaqList = this.camp.getFAQs();
