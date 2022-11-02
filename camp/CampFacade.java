@@ -33,6 +33,8 @@ public class CampFacade {
     private Guardian currentGuardian;
     private ArrayList<Camper> currentGuardianCamperList;
     private Camper currentCamper;
+    private ArrayList<Session> currentCamperSessions;
+    private ArrayList<Cabin> currentCamperCabins;
     private ArrayList<Medication> currentMedicationList;
     private Medication currentMedication;
     private ArrayList<String> currentCamperAllergyList;
@@ -109,6 +111,8 @@ public class CampFacade {
         currentGuardianCamperList = new ArrayList<Camper>();
         currentMedicationList = new ArrayList<Medication>();
         currentCamperAllergyList = new ArrayList<String>();
+        currentCamperSessions = new ArrayList<Session>();
+        currentCamperCabins = new ArrayList<Cabin>();
         currentCounselorAllergyList = new ArrayList<String>();
         currentScheduleHash = new HashMap<Day, Schedule>();
         currentContactHash = new HashMap<String, Contact>();
@@ -967,18 +971,13 @@ public class CampFacade {
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
         currentCabinHash = currentCamper.getCabinHash();
-
-        ArrayList<String> sessionThemes = currentCamper.getSessionThemes();
-        for(int i = 0; i < sessionThemes.size(); i++) {
-            currentSession = camp.getSession(sessionThemes.get(i));
-            currentCabin = currentSession.findCamper(currentCamper);
-            if(currentCabin == null) {
-                currentSession.placeCamper(currentCamper);
-            }
-            currentCamper.updateCamperCabinHash(currentSession, currentCabin);
+        
+        currentCamperSessions = camp.getCamperSessions();
+        currentCamperCabins = new ArrayList<Cabin>();
+        for(int i = 0; i < currentCamperSessions.size(); i++) {
+            currentCamperCabins.add(currentCamperSessions.get(i).findCabin(currentCamper));
         }
 
-        return true;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
