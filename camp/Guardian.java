@@ -39,26 +39,6 @@ public class Guardian extends User {
         updatePrice();
         updateTotalSessions();
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public UUID getID() {
-        return id;
-    }
     
     /**
      * written by natalie
@@ -66,26 +46,6 @@ public class Guardian extends User {
      */
     public String getGuardianID(){
         return getID().toString();
-    }
-
-    public boolean setName(String name) {
-        this.name = name;
-        return true;
-    }
-
-    public boolean setEmail(String email) {
-        this.email = email;
-        return true;
-    }
-
-    public boolean setPassword(String password) {
-        this.password = password;
-        return true;
-    }
-
-    public boolean setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return true;
     }
 
     public ArrayList<Camper> getCampers(){
