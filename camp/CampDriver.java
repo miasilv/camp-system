@@ -1825,7 +1825,7 @@ public class CampDriver {
 			for (Map.Entry<Session, Cabin> entry : cabinHash.entrySet()) {
 				Session session = entry.getKey();
 				Cabin cabin = entry.getValue();
-				options.add("Session " + session.getTheme() + ": Cabin" + cabin.toString());
+				options.add("Session " + session.getTheme() + ": Cabin for " + cabin.toString());
 			}
 
 			options.add("Add a new Session");
@@ -1857,9 +1857,14 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.println("Which Session do you want to delete (enter the theme)?");
-				String theme = in.nextLine();
-				if(user instanceof Guardian && !facade.removeCamperSession(theme)) {
+				System.out.println("Which Session do you want to delete?");
+				int num = getNum();
+				String theme = "";
+				if(0 > num || num >= facade.getCamperSessions().size()) {
+					System.out.println("Not a valid number.");
+					in.nextLine();
+				}
+				if(user instanceof Guardian && !facade.removeCamperSession(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -1885,13 +1890,18 @@ public class CampDriver {
 					System.out.println(sessions.get(i).toString());
 				}
 				System.out.println("Enter the theme of the session you would like to add:");
-				String theme = in.nextLine();
-				if(user instanceof Guardian && !facade.addCamperSession(theme)) {
-					System.out.println("Something went wrong, unable to remove");
+				int num = getNum();
+				String theme = "";
+				if(0 > num || num >= sessions.size()) {
+					System.out.println("Not a valid number.");
+					in.nextLine();
+				}
+				else if(user instanceof Guardian && !facade.addCamperSession(num)) {
+					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && !facade.addCounselorSession(theme)) {
+				else if(user instanceof Counselor && !facade.addCounselorSession(theme)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;

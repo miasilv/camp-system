@@ -951,14 +951,18 @@ public class CampFacade {
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
-        currentCabinHash = currentCamper.getCabinHash();
         
-        currentCamperSessions = camp.getCamperSessions();
+        //currentCabinHash = currentCamper.getCabinHash();
+        
+        currentCamperSessions = camp.getCampersSessions(currentCamper);
         currentCamperCabins = new ArrayList<Cabin>();
         for(int i = 0; i < currentCamperSessions.size(); i++) {
-            currentCamperCabins.add(currentCamperSessions.get(i).findCabin(currentCamper));
+            currentCamperCabins.add(currentCamperSessions.get(i).findCamper(currentCamper));
         }
-
+        for(int i = 0; i < currentCamperSessions.size(); i++) {
+            currentCamper.updateCamperCabinHash(currentCamperSessions.get(i), currentCamperCabins.get(i));
+        }
+        return true;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -1102,6 +1106,14 @@ public class CampFacade {
     }
 
     /**
+     * Returns the array list of all the sessions the camper is in
+     * @return an array list of sessions
+     */
+    public ArrayList<Session> getCamperSessions() {
+        return currentCamperSessions;
+    }
+
+    /**
      * Gets the current session,cabin hash (which should be in a camper object)
      * @return a hash map of cabins by session
      */
@@ -1114,8 +1126,12 @@ public class CampFacade {
      * @param session the session to be removed
      * @return true if successful, false if not
      */
-    public boolean removeCamperSession(String theme) {
-        return currentCamper.removeSession(theme);
+    public boolean removeCamperSession(int index) {
+        if(index >= currentCamperSessions.size()) {
+            return false;
+        }
+        Session session = this.currentCamperSessions.get(index);
+        return currentCamper.removeSession(session);
     }
 
     /**
@@ -1123,8 +1139,8 @@ public class CampFacade {
      * @param session the session being added to the camper
      * @return true if successful, false if not successful
      */
-    public boolean addCamperSession(String theme) {
-        Session session = camp.getSession(theme);
+    public boolean addCamperSession(int index) {
+        Session session = SessionList.getInstance().getSessions().get(index);
         Cabin cabin = session.placeCamper(currentCamper);
         if(cabin == null) {
             return false;
