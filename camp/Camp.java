@@ -166,6 +166,11 @@ public class Camp {
         sessions.add(session);
         return true;
     }
+    public boolean addSession(Session session){
+        sessions.add(session);
+        return true;
+    }
+
     /**
      * method to get a session by theme
      * @param theme the theme of the desired session
