@@ -26,7 +26,7 @@ public class Cabin {
         this.maxAge = maxAge;
         this.cabinID = UUID.randomUUID();
         campers = new ArrayList<Camper>();
-        this.counselors = new ArrayList<Counselor>();
+        counselors = new ArrayList<Counselor>();
         this.daysStr = constructDaysStr();
         this.days = constructDays();
         
@@ -172,12 +172,10 @@ public class Cabin {
         return counselors.get(index);
     }
     public boolean setCounselor(Counselor counselor){
+        counselors.clear();
         counselors.add(counselor);
         return true;
      }
-    public void addCounselor(Counselor counselor){
-        counselors.add(counselor);
-    }
     public void removeCounselor(Counselor counselor) {
         counselors.remove(counselor);
     }
@@ -270,8 +268,8 @@ public class Cabin {
 
     public String getVitals() {
         String str = "";
-        if(counselors.get(0)) {
-            str  = counselors.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
+        if(counselors.size() == 1) {
+            str  = counselors.get(0).getName() + ":\n" + "\tAllergies: " + counselors.get(0).getAllergiesStr() + "\n\tEmergencyContacts:" + counselors.get(0).getEmergencyContactsStr();
         }
         for(int i = 0; i < campers.size(); i++) {
             Camper c = campers.get(i);
