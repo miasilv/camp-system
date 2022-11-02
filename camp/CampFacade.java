@@ -1032,7 +1032,8 @@ public class CampFacade {
             if(currentCamperAllergyList.get(i).equalsIgnoreCase(allergy))
                 return false;
         }
-        return currentCamper.addAllergy(allergy);
+        currentCamper.addAllergy(allergy);
+        return true;
     }
 
     /**
@@ -1183,8 +1184,12 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside contacts
      */
-    public void updateContacts(String key) {
-        this.currentContact = currentContactHash.get(key);
+    public boolean updateContacts(String key) {
+        if(currentContactHash.containsKey(key)) {
+            this.currentContact = currentContactHash.get(key);
+            return true;
+        }
+        return false;
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------

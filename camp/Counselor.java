@@ -319,8 +319,8 @@ public class Counselor extends User {
         return true;
     }
 
-    public boolean addEmergencyContact(String relationship, String name, String email, String phone, String address) {
-        Contact nContact = new Contact(name, phone, email, address);
+    public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
+        Contact nContact = new Contact(name2, phone, address, email);
         emergencyContacts.put(relationship, nContact);
         return true;
     }

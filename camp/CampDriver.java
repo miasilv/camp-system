@@ -898,7 +898,7 @@ public class CampDriver {
 					if(in.nextLine().equalsIgnoreCase("y")) {
 						ArrayList<Counselor> counselors = facade.getAllCounselors();
 						for(int i = 0; i < counselors.size(); i++) {
-							System.out.print((i + 1) + ": " + counselors.get(i) + " ");
+							System.out.print((i + 1) + ": " + counselors.get(i) + "\n");
 						}
 						System.out.println("\nWhich Cousnelor are you putting into this cabin?");
 						int choice2 = getNum();
@@ -1029,15 +1029,18 @@ public class CampDriver {
 			switch(choice) {
 				case 0: //wake up
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 				
 				case 1: //breakfast
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 				
 				case 2: //activity 1
 					if(!(user instanceof Director)) {
 						System.out.println("Sorry, you do not have permission to edit this.");
+						in.nextLine();
 						break;
 					}
 
@@ -1046,7 +1049,7 @@ public class CampDriver {
 					System.out.println("would you like to change the activity? (y/n)");
 					if(in.nextLine().equalsIgnoreCase("y")) {
 						for(int i = 0; i < activities.size(); i++) {
-							System.out.print((i + 1) + ": " + activities.get(i) + " ");
+							System.out.print((i + 1) + ": " + activities.get(i) + "\n");
 						}
 						System.out.println("\nWhich Activity are you putting into this time slot?");
 						int choice2 = getNum();
@@ -1063,11 +1066,13 @@ public class CampDriver {
 
 				case 3: //lunch
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 
 				case 4: //activity 2
 					if(!(user instanceof Director)) {
 						System.out.println("Sorry, you do not have permission to edit this.");
+						in.nextLine();
 						break;
 					}
 
@@ -1076,7 +1081,7 @@ public class CampDriver {
 					System.out.println("would you like to change the activity? (y/n)");
 					if(in.nextLine().equalsIgnoreCase("y")) {
 						for(int i = 0; i < activities.size(); i++) {
-							System.out.print((i + 1) + ": " + activities.get(i) + " ");
+							System.out.print((i + 1) + ": " + activities.get(i) + "\n");
 						}
 						System.out.println("\nWhich Activity are you putting into this time slot?");
 						int choice2 = getNum();
@@ -1093,6 +1098,7 @@ public class CampDriver {
 
 				case 5: //afternoon snack
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 
 				case 6: //activity 3
@@ -1106,7 +1112,7 @@ public class CampDriver {
 					System.out.println("would you like to change the activity? (y/n)");
 					if(in.nextLine().equalsIgnoreCase("y")) {
 						for(int i = 0; i < activities.size(); i++) {
-							System.out.print((i + 1) + ": " + activities.get(i) + " ");
+							System.out.print((i + 1) + ": " + activities.get(i) + "\n");
 						}
 						System.out.println("\nWhich Activity are you putting into this time slot?");
 						int choice2 = getNum();
@@ -1123,14 +1129,17 @@ public class CampDriver {
 
 				case 7: //dinner
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 
 				case 8: //evening activity
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 
 				case 9: //lights out
 					System.out.println("Sorry, you do not have permission to edit this.");
+					in.nextLine();
 					break;
 			}
 		}		
@@ -1964,7 +1973,7 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-				else if(user instanceof Guardian && facade.removeCamperAllergy(num)) {
+				else if(user instanceof Guardian && !facade.removeCamperAllergy(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -1984,18 +1993,14 @@ public class CampDriver {
 					continue;
 				}
 
-				String allergy = in.nextLine();
 				System.out.println("What allergy do you want to add?");
+				String allergy = in.nextLine();
 				if(user instanceof Guardian && !facade.addCamperAllergy(allergy)) {
 					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 				}
 				else if(user instanceof Counselor && !facade.addCounselorAllergy(allergy)) {
 					System.out.println("Something went wrong, unable to add");
-					in.nextLine();
-				}
-				else {
-					System.out.println("Something went wrong");
 					in.nextLine();
 				}
 				continue;
@@ -2111,9 +2116,12 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.println("Which Emergency Contact do you want to delete (enter the relationship)?");
+				System.out.println("Which Emergency Contact do you want to edit (enter the relationship)?");
 				String relationship = in.nextLine();
-				facade.updateContacts(relationship);
+				if(!facade.updateContacts(relationship)) {
+					System.out.println("Not a valid relationship");
+					continue;
+				}
 				displayContact();
         	}
 		}
@@ -2154,7 +2162,7 @@ public class CampDriver {
 
 			switch(choice) {
 				case 0: //the user chose type
-					if(!(user instanceof Guardian) || !(user instanceof Counselor)) { 
+					if(!(user instanceof Guardian) && !(user instanceof Counselor)) { 
 						System.out.println("You do not have permission to edit this.");
 						in.nextLine();
 						break;
@@ -2172,7 +2180,7 @@ public class CampDriver {
 					break;
 				
 				case 1: //the user chose time
-					if(!(user instanceof Guardian) || !(user instanceof Counselor)) {
+					if(!(user instanceof Guardian) && !(user instanceof Counselor)) {
 						System.out.println("You do not have permission to edit this.");
 						in.nextLine();
 						break;
@@ -2190,7 +2198,7 @@ public class CampDriver {
 					break;
 
 				case 2: //the user chose dose
-					if(!(user instanceof Guardian) || !(user instanceof Counselor)) {
+					if(!(user instanceof Guardian) && !(user instanceof Counselor)) {
 						System.out.println("You do not have permission to edit this.");
 						in.nextLine();
 						break;
@@ -2208,7 +2216,7 @@ public class CampDriver {
 					break;
 
 				case 3: //the user chose address
-					if(!(user instanceof Guardian) || !(user instanceof Counselor)) {
+					if(!(user instanceof Guardian) && !(user instanceof Counselor)) {
 						System.out.println("You do not have permission to edit this.");
 						in.nextLine();
 						break;
@@ -2300,9 +2308,9 @@ public class CampDriver {
 		System.out.println("Enter the name for the contact: ");
 		String name = in.nextLine();
 		System.out.println("Enter the phone number for the contact: ");
-		String email = in.nextLine();
-		System.out.println("Enter the email for the contact: ");
 		String phone = in.nextLine();
+		System.out.println("Enter the email for the contact: ");
+		String email = in.nextLine();
 		System.out.println("Enter the address of the contact: ");
 		String address = in.nextLine();
 		if(!facade.addCamperContact(relationship, name, email, phone, address)) {
