@@ -211,7 +211,7 @@ public class Camper {
     /**
      * Adds a medication for the camper
      * @param medication The medication to add
-     * @return 
+     * @return whether the medication was successfully added
      */
     public boolean addMedication(Medication medication) {
         medications.add(medication);
@@ -238,7 +238,7 @@ public class Camper {
     /**
      * Adds an allergy for the camper
      * @param allergy The allergy to add
-     * @return 
+     * @return whether the addition was successful
      */
     public boolean addAllergy(String allergy) {
         allergies.add(allergy);
@@ -325,10 +325,14 @@ public class Camper {
             return 0;
         }
     }
-
-    public void addCounselorCabinHash(Session session, Cabin cabin) {
-        cabinHash.put(session, cabin);
-    }
+    /**
+     * puts the session and corresponding cabin in the counselors list
+     * @param session the session the counsel
+     * @param cabin
+     */
+    //public void addCounselorCabinHash(Session session, Cabin cabin) {
+        //cabinHash.put(session, cabin);
+    //}
 
     public HashMap<Session, Cabin> getCounselorCabinHash() {
         return cabinHash;
