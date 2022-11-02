@@ -485,7 +485,7 @@ public class CampDriver {
 					}
 				
 					clear();
-					System.out.println("Old " + QUESTION + ": " + facade.getCampString(QUESTION));
+					System.out.println("Old " + QUESTION + ": " + facade.getFAQString(QUESTION));
 					String change = setStringInformation(QUESTION);
 					if(!change.isEmpty()) {
 						if(!facade.setFAQString(QUESTION, change)) {
@@ -501,7 +501,7 @@ public class CampDriver {
 					}
 			
 					clear();
-					System.out.println("Old " + ANSWER + ": " + facade.getCampString(ANSWER));
+					System.out.println("Old " + ANSWER + ": " + facade.getFAQString(ANSWER));
 					String change2 = setStringInformation(ANSWER);
 					if(!change2.isEmpty()) {
 						if(!facade.setFAQString(ANSWER, change2)) {
