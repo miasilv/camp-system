@@ -234,5 +234,119 @@
         ],
         "max age": 16.0,
         "id": "9755e52b-bcb6-41e3-8f69-b840c866de19"
+    },
+    {
+        "schedule": [
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "gaga ball at the gaga ball pit",
+                    "lunch at the mess hall",
+                    "bracelet making in the mess hall",
+                    "snack\/rest time at cabin",
+                    "bracelet making in the mess hall",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Monday"
+            },
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "archery at the archery range",
+                    "lunch at the mess hall",
+                    "archery at the archery range",
+                    "snack\/rest time at cabin",
+                    "singing at the mess hall",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Tuesday"
+            },
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "arts and crafts at craft building",
+                    "lunch at the mess hall",
+                    "soccer on the field",
+                    "snack\/rest time at cabin",
+                    "ziplining at zipline track",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Wednesday"
+            },
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "ziplining at zipline track",
+                    "lunch at the mess hall",
+                    "kayaking in the lake",
+                    "snack\/rest time at cabin",
+                    "singing at the mess hall",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Thursday"
+            },
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "kayaking in the lake",
+                    "lunch at the mess hall",
+                    "archery at the archery range",
+                    "snack\/rest time at cabin",
+                    "soccer on the field",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Friday"
+            },
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "gaga ball at the gaga ball pit",
+                    "lunch at the mess hall",
+                    "bracelet making in the mess hall",
+                    "snack\/rest time at cabin",
+                    "singing at the mess hall",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Saturday"
+            },
+            {
+                "schedule": [
+                    "wake up",
+                    "breakfast at the mess hall",
+                    "swimming in lake",
+                    "lunch at the mess hall",
+                    "ziplining at zipline track",
+                    "snack\/rest time at cabin",
+                    "swimming in lake",
+                    "dinner at the mess hall",
+                    "campfire songs at firepit",
+                    "lights out"
+                ],
+                "day": "Sunday"
+            }
+        ],
+        "counselor": "c3f9d64b-0564-425f-93bf-ddfc96b47767",
+        "min age": 60.0,
+        "campers": [],
+        "max age": 65.0,
+        "id": "d6dfd5bf-54a4-4b27-8efc-d27b18db2253"
     }
 ]

@@ -12,24 +12,30 @@ public class Schedule {
     private LinkedHashMap<String, String> schedule;
     private ArrayList<String> activities;
     private static ArrayList<String> allActivities;
+    private ArrayList<String> toPickFrom;
     private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
     /**
      * constructor of the daily schedule
      */
     public Schedule(){
         LinkedHashMap<String, String> createdSchedule = new LinkedHashMap<String, String>();
-        createdSchedule.put(times[0], allActivities.get(0));
-        createdSchedule.put(times[1], allActivities.get(1));
-        createdSchedule.put(times[3], allActivities.get(2));
-        createdSchedule.put(times[5], allActivities.get(3));
-        createdSchedule.put(times[7], allActivities.get(4));
-        createdSchedule.put(times[8], allActivities.get(5));
-        createdSchedule.put(times[9], allActivities.get(6));
-
-        createdSchedule.put(times[2], getRandomActivity());
-        createdSchedule.put(times[4], getRandomActivity());
-        createdSchedule.put(times[6], getRandomActivity());
-
+        toPickFrom = new ArrayList<String>();
+        activities = new ArrayList<String>();
+        
+        activities.add(allActivities.get(0));
+        activities.add(allActivities.get(1));
+        activities.add(getRandomActivity());
+        activities.add(allActivities.get(2));
+        activities.add(getRandomActivity());
+        activities.add(allActivities.get(3));
+        activities.add(getRandomActivity());
+        activities.add(allActivities.get(4));
+        activities.add(allActivities.get(5));
+        activities.add(allActivities.get(6));
+        
+        for(int i = 0; i < times.length; i++) {
+            createdSchedule.put(times[i], activities.get(i));
+        }
         this.schedule = createdSchedule;
     }
 
@@ -38,11 +44,11 @@ public class Schedule {
         if(allActivities.size() <= 7) {
             return "";
         }
-        String activity = allActivities.get(rand.nextInt(7, allActivities.size()));
-        while(activity.equals(times[2]) || activity.equals(times[4]) || activity.equals(times[6])) {
-            activity = allActivities.get(rand.nextInt(7, allActivities.size()));
+        for(int i = 7; i < allActivities.size(); i++) {
+            toPickFrom.add(allActivities.get(i));
         }
-        return activity;
+
+        return toPickFrom.get(rand.nextInt(toPickFrom.size()));
     }
 
     //data loading talk to natalie

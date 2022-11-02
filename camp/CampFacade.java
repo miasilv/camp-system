@@ -479,17 +479,6 @@ public class CampFacade {
         return bool2;
     }
 
-    /**
-     * Adds a cabin to the current caibn list (which should be in a session object)
-     * @param cabin the cabin to add
-     * @return true if successful, false if not successful
-     */
-    public boolean addSessionCabin(Cabin cabin) {
-        boolean bool3 = currentSession.addCabin(cabin);
-        cabinList.getCabins().add(cabin);
-        return bool3;
-    }
-
     
 
 

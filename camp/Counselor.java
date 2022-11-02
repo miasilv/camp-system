@@ -37,6 +37,7 @@ public class Counselor extends User {
         super(name, email, password, phoneNumber);
         this.id = UUID.randomUUID();
         this.cabinHash = new HashMap<Session, Cabin>();
+        this.bio = "";
     }
 
     /**
@@ -234,13 +235,12 @@ public class Counselor extends User {
      * Returns a string representation of the counselor
      */
     public String toString() {
+        if(this.name.equals("")) {
+            return "no counselor";
+        }
+        
         return name + ": " + bio;
-        /*
-         * DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
-         * return camperID + " " + name + " " + dateFormat.format(birthday) + " " +
-         * medications + " " + allergies + " " + sessions + " " + notes + " " +
-         * emergencyContacts;
-         */
+        
     }
 
     public boolean setBirthday(Date change) {

@@ -10,6 +10,8 @@ import java.util.UUID;
  * @author sara
  */
 public class Session {
+    private static Counselor counselorBlank = new Counselor("", "", "", "");
+
     private UUID id;
     private ArrayList<Cabin> cabins;
     private Date startDate;

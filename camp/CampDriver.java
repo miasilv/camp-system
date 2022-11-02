@@ -17,6 +17,7 @@ public class CampDriver {
 	private ArrayList<String> options;
 	private CampFacade facade;
 	private User user;
+	private static Counselor counselorBlank = new Counselor("", "", "", "");
 
 	//Classes (and in some cases instance variables)
 	private static final String CAMP = "camp";
@@ -789,7 +790,7 @@ public class CampDriver {
 						System.out.println("This is not a valid number");
 						in.nextLine();
 					}
-					else if(!facade.addSessionCabin(allCabins.get(choice2))) {
+					else if(!facade.addSessionCabin((int)allCabins.get(choice2).getMinAge(), (int)allCabins.get(choice2).getMaxAge())) {
 						System.out.println("Something went wrong, unable to add");
 						in.nextLine();
 					}
@@ -888,7 +889,7 @@ public class CampDriver {
 					}
 					
 					clear();
-					if(facade.getCabinCounselor() == null) {
+					if(facade.getCabinCounselor().equals(counselorBlank)) {
 						System.out.println("Would you like to add a cousnelor? (y/n)");
 					}
 					else {

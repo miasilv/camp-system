@@ -8,6 +8,8 @@ import java.util.UUID;
  * @author sara
  */
 public class Cabin {
+    private static Counselor counselorBlank = new Counselor("", "", "", "");
+
     private UUID cabinID;
     private ArrayList<Camper> campers;
     private Counselor counselor;
@@ -25,7 +27,7 @@ public class Cabin {
         this.maxAge = maxAge;
         this.cabinID = UUID.randomUUID();
         campers = new ArrayList<Camper>();
-        this.counselor = null;
+        this.counselor = counselorBlank;
         this.daysStr = constructDaysStr();
         this.days = constructDays();
         
@@ -168,15 +170,12 @@ public class Cabin {
         return counselor;
     }
     public boolean setCounselor(Counselor counselor){
-        if(counselor != null){
-            this.counselor = counselor;
-            return true;
-        }
-        return false;
+        this.counselor = counselor;
+        return true;
      }
 
      public void removeCounselor(Counselor counselor) {
-        counselor = null;
+        counselor = counselorBlank;
      }
 
      public ArrayList<Camper> getCampers(){
@@ -225,7 +224,7 @@ public class Cabin {
      * @return whether the cabin has a counselor
      */
     public boolean hasCounselor(){
-        if(counselor != null){
+        if(counselor.equals(counselorBlank)){
             return true;
         }
         return false;
@@ -236,7 +235,7 @@ public class Cabin {
      * @return whether or not that counselor is in the cabin
      */
     public boolean hasCounselor(Counselor counselor){
-        if(counselor != null && this.counselor.equals(counselor)){
+        if(this.counselor.equals(counselor)){
             return true;
         }
         return false;
@@ -247,7 +246,7 @@ public class Cabin {
      * @return if the cabin is full or not
      */
     public boolean isFull(){
-        if(counselor != null && campers.size() == 8)
+        if(!counselor.equals(counselorBlank) && campers.size() == 8)
             return true;
         return false;
     }
@@ -276,7 +275,7 @@ public class Cabin {
 
     public String getVitals() {
         String str = "";
-        if(counselor != null) {
+        if(!counselor.equals(counselorBlank)) {
             str  = counselor.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
         }
         for(int i = 0; i < campers.size(); i++) {
