@@ -577,6 +577,8 @@ public class CampDriver {
 					continue;
 				}
 				createSession();
+				
+
 				continue;
 			}
 
@@ -588,6 +590,7 @@ public class CampDriver {
 				}
 				
 				facade.updateSession(choice);
+				
 				displaySessionInformation();
 				continue;
         	}
@@ -2279,6 +2282,8 @@ public class CampDriver {
 			System.out.println("Something went wrong, unable to add");
 			in.nextLine();
 		}
+		
+	
 	}
 	
 	/**
