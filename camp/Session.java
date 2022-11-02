@@ -273,4 +273,11 @@ public class Session {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
         return dateFormatter.format(date);
 	}
+    public boolean removeCamper(Camper camper){
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCamper(camper))
+                cabins.get(i).removeCamper(camper);
+        }
+        return true;
+    }
 }
