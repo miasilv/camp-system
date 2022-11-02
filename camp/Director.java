@@ -36,46 +36,6 @@ public class Director extends User {
     // ----------------------------------ACCESSORS-------------------------------------------------------------
 
     /**
-     * Accesses the name of the director
-     * @return The name of the director
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Accesses the email of the director
-     * @return The email of the director
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Accesses the password of the director
-     * @return The password of the director
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Accesses the phone number of the director
-     * @return The phone number of the director
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * Accesses the uuid of the director
-     * @return The uuid of the director
-     */
-    public UUID getID() {
-        return id;
-    }
-
-    /**
      * written by natalie
      * Accesses the uuid of the director (string)
      * @return the uuid of the director in string format
@@ -85,42 +45,6 @@ public class Director extends User {
     }
 
     // ----------------------------------MUTATORS-------------------------------------------------------------
-
-    /**
-     * Mutates the name of the director
-     * @return true if successful
-     */
-    public boolean setName(String name) {
-        this.name = name;
-        return true;
-    }
-
-    /**
-     * Mutates the email of the director
-     * @return true if successful
-     */
-    public boolean setEmail(String email) {
-        this.email = email;
-        return true;
-    }
-
-    /**
-     * Mutates the password of the director
-     * @return true if successful
-     */
-    public boolean setPassword(String password) {
-        this.password = password;
-        return true;
-    }
-
-    /**
-     * Mutates the phone number of the director
-     * @return true if successful
-     */
-    public boolean setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return true;
-    }
 
     // ----------------------------------METHODS-------------------------------------------------------------
 
