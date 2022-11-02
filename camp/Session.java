@@ -114,6 +114,7 @@ public class Session {
         DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
         return dateFormat.format(endDate);
     }
+
     public boolean setEndDate(Date endDate) {
         if(endDate != null){
             this.endDate = endDate;
@@ -270,7 +271,7 @@ public class Session {
 	 * @return the string version of the date
 	 */
 	private String displayDate(Date date) {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         return dateFormatter.format(date);
 	}
 }

@@ -1072,7 +1072,6 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperMedication(String dose, String type, String time) {
-        //TODO check if the medication already exists in this list
         return currentCamper.addMedication(new Medication(dose, type, time));
     }
 
@@ -1100,7 +1099,6 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperContact(String relationship, String name, String email, String phone, String address) {
-        //TODO check if contact already exitsts in the list
         return currentCamper.addEmergencyContact(relationship, name, email, phone, address);
     }
 

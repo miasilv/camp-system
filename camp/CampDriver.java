@@ -2473,7 +2473,7 @@ public class CampDriver {
 	 * @return the string version of the date
 	 */
 	private String displayDate(Date date) {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         return dateFormatter.format(date);
 	}
 
@@ -2482,7 +2482,7 @@ public class CampDriver {
 	 */
 	private Date getDate(String date) {
 		try {
-			return new SimpleDateFormat("MM/dd/yyyy").parse(date);
+			return new SimpleDateFormat("mm/dd/yyyy").parse(date);
 		} catch (ParseException e) {
 			System.out.println("Sorry " + date + " is not parsable");
 			return null;
