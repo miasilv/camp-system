@@ -8,6 +8,7 @@ public class Guardian extends User {
     private int numOfSessions;
     private double price;
     private final static double pricePerSession = 500;
+    private UUID id;
 
     /**
      * Constructor for the guardian class
@@ -17,9 +18,11 @@ public class Guardian extends User {
      */
     public Guardian(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        this.id= UUID.randomUUID();
         campers = new ArrayList<Camper>();
         updatePrice();
         updateTotalSessions();
+        
     }
 
     /**

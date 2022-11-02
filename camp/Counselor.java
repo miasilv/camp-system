@@ -20,6 +20,7 @@ public class Counselor extends User {
     private ArrayList<String> sessionThemes;
     private ArrayList<String> relationships;
     private ArrayList<Contact> contacts;
+    private UUID id;
     
 
     // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
@@ -34,6 +35,7 @@ public class Counselor extends User {
      */
     public Counselor(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        this.id = UUID.randomUUID();
         this.cabinHash = new HashMap<Session, Cabin>();
     }
 

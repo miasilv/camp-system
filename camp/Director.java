@@ -18,6 +18,7 @@ public class Director extends User {
      */
     public Director(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        this.id = UUID.randomUUID();
     }
 
     /**

@@ -17,7 +17,7 @@ public class DataWriter extends DataConstants {
      * @param args
      */
     public static void main(String[] args) {
-        saveSessions();
+        saveCabin();
     }
 
     /**
@@ -338,7 +338,7 @@ public class DataWriter extends DataConstants {
         }
         
         //Write JSON file
-        try (FileWriter file = new FileWriter("./camp/json files/" + CABIN_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" + CABIN_FILE_NAME )) {
  
             file.write(jsonCabins.toJSONString());
             file.flush();

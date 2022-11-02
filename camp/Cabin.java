@@ -23,7 +23,7 @@ public class Cabin {
     public Cabin(int minAge, int maxAge){
         this.minAge = minAge;
         this.maxAge = maxAge;
-        cabinID = new UUID(0, 0);
+        this.cabinID = UUID.randomUUID();
         campers = new ArrayList<Camper>();
         this.counselor = null;
         this.daysStr = constructDaysStr();
