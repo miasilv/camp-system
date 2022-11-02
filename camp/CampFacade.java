@@ -108,12 +108,12 @@ public class CampFacade {
     private static final String TIME = "time";
 
     public CampFacade() {
-        userList = UserList.getInstance();
-        camplist = CampList.getInstance();
-        sessionList = SessionList.getInstance();
-        cabinList = CabinList.getInstance();
         camperList = CamperList.getInstance();
         counselorList = CounselorList.getInstance();
+        cabinList = CabinList.getInstance();
+        sessionList = SessionList.getInstance();
+        userList = UserList.getInstance();
+        camplist = CampList.getInstance();
         initArrayLists();
     }
 
