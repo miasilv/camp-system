@@ -150,6 +150,10 @@ public class Camper {
     public String getAllergiesStr(){
         return allergies.toString();
     }
+    public boolean setAllergy(int index, String change){
+        allergies.set(index, change);
+        return true;
+    }
 
     public ArrayList<Session> getSessions() {
         return sessions;

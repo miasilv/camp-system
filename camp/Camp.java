@@ -151,7 +151,11 @@ public class Camp {
      */
     public boolean removeActivity(int index) {
         activities.remove(index);
-        return false;
+        return true;
+    }
+    public boolean editActivity(int index, String change){
+        activities.set(index, change);
+        return true;
     }
 
     /**
@@ -225,15 +229,17 @@ public class Camp {
      */
     public boolean updateCamperCabinHash(Camper camper){
         boolean isCamperEnrolled = false;
+        int indexOfSession = 0;
         for(int i=0; i<sessions.size(); i++){
             if (sessions.get(i).isCamperInSession(camper))
                 isCamperEnrolled = true;
+                indexOfSession = i;
                 break;
         }
         if(!isCamperEnrolled){
             return false;
         }
-        sessions.get(0).updateCamperCabinHash(camper);
+        sessions.get(indexOfSession).updateCamperCabinHash(camper);
         return true;
     }
     /**
@@ -243,15 +249,17 @@ public class Camp {
      */
     public boolean updateCounselorCabinHash(Counselor counselor){
         boolean isCounselorEnrolled = false;
+        int indexOfSession = 0;
         for(int i=0; i<sessions.size(); i++){
             if (sessions.get(i).isCounselorInSession(counselor))
                 isCounselorEnrolled = true;
+                indexOfSession = i;
                 break;
         }
         if(!isCounselorEnrolled){
             return false;
         }
-        sessions.get(0).updateCounselorCabinHash(counselor);
+        sessions.get(indexOfSession).updateCounselorCabinHash(counselor);
         return true;
     }
 
