@@ -949,18 +949,23 @@ public class CampFacade {
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
-        currentCabinHash = currentCamper.getCabinHash();
+        
+        //currentCabinHash = currentCamper.getCabinHash();
 
-        ArrayList<String> sessionThemes = currentCamper.getSessionThemes();
-        for(int i = 0; i < sessionThemes.size(); i++) {
-            currentSession = camp.getSession(sessionThemes.get(i));
-            currentCabin = currentSession.findCamper(currentCamper);
-            if(currentCabin == null) {
-                currentSession.placeCamper(currentCamper);
+        currentCamperSessions = camp.getCamperSessions(currentCamper);
+        currentCamperCabins = new ArrayList<>();
+        for(int i = 0; i < currentCamperSessions.size(); i++) {
+            Cabin cabin = currentCamperSessions.get(i).findCamper(currentCamper);
+            if(!(cabin == null)) {
+                currentCamperCabins.add(cabin);
             }
-            currentCamper.updateCamperCabinHash(currentSession, currentCabin);
+            else {
+                currentCamperSessions.remove(i);
+            }
         }
-
+        for(int i = 0; i < currentCamperSessions.size(); i++) {
+            currentCamper.updateCamperCabinHash(currentCamperSessions.get(i), currentCamperCabins.get(i));
+        }
         return true;
     }
 
