@@ -77,9 +77,10 @@ public class Session {
      * @param index the index of the cabin being removed
      * @return whether or not the cabin was removed
      */
-    public boolean removeCabin(int index) {
+    public Cabin removeCabin(int index) {
+        Cabin rCabin = cabins.get(index);
         cabins.remove(index);
-        return true;
+        return rCabin;
     }
 
     public Date getStartDate() {
