@@ -365,6 +365,8 @@ public class Camper {
     public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
         Contact nContact = new Contact(name2, phone, address, email);
         emergencyContacts.put(relationship, nContact);
+        relationships.add(relationship);
+        contacts.add(nContact);
         return true;
     }
 }
