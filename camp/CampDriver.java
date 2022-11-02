@@ -2021,11 +2021,21 @@ public class CampDriver {
 
 				if(user instanceof Guardian) {
 					System.out.println(facade.getCamperAllergyList().get(choice));
-					facade.getCamperAllergyList().set(choice, setStringInformation(ALLERGIES));
+					String change = setStringInformation(ALLERGIES);
+					if(!facade.setCamperAllergy(choice, change)) {
+						System.out.println("Something went wrong, unable to edit");
+						in.nextLine();
+					}
+					continue;
 				}
 				else if(user instanceof Counselor) {
 					System.out.println(facade.getCounselorAllergyList().get(choice));
-					facade.getCounselorAllergyList().set(choice, setStringInformation(ALLERGIES));
+					String change = setStringInformation(ALLERGIES);
+					if(!facade.setCounselorAllergy(choice, change)) {
+						System.out.println("Something went wrong, unable to edit");
+						in.nextLine();
+					}
+					continue;
 				}
 				else {
 					System.out.println("Something went wrong");

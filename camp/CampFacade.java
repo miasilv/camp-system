@@ -811,6 +811,16 @@ public class CampFacade {
     }
 
     /**
+     * Edits a pre-existing allergy in counselor
+     * @param index the index of the allergy being edited
+     * @param change the new string being inputed
+     * @return true if successful, false if not
+     */
+    public boolean setCounselorAllergy(int index, String change) {
+        return currentCounselor.editAllergy(index, change);
+    }
+
+    /**
      * Gets the current emergency contact hash (which should be in a counselor object)
      * @return a hash map of relationships by contact
      */
@@ -1052,6 +1062,16 @@ public class CampFacade {
         }
         currentCamper.addAllergy(allergy);
         return true;
+    }
+
+    /**
+     * Edits a pre-existing allergy in camper
+     * @param index the index of the allergy being edited
+     * @param change the new string being inputed
+     * @return true if successful, false if not
+     */
+    public boolean setCamperAllergy(int index, String change) {
+        return currentCamper.editAllergy(index, change);
     }
 
     /**
