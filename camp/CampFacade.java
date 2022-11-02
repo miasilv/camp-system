@@ -1128,8 +1128,9 @@ public class CampFacade {
      * @param session the session to be removed
      * @return true if successful, false if not
      */
-    public boolean removeCamperSession(String theme) {
-        return currentCamper.removeSession(theme);
+    public boolean removeCamperSession(int index) {
+        Session session = this.currentCamperSessions.get(index);
+        return(currentCamper.removeSession(session) && currentSession.removeCamper(currentCamper));
     }
 
     /**

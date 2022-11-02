@@ -1856,14 +1856,19 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.println("Which Session do you want to delete (enter the theme)?");
-				String theme = in.nextLine();
-				if(user instanceof Guardian && !facade.removeCamperSession(theme)) {
+				System.out.println("Which Session do you want to delete?");
+				int num = getNum();
+				String theme = "";
+				if(0 > num || num >= facade.getCamperSessions().size()) {
+					System.out.println("Not a valid number");
+					in.nextLine();
+				}
+				else if(user instanceof Guardian && !facade.removeCamperSession(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && !facade.removeCounselorSession(theme)) {
+				else if(user instanceof Counselor && !facade.removeCounselorSession(theme)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -2447,7 +2452,6 @@ public class CampDriver {
 			in.nextLine();
 			return -1;
 		}
-		clear();
 		return num;
 	}
 
