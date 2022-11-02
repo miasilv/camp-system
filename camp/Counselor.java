@@ -77,27 +77,6 @@ public class Counselor extends User {
         return emergencyContacts;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public UUID getID() {
-        return id;
-    }
-
-
     public ArrayList<String> getRelationships(){
         return relationships;
     }
@@ -153,6 +132,7 @@ public class Counselor extends User {
     public String getAllergiesStr(){
         return allergies.toString();
     }
+    
     public boolean setAllergy(int index, String change){
         allergies.set(index, change);
         return true;
@@ -172,26 +152,6 @@ public class Counselor extends User {
      */
     public String getSessionThemesStr(){
         return sessionThemes.toString();
-    }
-
-    public boolean setName(String name) {
-        this.name = name;
-        return true;
-    }
-
-    public boolean setEmail(String email) {
-        this.email = email;
-        return true;
-    }
-
-    public boolean setPassword(String password) {
-        this.password = password;
-        return true;
-    }
-
-    public boolean setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return true;
     }
 
     /**
@@ -248,7 +208,6 @@ public class Counselor extends User {
         this.birthday = change;
         return true;
     }
-
 
     //**********************************PLEASE DO THIS********************************************************************
     public ArrayList<Cabin> getCabins() {

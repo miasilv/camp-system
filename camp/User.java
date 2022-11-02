@@ -24,55 +24,90 @@ public abstract class User {
 
     // abstract methods all children should have
 
-    public abstract String getName();
-    public abstract String getEmail();
-    public abstract String getPassword();
-    public abstract String getPhoneNumber();
-    public abstract UUID getID();
-
-    public abstract boolean setName(String name);
-    public abstract boolean setEmail(String email);
-    public abstract boolean setPassword(String password);
-    public abstract boolean setPhoneNumber(String phoneNumber);
-
     /**
-     * Method to add a phone number for a user
-     * @param phoneNumber Phone number to add
+     * Returns the name of the user
+     * @return The name of the user
      */
-    public void changePhoneNumber(String phoneNumber) {
-
+    public String getName() {
+        return name;
     }
 
     /**
-     * Method to change the password of the user
-     * @param password Password of the user
+     * Returns the email of the user
+     * @return The email of the user
      */
-    public void changePassword(String password) {
-
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * Method to change the email of the user
-     * @param email The email to change the user's to
+     * Returns the password of the user
+     * @return The password of the user
      */
-    public void changeEmail(String email) {
-
+    public  String getPassword() {
+        return password;
     }
 
     /**
-     * Method to change the phone number of the user
-     * @param phoneNumber Phone number of the user to change to
+     * Returns the phone number of the user
+     * @return The phone number of the user
      */
-    public void changePhone(String phoneNumber) {
-
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     /**
-     * Method to delete the user
+     * Returns the UUID of the user
+     * @return The UUID of the user
      */
-    public void deleteUser() {
-        
+    public UUID getID() {
+        return id;
     }
+
+    /**
+     * Mutates the name of the user
+     * @param name The name of the user to change to
+     * @return true if change was successful
+     */
+    public boolean setName(String name) {
+        if (name == null) {return false;}
+        this.name = name;
+        return true;
+    }
+
+    /**
+     * Mutates the email of the user
+     * @param email The email of the user to change to
+     * @return true if the change was successful
+     */
+    public boolean setEmail(String email) {
+        if (email == null) {return false;}
+        this.email = email;
+        return true;
+    }
+
+    /**
+     * Mutates the password of the user
+     * @param password The password of the user to change to
+     * @return true if the change was successful
+     */
+    public boolean setPassword(String password) {
+        if (password == null) {return false;}
+        this.password = password;
+        return true;
+    }
+
+    /**
+     * Mutates the phone number of the user
+     * @param phoneNumber The phone number of the user to change to
+     * @return true if the change was successful
+     */
+    public boolean setPhoneNumber(String phoneNumber) {
+        if (phoneNumber == null) {return false;}
+        this.phoneNumber = phoneNumber;
+        return true;
+    }
+
 
     public String toString() {
         return name + " " + email + " " + password + " " + phoneNumber;
