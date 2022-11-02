@@ -17,17 +17,19 @@ public class Medication {
         this.time = time;
     }
 
+    //-----------------------------ACCESSORS----------------------------
+    
     public String getDose() {
         return dose;
     }
-
     public String getType() {
         return type;
     }
-
     public String getTime() {
         return time;
     }
+
+    //-----------------------------MUTATORS----------------------------
 
     public boolean setDose(String dose) {
         this.dose = dose;
@@ -43,6 +45,8 @@ public class Medication {
         this.time = time;
         return true;
     }
+
+    // -----------------------------MISC------------------------------------
 
     public String toString() {
         return "type: " + type + "\ndose: " + dose + "\ntime: " + time;
