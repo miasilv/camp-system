@@ -198,7 +198,7 @@ public class Session {
      */
     public Cabin placeCounselor(Counselor counselor){
         for(int i=0; i<cabins.size(); i++){
-            if(!cabins.get(i).hasCounselor()){
+            if(cabins.get(i).getCounselors().size() == 0){
                 cabins.get(i).setCounselor(counselor);
                 return cabins.get(i);
             }
@@ -257,7 +257,7 @@ public class Session {
      */
     public Cabin findCounselor(Counselor counselor) {
         for(int i=0; i<cabins.size(); i++){
-            if(cabins.get(i).getCounselor().equals(counselor))
+            if(cabins.get(i).hasCounselor(counselor))
                 return cabins.get(i);
         }
         return null;

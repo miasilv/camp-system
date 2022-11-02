@@ -26,11 +26,7 @@ public class Cabin {
         this.maxAge = maxAge;
         this.cabinID = UUID.randomUUID();
         campers = new ArrayList<Camper>();
-<<<<<<< HEAD
         counselors = new ArrayList<Counselor>();
-=======
-        this.counselors = new ArrayList<Counselor>();
->>>>>>> 589be2d43723d5c64300c58c1bc607e981acc221
         this.daysStr = constructDaysStr();
         this.days = constructDays();
         
@@ -274,8 +270,8 @@ public class Cabin {
 
     public String getVitals() {
         String str = "";
-        if(counselors.get(0)) {
-            str  = counselors.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
+        if(counselors.size() == 1) {
+            str  = counselors.get(0).getName() + ":\n" + "\tAllergies: " + counselors.get(0).getAllergiesStr() + "\n\tEmergencyContacts:" + counselors.get(0).getEmergencyContactsStr();
         }
         for(int i = 0; i < campers.size(); i++) {
             Camper c = campers.get(i);
