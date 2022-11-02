@@ -11,6 +11,7 @@ import java.util.UUID;
  */
 public class Session {
     private static Counselor counselorBlank = new Counselor("", "", "", "");
+    //private Cabin cabinBlank = new Cabin(0, 1);
 
     private UUID id;
     private ArrayList<Cabin> cabins;
@@ -33,6 +34,7 @@ public class Session {
         this.startDate = startDate;
         this.endDate = endDate;
         this.cabins = new ArrayList<Cabin>();
+        //cabins.add(cabinBlank);
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
     }
     //overloaded
