@@ -24,7 +24,7 @@ public class DataLoader extends DataConstants {
      * @param args
      */
     public static void main(String[] args) {
-        /* 
+         
         ArrayList<Camper> campers = loadCampers();
         System.out.println("Campers:\n");
         for(Camper c: campers){
@@ -73,7 +73,7 @@ public class DataLoader extends DataConstants {
             System.out.println(g);
             System.out.println();
         }
-        */
+        
     }
 
     /**
@@ -407,7 +407,7 @@ public class DataLoader extends DataConstants {
                     Counselor counselor = CounselorList.getInstance().getCounselor(counselorID);
                     counselors.add(counselor);
                 }
-				
+				//System.out.println("COUNSELORSLLLLLL " + counselors);
 				cabins.add(new Cabin(campers, counselors, maxAge, minAge, schedules, id));
                 //System.out.println("SCHEDULES:" + schedules);
 			}
