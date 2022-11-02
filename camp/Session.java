@@ -63,7 +63,7 @@ public class Session {
     }
     public boolean setTheme(String theme) {
         this.theme = theme;
-        return false;
+        return true;
     }
 
     public ArrayList<Cabin> getCabins() {
