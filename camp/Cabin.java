@@ -273,4 +273,16 @@ public class Cabin {
     public void updateCounselorsCabinHashes(Counselor counselor, Session session) {
         counselor.updateCounselorCabinHash(session, this);
     }
+
+    public String getVitals() {
+        String str = "";
+        if(counselor != null) {
+            str  = counselor.getName() + ":\n" + "\tAllergies: " + counselor.getAllergiesStr() + "\n\tEmergencyContacts:" + counselor.getEmergencyContactsStr();
+        }
+        for(int i = 0; i < campers.size(); i++) {
+            Camper c = campers.get(i);
+            str += "\n" + c.getName() + ":\n" + "\tAllergies: " + c.getAllergiesStr() + "\n\tEmergencyContacts:" + c.getEmergencyContactsStr() + "\n\tMedications: " + c.getMedicationsStr();
+        }
+        return str;
+    }
 }

@@ -74,6 +74,7 @@ public class CampFacade {
 	private static final String END_DATE = "enddate";
 
 	//cabin instance variables
+    private static final String VITALS = "cabin vitals information";
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
 
@@ -430,7 +431,7 @@ public class CampFacade {
         }
         return false;
     }
-
+    
     // ------------------------------ ARRAY LISTS ---------------------------
     /**
      * Gets the current cabin list, (which should be in session object)
@@ -506,6 +507,18 @@ public class CampFacade {
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------
+    /**
+     * Gets any String instance variable in the current cabin object
+     * @param variableName the name of the string instance variable
+     * @return the string value in the variableName, null if not found
+     */
+    public String getCabinString(String variableName) {
+        if(variableName.equals(VITALS)) {
+            return currentCabin.getVitals();
+        }
+        return null;
+    }
+    
     /**
      * Gets any int instance variable in the current cabin object
      * @param variableName the name of the int instance variable

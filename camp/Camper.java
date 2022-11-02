@@ -34,8 +34,14 @@ public class Camper {
         this.name = name;
         this.birthday = birthday;
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
-        this.cabinHash = new HashMap<Session, Cabin>();
-        this.sessionThemes = new ArrayList<String>();
+        medications = new ArrayList<Medication>();
+        allergies = new ArrayList<String>();
+        sessions = new ArrayList<Session>();
+        emergencyContacts = new HashMap<String, Contact>();
+        cabinHash = new HashMap<Session, Cabin>();
+        sessionThemes = new ArrayList<String>();
+        relationships = new ArrayList<String>();
+        contacts = new ArrayList<Contact>();
     }
 
     /**

@@ -48,6 +48,7 @@ public class CampDriver {
 	private static final String END_DATE = "enddate";
 
 	//cabin instance variables
+	private static final String VITALS = "cabin vitals information";
     private static final String MAX_AGE = "max age";
     private static final String MIN_AGE = "min age";
 
@@ -825,6 +826,7 @@ public class CampDriver {
 			options.add("Counselor: " + facade.getCabinCounselor());
 			options.add("Campers");
 			options.add("Schedule");
+			options.add("Vitals Information");
 			options.add("Return");
 			options.add("Quit");
 
@@ -919,6 +921,15 @@ public class CampDriver {
 				case 4: //schedule
 					displayScheduleDays();
 					break;
+
+				case 5: //vitals information
+					clear();
+					System.out.println(facade.getCabinString(VITALS));
+					System.out.println("Enter 1 to return");
+					int num3 = 1;
+					while(num3 != 0) {
+						num3 = getNum();
+					}
 			}
 		}
 	}
@@ -2353,7 +2364,7 @@ public class CampDriver {
 		String dose = in.nextLine();
 		System.out.println("Enter the type for the medication: ");
 		String type = in.nextLine();
-		System.out.println("Enter the number of beds for the cabin: ");
+		System.out.println("Enter the time to take the medication: ");
 		String time = in.nextLine();
 		if(!facade.addCamperMedication(dose, type, time)) {
 			System.out.println("Something went wrong");
