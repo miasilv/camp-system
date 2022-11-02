@@ -43,6 +43,8 @@ public class Guardian extends User {
         updateTotalSessions();
     }
     
+    //------------------------ACCESSORS!--------------------------------
+
     /**
      * written by natalie
      * @return the id of the guardian in string format
@@ -50,26 +52,44 @@ public class Guardian extends User {
     public String getGuardianID(){
         return getID().toString();
     }
-
     public ArrayList<Camper> getCampers(){
         return campers;
     }
-
     public Camper getCamper(int index){
         return campers.get(index);
     }
+    public int getTotalSessions() {
+        return numOfSessions;
+    }
+    public double getPrice() {
+        return price;
+    }
+
+    // ------------------------MUTATORS!--------------------------------
+
+    // ------------------------MISC!--------------------------------
 
     public String toString() {
         //return id + " " + name + " " + email + " " + password + " " + campers;
         return name;
     }
 
+    /**
+     * Removes a camper from the guardian's campers
+     * @param index The index of the camper to remove
+     * @return The removed camper
+     */
     public Camper removeCamper(int index) {
         Camper rCamper = campers.get(index);
         campers.remove(index);
         return rCamper;
     }
 
+    /**
+     * Adds a camper to the guardian's campers
+     * @param camper The camper to add
+     * @return true if successful
+     */
     public boolean addCamper(Camper camper) {
         campers.add(camper);
         return true;
@@ -77,6 +97,7 @@ public class Guardian extends User {
 
     /**
      * Method to discount the price of the camp
+     * If there's more than one camper, 20% off the total price
      */
     public void discount() {
         if (campers.size() > 1) {
@@ -84,20 +105,20 @@ public class Guardian extends User {
         }
     }
 
-    public int getTotalSessions() {
-        return numOfSessions;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
+    /**
+     * Updates the price for the guardian 
+     * @return The price for the guardian
+     */
     private double updatePrice() {
         price =  numOfSessions * pricePerSession;
         discount();
         return price;
     }
 
+    /**
+     * Updates the total number of sessions based on the size of campers
+     * @return true if successful
+     */
     private boolean updateTotalSessions() {
         for (int i=0; i<campers.size(); i++) {
             numOfSessions += (campers.get(i).getNumOfSessions());
