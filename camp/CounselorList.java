@@ -52,4 +52,13 @@ public class CounselorList {
         return null; // if unable to find it
     }
 
+    public Counselor getCounselor(String email) {
+        for (int i=0; i < counselors.size(); i++) {
+            if (counselors.get(i).getEmail().equals(email)) {
+                return counselors.get(i);
+            }
+        }
+        return null; // if unable to find it
+    }
+
 }

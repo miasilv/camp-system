@@ -663,6 +663,10 @@ public class CampFacade {
                 currentUser = userList.getUser(email);
                 return true;
             }
+            if(!(counselorList.getCounselor(email) == null) && counselorList.getCounselor(email).getPassword().equals(password)){
+                currentUser = counselorList.getCounselor(email);
+                return true;
+            }
             return false;
         }
     }
