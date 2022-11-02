@@ -115,8 +115,8 @@ public class DataWriter extends DataConstants {
      */
     //save counselors
     public static void saveCounselors() {
-        UserList users = UserList.getInstance();
-        ArrayList<Counselor> counselors = users.getCounselors();
+        CounselorList couns = CounselorList.getInstance();
+        ArrayList<Counselor> counselors = couns.getCounselors();
         JSONArray jsonCounselors = new JSONArray();
         
         //creating all the json objects
