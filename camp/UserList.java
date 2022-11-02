@@ -36,10 +36,6 @@ public class UserList {
         return campers;
     }
 
-    public ArrayList<Counselor> getCounselors() {
-        return counselors;
-    }
-
     public ArrayList<Guardian> getGuardians() {
         return guardians;
     }
@@ -56,15 +52,6 @@ public class UserList {
         for (int i=0; i<directors.size(); i++) {
             if (directors.get(i).getEmail().equals(email)) {
                 return directors.get(i);
-            }
-        }
-        return null; // if unable to find it
-    }
-
-    public Counselor getCounselor(String email) {
-        for (int i=0; i < counselors.size(); i++) {
-            if (counselors.get(i).getEmail().equals(email)) {
-                return counselors.get(i);
             }
         }
         return null; // if unable to find it
@@ -89,15 +76,6 @@ public class UserList {
         for (int i=0; i < directors.size(); i++) {
             if (directors.get(i).getID().equals(id)) { 
                 return directors.get(i);
-            }
-        }
-        return null; // if unable to find it
-    }
-
-    public Counselor getCounselor(UUID id) {
-        for (int i = 0; i < counselors.size(); i++) {
-            if (counselors.get(i).getID().equals(id)) {
-                return counselors.get(i);
             }
         }
         return null; // if unable to find it
@@ -130,9 +108,6 @@ public class UserList {
         if (getDirector(email) != null) {
             return getDirector(email);
         }
-        else if (getCounselor(email) != null) {
-            return getCounselor(email);
-        }
         else if (getGuardian(email) != null) {
             return getGuardian(email);
         }
@@ -142,9 +117,8 @@ public class UserList {
     public User getUser(UUID id) {
         if (getDirector(id) != null) {
             return getDirector(id);
-        } else if (getCounselor(id) != null) {
-            return getCounselor(id);
-        } else if (getGuardian(id) != null) {
+        } 
+        else if (getGuardian(id) != null) {
             return getGuardian(id);
         }
         return null; // if no email is found
@@ -196,14 +170,6 @@ public class UserList {
         }
     }
 
-    public void removeCounselor(String email) {
-        for (int i = 0; i < counselors.size(); i++) {
-            if (counselors.get(i).getEmail().equals(email)) {
-                counselors.remove(i);
-            }
-        }
-    }
-
     public void removeGuardian(String email) {
         for (int i = 0; i < guardians.size(); i++) {
             if (guardians.get(i).getEmail().equals(email)) {
@@ -222,14 +188,6 @@ public class UserList {
         for (int i = 0; i < directors.size(); i++) {
             if (directors.get(i).getID().equals(id)) {
                 directors.remove(i);
-            }
-        }
-    }
-
-    public void removeCounselor(UUID id) {
-        for (int i = 0; i < counselors.size(); i++) {
-            if (counselors.get(i).getID().equals(id)) {
-                counselors.remove(i);
             }
         }
     }

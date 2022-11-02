@@ -2,7 +2,7 @@ package camp;
 
 import java.util.UUID;
 
-public abstract class User {
+public class User {
     protected UUID id;
     protected String name;
     protected String email;

@@ -35,7 +35,9 @@ public class Director extends User {
     }
 
     // ----------------------------------ACCESSORS-------------------------------------------------------------
-
+    public UUID getID(){
+        return this.id;
+    }
     /**
      * written by natalie
      * Accesses the uuid of the director (string)

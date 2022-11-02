@@ -44,7 +44,9 @@ public class Guardian extends User {
     }
     
     //------------------------ACCESSORS!--------------------------------
-
+    public UUID getID(){
+        return this.id;
+    }
     /**
      * written by natalie
      * @return the id of the guardian in string format

@@ -89,6 +89,9 @@ public class Counselor extends User {
         return this.contacts;
     }
 
+    public UUID getID(){
+        return this.id;
+    }
     /**
      * written by natalie
      * @return a string representation 
