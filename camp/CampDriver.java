@@ -419,7 +419,7 @@ public class CampDriver {
 
 				System.out.println("Which faq do you want to delete?");
 				int num = getNum();
-				if(0 >= num || num < faqs.size()) {
+				if(0 > num || num >= faqs.size()) {
 					System.out.println("Not a valid number");
 					in.nextLine();
 				}
