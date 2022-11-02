@@ -22,7 +22,9 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    // abstract methods all children should have
+    // methods all children should have
+
+    // ----------------------- ACCESSOR METHODS ---------------------------------------
 
     /**
      * Returns the name of the user
@@ -63,6 +65,8 @@ public abstract class User {
     public UUID getID() {
         return id;
     }
+
+    // ----------------------- MUTATOR METHODS ---------------------------------------
 
     /**
      * Mutates the name of the user
@@ -108,7 +112,7 @@ public abstract class User {
         return true;
     }
 
-
+    // honestly jic we print out the user itself
     public String toString() {
         return name + " " + email + " " + password + " " + phoneNumber;
     }
