@@ -18,6 +18,8 @@ public class Counselor extends User {
     private ArrayList<String> allergies;
     private HashMap<Session, Cabin> cabinHash;
     private ArrayList<String> sessionThemes;
+    private ArrayList<String> relationships;
+    private ArrayList<Contact> contacts;
 
     // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
 
@@ -55,6 +57,8 @@ public class Counselor extends User {
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         this.cabinHash = new HashMap<Session, Cabin>();
         this.sessionThemes = sessionThemes;
+        this.relationships = relationships;
+        this.contacts = contacts;
     }
 
     // ----------------------------------ACCESSORS-------------------------------------------------------------
@@ -93,6 +97,14 @@ public class Counselor extends User {
         return id;
     }
 
+
+    public ArrayList<String> getRelationships(){
+        return relationships;
+    }
+
+    public ArrayList<Contact> getContacts(){
+        return contacts;
+    }
     /**
      * written by natalie
      * @return a string representation 
@@ -140,6 +152,10 @@ public class Counselor extends User {
      */
     public String getAllergiesStr(){
         return allergies.toString();
+    }
+    public boolean setAllergy(int index, String change){
+        allergies.set(index, change);
+        return true;
     }
 
     /**
@@ -307,8 +323,8 @@ public class Counselor extends User {
         return true;
     }
 
-    public boolean addEmergencyContact(String relationship, String name, String email, String phone, String address) {
-        Contact nContact = new Contact(name, phone, email, address);
+    public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
+        Contact nContact = new Contact(name2, phone, address, email);
         emergencyContacts.put(relationship, nContact);
         return true;
     }

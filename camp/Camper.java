@@ -22,6 +22,8 @@ public class Camper {
     private HashMap<String, Contact> emergencyContacts;
     private HashMap<Session, Cabin> cabinHash;
     private ArrayList<String> sessionThemes;
+    private ArrayList<String> relationships;
+    private ArrayList<Contact> contacts;
 
     /**
      * Constructor for the camper class
@@ -33,6 +35,7 @@ public class Camper {
         this.birthday = birthday;
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         this.cabinHash = new HashMap<Session, Cabin>();
+        this.sessionThemes = new ArrayList<String>();
     }
 
     /**
@@ -53,11 +56,13 @@ public class Camper {
         this.medications = medications;
         this.allergies = allergies;
         //this.sessions = sessions;
+        this.relationships= relationships;
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         this.cabinHash = new HashMap<Session, Cabin>();
         this.sessionThemes = sessionThemes;
+        this.contacts = contacts;
     }
 
     // getters because Nat needs them:
@@ -81,6 +86,14 @@ public class Camper {
         return camperID;
     }
 
+    public ArrayList<String> getRelationships(){
+        return relationships;
+    }
+
+    public ArrayList<Contact> getContacts(){
+        return contacts;
+    }
+
     /**
      * written by natalie
      * gets a string representation of the campers uuid
@@ -96,6 +109,11 @@ public class Camper {
 
     public Date getBirthday() {
         return birthday;
+    }
+
+    public boolean setBirthday(Date date) {
+        this.birthday = date;
+        return true;
     }
 
     /**
@@ -131,6 +149,10 @@ public class Camper {
      */
     public String getAllergiesStr(){
         return allergies.toString();
+    }
+    public boolean setAllergy(int index, String change){
+        allergies.set(index, change);
+        return true;
     }
 
     public ArrayList<Session> getSessions() {
@@ -352,7 +374,7 @@ public class Camper {
     }
 
     public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
-        Contact nContact = new Contact(name, phone, email, address);
+        Contact nContact = new Contact(name2, phone, address, email);
         emergencyContacts.put(relationship, nContact);
         return true;
     }

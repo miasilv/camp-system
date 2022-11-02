@@ -116,13 +116,13 @@ public class CampFacade {
     }
 
     public void save() {
-        DataLoader.loadCamp();
-        DataLoader.loadSessions();
-        DataLoader.loadCabins();
-        DataLoader.loadDirector();
-        DataLoader.loadCounselors();
-        DataLoader.loadGuardians();
-        DataLoader.loadCampers();
+        DataWriter.saveDirectors();
+        DataWriter.saveSession();
+        DataWriter.saveCounselors();;
+        DataWriter.saveCampers();
+        DataWriter.saveGuardians();
+        DataWriter.saveCabin();
+        DataWriter.saveCamp();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -272,6 +272,16 @@ public class CampFacade {
      */
     public boolean addCampActivity(String activity) {
         return camp.addActivity(activity);
+    }
+
+    /**
+     * Edits a camp activity
+     * @param index the index being edited
+     * @param change the new string being placed in there
+     * @return
+     */
+    public boolean setCampActivity(int index, String change) {
+        return camp.editActivity(index, change);
     }
 
     /**
@@ -478,11 +488,19 @@ public class CampFacade {
      * updates the cabin object from a session-cabin hash
      * @param key the session theme for the cabin you're looking for
      */ 
-    public void updateCabinHash(String theme) {
+    public boolean updateCabinHash(String theme) {
+        if(camp.getSession(theme) == null) {
+            return false;
+        }
         Session session = camp.getSession(theme);
         currentCabin = currentCabinHash.get(session);
+        return true;
     }
     
+    /**
+     * Returns all cabins in the camplist
+     * @return an array list of cabins
+     */
     public ArrayList<Cabin> getAllCabins() {
         return CabinList.getInstance().getCabins();
     }
@@ -641,6 +659,7 @@ public class CampFacade {
         if(variableName.equals(PHONE)) {
             return currentUser.getPhoneNumber();
         }
+
         if(variableName.equals(PASSWORD)) {
             return currentUser.getPassword();
         }
@@ -998,7 +1017,7 @@ public class CampFacade {
      */
     public boolean setCamperDate(String variableName, Date change) {
         if(variableName.equals(BIRTHDAY)) {
-            return currentCounselor.setBirthday(change);
+            return currentCamper.setBirthday(change);
         } 
         return false;
     }
@@ -1031,7 +1050,8 @@ public class CampFacade {
             if(currentCamperAllergyList.get(i).equalsIgnoreCase(allergy))
                 return false;
         }
-        return currentCamper.addAllergy(allergy);
+        currentCamper.addAllergy(allergy);
+        return true;
     }
 
     /**
@@ -1182,8 +1202,12 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside contacts
      */
-    public void updateContacts(String key) {
-        this.currentContact = currentContactHash.get(key);
+    public boolean updateContacts(String key) {
+        if(currentContactHash.containsKey(key)) {
+            this.currentContact = currentContactHash.get(key);
+            return true;
+        }
+        return false;
     }
     
     // ------------------------ INSTANCE VARIALBES --------------------------

@@ -148,9 +148,32 @@ public class DataWriter extends DataConstants {
         counselorDetails.put(COUNSELOR_UUID, counselor.getCounselorID());
         counselorDetails.put(COUNSELOR_BIO, counselor.getBio());
         counselorDetails.put(COUNSELOR_BIRTHDAY, counselor.getBirthdayStr());
-        counselorDetails.put(COUNSELOR_ALLERGIES, counselor.getAllergiesStr());
-		counselorDetails.put(COUNSELOR_EMERGENCY_CONTACTS, counselor.getEmergencyContactsStr());
-        counselorDetails.put(COUNSELOR_SESSIONS, counselor.getSessionThemesStr());
+
+        JSONArray allergiesArray = new JSONArray();
+        for(int i =0; i< counselor.getAllergies().size(); i++){
+            allergiesArray.add(counselor.getAllergies().get(i));
+        }
+        counselorDetails.put(COUNSELOR_ALLERGIES, allergiesArray);
+		
+        JSONArray emergencyArray = new JSONArray();
+        for(int i = 0; i< counselor.getEmergencyContacts().size(); i++){
+            JSONObject emergencyDetails = new JSONObject();
+ 
+            emergencyDetails.put(EMERGENCY_RELATIONSHIP,counselor.getRelationships().get(i)) ;
+            emergencyDetails.put(EMERGENCY_EMAIL, counselor.getContacts().get(i).getEmail());
+            emergencyDetails.put(EMERGENCY_NAME, counselor.getContacts().get(i).getName());
+            emergencyDetails.put(EMERGENCY_PHONE, counselor.getContacts().get(i).getPhoneNumber());
+            emergencyDetails.put(EMERGENCY_ADDRESS, counselor.getContacts().get(i).getAddress());
+
+            emergencyArray.add(emergencyDetails);
+        }
+        counselorDetails.put(COUNSELOR_EMERGENCY_CONTACTS, emergencyArray);
+
+         JSONArray themesArray = new JSONArray();
+        for(int i =0; i< counselor.getSessionThemes().size(); i++){
+            themesArray.add(counselor.getSessionThemes().get(i));
+        }
+        counselorDetails.put(COUNSELOR_SESSIONS, themesArray);
 
 		
         return counselorDetails;
@@ -189,13 +212,52 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getCamperJSON(Camper camper) {
 		JSONObject camperDetails = new JSONObject();
 		camperDetails.put(CAMPER_NAME, camper.getName());
-		camperDetails.put(CAMPER_MEDICATIONS, camper.getMedicationsStr());
-        camperDetails.put(CAMPER_NOTES, camper.getNotes());
+		JSONArray medicationsArray = new JSONArray();
+        for(int i = 0; i< camper.getMedications().size(); i++){
+            JSONObject medicationDetails = new JSONObject();
+            medicationDetails.put(MEDICATION_TYPE, camper.getMedications().get(i).getType());
+            medicationDetails.put(MEDICATION_DOSE, camper.getMedications().get(i).getDose());
+            medicationDetails.put(MEDICATION_TIME, camper.getMedications().get(i).getTime());
+            medicationsArray.add(medicationDetails);
+        }
+        camperDetails.put(CAMPER_MEDICATIONS, medicationsArray);
+
+        JSONArray notesArray = new JSONArray();
+        for(int i =0; i< camper.getNotes().size(); i++){
+            notesArray.add(camper.getNotes().get(i));
+        }
+        
+        camperDetails.put(CAMPER_NOTES, notesArray);
         camperDetails.put(CAMPER_UUID, camper.getCamperID());
         camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthdayStr());
-        camperDetails.put(CAMPER_ALLERGIES, camper.getAllergiesStr());
-		camperDetails.put(CAMPER_EMERGENCY_CONTACTS, camper.getEmergencyContactsStr());
-        camperDetails.put(CAMPER_SESSIONS, camper.getSessionThemesStr());
+        
+        JSONArray allergiesArray = new JSONArray();
+        for(int i =0; i< camper.getAllergies().size(); i++){
+            allergiesArray.add(camper.getAllergies().get(i));
+        }
+        camperDetails.put(CAMPER_ALLERGIES, allergiesArray);
+
+
+        JSONArray emergencyArray = new JSONArray();
+        for(int i = 0; i< camper.getEmergencyContacts().size(); i++){
+            JSONObject emergencyDetails = new JSONObject();
+        
+            emergencyDetails.put(EMERGENCY_RELATIONSHIP,camper.getRelationships().get(i)) ;
+            emergencyDetails.put(EMERGENCY_EMAIL, camper.getContacts().get(i).getEmail());
+            emergencyDetails.put(EMERGENCY_NAME, camper.getContacts().get(i).getName());
+            emergencyDetails.put(EMERGENCY_PHONE, camper.getContacts().get(i).getPhoneNumber());
+            emergencyDetails.put(EMERGENCY_ADDRESS, camper.getContacts().get(i).getAddress());
+
+            emergencyArray.add(emergencyDetails);
+        }
+        camperDetails.put(CAMPER_EMERGENCY_CONTACTS, emergencyArray);
+       
+        JSONArray themesArray = new JSONArray();
+        for(int i =0; i< camper.getSessionThemes().size(); i++){
+            themesArray.add(camper.getSessionThemes().get(i));
+        }
+        camperDetails.put(CAMPER_SESSIONS, themesArray);
+
 		
         return camperDetails;
 	}
@@ -215,7 +277,7 @@ public class DataWriter extends DataConstants {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("./camp/jso files/" + CAMPER_FILE_NAME)) {
+        try (FileWriter file = new FileWriter("./camp/json files/" +  CAMP_FILE_NAME)) {
             file.write(jsonCamps.toJSONString());
             file.flush();
  
@@ -232,7 +294,11 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getCampJSON(Camp camp) {
 		JSONObject campDetails = new JSONObject();
 		campDetails.put(CAMP_NAME, camp.getName());
-		campDetails.put(CAMP_ACTIVITIES, camp.getActivities());
+        JSONArray activitiesArray = new JSONArray();
+        for(int i = 0; i<camp.getActivities().size(); i++){
+            activitiesArray.add(camp.getActivities().get(i));
+        }
+		campDetails.put(CAMP_ACTIVITIES, activitiesArray);
         JSONArray jsonFaqs = new JSONArray();
         for(int i=0; i<camp.getFAQs().size(); i++){
             JSONObject faqDetails = new JSONObject();
@@ -295,7 +361,7 @@ public class DataWriter extends DataConstants {
         }        
         cabinDetails.put(CABIN_CAMPERS, jsonCampers);
 
-        cabinDetails.put(CABIN_COUNSELOR, getCounselorJSON(cabin.getCounselor()));   
+        cabinDetails.put(CABIN_COUNSELOR, cabin.getCounselor().getCounselorID());   
 
         cabinDetails.put(CABIN_MAX_AGE, cabin.getMaxAge());
         cabinDetails.put(CABIN_UUID, cabin.getCabinID());
