@@ -952,7 +952,7 @@ public class CampFacade {
         
         //currentCabinHash = currentCamper.getCabinHash();
 
-        currentCamperSessions = camp.getCamperSessions(currentCamper);
+        currentCamperSessions = camp.getCampersSessions(currentCamper);
         currentCamperCabins = new ArrayList<>();
         for(int i = 0; i < currentCamperSessions.size(); i++) {
             Cabin cabin = currentCamperSessions.get(i).findCamper(currentCamper);
