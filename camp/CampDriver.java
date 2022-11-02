@@ -202,8 +202,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
-				
+				//facade.save();
 				System.exit(0);
 			}
 			
@@ -309,7 +308,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -397,7 +396,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -470,7 +469,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -540,7 +539,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -624,7 +623,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -738,7 +737,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -842,7 +841,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -954,7 +953,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1021,7 +1020,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1174,7 +1173,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1267,7 +1266,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1392,6 +1391,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1504,7 +1504,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1579,7 +1579,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1666,7 +1666,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1738,7 +1738,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			
@@ -1847,7 +1847,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -1966,7 +1966,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -2083,7 +2083,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			if(choice == options.size() - 2) { //the user chose return
@@ -2165,7 +2165,7 @@ public class CampDriver {
 			//doing what the user chose----------------------------------------
 			if(choice == options.size() - 1) { //the user chose quit
 				System.out.println("Goodbye!");
-				facade.save();
+				//facade.save();
 				System.exit(0);
 			}
 			

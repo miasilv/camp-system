@@ -119,6 +119,16 @@ public class CampFacade {
         currentCabinHash = new HashMap<Session, Cabin>();
     }
 
+    public void save(){
+        DataWriter.saveCabin();
+        DataWriter.saveCampers();
+        DataWriter.saveSessions();
+        DataWriter.saveCamp();
+        DataWriter.saveCounselors();
+        DataWriter.saveDirectors();
+        DataWriter.saveGuardians();
+    }
+
     // ***************************** CAMP CLASS ***********************************************
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside camp
@@ -296,6 +306,7 @@ public class CampFacade {
     public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
         boolean bool = camp.addSession(theme, sessionDescription, startDate, endDate);
         SessionList.getInstance().getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
+    
         return bool;
     }
     
