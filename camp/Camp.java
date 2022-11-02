@@ -15,6 +15,7 @@ public class Camp {
     private ArrayList<FAQ> FAQs;
     private ArrayList<String> activities;
     private UUID id;
+
     /**
      * constructor of camp
      */
@@ -30,24 +31,88 @@ public class Camp {
         this.activities = activities;
     }
 
+    //----------------------------ACCESSORS---------------------------------------
+    
     public UUID getId() {
         return this.id;
     }
-    public void setId(UUID id) {
-        this.id = id;
-    }
+
     /**
      * written by natalie
      * gets the camps uuid converted to a string
+     * 
      * @return uuid to string
      */
-    public String getCampID(){
+    public String getCampID() {
         return getId().toString();
     }
+
 
     public String getName() {
         return this.name;
     }
+
+    public ArrayList<Session> getSessions() {
+        return this.sessions;
+    }
+
+    public double getPrice() {
+        return this.pricePerSession;
+    }
+
+    public double getRatio() {
+        return this.campersPerCounselor;
+    }
+
+    public ArrayList<FAQ> getFAQs() {
+        return this.FAQs;
+    }
+
+    /**
+     * written by natalie
+     * gets an faq based on the index in the array list of faqs
+     * 
+     * @param index index in faqs
+     * @return the faq at that index
+     */
+    public FAQ getFAQbyIndex(int index) {
+        return this.FAQs.get(index);
+    }
+
+    /**
+     * written by natalie
+     * gets a string representation of faqs
+     * 
+     * @return faqs array list to string
+     */
+    public String getFAQStr() {
+        return FAQs.toString();
+    }
+    
+    public ArrayList<String> getActivities() {
+        return this.activities;
+    }
+
+    /**
+     * method to get a session by theme
+     * 
+     * @param theme the theme of the desired session
+     * @return returns the session, null if no such session exists
+     */
+    public Session getSession(String theme) {
+        for (int i = 0; i < sessions.size(); i++) {
+            if (sessions.get(i).getTheme().equalsIgnoreCase(theme))
+                return sessions.get(i);
+        }
+        return null;
+    }
+
+    //---------------------------MUTATORS---------------------------------------------
+    
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    
     public boolean setName(String name) {
         if(name != null){
             this.name = name;
@@ -56,16 +121,10 @@ public class Camp {
         return false;
     }
 
-    public ArrayList<Session> getSessions() {
-        return this.sessions;
-    }
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
     }
 
-    public double getPrice() {
-        return this.pricePerSession;
-    }
     public boolean setPricePerSession(double pricePerSession) {
         if(pricePerSession >= 0){
             this.pricePerSession = pricePerSession;
@@ -73,10 +132,7 @@ public class Camp {
         }
         return false;
     }
-
-    public double getRatio() {
-        return this.campersPerCounselor;
-    }
+    
     public boolean setCampersPerCounselor(int campersPerCounselor) {
         if(campersPerCounselor >= 1){
             this.campersPerCounselor = campersPerCounselor;
@@ -85,29 +141,16 @@ public class Camp {
         return false;
     }
 
-    public ArrayList<FAQ> getFAQs() {
-        return this.FAQs;
-    }
     public void setFAQs(ArrayList<FAQ> FAQs) {
         this.FAQs = FAQs;
     }
-    /**
-     * written by natalie
-     * gets an faq based on the index in the array list of faqs
-     * @param index index in faqs
-     * @return the faq at that index
-     */
-    public FAQ getFAQbyIndex(int index) {
-        return this.FAQs.get(index);
+
+    public void setActivities(ArrayList<String> activities) {
+        this.activities = activities;
     }
-    /**
-     * written by natalie
-     * gets a string representation of faqs
-     * @return faqs array list to string
-     */
-    public String getFAQStr() { 
-        return FAQs.toString();
-    }
+
+    //----------------------------------MISC-------------------------------
+
     /**
      * a method to add a new FAQ to the list of FAQs
      * @param question the question being added
@@ -118,6 +161,7 @@ public class Camp {
         FAQs.add(new FAQ(question, answer));
         return true;
     }
+
     /**
      * a method to remove an FAQ from the FAQ list
      * @param index the index of the FAQ being removed
@@ -128,13 +172,6 @@ public class Camp {
         return true;
     }
 
-
-    public ArrayList<String> getActivities() {
-        return this.activities;
-    }
-    public void setActivities(ArrayList<String> activities) {
-        this.activities = activities;
-    }
     /**
      * a method to add an activity
      * @param activity the activity being added
@@ -166,23 +203,13 @@ public class Camp {
         sessions.add(session);
         return true;
     }
+
     public boolean addSession(Session session){
         sessions.add(session);
         return true;
     }
 
-    /**
-     * method to get a session by theme
-     * @param theme the theme of the desired session
-     * @return returns the session, null if no such session exists
-     */
-    public Session getSession(String theme) {
-        for(int i=0; i<sessions.size(); i++){
-            if(sessions.get(i).getTheme().equalsIgnoreCase(theme))
-                return sessions.get(i);
-        }
-        return null;
-    }
+    
     /**
      * method to remove a session
      * @param index the index of the session being removed
@@ -269,6 +296,7 @@ public class Camp {
         }
         return campersSessions;
     }
+    
     public ArrayList<Session> getCounselorsSessions(Counselor counselor){
         ArrayList<Session> counselorsSessions = new ArrayList<Session>();
         for(int i=0; i<sessions.size(); i++){
