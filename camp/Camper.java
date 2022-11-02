@@ -22,6 +22,8 @@ public class Camper {
     private HashMap<String, Contact> emergencyContacts;
     private HashMap<Session, Cabin> cabinHash;
     private ArrayList<String> sessionThemes;
+    private ArrayList<String> relationships;
+    private ArrayList<Contact> contacts;
 
     /**
      * Constructor for the camper class
@@ -54,11 +56,13 @@ public class Camper {
         this.medications = medications;
         this.allergies = allergies;
         //this.sessions = sessions;
+        this.relationships= relationships;
         this.notes = notes;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         this.cabinHash = new HashMap<Session, Cabin>();
         this.sessionThemes = sessionThemes;
+        this.contacts = contacts;
     }
 
     // getters because Nat needs them:
@@ -80,6 +84,14 @@ public class Camper {
 
     public UUID getID() {
         return camperID;
+    }
+
+    public ArrayList<String> getRelationships(){
+        return relationships;
+    }
+
+    public ArrayList<Contact> getContacts(){
+        return contacts;
     }
 
     /**

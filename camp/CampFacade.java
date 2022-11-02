@@ -116,13 +116,13 @@ public class CampFacade {
     }
 
     public void save() {
-        DataLoader.loadCamp();
-        DataLoader.loadSessions();
-        DataLoader.loadCabins();
-        DataLoader.loadDirector();
-        DataLoader.loadCounselors();
-        DataLoader.loadGuardians();
-        DataLoader.loadCampers();
+        DataWriter.saveDirectors();
+        DataWriter.saveSession();
+        DataWriter.saveCounselors();;
+        DataWriter.saveCampers();
+        DataWriter.saveGuardians();
+        DataWriter.saveCabin();
+        DataWriter.saveCamp();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -649,6 +649,7 @@ public class CampFacade {
         if(variableName.equals(PHONE)) {
             return currentUser.getPhoneNumber();
         }
+
         if(variableName.equals(PASSWORD)) {
             return currentUser.getPassword();
         }

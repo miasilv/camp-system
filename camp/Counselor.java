@@ -18,6 +18,8 @@ public class Counselor extends User {
     private ArrayList<String> allergies;
     private HashMap<Session, Cabin> cabinHash;
     private ArrayList<String> sessionThemes;
+    private ArrayList<String> relationships;
+    private ArrayList<Contact> contacts;
 
     // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
 
@@ -55,6 +57,8 @@ public class Counselor extends User {
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
         this.cabinHash = new HashMap<Session, Cabin>();
         this.sessionThemes = sessionThemes;
+        this.relationships = relationships;
+        this.contacts = contacts;
     }
 
     // ----------------------------------ACCESSORS-------------------------------------------------------------
@@ -93,6 +97,14 @@ public class Counselor extends User {
         return id;
     }
 
+
+    public ArrayList<String> getRelationships(){
+        return relationships;
+    }
+
+    public ArrayList<Contact> getContacts(){
+        return contacts;
+    }
     /**
      * written by natalie
      * @return a string representation 
