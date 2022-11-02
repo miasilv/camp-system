@@ -24,7 +24,7 @@ public class DataLoader extends DataConstants {
      * @param args
      */
     public static void main(String[] args) {
-         
+        /* 
         ArrayList<Camper> campers = loadCampers();
         System.out.println("Campers:\n");
         for(Camper c: campers){
@@ -73,6 +73,7 @@ public class DataLoader extends DataConstants {
             System.out.println(g);
             System.out.println();
         }
+        */
         
     }
 
@@ -177,7 +178,6 @@ public class DataLoader extends DataConstants {
                 JSONArray campersJSON = (JSONArray)guardianJSON.get(GUARDIAN_CAMPERS);
 
                 //make arraylist of campers
-                
                 ArrayList<Camper> campers = new ArrayList<Camper>();
                 
                 for(int j = 0; j < campersJSON.size(); j++){
@@ -185,7 +185,6 @@ public class DataLoader extends DataConstants {
                     Camper camper = CamperList.getInstance().getCamper(camperID);
                     campers.add(camper);
                 }
-                
 				
 				guardians.add(new Guardian(id, name, email, password, phoneNumber,campers));
 			}
@@ -381,8 +380,6 @@ public class DataLoader extends DataConstants {
                     }
                     
                     Schedule schedule = new Schedule(activities);
-                    //System.out.println("ACTIVITIES \n" + activities);
-                    //System.out.println(schedule);
                     schedules.add(schedule);
                 }
             
@@ -400,12 +397,11 @@ public class DataLoader extends DataConstants {
                     Counselor counselor = CounselorList.getInstance().getCounselor(counselorID);
                     counselors.add(counselor);
                 }
-				//System.out.println("COUNSELORSLLLLLL " + counselors);
+
 				cabins.add(new Cabin(campers, counselors, maxAge, minAge, schedules, id));
-                //System.out.println("SCHEDULES:" + schedules);
+
 			}
         
-			
 			return cabins;
 			
 		} catch (Exception e) {
