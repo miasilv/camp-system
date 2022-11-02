@@ -120,13 +120,13 @@ public class CampFacade {
     }
 
     public void save() {
-        DataLoader.loadCamp();
-        DataLoader.loadSessions();
-        DataLoader.loadCabins();
-        DataLoader.loadDirector();
-        DataLoader.loadCounselors();
-        DataLoader.loadGuardians();
-        DataLoader.loadCampers();
+        DataWriter.saveCabin();
+        DataWriter.saveCamp();
+        DataWriter.saveCampers();
+        DataWriter.saveCounselors();
+        DataWriter.saveDirectors();
+        DataWriter.saveGuardians();
+        DataWriter.saveSessions();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -292,7 +292,8 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean removeCampSession(int index) {
-        return camp.removeSession(index);
+        Session session = camp.removeSession(index);
+        return SessionList.getInstance().getSessions().remove(session);
     }
 
     /**
@@ -303,7 +304,9 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
-        return camp.addSession(theme, sessionDescription, startDate, endDate);
+        boolean bool =  camp.addSession(theme, sessionDescription, startDate, endDate);
+        SessionList.getInstance().getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
+        return bool;
     }
     
 
