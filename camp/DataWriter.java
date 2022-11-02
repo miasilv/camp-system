@@ -316,7 +316,7 @@ public class DataWriter extends DataConstants {
         
         JSONArray jsonSessions = new JSONArray();
         for(int i = 0; i< camp.getSessions().size(); i++){
-            jsonSessions.add(SessionList.getInstance().getSessions().get(i).getSessionID());
+            jsonSessions.add(camp.getSession(i).getSessionID());
             //jsonSessions.add(getSessionJSON(camp.getSession(i)));
         }
         campDetails.put(CAMP_SESSIONS, jsonSessions);

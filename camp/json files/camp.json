@@ -1,5 +1,51 @@
-<<<<<<< HEAD
-[{"faqs":[{"question":"what are the activities?","answer":"running, archery, swimming, ziplining"},{"question":"what is the price","answer":"$500"}],"camperspercounselor":8.0,"sessions":["d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6","642bbf90-b9d8-4f67-8764-5d0eb6af30f8","00000000-0000-0000-0000-000000000000","92835da0-9011-4ccf-95bb-b9741b5629f8"],"activities":["wake up","breakfast at the mess hall","lunch at the mess hall","snack\/rest time at cabin","dinner at the mess hall","campfire songs at firepit","lights out","ziplining at zipline track","swimming in lake","running on the field","gaga ball at the gaga ball pit","soccer on the field","kayaking in the lake","bracelet making in the mess hall","arts and crafts at craft building","painting at the craft building","archery at the archery range","tie dying at the craft building","singing at the mess hall"],"price":500.5,"name":"Camp 247","id":"2a73df0e-df2f-4f6a-90da-32e888383b2e"}]
-=======
-[{"faqs":[{"question":"what are the activities?","answer":"running, archery, swimming, ziplining"},{"question":"what is the price","answer":"$500"},{"question":"can i swim at camp?","answer":"yes"}],"camperspercounselor":8.0,"sessions":["d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6","642bbf90-b9d8-4f67-8764-5d0eb6af30f8","00000000-0000-0000-0000-000000000000"],"activities":["wake up","breakfast at the mess hall","lunch at the mess hall","snack\/rest time at cabin","dinner at the mess hall","campfire songs at firepit","lights out","ziplining at zipline track","swimming in lake","running on the field","gaga ball at the gaga ball pit","soccer on the field","kayaking in the lake","bracelet making in the mess hall","arts and crafts at craft building","painting at the craft building","archery at the archery range","tie dying at the craft building","singing at the mess hall"],"price":500.5,"name":"Camp 247","id":"2a73df0e-df2f-4f6a-90da-32e888383b2e"}]
->>>>>>> 41fdb59622671c176900efa056df238b0533180f
+[
+    {
+        "faqs": [
+            {
+                "question": "what are the activities?",
+                "answer": "running, archery, swimming, ziplining"
+            },
+            {
+                "question": "what is the price",
+                "answer": "$500"
+            },
+            {
+                "question": "can i swim at camp?",
+                "answer": "yes"
+            }
+        ],
+        "camperspercounselor": 8.0,
+        "sessions": [
+            "d10e7fc1-fb98-4e61-8bcb-7aedb4d4c9d6",
+            "642bbf90-b9d8-4f67-8764-5d0eb6af30f8",
+            "00000000-0000-0000-0000-000000000000",
+            "92835da0-9011-4ccf-95bb-b9741b5629f8",
+            "0a2f06a4-293f-494e-abf9-eb7e43960efc",
+            "4e1ca247-deb6-4ab9-ba7a-14c70dcc90e0"
+        ],
+        "activities": [
+            "wake up",
+            "breakfast at the mess hall",
+            "lunch at the mess hall",
+            "snack\/rest time at cabin",
+            "dinner at the mess hall",
+            "campfire songs at firepit",
+            "lights out",
+            "ziplining at zipline track",
+            "swimming in lake",
+            "running on the field",
+            "gaga ball at the gaga ball pit",
+            "soccer on the field",
+            "kayaking in the lake",
+            "bracelet making in the mess hall",
+            "arts and crafts at craft building",
+            "painting at the craft building",
+            "archery at the archery range",
+            "tie dying at the craft building",
+            "singing at the mess hall"
+        ],
+        "price": 500.5,
+        "name": "Camp 247",
+        "id": "2a73df0e-df2f-4f6a-90da-32e888383b2e"
+    }
+]
