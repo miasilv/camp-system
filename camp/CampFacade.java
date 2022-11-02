@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class CampFacade {
     // ------------------------- CURRENT ARRAYLISTS/OBJECTS -----------------
     private UserList userList;
-    private CampList campList;
+    private CampList camplist;
     private Camp camp; 
     private ArrayList<FAQ> currentFaqList;
     private FAQ currentFaq;
@@ -99,7 +99,7 @@ public class CampFacade {
 
     public CampFacade() {
         userList = UserList.getInstance();
-        campList = CampList.getInstance();
+        camplist = CampList.getInstance();
         initArrayLists();
     }
 
@@ -111,22 +111,20 @@ public class CampFacade {
         currentGuardianCamperList = new ArrayList<Camper>();
         currentMedicationList = new ArrayList<Medication>();
         currentCamperAllergyList = new ArrayList<String>();
-        currentCamperSessions = new ArrayList<Session>();
-        currentCamperCabins = new ArrayList<Cabin>();
         currentCounselorAllergyList = new ArrayList<String>();
         currentScheduleHash = new HashMap<Day, Schedule>();
         currentContactHash = new HashMap<String, Contact>();
         currentCabinHash = new HashMap<Session, Cabin>();
     }
 
-    public void save(){
-        DataWriter.saveCabin();
-        DataWriter.saveCampers();
-        DataWriter.saveSessions();
-        DataWriter.saveCamp();
-        DataWriter.saveCounselors();
-        DataWriter.saveDirectors();
-        DataWriter.saveGuardians();
+    public void save() {
+        DataLoader.loadCamp();
+        DataLoader.loadSessions();
+        DataLoader.loadCabins();
+        DataLoader.loadDirector();
+        DataLoader.loadCounselors();
+        DataLoader.loadGuardians();
+        DataLoader.loadCampers();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -134,7 +132,7 @@ public class CampFacade {
      * updates all the current classes/arraylists/hashmaps to be the ones inside camp
      */
     public void updateCamp() {
-        this.camp = campList.getCamps().get(0);
+        this.camp = camplist.getCamps().get(0);
         this.currentCampSessionList = this.camp.getSessions();
         this.currentFaqList = this.camp.getFAQs();
         this.currentActivityList = this.camp.getActivities();
@@ -292,8 +290,7 @@ public class CampFacade {
      * @return true if successful, false if not
      */
     public boolean removeCampSession(int index) {
-        Session session = camp.removeSession(index);
-        return SessionList.getInstance().getSessions().remove(session);
+        return camp.removeSession(index);
     }
 
     /**
@@ -304,10 +301,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCampSession(String theme, String sessionDescription, Date startDate, Date endDate) {
-        boolean bool = camp.addSession(theme, sessionDescription, startDate, endDate);
-        SessionList.getInstance().getSessions().add(new Session(theme, sessionDescription, startDate, endDate));
-    
-        return bool;
+        return camp.addSession(theme, sessionDescription, startDate, endDate);
     }
     
 
@@ -657,7 +651,6 @@ public class CampFacade {
         if(variableName.equals(PHONE)) {
             return currentUser.getPhoneNumber();
         }
-
         if(variableName.equals(PASSWORD)) {
             return currentUser.getPassword();
         }
@@ -954,17 +947,18 @@ public class CampFacade {
         currentContactHash = currentCamper.getCamperContactHash();
         currentMedicationList = currentCamper.getMedications();
         currentCamperAllergyList = currentCamper.getAllergies();
-        
-        //currentCabinHash = currentCamper.getCabinHash();
-        
-        currentCamperSessions = camp.getCampersSessions(currentCamper);
-        currentCamperCabins = new ArrayList<Cabin>();
-        for(int i = 0; i < currentCamperSessions.size(); i++) {
-            currentCamperCabins.add(currentCamperSessions.get(i).findCamper(currentCamper));
+        currentCabinHash = currentCamper.getCabinHash();
+
+        ArrayList<String> sessionThemes = currentCamper.getSessionThemes();
+        for(int i = 0; i < sessionThemes.size(); i++) {
+            currentSession = camp.getSession(sessionThemes.get(i));
+            currentCabin = currentSession.findCamper(currentCamper);
+            if(currentCabin == null) {
+                currentSession.placeCamper(currentCamper);
+            }
+            currentCamper.updateCamperCabinHash(currentSession, currentCabin);
         }
-        for(int i = 0; i < currentCamperSessions.size(); i++) {
-            currentCamper.updateCamperCabinHash(currentCamperSessions.get(i), currentCamperCabins.get(i));
-        }
+
         return true;
     }
 
@@ -1129,9 +1123,8 @@ public class CampFacade {
      * @param session the session to be removed
      * @return true if successful, false if not
      */
-    public boolean removeCamperSession(int index) {
-        Session session = this.currentCamperSessions.get(index);
-        return (currentCamper.removeSession(session) && currentSession.removeCamper(currentCamper));
+    public boolean removeCamperSession(String theme) {
+        return currentCamper.removeSession(theme);
     }
 
     /**
@@ -1139,8 +1132,8 @@ public class CampFacade {
      * @param session the session being added to the camper
      * @return true if successful, false if not successful
      */
-    public boolean addCamperSession(int index) {
-        Session session = SessionList.getInstance().getSessions().get(index);
+    public boolean addCamperSession(String theme) {
+        Session session = camp.getSession(theme);
         Cabin cabin = session.placeCamper(currentCamper);
         if(cabin == null) {
             return false;

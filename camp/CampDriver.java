@@ -521,7 +521,8 @@ public class CampDriver {
 			//updating options----------------------------------------
 			clearOptions();
 			for(int i = 0; i < facade.getCampSessions().size(); i++) {
-				options.add("Session " + (i + 1) + "- " + facade.getCampSessions().get(i).toString());
+				System.out.println(facade.getCampSessions().get(i));
+				//options.add("Session " + (i + 1) + "- " + facade.getCampSessions().get(i).toString());
 			}
 			options.add("Add a new Session");
 			options.add("Remove an existing Session");
