@@ -187,9 +187,8 @@ public class Camp {
      * @param index the index of the session being removed
      * @return whether the session was successfully removed
      */
-    public boolean removeSession(int index) {
-        sessions.remove(index);
-        return true;
+    public Session removeSession(int index) {
+        return sessions.remove(index);
     }
     //****EDITED BY MIA*****
     /**
