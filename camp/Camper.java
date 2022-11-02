@@ -33,6 +33,7 @@ public class Camper {
     public Camper(String name, Date birthday) {
         this.name = name;
         this.birthday = birthday;
+        this.camperID = UUID.randomUUID();
         dateFormatter = new SimpleDateFormat("mm/dd/yyyy");
         medications = new ArrayList<Medication>();
         allergies = new ArrayList<String>();
