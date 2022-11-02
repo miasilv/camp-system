@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 /**
- * an object representing a camp
- * @author sara
+ * @author natalie
+ * camp list class
  */
 
 
@@ -12,6 +12,9 @@ public class CampList {
     private ArrayList<Camp> camps;
     private static CampList campList;
 
+    /**
+     * default constructor
+     */
     private CampList(){
         camps = DataLoader.loadCamp();
         
@@ -28,11 +31,19 @@ public class CampList {
         return campList;
     }
 
+    /**
+     * gets the array list of camps
+     * @return camps
+     */
     public ArrayList<Camp> getCamps() {
         return camps;
     }
 
-    
+    /**
+     * gets the camp via uuid
+     * @param id the specified uuid
+     * @return the camp with that uuid
+     */
     public Camp getCamp(UUID id) {
         for (int i=0; i < camps.size(); i++) {
             if (camps.get(i).getId().equals(id)) {

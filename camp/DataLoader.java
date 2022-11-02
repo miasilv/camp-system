@@ -93,10 +93,10 @@ public class DataLoader extends DataConstants {
 				JSONObject sessionJSON = (JSONObject)sessionsJSON.get(i);
                 UUID seshid = UUID.fromString((String)sessionJSON.get(SESSION_ID));
                 String theme = (String)sessionJSON.get(SESSION_THEME);
-                Double seshNum = (Double)sessionJSON.get(SESSION_NUM);
+                String seshDescript = (String)sessionJSON.get(SESSION_DESCRIPTION);
                 
                 Date start= new SimpleDateFormat("mm/dd/yyyy").parse((String)sessionJSON.get(SESSION_START));
-                Date end = new SimpleDateFormat("MM/dd/yyyy").parse((String)sessionJSON.get(SESSION_END));
+                Date end = new SimpleDateFormat("mm/dd/yyyy").parse((String)sessionJSON.get(SESSION_END));
                 
                 JSONArray cabinsJSON = (JSONArray)sessionJSON.get(SESSION_CABINS);
                 ArrayList<Cabin> cabins = new ArrayList<Cabin>();
@@ -107,7 +107,7 @@ public class DataLoader extends DataConstants {
                     cabins.add(cabin);
                 }
 
-                Session session = new Session (seshid, theme, cabins, seshNum, start, end);
+                Session session = new Session (seshid, theme, cabins, seshDescript, start, end);
                 sessions.add(session);    
 			}
 			
@@ -224,11 +224,18 @@ public class DataLoader extends DataConstants {
 
                 JSONArray allergiesJSON = (JSONArray)counselorJSON.get(COUNSELOR_ALLERGIES);
                 JSONArray emergencycontactsJSON = (JSONArray)counselorJSON.get(COUNSELOR_EMERGENCY_CONTACTS);
+                JSONArray sessionsJSON = (JSONArray)counselorJSON.get(COUNSELOR_SESSIONS);
                 
                 //make arraylist of allergies
                 ArrayList<String> allergies = new ArrayList<String>();
                 for(int j = 0; j < allergiesJSON.size(); j++){
                     allergies.add((String)allergiesJSON.get(j));
+                }
+
+                //make arraylist of session themese
+                ArrayList<String> sessions = new ArrayList<String>();
+                for(int j = 0; j < sessionsJSON.size(); j++){
+                    sessions.add((String)sessionsJSON.get(j));
                 }
 
                 //make arraylist of emergency contact data
@@ -247,7 +254,7 @@ public class DataLoader extends DataConstants {
 
                 }
 				
-				counselors.add(new Counselor(id, name, email, password, phoneNumber, bio, relationships, emergencies, birthday, allergies));
+				counselors.add(new Counselor(id, name, email, password, phoneNumber, bio, relationships, emergencies, birthday, allergies, sessions));
 			}
 			
 			return counselors;
@@ -283,6 +290,7 @@ public class DataLoader extends DataConstants {
                 JSONArray emergencycontactsJSON = (JSONArray)camperJSON.get(CAMPER_EMERGENCY_CONTACTS);
                 JSONArray medicationsJSON = (JSONArray)camperJSON.get(CAMPER_MEDICATIONS);
                 JSONArray notesJSON = (JSONArray)camperJSON.get(CAMPER_NOTES);
+                JSONArray sessionsJSON= (JSONArray)camperJSON.get(CAMPER_SESSIONS);
                 
                 //make arraylist of allergies
                 ArrayList<String> allergies = new ArrayList<String>();
@@ -294,6 +302,12 @@ public class DataLoader extends DataConstants {
                 ArrayList<String> notes = new ArrayList<String>();
                 for(int j = 0; j < notesJSON.size(); j++){
                     notes.add((String)notesJSON.get(j));
+                }
+
+                //make arraylist of session themes
+                ArrayList<String> sessions = new ArrayList<String>();
+                for(int j = 0; j < sessionsJSON.size(); j++){
+                    sessions.add((String)sessionsJSON.get(j));
                 }
 
                 //make arraylist of emergency contact data
@@ -324,7 +338,7 @@ public class DataLoader extends DataConstants {
                     medications.add(medication);
                 }
 				
-				campers.add(new Camper(id, name, birthday, medications, allergies, notes, relationships, emergencies));
+				campers.add(new Camper(id, name, birthday, medications, allergies, notes, relationships, emergencies, sessions));
 			}
 			
 			return campers;
@@ -351,7 +365,6 @@ public class DataLoader extends DataConstants {
            
 			for(int i=0; i < cabinsJSON.size(); i++) {
 				JSONObject cabinJSON = (JSONObject)cabinsJSON.get(i);
-				Double beds = (Double)cabinJSON.get(CABIN_BEDS);
                 Double maxAge = (Double)cabinJSON.get(CABIN_MAX_AGE);
                 Double minAge = (Double)cabinJSON.get(CABIN_MIN_AGE);
                 UUID id = UUID.fromString((String)cabinJSON.get(CABIN_UUID));
@@ -376,7 +389,7 @@ public class DataLoader extends DataConstants {
                     
                     Schedule schedule = new Schedule(activities);
                     //System.out.println("ACTIVITIES \n" + activities);
-                    System.out.println(schedule);
+                    //System.out.println(schedule);
                     schedules.add(schedule);
                 }
             
@@ -388,7 +401,7 @@ public class DataLoader extends DataConstants {
                     campers.add(camper);
                 }
 				
-				cabins.add(new Cabin(campers, counselor, beds, maxAge, minAge, schedules, id));
+				cabins.add(new Cabin(campers, counselor, maxAge, minAge, schedules, id));
                 //System.out.println("SCHEDULES:" + schedules);
 			}
         

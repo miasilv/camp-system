@@ -173,8 +173,8 @@ public class UserList {
         directors.add(aDirector);
     }
 
-    public void addCounselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies) {
-        Counselor aCounselor = new Counselor(id, name, email, password, phoneNumber, bio, relationships, contacts, birthday, allergies);
+    public void addCounselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies, ArrayList<String> themes) {
+        Counselor aCounselor = new Counselor(id, name, email, password, phoneNumber, bio, relationships, contacts, birthday, allergies, themes);
         counselors.add(aCounselor);
     }
 
@@ -248,13 +248,6 @@ public class UserList {
 
     }
 
-    public Camper getCamperByUUID(UUID id){
-        return null;
-    }
-
-    public Counselor getCounselorByUUID(UUID id){
-        return null;
-    }
 
     public void editUser() {
 

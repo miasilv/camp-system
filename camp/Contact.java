@@ -37,7 +37,10 @@ public class Contact {
     }
 
     public String toString() {
-        return name + " " + phoneNumber + " " + address;
+        return name + "\n" + "\t" +
+        "Email: " + email + "\n" + "\t" +
+        "Phone Number: " + phoneNumber + "\n" + "\t" +
+        "Address: " + address;
     }
 
     public String getEmail() {
@@ -56,6 +59,11 @@ public class Contact {
 
     public boolean setPhoneNumber(String change) {
         this.phoneNumber = change;
+        return true;
+    }
+
+    public boolean setAddress(String change) {
+        this.address = change;
         return true;
     }
 }
