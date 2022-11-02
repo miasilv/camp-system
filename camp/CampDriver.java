@@ -1380,10 +1380,10 @@ public class CampDriver {
 			clearOptions();
 			options.add("Name: " + facade.getUserString(NAME));
 			options.add("Email: " + facade.getUserString(EMAIL));
-			options.add("Phone: " + facade.getUserString(PHONE)); //doesn't get the phone number for some reason?
+			options.add("Phone: " + facade.getUserString(PHONE));
 			options.add("Password: " + facade.getUserString(PASSWORD));
-			options.add("Total Number of Sessions Signed Up for: " + facade.getGuardianInt(SESS_NUM));
-			options.add("Price for your children(s)' sessions: $" + facade.getGuardianDouble(PRICE));
+			//options.add("Total Number of Sessions Signed Up for: " + facade.getGuardianInt(SESS_NUM));
+			//options.add("Price for your children(s)' sessions: $" + facade.getGuardianDouble(PRICE));
 			options.add("Camper(s) Profile");	
 			options.add("Return");
 			options.add("Quit");
@@ -1454,6 +1454,7 @@ public class CampDriver {
 					}
 					break;
 				
+				/*
 				case 4:
 					System.out.println("There is no way to edit this");
 					in.nextLine();
@@ -1463,8 +1464,9 @@ public class CampDriver {
 					System.out.println("There is no way to edit this");
 					in.nextLine();
 					break;
+				*/
 
-				case 6:
+				case 4:
 					displayCamperList(GUARDIAN);
 					break;
 			}
@@ -1551,7 +1553,7 @@ public class CampDriver {
 				continue;
 			}
 
-			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Camper
+			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Camper				
 				facade.updateCamper(classFrom, choice);
 				displayCamperProfile();
 				continue;
