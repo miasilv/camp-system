@@ -2,7 +2,7 @@
     {
         "id": "77dfed2d-14d4-4ee9-a926-700153221541",
         "name" : "bobby smith",
-        "birthday": "10/08/14",
+        "birthday": "10/08/2014",
         "medications": [{
                         "type": "advil",
                         "dose": "one pill",
@@ -22,12 +22,13 @@
                                 "eaddress": "12 Millburn Avenue, 23888, Camden, South Carolina",
                                 "eemail": "macksm8@outlook.com",
                                 "erelationship": "Neighbor"
-                            }]
+                            }],
+        "sessions": ["splash week"]
     },
     {
         "id": "dd0df3f4-db7a-465e-8541-41865911d890",
         "name" : "mille smith",
-        "birthday": "2/14/17",
+        "birthday": "2/14/2017",
         "age": 5,
         "medications": [],
         "allergies": ["pollen", "pet dander", "peaches"],
@@ -46,12 +47,13 @@
                                 "eaddress": "23 Eagle Point, 28990, Charleston, South Carolina",
                                 "eemail": "johnvandam@gmail.com",
                                 "erelationship": "Family Friend"
-                            }]
+                            }],
+        "sessions": ["splash week","outdoorsy"]
     },
     {
         "id":"6fca9504-e805-411f-a7b0-3d51fb8b07fa",
         "name" : "ashley bahr",
-        "birthday": "5/24/17",
+        "birthday": "5/24/2017",
         "age": 5,
         "medications": [{
                         "type": "amoxicillian",
@@ -67,6 +69,7 @@
                                 "eaddress": "234 Rock Point Rd, 26789, Fort Mill, South Carolina",
                                 "eemail": "trinab@yahoo.com",
                                 "erelationship": "Family Friend"
-                            }]
+                            }],
+        "sessions": ["outdoorsy"]
     }
 ]

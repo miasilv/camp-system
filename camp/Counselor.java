@@ -2,9 +2,13 @@ package camp;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+//import java.util.Map;
 import java.util.UUID;
 
 public class Counselor extends User {
@@ -12,6 +16,10 @@ public class Counselor extends User {
     private HashMap<String, Contact> emergencyContacts;
     private Date birthday;
     private ArrayList<String> allergies;
+    private HashMap<Session, Cabin> cabinHash;
+    private ArrayList<String> sessionThemes;
+
+    // ----------------------------------CONSTRUCTORS-------------------------------------------------------------
 
     /**
      * Constructor for the counselor class
@@ -23,6 +31,7 @@ public class Counselor extends User {
      */
     public Counselor(String name, String email, String password, String phoneNumber) {
         super(name, email, password, phoneNumber);
+        this.cabinHash = new HashMap<Session, Cabin>();
     }
 
     /**
@@ -37,15 +46,25 @@ public class Counselor extends User {
      * @param bio Biography of the counselor
      * @param cabins Cabins of the counselor
      */
-    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies) {
+    public Counselor(UUID id, String name, String email, String password, String phoneNumber, String bio, ArrayList<String> relationships, ArrayList<Contact> contacts, Date birthday, ArrayList<String> allergies, ArrayList<String> sessionThemes) {
         super(name, email, password, phoneNumber);
         this.birthday = birthday;
         this.bio = bio;
         this.id = id;
         this.allergies = allergies;
         this.emergencyContacts = createEmergencyContacts(relationships, contacts);
+        this.cabinHash = new HashMap<Session, Cabin>();
+        this.sessionThemes = sessionThemes;
     }
 
+    // ----------------------------------ACCESSORS-------------------------------------------------------------
+
+    /**
+     * written by natalie
+     * @param relationships the key values in the hash
+     * @param contacts the contact information for those key values
+     * @return the hashmap of emergency contacts
+     */
     public static HashMap<String, Contact> createEmergencyContacts(ArrayList<String> relationships, ArrayList<Contact> contacts) {
         HashMap<String, Contact> emergencyContacts = new HashMap<String, Contact>();
         for (int i=0; i<contacts.size(); i++) {
@@ -73,9 +92,15 @@ public class Counselor extends User {
     public UUID getID() {
         return id;
     }
+
+    /**
+     * written by natalie
+     * @return a string representation 
+     */
     public String getCounselorID(){
         return getID().toString();
     }
+
     public String getBio() {
         return bio;
     }
@@ -84,12 +109,53 @@ public class Counselor extends User {
         return emergencyContacts;
     }
 
+    public String getEmergencyContactsStr() {
+        String writtenSchedule = "";
+        for (String keyValue  : emergencyContacts.keySet()) {
+            writtenSchedule += keyValue + emergencyContacts.get(keyValue) + "\n";
+        }
+        return writtenSchedule + "\n";
+    }
+
     public Date getBirthday() {
         return birthday;
     }
 
+    /**
+     * written by natalie
+     * @return the birthday in string format
+     */
+    public String getBirthdayStr() {
+        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");  
+        return dateFormat.format(birthday);
+    }
+
     public ArrayList<String> getAllergies() {
         return allergies;
+    }
+
+    /**
+     * written by natalie
+     * @return the allergies in string format
+     */
+    public String getAllergiesStr(){
+        return allergies.toString();
+    }
+
+    /**
+     * written by natalie
+     * @return the array list of themes for the camper
+     */
+    public ArrayList<String> getSessionThemes(){
+        return sessionThemes;
+    }
+
+    /**
+     * written by natalie
+     * @return to string of session themes 
+     */
+    public String getSessionThemesStr(){
+        return sessionThemes.toString();
     }
 
     public boolean setName(String name) {
@@ -113,17 +179,10 @@ public class Counselor extends User {
     }
 
     /**
-     * Method to sign the waiver for the counselor
-     */
-    public void SignWaiver() {
-
-    }
-
-    /**
      * Method to add the bio of the counselor
      */
-    public void addBio() {
-
+    public void addBio(String bio) {
+        this.bio = bio;
     }
 
     /**
@@ -131,7 +190,7 @@ public class Counselor extends User {
      * @param allergy Allergy to take care of
      */
     public void addAllergies(String allergy) {
-
+        allergies.add(allergy);
     }
 
     /**
@@ -139,7 +198,7 @@ public class Counselor extends User {
      * @param allergy Allergy to remove
      */
     public void removeAllergy(String allergy) {
-
+        allergies.remove(allergy);
     }
 
     /**
@@ -148,7 +207,7 @@ public class Counselor extends User {
      * @param allergy Allergy to replace with
      */
     public void editAllergy(int index, String allergy) {
-
+        allergies.set(index, allergy);
     }
 
     public boolean setBio(String change) {
@@ -160,8 +219,13 @@ public class Counselor extends User {
      * Returns a string representation of the counselor
      */
     public String toString() {
-        DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy"); 
-        return id + " " + name + " " + email + " " + password + " " + phoneNumber + " " + bio + " " + emergencyContacts + " " + dateFormat.format(birthday) + " " + allergies;
+        return name + ": " + bio;
+        /*
+         * DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+         * return camperID + " " + name + " " + dateFormat.format(birthday) + " " +
+         * medications + " " + allergies + " " + sessions + " " + notes + " " +
+         * emergencyContacts;
+         */
     }
 
     public boolean setBirthday(Date change) {
@@ -169,10 +233,98 @@ public class Counselor extends User {
         return true;
     }
 
+
     //**********************************PLEASE DO THIS********************************************************************
     public ArrayList<Cabin> getCabins() {
         return null;
     }
 
-    
+    /**
+     * Method to calculate and return the age of the counselor
+     * @return The age of the counselor (int)
+     */
+    public int getAge() {
+        // convert Date birthday to localDate birthday
+        LocalDate localBirthday = convertToLocalDateViaInstant(birthday);
+        // convert to get age with local dates
+        LocalDate curDate = LocalDate.now();
+        return calculateAge(localBirthday, curDate);
+    }
+
+    /**
+     * Method to convert Date object to LocalDate object
+     * @param dateToConvert Date object to convert
+     * @return LocalDate object
+     */
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    /**
+     * Calculates the time in the period from one LocalDate to another LocalDate
+     * @param birthDate The LocalDate of a birthday
+     * @param todayDate The LocalDate of today
+     * @return The time in the period from
+     */
+    public int calculateAge(LocalDate birthDate, LocalDate todayDate) {
+        if ((birthDate != null) && (todayDate != null)) {
+            return Period.between(birthDate, todayDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    public void addCounselorCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
+    }
+
+    public HashMap<Session, Cabin> getCounselorCabinHash() {
+        return cabinHash;
+    }
+
+    public void removeCounselorCabinHash(Session session) {
+        cabinHash.remove(session);
+    }
+
+    public void updateCounselorCabinHash(Session session, Cabin cabin) {
+        cabinHash.put(session, cabin);
+    }
+
+    public boolean removeAllergy(int index) {
+        allergies.remove(index);
+        return true;
+    }
+
+    public boolean addAllergy(String allergy) {
+        allergies.add(allergy);
+        return true;
+    }
+
+    public boolean removeEmergencyContact(String relationship) {
+        emergencyContacts.remove(relationship);
+        return true;
+    }
+
+    public boolean addEmergencyContact(String relationship, String name2, String email, String phone, String address) {
+        Contact nContact = new Contact(name2, phone, address, email);
+        emergencyContacts.put(relationship, nContact);
+        return true;
+    }
+
+    public boolean removeSession(String theme) {
+        for (Session s : cabinHash.keySet()) {
+            if (theme.equals(s.getTheme())) {
+                cabinHash.remove(s);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addSession(Session session, Cabin cabin) {
+        updateCounselorCabinHash(session, cabin);
+        return true;
+    }
 }
