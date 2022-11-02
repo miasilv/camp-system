@@ -8,11 +8,10 @@ import java.util.UUID;
  * @author sara
  */
 public class Cabin {
-    private static Counselor counselorBlank = new Counselor("", "", "", "");
 
     private UUID cabinID;
     private ArrayList<Camper> campers;
-    private Counselor counselor;
+    private ArrayList<Counselor> counselors;
     private HashMap<Day, Schedule> schedule;
     private double maxAge;
     private double minAge;
@@ -27,7 +26,7 @@ public class Cabin {
         this.maxAge = maxAge;
         this.cabinID = UUID.randomUUID();
         campers = new ArrayList<Camper>();
-        this.counselor = counselorBlank;
+        this.counselors = new ArrayList<Counselor>();
         this.daysStr = constructDaysStr();
         this.days = constructDays();
         
@@ -39,9 +38,9 @@ public class Cabin {
     }
 
     //overloaded constructor for dataloader
-    public Cabin(ArrayList<Camper> campers, Counselor counselor, double maxAge, double minAge, ArrayList<Schedule> schedules, UUID id){
+    public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, double maxAge, double minAge, ArrayList<Schedule> schedules, UUID id){
         this.campers = campers;
-        this.counselor = counselor;
+        this.counselors = counselors;
 
         this.maxAge= maxAge;
         this.minAge = minAge; 
@@ -166,19 +165,24 @@ public class Cabin {
         this.cabinID = cabinID;
     }
 
-    public Counselor getCounselor(){
-        return counselor;
+    public ArrayList<Counselor> getCounselors(){
+        return counselors;
+    }
+    public Counselor getCounselor(int index){
+        return counselors.get(index);
     }
     public boolean setCounselor(Counselor counselor){
-        this.counselor = counselor;
+        counselors.add(counselor);
         return true;
      }
+    public void addCounselor(Counselor counselor){
+        counselors.add(counselor);
+    }
+    public void removeCounselor(Counselor counselor) {
+        counselors.remove(counselor);
+    }
 
-     public void removeCounselor(Counselor counselor) {
-        counselor = counselorBlank;
-     }
-
-     public ArrayList<Camper> getCampers(){
+    public ArrayList<Camper> getCampers(){
         return campers;
     }
     public void setCampers(ArrayList<Camper> campers){
