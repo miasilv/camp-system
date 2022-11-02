@@ -175,6 +175,10 @@ public class Cabin {
         return false;
      }
 
+     public void removeCounselor(Counselor counselor) {
+        counselor = null;
+     }
+
      public ArrayList<Camper> getCampers(){
         return campers;
     }

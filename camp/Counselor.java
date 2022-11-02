@@ -313,14 +313,8 @@ public class Counselor extends User {
         return true;
     }
 
-    public boolean removeSession(String theme) {
-        for (Session s : cabinHash.keySet()) {
-            if (theme.equals(s.getTheme())) {
-                cabinHash.remove(s);
-                return true;
-            }
-        }
-        return false;
+    public boolean removeSession(Session session) {
+        return cabinHash.remove(session, cabinHash.get(session));
     }
 
     public boolean addSession(Session session, Cabin cabin) {

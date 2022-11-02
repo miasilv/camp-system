@@ -30,6 +30,8 @@ public class CampFacade {
     private HashMap<String, Contact> currentContactHash;
     private HashMap<Session, Cabin> currentCabinHash;
     private ArrayList<String> currentCounselorAllergyList;
+    private ArrayList<Session> currentCounselorSessions;
+    private ArrayList<Cabin> currentCounselorCabins;
     private Guardian currentGuardian;
     private ArrayList<Camper> currentGuardianCamperList;
     private Camper currentCamper;
@@ -706,20 +708,27 @@ public class CampFacade {
     /**
      * updates all the current classes/arraylists/hashmaps to be the ones inside counselor
      */
-    public void updateCounselor() {
+    public boolean updateCounselor() {
         this.currentCounselor = (Counselor)currentUser;
         currentCounselorAllergyList = currentCounselor.getAllergies();
         currentContactHash = currentCounselor.getEmergencyContacts();
         currentCabinHash = currentCounselor.getCounselorCabinHash();
 
-        for(int i = 0; i < currentCounselor.getSessionThemes().size(); i++) {
-            currentSession = camp.getSession(currentCounselor.getSessionThemes().get(i));
-            currentCabin = currentSession.findCounselor(currentCounselor);
-            if(currentCabin == null) {
-                currentSession.placeCounselor(currentCounselor);
+        currentCounselorSessions = camp.getCounselorsSessions(currentCounselor);
+        currentCounselorCabins = new ArrayList<>();
+        for(int i = 0; i < currentCounselorSessions.size(); i++) {
+            Cabin cabin = currentCounselorSessions.get(i).findCounselor(currentCounselor);
+            if(!(cabin == null)) {
+                currentCounselorCabins.add(cabin);
             }
-            currentCounselor.updateCounselorCabinHash(currentSession, currentCabin);
+            else {
+                currentCounselorSessions.remove(i);
+            }
         }
+        for(int i = 0; i < currentCounselorSessions.size(); i++) {
+            currentCounselor.updateCounselorCabinHash(currentCounselorSessions.get(i), currentCounselorCabins.get(i));
+        }
+        return true;
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------
@@ -832,6 +841,14 @@ public class CampFacade {
     }
 
     /**
+     * Returns the array list of all the sessions the counselor is in
+     * @return an array list of sessions
+     */
+    public ArrayList<Session> getCounselorSessions() {
+        return currentCounselorSessions;
+    }
+
+    /**
      * Gets the current session,cabin hash (which should be in a counselor object)
      * @return a hash map of cabins by session
      */
@@ -844,8 +861,9 @@ public class CampFacade {
      * @param session the session to be removed
      * @return true if successful, false if not
      */
-    public boolean removeCounselorSession(String theme) {
-        return currentCounselor.removeSession(theme);
+    public boolean removeCounselorSession(int index) {
+        Session session = this.currentCounselorSessions.get(index);
+        return(currentCounselor.removeSession(session) && currentSession.removeCounselor(currentCounselor));
     }
 
     /**
@@ -853,16 +871,14 @@ public class CampFacade {
      * @param session the session being added to the camper
      * @return true if successful, false if not successful
      */
-    public boolean addCounselorSession(String theme) {
-        Session session = camp.getSession(theme);
-        Cabin cabin;
-        for(int i = 0; i < currentSessionCabinList.size(); i++) {
-            if(currentSessionCabinList.get(i).hasCounselor()) {
-                cabin = currentSessionCabinList.get(i);
-                return currentCounselor.addSession(session, cabin);
-            }
+    public boolean addCounselorSession(int index) {
+        Session session = camp.getSession(index);
+        System.out.println(session);
+        Cabin cabin = session.placeCounselor(currentCounselor);
+        if(cabin == null) {
+            return false;
         }
-        return false;
+        return (currentCounselor.addSession(session, cabin) && currentSession.placeCounselor(currentCounselor) != null);
     }
 
 

@@ -282,4 +282,11 @@ public class Session {
         }
         return true;
     }
+    public boolean removeCounselor(Counselor counselor) {
+        for(int i=0; i<cabins.size(); i++){
+            if(cabins.get(i).hasCounselor(counselor))
+                cabins.get(i).removeCounselor(counselor);
+        }
+        return true;
+    }
 }

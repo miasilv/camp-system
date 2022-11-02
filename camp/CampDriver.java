@@ -1858,17 +1858,20 @@ public class CampDriver {
 
 				System.out.println("Which Session do you want to delete?");
 				int num = getNum();
-				String theme = "";
-				if(0 > num || num >= facade.getCamperSessions().size()) {
-					System.out.println("Not a valid number");
-					in.nextLine();
-				}
-				else if(user instanceof Guardian && !facade.removeCamperSession(num)) {
+				if(user instanceof Guardian && !facade.removeCamperSession(num)) {
+					if(0 > num || num >= facade.getCamperSessions().size()) {
+						System.out.println("Not a valid number");
+						in.nextLine();
+					}
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
-				}
-				else if(user instanceof Counselor && !facade.removeCounselorSession(theme)) {
+				}		
+				else if(user instanceof Counselor && !facade.removeCounselorSession(num)) {
+					if(0 > num || num >= facade.getCounselorSessions().size()) {
+						System.out.println("Not a valid number");
+						in.nextLine();
+					}
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
@@ -1891,7 +1894,6 @@ public class CampDriver {
 				}
 				System.out.println("Enter the number of the session you would like to add: ");
 				int num = getNum();
-				String theme = "";
 				if(0 > num || num >= facade.getCampSessions().size()) {
 					System.out.println("Not a valid number");
 					in.nextLine();
@@ -1901,7 +1903,7 @@ public class CampDriver {
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && !facade.addCounselorSession(theme)) {
+				if(user instanceof Counselor && !facade.addCounselorSession(num)) {
 					System.out.println("Something went wrong, unable to remove");
 					in.nextLine();
 					continue;
