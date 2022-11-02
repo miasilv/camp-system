@@ -343,7 +343,7 @@
                 "day": "Sunday"
             }
         ],
-        "counselors": ["c3f9d64b-0564-425f-93bf-ddfc96b47767"],
+        "counselors": [],
         "min age": 60.0,
         "campers": [],
         "max age": 65.0,
