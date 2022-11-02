@@ -52,5 +52,13 @@
         "theme": "spooky skeletons",
         "id": "84ed7f7f-7b47-4989-9a35-3ae237414b38",
         "cabins": []
+    },
+    {
+        "start date": "06\/07\/2023",
+        "sessionDescription": "in a galaxy far far away...",
+        "end date": "06\/14\/2023",
+        "theme": "star wars",
+        "id": "488ff885-fee6-4a8d-a9c4-1c14ae539a44",
+        "cabins": []
     }
 ]
