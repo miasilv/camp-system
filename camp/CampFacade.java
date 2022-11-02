@@ -123,13 +123,14 @@ public class CampFacade {
     }
 
     public void save() {
-        DataWriter.saveCabin();
-        DataWriter.saveCamp();
+        
         DataWriter.saveCampers();
         DataWriter.saveCounselors();
+        DataWriter.saveCabin();
         DataWriter.saveDirectors();
         DataWriter.saveGuardians();
         DataWriter.saveSessions();
+        DataWriter.saveCamp();
     }
 
     // ***************************** CAMP CLASS ***********************************************
@@ -959,6 +960,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addGuardianCamper(String name, Date birthday) {
+        CamperList.getInstance().getCampers().add(new Camper(name, birthday));
         return currentGuardian.addCamper(new Camper(name, birthday));
     }
 

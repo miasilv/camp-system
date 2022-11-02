@@ -283,7 +283,7 @@ public class DataLoader extends DataConstants {
 			for(int i=0; i < campersJSON.size(); i++) {
 				JSONObject camperJSON = (JSONObject)campersJSON.get(i);
 				String name = (String)camperJSON.get(CAMPER_NAME);
-                Date birthday = new SimpleDateFormat("MM/dd/yyyy").parse((String)camperJSON.get(CAMPER_BIRTHDAY));
+                Date birthday = new SimpleDateFormat("mm/dd/yyyy").parse((String)camperJSON.get(CAMPER_BIRTHDAY));
                 UUID id = UUID.fromString((String)camperJSON.get(CAMPER_UUID));
 
                 JSONArray allergiesJSON = (JSONArray)camperJSON.get(CAMPER_ALLERGIES);
