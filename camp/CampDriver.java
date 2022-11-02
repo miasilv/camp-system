@@ -894,7 +894,7 @@ public class CampDriver {
 					}
 					
 					clear();
-					if(facade.getCabinCounselor().size() == 0) {
+					if(facade.getCabinCounselor().isEmpty()) {
 						System.out.println("Would you like to add a cousnelor? (y/n)");
 					}
 					else {
