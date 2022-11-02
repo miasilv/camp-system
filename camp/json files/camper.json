@@ -9,10 +9,6 @@
         "sessions": [
             "splash week"
         ],
-        "notes": [
-            "bobby is so nice",
-            "bobby punched another camper"
-        ],
         "medications": [
             {
                 "dose": "one pill",
@@ -48,10 +44,6 @@
             "splash week",
             "outdoorsy"
         ],
-        "notes": [
-            "mille is so sweet",
-            "mille hurt her leg at kayaking today"
-        ],
         "medications": [],
         "name": "mille smith",
         "id": "dd0df3f4-db7a-465e-8541-41865911d890",
@@ -77,10 +69,6 @@
         "allergies": [],
         "sessions": [
             "outdoorsy"
-        ],
-        "notes": [
-            "ashley is crazy",
-            "ashley did really well at ziplining today"
         ],
         "medications": [
             {

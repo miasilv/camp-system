@@ -223,12 +223,6 @@ public class DataWriter extends DataConstants {
         }
         camperDetails.put(CAMPER_MEDICATIONS, medicationsArray);
 
-        JSONArray notesArray = new JSONArray();
-        for(int i =0; i< camper.getNotes().size(); i++){
-            notesArray.add(camper.getNotes().get(i));
-        }
-        
-        camperDetails.put(CAMPER_NOTES, notesArray);
         camperDetails.put(CAMPER_UUID, camper.getCamperID());
         camperDetails.put(CAMPER_BIRTHDAY, camper.getBirthdayStr());
         

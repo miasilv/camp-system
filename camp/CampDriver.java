@@ -824,10 +824,10 @@ public class CampDriver {
 			clearOptions();
 			options.add("Miumum age: " + facade.getCabinInt(MIN_AGE));
 			options.add("Maximum age: " + facade.getCabinInt(MAX_AGE));
-			if(facade.getCabinCounselor().isEmpty()) {
-				options.add("Counselor: no cousnelor");
+			if(facade.getCabinCounselor().isEmpty()){
+				options.add("Counselor: no counselor");
 			}
-			else {
+			else{
 				options.add("Counselor: " + facade.getCabinCounselor().get(0));
 			}
 			options.add("Campers");

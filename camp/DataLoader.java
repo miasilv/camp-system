@@ -289,19 +289,12 @@ public class DataLoader extends DataConstants {
                 JSONArray allergiesJSON = (JSONArray)camperJSON.get(CAMPER_ALLERGIES);
                 JSONArray emergencycontactsJSON = (JSONArray)camperJSON.get(CAMPER_EMERGENCY_CONTACTS);
                 JSONArray medicationsJSON = (JSONArray)camperJSON.get(CAMPER_MEDICATIONS);
-                JSONArray notesJSON = (JSONArray)camperJSON.get(CAMPER_NOTES);
                 JSONArray sessionsJSON= (JSONArray)camperJSON.get(CAMPER_SESSIONS);
                 
                 //make arraylist of allergies
                 ArrayList<String> allergies = new ArrayList<String>();
                 for(int j = 0; j < allergiesJSON.size(); j++){
                     allergies.add((String)allergiesJSON.get(j));
-                }
-
-                //make arraylist of notes
-                ArrayList<String> notes = new ArrayList<String>();
-                for(int j = 0; j < notesJSON.size(); j++){
-                    notes.add((String)notesJSON.get(j));
                 }
 
                 //make arraylist of session themes
@@ -338,7 +331,7 @@ public class DataLoader extends DataConstants {
                     medications.add(medication);
                 }
 				
-				campers.add(new Camper(id, name, birthday, medications, allergies, notes, relationships, emergencies, sessions));
+				campers.add(new Camper(id, name, birthday, medications, allergies, relationships, emergencies, sessions));
 			}
 			
 			return campers;

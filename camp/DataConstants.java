@@ -39,7 +39,6 @@ public abstract class DataConstants {
 	protected static final String CAMPER_MEDICATIONS = "medications";
     protected static final String CAMPER_ALLERGIES = "allergies";
     protected static final String CAMPER_SESSIONS = "sessions";
-    protected static final String CAMPER_NOTES = "notes";
     protected static final String CAMPER_EMERGENCY_CONTACTS = "emergency contacts";
 
     //counselor data constants

@@ -20,5 +20,24 @@
             "a1876dff-63b7-448b-a19a-0ca4bb046c3b",
             "9755e52b-bcb6-41e3-8f69-b840c866de19"
         ]
+    },
+    {
+        "start date": "07\/25\/2024",
+        "sessionDescription": "kill me now",
+        "end date": "07\/27\/2024",
+        "theme": "fire",
+        "id": "0f2e9378-0a75-4dbf-bb9c-137d6eb61b98",
+        "cabins": [
+            "a9cabab8-1670-479b-8281-edf8b3078359",
+            "2dbc093d-f200-448b-aa7d-88e5dbba1868"
+        ]
+    },
+    {
+        "start date": "06\/17\/2048",
+        "sessionDescription": "im floating",
+        "end date": "06\/18\/2048",
+        "theme": "water",
+        "id": "26ad0c3e-61b6-4fc7-a0b4-ed3bc98524c1",
+        "cabins": []
     }
 ]

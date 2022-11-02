@@ -680,7 +680,7 @@ public class CampFacade {
      * @return an array list of all counselors
      */
     public ArrayList<Counselor> getAllCounselors() {
-        return userList.getCounselors();
+        return counselorList.getCounselors();
     }
 
     // ------------------------ INSTANCE VARIALBES --------------------------

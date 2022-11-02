@@ -22,30 +22,22 @@ public class Contact {
     
     }
 
-    //i could java doc these but they're more or less self-explanatory
+    //---------------------------ACCESSORS-----------------------------------
     
     public String getName() {
         return name;
     }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public String getAddress() {
         return address;
     }
-
-    public String toString() {
-        return name + "\n" + "\t" +
-        "Email: " + email + "\n" + "\t" +
-        "Phone Number: " + phoneNumber + "\n" + "\t" +
-        "Address: " + address;
-    }
-
     public String getEmail() {
         return email;
     }
+
+    // ---------------------------MUTATORS-----------------------------------
 
     public boolean setName(String change) {
         this.name = change;
@@ -66,4 +58,14 @@ public class Contact {
         this.address = change;
         return true;
     }
+
+    // ---------------------------MISC-----------------------------------
+
+    public String toString() {
+        return name + "\n" + "\t" +
+                "Email: " + email + "\n" + "\t" +
+                "Phone Number: " + phoneNumber + "\n" + "\t" +
+                "Address: " + address;
+    }
+
 }
