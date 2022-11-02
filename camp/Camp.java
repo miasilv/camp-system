@@ -151,7 +151,11 @@ public class Camp {
      */
     public boolean removeActivity(int index) {
         activities.remove(index);
-        return false;
+        return true;
+    }
+    public boolean editActivity(int index, String change){
+        activities.set(index, change);
+        return true;
     }
 
     /**
