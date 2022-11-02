@@ -478,11 +478,19 @@ public class CampFacade {
      * updates the cabin object from a session-cabin hash
      * @param key the session theme for the cabin you're looking for
      */ 
-    public void updateCabinHash(String theme) {
+    public boolean updateCabinHash(String theme) {
+        if(camp.getSession(theme) == null) {
+            return false;
+        }
         Session session = camp.getSession(theme);
         currentCabin = currentCabinHash.get(session);
+        return true;
     }
     
+    /**
+     * Returns all cabins in the camplist
+     * @return an array list of cabins
+     */
     public ArrayList<Cabin> getAllCabins() {
         return CabinList.getInstance().getCabins();
     }

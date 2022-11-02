@@ -1184,7 +1184,7 @@ public class CampDriver {
 					System.out.println("Old " + NAME + ": " + facade.getUserString(NAME));
 					String change = setStringInformation(NAME);
 					if(!(change == null)) {
-						if(!facade.setCampString(NAME, change)) {
+						if(!facade.setUserString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 							in.nextLine();
 						}
@@ -1277,7 +1277,7 @@ public class CampDriver {
 					System.out.println("Old " + NAME + ": " + facade.getUserString(NAME));
 					String change = setStringInformation(NAME);
 					if(!(change == null)) {
-						if(!facade.setCampString(NAME, change)) {
+						if(!facade.setUserString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 							in.nextLine();
 						}
@@ -1400,7 +1400,7 @@ public class CampDriver {
 					System.out.println("Old " + NAME + ": " + facade.getUserString(NAME));
 					String change = setStringInformation(NAME);
 					if(!(change == null)) {
-						if(!facade.setCampString(NAME, change)) {
+						if(!facade.setUserString(NAME, change)) {
 							System.out.println("Sorry, something went wrong, unable to edit");
 							in.nextLine();
 						}
