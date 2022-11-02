@@ -324,7 +324,7 @@ public class CampDriver {
 
 				System.out.println("Which activity do you want to delete?");
 				int num = getNum();
-				if(num >= 0 || num <= 6) {
+				if(0 >= num && num <= 6) {
 					System.out.println("These activities cannot be deleted.");
 					in.nextLine();
 				}
@@ -361,7 +361,7 @@ public class CampDriver {
 					continue;
 				}
 
-				System.out.print(facade.getCampActivities().get(choice));
+				System.out.println(facade.getCampActivities().get(choice));
 				facade.getCampActivities().set(choice, setStringInformation(ACTIVITIES));
 				continue;
         	}
