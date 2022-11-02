@@ -1739,13 +1739,6 @@ public class CampDriver {
 		while(true) {
 			//updating options----------------------------------------
 			clearOptions();
-			/*
-			 * Object[] key = cabinHash.keySet().toArray();
-			 * for(int i = 0; i < cabinHash.size(); i++) {
-			 * options.add(key[i].toString() + ": " + cabinHash.get(key[i].toString()));
-			 * }
-			 */
-			
 			for (Map.Entry<Session, Cabin> entry : cabinHash.entrySet()) {
 				Session s = entry.getKey();
 				Cabin c = entry.getValue();
