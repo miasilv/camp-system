@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author Mia Silver
@@ -1159,6 +1161,15 @@ public class CampDriver {
 					break;
 			}
 		}		
+	}
+	/**
+	 * filewriter
+	 */
+	public static void saveToText(String str) throws IOException
+	{
+		PrintWriter out = new PrintWriter("./camp/textfiles/schedule.txt");
+		out.println(str);
+		out.close();
 	}
 
 	/**
