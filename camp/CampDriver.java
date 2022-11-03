@@ -1014,7 +1014,6 @@ public class CampDriver {
 					HashMap<Day, Schedule> schedule = facade.getCabinScheduleHash();
 					String workingString = "";
 					for (Day keyValue  : schedule.keySet()) {
-						System.out.println(keyValue);
 						workingString += keyValue.toString() + "\n"; 
 						workingString += schedule.get(keyValue).toString() + "\n";
 				}
@@ -1523,6 +1522,7 @@ public class CampDriver {
 			}
 			options.add("Add a new Camper");
 			options.add("Remove an existing Camper");
+			options.add("Print Campers");
 			options.add("Return");
 			options.add("Quit");
 
@@ -1540,11 +1540,16 @@ public class CampDriver {
 				facade.save();
 				System.exit(0);
 			}
+
 			if(choice == options.size() - 2) { //the user chose return
 				return;
 			}
 
-			if(choice == options.size() - 3) { //the user wants to remove a Camper
+			if(choice == options.size() - 3){
+				saveToText(facade.getCabinCamperList().toString(), "campers.txt");
+			}
+
+			if(choice == options.size() - 4) { //the user wants to remove a Camper
 				if(!(user instanceof Guardian)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
@@ -1567,7 +1572,7 @@ public class CampDriver {
 				continue;
 			}
 
-			if(choice == options.size() -4) { //the user wants to add a Camper
+			if(choice == options.size() - 5) { //the user wants to add a Camper
 				if(!(user instanceof Guardian)) {
 					System.out.println("You do not have permission to edit this.");
 					in.nextLine();
@@ -1577,7 +1582,7 @@ public class CampDriver {
 				continue;
 			}
 
-			if(choice >= 0 && choice < options.size() - 4) { //the user wants to edit/view a pre-existing Camper				
+			if(choice >= 0 && choice < options.size() - 5) { //the user wants to edit/view a pre-existing Camper				
 				facade.updateCamper(classFrom, choice);
 				displayCamperProfile();
 				continue;

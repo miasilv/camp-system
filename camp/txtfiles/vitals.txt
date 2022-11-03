@@ -1,7 +1,9 @@
 Kix Gonzalez:
-	Allergies: pollen
-	EmergencyContacts:
-		Friend: 
+Allergies:
+	pollen,
+
+EmergencyContacts:
+	Friend: 
 	Trix Write
 	Email: trixxyyyy@gmail.com
 	Phone Number: 2334679900
@@ -10,8 +12,11 @@ Kix Gonzalez:
 
 
 Daisy Boo Davis:
-	Allergies: [sunflowers, pine nuts]
-	Emergency Contacts: father
+Allergies:
+	sunflowers,pine nuts,
+
+Emergency Contacts:
+father
 	neil davis
 	Email: ndavis@yahoo.com
 	Phone Number: 1234567890
@@ -27,85 +32,103 @@ pediatrician
 	Phone Number: 8034556767
 	Address: Palmetto Pediatrics
 
+Medications:
+	Type: zertec
+	Time: at breakfast
+	Dose: 5 ml
 
-	Medications:
-	[type: zertec
-dose: 5 ml
-time: at breakfast]
 
 william ross:
-	Allergies: [pollen, peanuts]
-	Emergency Contacts: Neighbor
+Allergies:
+	pollen,peanuts,
+
+Emergency Contacts:
+Neighbor
 	Brock Smith
 	Email: brock@outlook.com
 	Phone Number: 3897751511
 	Address: 12 Millburn Avenue, 23888, Camden, South Carolina
 
+Medications:
+	Type: advil
+	Time: whenever he has a headache
+	Dose: one pill
 
-	Medications:
-	[type: advil
-dose: one pill
-time: whenever he has a headache]
 
 clara yacobgn:
-	Allergies: [peanuts]
-	Emergency Contacts: Neighbor
+Allergies:
+	peanuts,
+
+Emergency Contacts:
+Neighbor
 	Noah Wilson
 	Email: noahwilson@gmail.com
 	Phone Number: 3449002333
 	Address: 12 Wright Rd, 23888, Camden, South Carolina
 
+Medications:
+	Type: advil
+	Time: whenever he has a headache
+	Dose: one pill
 
-	Medications:
-	[type: advil
-dose: one pill
-time: whenever he has a headache]
 
 josphine anchor:
-	Allergies: [pollen]
-	Emergency Contacts: Pediatrician
+Allergies:
+	pollen,
+
+Emergency Contacts:
+Pediatrician
 	Rose Wilson
 	Email: rosewilson@yahoo.com
 	Phone Number: 3224889922
 	Address: 240 Augustine Rd, 23888, Camden, South Carolina
 
+Medications:
+	Type: albuterol
+	Time: during an athsma attack
+	Dose: two pumps of inhaler
 
-	Medications:
-	[type: albuterol
-dose: two pumps of inhaler
-time: during an athsma attack]
 
 justin anchor:
-	Allergies: []
-	Emergency Contacts: Pediatrician
+Allergies:
+	
+
+Emergency Contacts:
+Pediatrician
 	Rose Wilson
 	Email: rosewilson@yahoo.com
 	Phone Number: 3224889922
 	Address: 240 Augustine Rd, 23888, Camden, South Carolina
 
+Medications:
 
-	Medications:
-	[]
 
 bobby smith:
-	Allergies: [pollen, peanuts, strawberries]
-	Emergency Contacts: Neighbor
+Allergies:
+	pollen,peanuts,strawberries,
+
+Emergency Contacts:
+Neighbor
 	Mackenzie Smith
 	Email: macksm8@outlook.com
 	Phone Number: 3897751511
 	Address: 12 Millburn Avenue, 23888, Camden, South Carolina
 
+Medications:
+	Type: advil
+	Time: whenever he has a headache
+	Dose: one pill
+	Type: albuterol
+	Time: during an athsma attack
+	Dose: two pumps of inhaler
 
-	Medications:
-	[type: advil
-dose: one pill
-time: whenever he has a headache, type: albuterol
-dose: two pumps of inhaler
-time: during an athsma attack]
 
 mille smith:
-	Allergies: [pollen, pet dander, peaches]
-	Emergency Contacts: Neighbor
+Allergies:
+	pollen,pet dander,peaches,
+
+Emergency Contacts:
+Neighbor
 	Rebecca Wringler
 	Email: rew@hotmail.com
 	Phone Number: 2221123345
@@ -116,20 +139,21 @@ Family Friend
 	Phone Number: 9882345568
 	Address: 23 Eagle Point, 28990, Charleston, South Carolina
 
+Medications:
 
-	Medications:
-	[]
 
 ashley bahr:
-	Allergies: []
-	Emergency Contacts: Family Friend
+Allergies:
+	
+
+Emergency Contacts:
+Family Friend
 	Trina Beckley
 	Email: trinab@yahoo.com
 	Phone Number: 3225678899
 	Address: 234 Rock Point Rd, 26789, Fort Mill, South Carolina
 
-
-	Medications:
-	[type: amoxicillian
-dose: 20 to 40 milligrams (mg) per kilogram (kg) of body weight per day
-time: divided and given every 8 hours]
+Medications:
+	Type: amoxicillian
+	Time: divided and given every 8 hours
+	Dose: 20 to 40 milligrams (mg) per kilogram (kg) of body weight per day

@@ -1,91 +1,91 @@
-THURSDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Ziplining at the zipline track
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Singing at the mess hall
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Swimming in the lake
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
-
-
-MONDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Archery at the archery range
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Swimming in the lake
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Bracelet Making at the mess hall
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
-
-
 FRIDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Kayaking on the lake
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Ziplining at the zipline track
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Soccer on the field
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
-
-
-TUESDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Swimming in the lake
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Ziplining at the zipline track
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Archery at the archery range
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
-
-
-SUNDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Arts and Crafts at the craft building
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Gaga Ball at the Gaga Ball Pit
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Ziplining at the zipline track
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
-
-
-WEDNESDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Running on the field
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Swimming in the lake
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Painting at the Craft Building
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: singing at the mess hall
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: painting at the craft building
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: singing at the mess hall
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
 
 
 SATURDAY
-8:00: Wake Up
-9:00 - 9:45: Breakfast at the mess hall
-10:00 - 11:45: Gaga Ball at the Gaga Ball Pit
-12:00 - 12:45: Lunch at the mess hall
-1:00 - 2:45: Tie Dying at the craft building
-3:00 - 3:45: Snack/ Rest Time at cabin
-4:00 - 5:45: Swimming in the lake
-6:00 - 6:45: Dinner at the mess hall
-7:00 - 8:45: Campfire Songs at the firepit
-10:00: Lights Out
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: singing at the mess hall
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: archery at the archery range
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: ziplining at zipline track
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
+
+
+MONDAY
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: archery at the archery range
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: swimming in lake
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: gaga ball at the gaga ball pit
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
+
+
+TUESDAY
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: gaga ball at the gaga ball pit
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: ziplining at zipline track
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: kayaking in the lake
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
+
+
+WEDNESDAY
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: singing at the mess hall
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: ziplining at zipline track
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: archery at the archery range
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
+
+
+THURSDAY
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: running on the field
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: tie dying at the craft building
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: running on the field
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
+
+
+SUNDAY
+8:00: wake up
+9:00 - 9:45: breakfast at the mess hall
+10:00 - 11:45: painting at the craft building
+12:00 - 12:45: lunch at the mess hall
+1:00 - 2:45: gaga ball at the gaga ball pit
+3:00 - 3:45: snack/rest time at cabin
+4:00 - 5:45: swimming in lake
+6:00 - 6:45: dinner at the mess hall
+7:00 - 8:45: campfire songs at firepit
+10:00: lights out
 
 
