@@ -62,7 +62,7 @@ public class Contact {
     // ---------------------------MISC-----------------------------------
 
     public String toString() {
-        return name + "\n" + "\t" +
+        return "\n\t" + name + "\n" + "\t" +
                 "Email: " + email + "\n" + "\t" +
                 "Phone Number: " + phoneNumber + "\n" + "\t" +
                 "Address: " + address;
