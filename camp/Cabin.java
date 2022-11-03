@@ -269,11 +269,11 @@ public class Cabin {
     public String getVitals() {
         String str = "";
         if(counselors.size() == 1) {
-            str  = counselors.get(0).getName() + ":\n" + "\tAllergies: " + counselors.get(0).getAllergiesStr() + "\n\tEmergencyContacts:" + counselors.get(0).getEmergencyContactsStr();
+            str  = counselors.get(0).getName() + ":\n" + "\tAllergies: " + counselors.get(0).getAllergiesStr() + "\n\tEmergencyContacts:\n\t" + counselors.get(0).getEmergencyContactsStr();
         }
         for(int i = 0; i < campers.size(); i++) {
             Camper c = campers.get(i);
-            str += "\n" + c.getName() + ":\n" + "\tAllergies: " + c.getAllergiesStr() + "\n\tEmergencyContacts:" + c.getEmergencyContactsStr() + "\n\tMedications: " + c.getMedicationsStr();
+            str += "\n\n" + c.getName() + ":\n" + "\tAllergies: " + c.getAllergiesStr() + "\n\tEmergency Contacts: " + c.getEmergencyContactsStr() + "\n\tMedications:\n\t" + c.getMedicationsStr();
         }
         return str;
     }

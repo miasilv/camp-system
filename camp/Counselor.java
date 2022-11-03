@@ -111,7 +111,7 @@ public class Counselor extends User {
     public String getEmergencyContactsStr() {
         String writtenSchedule = "";
         for (String keyValue  : emergencyContacts.keySet()) {
-            writtenSchedule += keyValue + emergencyContacts.get(keyValue) + "\n";
+            writtenSchedule += "\t" + keyValue + ": " + emergencyContacts.get(keyValue) + "\n";
         }
         return writtenSchedule + "\n";
     }
@@ -138,7 +138,11 @@ public class Counselor extends User {
      * @return the allergies in string format
      */
     public String getAllergiesStr(){
-        return allergies.toString();
+        String workingString = "";
+        for(int i=0; i<allergies.size(); i++){
+            workingString += allergies.get(i);
+        }
+        return workingString;
     }
 
     /**
