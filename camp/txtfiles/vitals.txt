@@ -1,0 +1,7 @@
+John Messinger:
+	Allergies: [pollen, gluten]
+	EmergencyContacts:NeighborBethany Smoak
+	Email: bethsmoak@yahoo.com
+	Phone Number: 8034556888
+	Address: 104 Stone Rock Circle, 24332, Florence, South Carolina
+

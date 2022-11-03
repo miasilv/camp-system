@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @author Mia Silver
@@ -19,7 +19,7 @@ public class CampDriver {
 	private ArrayList<String> options;
 	private CampFacade facade;
 	private User user;
-	private static Counselor counselorBlank = new Counselor("", "", "", "");
+	
 
 	//Classes (and in some cases instance variables)
 	private static final String CAMP = "camp";
@@ -819,6 +819,7 @@ public class CampDriver {
 	 * Displays a cabin object's instance variables, including min age, max age, number of beds, 
 	 * the counselor for this cabin, the campers in the cabin, and the schedule. You can go
 	 * into campers and schedule
+	 * @throws IOException
 	 */
 	private void displayCabinInformation() {
 		while(true) {
@@ -933,10 +934,13 @@ public class CampDriver {
 				case 5: //vitals information
 					clear();
 					System.out.println(facade.getCabinString(VITALS));
-					System.out.println("Enter 1 to return");
-					int num3 = 1;
-					while(num3 != 0) {
+					System.out.println("Enter 1 to return, enter 2 to print and return");
+					int num3 = 2;
+					while(num3 != 0 && num3 != 1) {
 						num3 = getNum();
+					}
+					if(num3 == 1) {
+						saveToText(facade.getCabinString(VITALS), "vitals.txt");
 					}
 			}
 		}
@@ -956,6 +960,7 @@ public class CampDriver {
 			options.add("Friday");
 			options.add("Saturday");
 			options.add("Sunday");
+			options.add("Print all days");
 			options.add("Return");
 			options.add("Quit");
 			
@@ -1004,6 +1009,17 @@ public class CampDriver {
 				case 6:
 					displaySchedule(Day.SUNDAY);
 					break;
+				
+				case 7:
+					HashMap<Day, Schedule> schedule = facade.getCabinScheduleHash();
+					String workingString = "";
+					for (Day keyValue  : schedule.keySet()) {
+						System.out.println(keyValue);
+						workingString += keyValue.toString() + "\n"; 
+						workingString += schedule.get(keyValue).toString() + "\n";
+				}
+				
+					saveToText(workingString, "schedule.txt");
 			}
 
 		}
@@ -1161,15 +1177,6 @@ public class CampDriver {
 					break;
 			}
 		}		
-	}
-	/**
-	 * filewriter
-	 */
-	public static void saveToText(String str) throws IOException
-	{
-		PrintWriter out = new PrintWriter("./camp/textfiles/schedule.txt");
-		out.println(str);
-		out.close();
 	}
 
 	/**
@@ -2479,6 +2486,23 @@ public class CampDriver {
 	}
 
 	//------------------------------------- Methods that deal with the array list, options, and the console ----------------------------------------------
+	/**
+	 * filewriter
+	 */
+	public void saveToText(String str, String destination) {
+		try {
+			FileWriter myWriter = new FileWriter("./camp/txtfiles/" + destination);
+			myWriter.write(str);
+			myWriter.close();
+			System.out.println("Successfully printed.");
+			in.nextLine();
+		  } catch (IOException e) {
+			System.out.println("An error occurred.");
+			in.nextLine();
+			e.printStackTrace();
+		  }
+	}
+	
 	/**
 	 * Clears the array list
 	 */
