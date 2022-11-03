@@ -179,6 +179,24 @@ public class Camper {
         return allergies;
     }
 
+    public String allergiesToString() {
+        String workingString = "";
+        for(int i = 0; i < allergies.size(); i++) {
+            workingString += allergies.get(i) + ",";
+        }
+        return workingString;
+    }
+
+    public String medicationToString() {
+        String workingString = "";
+        for(int i = 0; i < medications.size(); i++) {
+            workingString += "\tType: " + medications.get(i).getType();
+            workingString += "\n\tTime: " + medications.get(i).getTime();
+            workingString += "\n\tDose: " + medications.get(i).getDose() + "\n";
+        }
+        return workingString;
+    }
+
     //-------------------------------MUTATORS------------------------------
 
     public boolean setBirthday(Date date) {

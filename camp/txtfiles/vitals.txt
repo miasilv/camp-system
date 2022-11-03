@@ -1,7 +1,135 @@
-John Messinger:
-	Allergies: [pollen, gluten]
-	EmergencyContacts:NeighborBethany Smoak
-	Email: bethsmoak@yahoo.com
-	Phone Number: 8034556888
-	Address: 104 Stone Rock Circle, 24332, Florence, South Carolina
+Kix Gonzalez:
+	Allergies: pollen
+	EmergencyContacts:
+		Friend: 
+	Trix Write
+	Email: trixxyyyy@gmail.com
+	Phone Number: 2334679900
+	Address: 234 Land Lake Circle, 23431, Columbia, SC
 
+
+
+Daisy Boo Davis:
+	Allergies: [sunflowers, pine nuts]
+	Emergency Contacts: father
+	neil davis
+	Email: ndavis@yahoo.com
+	Phone Number: 1234567890
+	Address: 123 sesame street
+grandfather
+	buzz davis
+	Email: bdavis@gmail.com
+	Phone Number: 0987654321
+	Address: 123 park avenue
+pediatrician
+	Megan Martin
+	Email: palmettoped@gmail.com
+	Phone Number: 8034556767
+	Address: Palmetto Pediatrics
+
+
+	Medications:
+	[type: zertec
+dose: 5 ml
+time: at breakfast]
+
+william ross:
+	Allergies: [pollen, peanuts]
+	Emergency Contacts: Neighbor
+	Brock Smith
+	Email: brock@outlook.com
+	Phone Number: 3897751511
+	Address: 12 Millburn Avenue, 23888, Camden, South Carolina
+
+
+	Medications:
+	[type: advil
+dose: one pill
+time: whenever he has a headache]
+
+clara yacobgn:
+	Allergies: [peanuts]
+	Emergency Contacts: Neighbor
+	Noah Wilson
+	Email: noahwilson@gmail.com
+	Phone Number: 3449002333
+	Address: 12 Wright Rd, 23888, Camden, South Carolina
+
+
+	Medications:
+	[type: advil
+dose: one pill
+time: whenever he has a headache]
+
+josphine anchor:
+	Allergies: [pollen]
+	Emergency Contacts: Pediatrician
+	Rose Wilson
+	Email: rosewilson@yahoo.com
+	Phone Number: 3224889922
+	Address: 240 Augustine Rd, 23888, Camden, South Carolina
+
+
+	Medications:
+	[type: albuterol
+dose: two pumps of inhaler
+time: during an athsma attack]
+
+justin anchor:
+	Allergies: []
+	Emergency Contacts: Pediatrician
+	Rose Wilson
+	Email: rosewilson@yahoo.com
+	Phone Number: 3224889922
+	Address: 240 Augustine Rd, 23888, Camden, South Carolina
+
+
+	Medications:
+	[]
+
+bobby smith:
+	Allergies: [pollen, peanuts, strawberries]
+	Emergency Contacts: Neighbor
+	Mackenzie Smith
+	Email: macksm8@outlook.com
+	Phone Number: 3897751511
+	Address: 12 Millburn Avenue, 23888, Camden, South Carolina
+
+
+	Medications:
+	[type: advil
+dose: one pill
+time: whenever he has a headache, type: albuterol
+dose: two pumps of inhaler
+time: during an athsma attack]
+
+mille smith:
+	Allergies: [pollen, pet dander, peaches]
+	Emergency Contacts: Neighbor
+	Rebecca Wringler
+	Email: rew@hotmail.com
+	Phone Number: 2221123345
+	Address: 35 Brookview Street, 28990, Charleston, South Carolina
+Family Friend
+	John Van Dam
+	Email: johnvandam@gmail.com
+	Phone Number: 9882345568
+	Address: 23 Eagle Point, 28990, Charleston, South Carolina
+
+
+	Medications:
+	[]
+
+ashley bahr:
+	Allergies: []
+	Emergency Contacts: Family Friend
+	Trina Beckley
+	Email: trinab@yahoo.com
+	Phone Number: 3225678899
+	Address: 234 Rock Point Rd, 26789, Fort Mill, South Carolina
+
+
+	Medications:
+	[type: amoxicillian
+dose: 20 to 40 milligrams (mg) per kilogram (kg) of body weight per day
+time: divided and given every 8 hours]

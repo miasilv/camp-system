@@ -215,6 +215,14 @@ public class Counselor extends User {
         allergies.set(index, allergy);
     }
 
+    public String allergiesToString() {
+        String workingString = "";
+        for(int i = 0; i < allergies.size(); i++) {
+            workingString += allergies.get(i) + ",";
+        }
+        return workingString;
+    }
+
     /**
      * Returns a string representation of the counselor
      */
