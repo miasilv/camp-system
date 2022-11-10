@@ -17,9 +17,8 @@ public class UserList {
      * Constructor for the user list to load in all the users
      */
     private UserList() {
-        guardians = DataLoader.loadGuardians();
         directors = DataLoader.loadDirector();
-        
+        guardians = DataLoader.loadGuardians();
     }
 
     /**
@@ -39,7 +38,6 @@ public class UserList {
     public ArrayList<Director> getDirectors() {
         return directors;
     }
-<<<<<<< HEAD
     
     public ArrayList<Camper> getCampers() {
         return campers;
@@ -48,8 +46,6 @@ public class UserList {
     public ArrayList<Counselor> getCounselors() {
         return counselors;
     }
-=======
->>>>>>> e74765ba69cd4c70f3b4c27dd34ba90f8df3064d
 
     public ArrayList<Guardian> getGuardians() {
         return guardians;
