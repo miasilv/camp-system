@@ -204,6 +204,13 @@ public class Session {
         }
         return null;
     }
+    public Cabin placeCounselor(Counselor counselor, int cabinNumber){
+            if(cabins.get(cabinNumber).getCounselors().size() == 0){
+                cabins.get(cabinNumber).setCounselor(counselor);
+                return cabins.get(cabinNumber);
+            }
+        return null;
+    }
     /**
      * checks if a camper is enrolled in a particular session
      * @param camper the camper being searched for
