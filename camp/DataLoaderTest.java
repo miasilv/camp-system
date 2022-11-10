@@ -1,10 +1,11 @@
 
 package camp;
-import static org.junit.platform.*;
+import org.junit.platform.*;
 
 import java.util.ArrayList;
 
-import org.junit.platform.*;
+//import org.junit.platform.*;
+import org.junit.platform.console.standalone.BeforeEach;
 
 
 
