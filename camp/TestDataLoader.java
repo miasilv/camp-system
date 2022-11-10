@@ -1,6 +1,8 @@
 package camp;
 import org.junit.platform.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ class TestDataLoader {
 	private CampList camps = CampList.getInstance();
 	private ArrayList<Camp> campList = camps.getCamps();
 	private ArrayList<FAQ> faqs = new ArrayList<FAQ>();
-	private ArrayList<Session> campSessions = new ArrayList<Session>();
+	//private ArrayList<Session> campSessions = new ArrayList<Session>();
 	private ArrayList<String> campActivities = new ArrayList<String>();
 	private ArrayList<Cabin> campCabins = new ArrayList<Cabin>();
 
@@ -46,30 +48,36 @@ class TestDataLoader {
 	private ArrayList<Counselor> cabinCounselors = new ArrayList<Counselor>();
 	private ArrayList<Schedule> cabinSchedules = new ArrayList<Schedule>();
 
-	private UserList directors = UserList.getInstance();
-	private ArrayList<Director> directorList = directors.getDirectors();
-
-	private UserList guardians = UserList.getInstance();
-	private ArrayList<Guardian> guardianList = guardians.getGuardians();
+	private UserList users = UserList.getInstance();
+	private ArrayList<Director> directorList = users.getDirectors();
+	private ArrayList<Guardian> guardianList = users.getGuardians();
 	private ArrayList<Camper> guardianCampers = new ArrayList<Camper>();
 
 	@BeforeEach
 	public void setup() throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
-		
+		camperList.clear();
+		counselorList.clear();
+		cabinList.clear();
+		sessionList.clear();
+		directorList.clear();
+		guardianList.clear();
+		campList.clear();
+
+
 		/**
 		 * director
 		 */
-		directorList.clear(); 
+
 
 		directorList.add(new Director(UUID.randomUUID(), "bob wright", "bobwright88@yahoo.com", "password", "8045569988"));
 		
-		DataWriter.saveDirectors();
+		
 
 		/**
 		 * counselor
 		 */
-		counselorList.clear();
+		
 
 		String bday = "04/22/2000";  
 		Date birthday = formatter.parse(bday); 
@@ -92,12 +100,12 @@ class TestDataLoader {
 		counselorThemes.add("cheetah girls");
 		counselorList.add(new Counselor(UUID.randomUUID(), "Mackenzie McIntyre", "mackmack@yahoo.com", "password","1012334569", "hello my name is mackenzie mcintyre", counselorRelations, counselorContacts, birthday, counselorAllergies, counselorThemes));
 		
-		DataWriter.saveCounselors();
+		
 
 		/**
 		 * campers
 		 */
-		camperList.clear();
+		
 
 		bday = "02/13/2011";  
 		birthday = formatter.parse(bday); 
@@ -124,12 +132,12 @@ class TestDataLoader {
 		camperThemes.add("cheetah girls");
 		camperList.add(new Camper(UUID.randomUUID(), "josie king", birthday,camperMeds, camperAllergies, camperRelations, camperContacts, camperThemes));
 
-		DataWriter.saveCampers();
+		
 
 		/**
 		 * guardians
 		 */
-		guardianList.clear();
+		
 
 		for(int i = 0; i<camperList.size(); i++){
 			while(i<camperList.size()/2){
@@ -147,12 +155,12 @@ class TestDataLoader {
 		}
 		guardianList.add(new Guardian(UUID.randomUUID(), "Matt King", "mattking@gmail.com", "password", "9993324456", guardianCampers));
 
-		DataWriter.saveGuardians();
+		
 		
 		/**
 		 * cabins
 		 */
-		cabinList.clear();
+		
 
 		for(int i = 0; i<camperList.size(); i++){
 			while(i<camperList.size()/2){
@@ -176,12 +184,12 @@ class TestDataLoader {
 		cabinCounselors.add(counselorList.get(0));
 		cabinList.add(new Cabin(cabinCampers, cabinCounselors, 9.0, 7.0, cabinSchedules, UUID.randomUUID() ));
 
-		DataWriter.saveCabin();
+		
 
 		/**
 		 * sessions
 		 */
-		sessionList.clear();
+		
 
 		sessionCabins.add(cabinList.get(0));
 		String start = "07/01/2023";
@@ -199,12 +207,12 @@ class TestDataLoader {
 		endDate = formatter.parse(end);     
 		sessionList.add(new Session(UUID.randomUUID(), "hawaiian", sessionCabins, "aloha", startDate, endDate));
 		
-		DataWriter.saveSessions();
+		
 		
 		/**
 		 * camp
 		 */
-		campList.clear();
+		
 
 		faqs.add(new FAQ("What is the price", "$500.50"));
 		campActivities.add("wake up" );
@@ -229,44 +237,53 @@ class TestDataLoader {
 
 		campList.add(new Camp(UUID.randomUUID(), "247",sessionList, 500.50, faqs,8.0,campActivities));
 		
+		DataWriter.saveCampers();
+		DataWriter.saveCounselors();
+		DataWriter.saveCabin();
+		DataWriter.saveSessions();
+		DataWriter.saveDirectors();
+		DataWriter.saveGuardians();
 		DataWriter.saveCamp();
 	}
 	
 	@AfterEach
 	public void tearDown() {
-		UserList.getInstance().getDirectors().clear();
-		DataWriter.saveDirectors();
-		UserList.getInstance().getGuardians().clear();
-		DataWriter.saveGuardians();
 		CounselorList.getInstance().getCounselors().clear();
-		DataWriter.saveCounselors();
 		CamperList.getInstance().getCampers().clear();
-		DataWriter.saveCampers();
-		SessionList.getInstance().getSessions().clear();
-		DataWriter.saveSessions();
-		CampList.getInstance().getCamps().clear();
-		DataWriter.saveCamp();
 		CabinList.getInstance().getCabins().clear();
+		SessionList.getInstance().getSessions().clear();
+		UserList.getInstance().getGuardians().clear();
+		UserList.getInstance().getDirectors().clear();
+		CampList.getInstance().getCamps().clear();
+		
+		
+
+		DataWriter.saveCampers();
+		DataWriter.saveCounselors();
 		DataWriter.saveCabin();
+		DataWriter.saveSessions();
+		DataWriter.saveDirectors();
+		DataWriter.saveGuardians();
+		DataWriter.saveCamp();
 	}
 	
 	
 	@Test
-	void testGetUsersSize() {
-		userList = DataLoader.getUsers();
-		assertEquals(2, userList.size());
+	void testGetDirectorsSize() {
+		directorList = DataLoader.loadDirector();
+		assertEquals(1, directorList.size());
 	}
 
 	@Test
-	void testGetUsersSizeZero() {
-		Users.getInstance().getUsers().clear();
-		DataWriter.saveUsers();
-		assertEquals(0, userList.size());
+	void testGetDirectorsSizeZero() {
+		UserList.getInstance().getDirectors().clear();
+		DataWriter.saveDirectors();
+		assertEquals(0, directorList.size());
 	}
 	
 	@Test
-	void testGetUserFirstUserName() {
-		userList = DataLoader.getUsers();
-		assertEquals("asmith", userList.get(0).getUserName());
+	void testGetDirectorName() {
+		directorList = DataLoader.loadDirector();
+		assertEquals("bob wright", directorList.get(0).getName());
 	}
 }

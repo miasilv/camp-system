@@ -40,7 +40,7 @@ public class Guardian extends User {
         this.id = id;
         this.campers = campers;
         updatePrice();
-        updateTotalSessions();
+        //updateTotalSessions();
     }
     
     //------------------------ACCESSORS!--------------------------------
