@@ -1940,16 +1940,30 @@ public class CampDriver {
 					System.out.println("Not a valid number");
 					in.nextLine();
 				}
+				facade.updateSession(num);
+
 				if(user instanceof Guardian && !facade.addCamperSession(num)) {
 					System.out.println("Something went wrong, unable to add");
 					in.nextLine();
 					continue;
 				}
-				if(user instanceof Counselor && !facade.addCounselorSession(num)) {
-					System.out.println("Something went wrong, unable to remove");
-					in.nextLine();
-					continue;
-				}
+				if(user instanceof Counselor) {
+					ArrayList<Cabin> cabins = facade.getSessionCabinList();
+					for(int i = 0; i < sessions.size(); i++) {
+						System.out.println("Cabin " + (i + 1) + ": " + cabins.get(i).toString());
+					}
+					System.out.println("Enter the number of the session you would like to add: ");
+					int num2 = getNum();
+					if(0 > num2 || num2 >= facade.getSessionCabinList().size()) {
+						System.out.println("Not a valid number");
+						in.nextLine();
+					}
+					
+					if(!facade.addCounselorSession(num, num2)) {
+						System.out.println("Something went wrong, unable to add");
+						in.nextLine();
+						continue;
+					}
 				continue;
 			}
 
@@ -1969,8 +1983,12 @@ public class CampDriver {
 					}
 				}
 				else if(user instanceof Counselor) {
-					//Session session = facade.getCounsleorSessions().get(choice);
-					//facade.updateCabinHash(session);
+					Session session = facade.getCounselorSessions().get(choice);
+					if(!facade.updateCabinHash(session)) {
+						System.out.println("Cabin not found");
+						in.nextLine();
+						continue;
+					}
 				}
 				else {
 					System.out.println("No user found");
@@ -1979,8 +1997,10 @@ public class CampDriver {
 				}
 				displayCabinInformation();
         	}
-		}
+			}
+		}	
 	}
+	
 
 	/**
 	 * Displays an allergy list of either a counselor or camper

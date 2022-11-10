@@ -918,14 +918,14 @@ public class CampFacade {
      * @param session the session being added to the camper
      * @return true if successful, false if not successful
      */
-    public boolean addCounselorSession(int index) {
-        Session session = camp.getSession(index);
+    public boolean addCounselorSession(int sessionIndex, int cabinIndex) {
+        Session session = camp.getSession(sessionIndex);
         System.out.println(session);
-        Cabin cabin = session.placeCounselor(currentCounselor);
+        Cabin cabin = session.placeCounselor(currentCounselor, cabinIndex);
         if(cabin == null) {
             return false;
         }
-        return (currentCounselor.addSession(session, cabin) && currentSession.placeCounselor(currentCounselor) != null);
+        return (currentCounselor.addSession(session, cabin) && currentSession.placeCounselor(currentCounselor, cabinIndex) != null);
     }
 
 
