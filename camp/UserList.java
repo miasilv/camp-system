@@ -38,6 +38,7 @@ public class UserList {
     public ArrayList<Director> getDirectors() {
         return directors;
     }
+    
     public ArrayList<Camper> getCampers() {
         return campers;
     }
