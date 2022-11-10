@@ -1,8 +1,8 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "camp/lib/json-simple-1.1.1.jar"
-        
+        "camp/lib/json-simple-1.1.1.jar",
+        "camp/lib/junit-platform-console-standalone-1.9.1.jar"
     ],
     "files.exclude": {
         "**/.git": true,
