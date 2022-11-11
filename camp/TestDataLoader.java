@@ -383,6 +383,12 @@ class TestDataLoader {
 	}
 
 	@Test
+	void testGetCounselorNameWithoutCapitalization() {
+		counselorList = DataLoader.loadCounselors();
+		assertEquals("john messy", counselorList.get(0).getName());
+	}
+
+	@Test
 	void testGetCounselorEmail(){
 		counselorList = DataLoader.loadCounselors();
 		assertEquals("johnmessy@yahoo.com", counselorList.get(0).getEmail());
@@ -400,7 +406,6 @@ class TestDataLoader {
 		assertEquals("password", counselorList.get(0).getPassword());
 	}
 
-	//"Mackenzie McIntyre", "mackmack@yahoo.com", "password","1012334569", "hello my name is mackenzie mcintyre", counselorRelations, counselorContacts, birthday, counselorAllergies, counselorThemes)
 	@Test 
 	void testCounselorRelations(){
 		counselorList = DataLoader.loadCounselors();
@@ -413,8 +418,223 @@ class TestDataLoader {
 		assertEquals("britney brock", counselorList.get(0).getContacts().get(0).getName());
 	}
 
+	@Test
+	void testCounselorBirthday(){
+		counselorList = DataLoader.loadCounselors();
+		assertEquals("04/22/2000", counselorList.get(0).getBirthdayStr());
+	}
+
+	@Test
+	void testCounselorAllergies(){
+		counselorList = DataLoader.loadCounselors();
+		assertEquals("blueberries", counselorList.get(0).getAllergies().get(0));
+	}
+
+	@Test
+	void testCounselorThemes(){
+		counselorList = DataLoader.loadCounselors();
+		assertEquals("hawaiian", counselorList.get(0).getSessionThemes().get(0));
+	}
+
+
+	//test camper loading
+	@Test
+	void testGetCamperSize() {
+		camperList = DataLoader.loadCampers();
+		assertEquals(2, counselorList.size());
+	}
+
+	@Test
+	void testGetCampersSizeZero() {
+		CamperList.getInstance().getCampers().clear();
+		DataWriter.saveCampers();
+		assertEquals(0, camperList.size());
+	}
 	
+	@Test
+	void testGetCamperName() {
+		camperList = DataLoader.loadCampers();
+		assertEquals("bob smith", camperList.get(0).getName());
+	}
+	
+	@Test 
+	void testCamperRelations(){
+		camperList = DataLoader.loadCampers();
+		assertEquals("Father", camperList.get(0).getRelationships().get(0));
+	}
+
+	@Test 
+	void testCamperContacts(){
+		camperList = DataLoader.loadCampers();
+		assertEquals("billy smith", camperList.get(0).getContacts().get(0).getName());
+	}
+
+	@Test 
+	void testCamperMeds(){
+		camperList = DataLoader.loadCampers();
+		assertEquals("advil", camperList.get(0).getMedications().get(0).getType());
+	}
+
+	@Test
+	void testCamperBirthday(){
+		camperList = DataLoader.loadCampers();
+		assertEquals("02/13/2011", camperList.get(0).getBirthdayStr());
+	}
+
+	@Test
+	void testCamperAllergies(){
+		camperList = DataLoader.loadCampers();
+		assertEquals("strawberries", camperList.get(0).getAllergies().get(0));
+	}
+
+	@Test
+	void testCamperThemes(){
+		camperList = DataLoader.loadCampers();
+		assertEquals("hawaiian", camperList.get(0).getSessionThemes().get(0));
+	}
 
 
+	//test cabin loading
+	
+	@Test
+	void testGetCabinSize() {
+		cabinList = DataLoader.loadCabins();
+		assertEquals(2, cabinList.size());
+	}
+
+	@Test
+	void testGetCabinSize0() {
+		CabinList.getInstance().getCabins().clear();
+		DataWriter.saveCabin();
+		assertEquals(0, cabinList.size());
+	}
+
+	@Test
+	void testGetCabinCampers(){
+		cabinList = DataLoader.loadCabins();
+		assertEquals("bob smith", cabinList.get(0).getCampers().get(0).getName());
+	}
+
+
+	@Test
+	void testGetCabinCounselor(){
+		cabinList = DataLoader.loadCabins();
+		assertEquals("John Messy", cabinList.get(0).getCounselors().get(0).getName());
+	}
+
+	@Test
+	void testGetCabinMinAge(){
+		cabinList = DataLoader.loadCabins();
+		assertEquals(10.0, cabinList.get(0).getMinAge());
+	}
+
+	@Test
+	void testGetCabinMaxAge(){
+		cabinList = DataLoader.loadCabins();
+		assertEquals(12.0, cabinList.get(0).getMaxAge());
+	}
+
+	@Test
+	void testGetCabinSchedule(){
+		cabinList = DataLoader.loadCabins();
+		assertEquals(7, cabinList.get(0).getSchedule().size());
+	}
+
+
+	//test session loading
+	@Test
+	void testGetSessionSize() {
+		sessionList = DataLoader.loadSessions();
+		assertEquals(2, sessionList.size());
+	}
+
+	@Test
+	void testGetSessionSize0() {
+		SessionList.getInstance().getSessions().clear();
+		DataWriter.saveSessions();
+		assertEquals(0, sessionList.size());
+	}	
+
+	@Test
+	void testGetSessionTheme(){
+		sessionList = DataLoader.loadSessions();
+		assertEquals("cheetah girls", sessionList.get(0).getTheme());
+	}
+
+	@Test
+	void testGetSessionCabins(){
+		sessionList = DataLoader.loadSessions();
+		assertEquals("bob smith", sessionList.get(0).getCabins().get(0).getCampers().get(0).getName());
+	}
+
+	@Test
+	void testGetSessionDescription(){
+		sessionList = DataLoader.loadSessions();
+		assertEquals("lets go girls", sessionList.get(0).getDescription());
+	}
+
+	@Test
+	void testGetSessionStartDate(){
+		sessionList = DataLoader.loadSessions();
+		assertEquals("07/01/2023", sessionList.get(0).getStrStart());
+	}
+
+	@Test
+	void testGetSessionEndDate(){
+		sessionList = DataLoader.loadSessions();
+		assertEquals("07/14/2023", sessionList.get(0).getStrEnd());
+	}
+
+
+	//testing camp loader
+	//"247",sessionList, 500.50, faqs,8.0,campActivities));
+	@Test
+	void testGetCampSize() {
+		campList = DataLoader.loadCamp();
+		assertEquals(1, campList.size());
+	}
+
+	@Test
+	void testGetCampSize0() {
+		CampList.getInstance().getCamps().clear();
+		DataWriter.saveCamp();
+		assertEquals(0, campList.size());
+	}	
+
+	@Test
+	void testGetCampName() {
+		campList = DataLoader.loadCamp();
+		assertEquals("247", campList.get(0).getName());
+	}
+
+	@Test
+	void testGetCampSessions() {
+		campList = DataLoader.loadCamp();
+		assertEquals("cheetah girls", campList.get(0).getSessions().get(0).getTheme());
+	}
+	
+	@Test
+	void testGetCampPrice() {
+		campList = DataLoader.loadCamp();
+		assertEquals(500.50, campList.get(0).getPrice());
+	}
+
+	@Test
+	void testGetCampFAQ() {
+		campList = DataLoader.loadCamp();
+		assertEquals("$500.50", campList.get(0).getFAQs().get(0).getAnswer());
+	}
+
+	@Test
+	void testGetCamperCounselorRatio() {
+		campList = DataLoader.loadCamp();
+		assertEquals(8.0, campList.get(0).getRatio());
+	}
+
+	@Test
+	void testGetCampActivities() {
+		campList = DataLoader.loadCamp();
+		assertEquals("wake up", campList.get(0).getActivities().get(0));
+	}
 
 }
