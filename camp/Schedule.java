@@ -12,6 +12,7 @@ public class Schedule {
     private LinkedHashMap<String, String> schedule;
     private ArrayList<String> activities;
     private static ArrayList<String> allActivities;
+    private ArrayList<String> allActs;
     private ArrayList<String> toPickFrom;
     private String[] times = {"8:00:", "9:00 - 9:45:", "10:00 - 11:45:", "12:00 - 12:45:", "1:00 - 2:45:", "3:00 - 3:45:", "4:00 - 5:45:", "6:00 - 6:45:", "7:00 - 8:45:", "10:00:"};
     /**
@@ -39,13 +40,36 @@ public class Schedule {
         this.schedule = createdSchedule;
     }
 
-    private String getRandomActivity() {
+    public Schedule(ArrayList<String> acts, int l){
+        LinkedHashMap<String, String> createdSchedule = new LinkedHashMap<String, String>();
+        toPickFrom = new ArrayList<String>();
+        activities = new ArrayList<String>();
+        this.allActs = acts;
+        
+        activities.add(allActs.get(0));
+        activities.add(allActs.get(1));
+        activities.add(getRandomActivity());
+        activities.add(allActs.get(2));
+        activities.add(getRandomActivity());
+        activities.add(allActs.get(3));
+        activities.add(getRandomActivity());
+        activities.add(allActs.get(4));
+        activities.add(allActs.get(5));
+        activities.add(allActs.get(6));
+        
+        for(int i = 0; i < times.length; i++) {
+            createdSchedule.put(times[i], activities.get(i));
+        }
+        this.schedule = createdSchedule;
+    }
+
+    public String getRandomActivity() {
         Random rand = new Random();
-        if(allActivities.size() <= 7) {
+        if(allActs.size() <= 7) {
             return "";
         }
-        for(int i = 7; i < allActivities.size(); i++) {
-            toPickFrom.add(allActivities.get(i));
+        for(int i = 7; i < allActs.size(); i++) {
+            toPickFrom.add(allActs.get(i));
         }
 
         return toPickFrom.get(rand.nextInt(toPickFrom.size()));
