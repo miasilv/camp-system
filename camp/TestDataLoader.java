@@ -161,21 +161,12 @@ class TestDataLoader {
 		 */
 		
 
-		for(int i = 0; i<camperList.size(); i++){
-			if(i<camperList.size()/2){
-				guardianCampers.add(camperList.get(i));
-				continue;
-			}
-		}
+		guardianCampers.add(camperList.get(0));
 		guardianList.add(new Guardian(UUID.randomUUID(), "Karen Smith", "karensmith@gmail.com", "password", "8034423366", guardianCampers));
 		
 		guardianCampers.clear();
 		
-		for(int i = 0; i<camperList.size(); i++){
-			if(i>=camperList.size()/2){
-				guardianCampers.add(camperList.get(i));
-			}
-		}
+		guardianCampers.add(camperList.get(1));
 		guardianList.add(new Guardian(UUID.randomUUID(), "Matt King", "mattking@gmail.com", "password", "9993324456", guardianCampers));
 
 		
@@ -280,14 +271,14 @@ class TestDataLoader {
 		DataWriter.saveCamp();
 	}
 	
-	
+	//testing director loading
 	@Test
 	void testGetDirectorsSize() {
 		directorList = DataLoader.loadDirector();
 		assertEquals(1, directorList.size());
 	}
 
-	/* 
+	
 	@Test
 	void testGetDirectorsSizeZero() {
 		UserList.getInstance().getDirectors().clear();
@@ -300,5 +291,69 @@ class TestDataLoader {
 		directorList = DataLoader.loadDirector();
 		assertEquals("bob wright", directorList.get(0).getName());
 	}
-	*/
+
+	@Test
+	void testGetDirectorEmail(){
+		directorList = DataLoader.loadDirector();
+		assertEquals("bobwright88@yahoo.com", directorList.get(0).getEmail());
+	}
+
+	@Test
+	void testGetDirectorPhone(){
+		directorList = DataLoader.loadDirector();
+		assertEquals("8045569988", directorList.get(0).getPhoneNumber());
+	}
+	
+	@Test
+	void testGetDirectorPassword(){
+		directorList = DataLoader.loadDirector();
+		assertEquals("password", directorList.get(0).getPassword());
+	}
+
+
+	//testing guardian loading
+	@Test
+	void testGetGuardiansSize() {
+		guardianList = DataLoader.loadGuardians();
+		assertEquals(2, guardianList.size());
+	}
+
+	
+	@Test
+	void testGetGuardiansSizeZero() {
+		UserList.getInstance().getGuardians().clear();
+		DataWriter.saveGuardians();
+		assertEquals(0, guardianList.size());
+	}
+	
+	@Test
+	void testGetGuardianName() {
+		guardianList = DataLoader.loadGuardians();
+		assertEquals("Karen Smith", guardianList.get(0).getName());
+	}
+
+	@Test
+	void testGetGuardianEmail(){
+		guardianList = DataLoader.loadGuardians();
+		assertEquals("karensmith@gmail.com", guardianList.get(0).getEmail());
+	}
+
+	@Test
+	void testGetGuardianPhone(){
+		guardianList = DataLoader.loadGuardians();
+		assertEquals("8034423366", guardianList.get(0).getPhoneNumber());
+	}
+	
+	@Test
+	void testGetGuardianPassword(){
+		guardianList = DataLoader.loadGuardians();
+		assertEquals("password", guardianList.get(0).getPassword());
+	}
+
+	@Test
+	void testGetGuardianCampers(){
+		camperList = DataLoader.loadCampers();
+		guardianList = DataLoader.loadGuardians();
+		assertEquals("bob smith", guardianList.get(0).getCamper(0).getName());
+	}
 }
