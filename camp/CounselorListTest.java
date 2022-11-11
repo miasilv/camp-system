@@ -15,8 +15,8 @@ public class CounselorListTest {
     @BeforeEach
     public void setUp() {
         counselorList.clear();
-        counselorList.add(new Counselor("Sydney", "s@gmail.com", "password","803-454-3344"));
-        counselorList.add(new Counselor("John", "j@gmail.com", "password","803-333-3544"));
+        //counselorList.add(new Counselor("Sydney", "s@gmail.com", "password","803-454-3344"));
+        //counselorList.add(new Counselor("John", "j@gmail.com", "password","803-333-3544"));
         DataWriter.saveCounselors();
     }
 
