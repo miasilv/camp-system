@@ -736,5 +736,485 @@ public class TestDataWriter {
 		assertEquals(null, DataLoader.loadCabins().get(0).getMaxAge());
 	}
 
+
+    //testing session writing
+    @Test
+	void testWritingZeroSessions() {
+		sessionList = DataLoader.loadSessions();
+		assertEquals(0, sessionList.size());
+	}
+
+	@Test
+	void testWritingOneSession() throws ParseException {
+        ArrayList<String> campActivities = new ArrayList<String>();
+        campActivities.add("wake up" );
+        campActivities.add("breakfast at the mess hall");
+		campActivities.add("lunch at the mess hall");
+		campActivities.add("snack/rest time at cabin");
+		campActivities.add("dinner at the mess hall");
+        campActivities.add("campfire songs at firepit");
+        campActivities.add("lights out");
+        campActivities.add("ziplining at zipline track");
+        campActivities.add("swimming in lake");
+        campActivities.add("running on the field");
+        campActivities.add("gaga ball at the gaga ball pit");
+        campActivities.add("soccer on the field");
+        campActivities.add("kayaking in the lake");
+        campActivities.add("bracelet making in the mess hall");
+        campActivities.add("arts and crafts at craft building");
+        campActivities.add("painting at the craft building");
+        campActivities.add("archery at the archery range");
+        campActivities.add("tie dying at the craft building");
+        campActivities.add("singing at the mess hall");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
+		ArrayList<String> counselor1Allergies = new ArrayList<String>();
+		ArrayList<String> counselor1Relations = new ArrayList<String>();
+		ArrayList<Contact> counselor1Contacts = new ArrayList<Contact>();
+		ArrayList<String> counselor1Themes = new ArrayList<String>();
+		String bday = "04/22/2000";  
+		Date birthday = formatter.parse(bday); 
+		counselor1Allergies.add("blueberries");
+		counselor1Relations.add("Friend");
+		counselor1Contacts.add(new Contact("britney brock", "9903342233", "44 East Erie Street", "bb009@yahoo.com"));
+		counselor1Themes.add("hawaiian");
+		counselorList.add(new Counselor(UUID.randomUUID(), "John Messy", "johnmessy@yahoo.com", "password","899003349", "hello my name is john messy", counselor1Relations, counselor1Contacts, birthday, counselor1Allergies, counselor1Themes));
+	
+		ArrayList<Medication> camper1Meds = new ArrayList<Medication>();
+		ArrayList<String> camper1Allergies = new ArrayList<String>();
+		ArrayList<String> camper1Relations = new ArrayList<String>();
+		ArrayList<Contact> camper1Contacts = new ArrayList<Contact>();
+		ArrayList<String> camper1Themes = new ArrayList<String>();
+		
+		bday = "02/13/2011";  
+		birthday = formatter.parse(bday); 
+		camper1Meds.add(new Medication("one pill", "advil", "whenever he has a headache"));
+		camper1Allergies.add("strawberries");
+		camper1Relations.add("Father");
+		camper1Contacts.add(new Contact("billy smith", "8034556688", "122 Rock Point Rd", "billysmith33@gmail.com"));
+		camper1Themes.add("hawaiian");
+		camperList.add(new Camper(UUID.randomUUID(), "bob smith", birthday,camper1Meds, camper1Allergies, camper1Relations, camper1Contacts, camper1Themes));
+		
+        ArrayList<Camper> cabin1Campers = new ArrayList<Camper>();
+		ArrayList<Counselor> cabin1Counselors = new ArrayList<Counselor>();
+		ArrayList<Schedule> cabin1Schedules = new ArrayList<Schedule>();
+
+		cabin1Campers.add(camperList.get(0));
+			
+		for(int i = 0; i<7; i++){
+			cabin1Schedules.add(new Schedule(campActivities, 1));
+		}
+
+		cabin1Counselors.add(counselorList.get(0));
+		cabinList.add(new Cabin(cabin1Campers, cabin1Counselors, 12.0, 10.0, cabin1Schedules, UUID.randomUUID() ));
+		
+        ArrayList<Cabin> session1Cabins = new ArrayList<Cabin>();
+		session1Cabins.add(cabinList.get(0));
+		String start = "07/01/2023";
+		Date startDate = formatter.parse(start);      
+		String end = "07/14/2023";
+		Date endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.randomUUID(), "hawaiian", session1Cabins, "lets go girls", startDate, endDate));
+		
+
+		DataWriter.saveSessions();
+		assertEquals("hawaiian", DataLoader.loadSessions().get(0).getTheme());
+	}
+	
+	@Test
+	void testWritingTwoSessions() throws ParseException {
+        ArrayList<String> campActivities = new ArrayList<String>();
+        campActivities.add("wake up" );
+        campActivities.add("breakfast at the mess hall");
+		campActivities.add("lunch at the mess hall");
+		campActivities.add("snack/rest time at cabin");
+		campActivities.add("dinner at the mess hall");
+        campActivities.add("campfire songs at firepit");
+        campActivities.add("lights out");
+        campActivities.add("ziplining at zipline track");
+        campActivities.add("swimming in lake");
+        campActivities.add("running on the field");
+        campActivities.add("gaga ball at the gaga ball pit");
+        campActivities.add("soccer on the field");
+        campActivities.add("kayaking in the lake");
+        campActivities.add("bracelet making in the mess hall");
+        campActivities.add("arts and crafts at craft building");
+        campActivities.add("painting at the craft building");
+        campActivities.add("archery at the archery range");
+        campActivities.add("tie dying at the craft building");
+        campActivities.add("singing at the mess hall");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
+		ArrayList<String> counselor1Allergies = new ArrayList<String>();
+		ArrayList<String> counselor1Relations = new ArrayList<String>();
+		ArrayList<Contact> counselor1Contacts = new ArrayList<Contact>();
+		ArrayList<String> counselor1Themes = new ArrayList<String>();
+		String bday = "04/22/2000";  
+		Date birthday = formatter.parse(bday); 
+		counselor1Allergies.add("blueberries");
+		counselor1Relations.add("Friend");
+		counselor1Contacts.add(new Contact("britney brock", "9903342233", "44 East Erie Street", "bb009@yahoo.com"));
+		counselor1Themes.add("hawaiian");
+		counselorList.add(new Counselor(UUID.randomUUID(), "John Messy", "johnmessy@yahoo.com", "password","899003349", "hello my name is john messy", counselor1Relations, counselor1Contacts, birthday, counselor1Allergies, counselor1Themes));
+	
+		ArrayList<Medication> camper1Meds = new ArrayList<Medication>();
+		ArrayList<String> camper1Allergies = new ArrayList<String>();
+		ArrayList<String> camper1Relations = new ArrayList<String>();
+		ArrayList<Contact> camper1Contacts = new ArrayList<Contact>();
+		ArrayList<String> camper1Themes = new ArrayList<String>();
+		
+		bday = "02/13/2011";  
+		birthday = formatter.parse(bday); 
+		camper1Meds.add(new Medication("one pill", "advil", "whenever he has a headache"));
+		camper1Allergies.add("strawberries");
+		camper1Relations.add("Father");
+		camper1Contacts.add(new Contact("billy smith", "8034556688", "122 Rock Point Rd", "billysmith33@gmail.com"));
+		camper1Themes.add("hawaiian");
+		camperList.add(new Camper(UUID.randomUUID(), "bob smith", birthday,camper1Meds, camper1Allergies, camper1Relations, camper1Contacts, camper1Themes));
+		
+        ArrayList<Camper> cabin1Campers = new ArrayList<Camper>();
+		ArrayList<Counselor> cabin1Counselors = new ArrayList<Counselor>();
+		ArrayList<Schedule> cabin1Schedules = new ArrayList<Schedule>();
+
+		cabin1Campers.add(camperList.get(0));
+			
+		for(int i = 0; i<7; i++){
+			cabin1Schedules.add(new Schedule(campActivities, 1));
+		}
+
+		cabin1Counselors.add(counselorList.get(0));
+		cabinList.add(new Cabin(cabin1Campers, cabin1Counselors, 12.0, 10.0, cabin1Schedules, UUID.randomUUID() ));
+		
+        ArrayList<Cabin> session1Cabins = new ArrayList<Cabin>();
+		session1Cabins.add(cabinList.get(0));
+		String start = "07/01/2023";
+		Date startDate = formatter.parse(start);      
+		String end = "07/14/2023";
+		Date endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.randomUUID(), "hawaiian", session1Cabins, "aloha", startDate, endDate));
+		
+
+        ArrayList<String> counselor2Allergies = new ArrayList<String>();
+		ArrayList<String> counselor2Relations = new ArrayList<String>();
+		ArrayList<Contact> counselor2Contacts = new ArrayList<Contact>();
+		ArrayList<String> counselor2Themes = new ArrayList<String>();
+		bday = "10/04/2002";  
+		birthday = formatter.parse(bday); 
+		counselor2Allergies.add("pollen");
+		counselor2Relations.add("Friend");
+		counselor2Contacts.add(new Contact("matt smith", "8893345567", "12 lake street", "mattsmith88@yahoo.com"));
+		counselor2Themes.add("ninja warriors");
+		counselorList.add(new Counselor(UUID.randomUUID(), "Kai Finger", "kaif88@yahoo.com", "password","8803442211", "hello my name is kai finger", counselor2Relations, counselor2Contacts, birthday, counselor2Allergies, counselor2Themes));
+		
+        ArrayList<Medication> camper2Meds = new ArrayList<Medication>();
+		ArrayList<String> camper2Allergies = new ArrayList<String>();
+		ArrayList<String> camper2Relations = new ArrayList<String>();
+		ArrayList<Contact> camper2Contacts = new ArrayList<Contact>();
+		ArrayList<String> camper2Themes = new ArrayList<String>();
+
+		bday = "06/14/2014";
+		birthday = formatter.parse(bday); 
+		camper2Meds.add(new Medication("one puff", "albuterol", "during asthma attacks"));
+		camper2Allergies.add("pollen");
+		camper2Allergies.add("peanuts");
+		camper2Relations.add("Doctor");
+		camper2Contacts.add(new Contact("Catherine Steen", "8803345578", "33 Lake Shore Drive", "drsteensoffice@gmail.com"));
+		camper2Themes.add("cars");
+		camperList.add(new Camper(UUID.randomUUID(), "josie king", birthday,camper2Meds, camper2Allergies, camper2Relations, camper2Contacts, camper2Themes));
+
+        ArrayList<Camper> cabin2Campers = new ArrayList<Camper>();
+		ArrayList<Counselor> cabin2Counselors = new ArrayList<Counselor>();
+		ArrayList<Schedule> cabin2Schedules = new ArrayList<Schedule>();
+		
+		cabin2Campers.add(camperList.get(1));
+		
+		for(int i = 0; i<7; i++){
+			cabin2Schedules.add(new Schedule(campActivities, 1));
+		}
+
+		cabin2Counselors.add(counselorList.get(1));
+		
+		cabinList.add(new Cabin(cabin2Campers, cabin2Counselors, 9.0, 7.0, cabin2Schedules, UUID.randomUUID() ));
+        
+        
+        ArrayList<Cabin> session2Cabins = new ArrayList<Cabin>();
+		session2Cabins.add(cabinList.get(1));
+		start = "07/01/2023";   
+		startDate = formatter.parse(start);      
+		end = "07/14/2023";
+		endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.randomUUID(), "cars", session2Cabins, "zoom", startDate, endDate));
+		
+
+        DataWriter.saveSessions();
+		assertEquals("cars", DataLoader.loadSessions().get(1).getTheme());
+	
+
+	}
+	
+	@Test
+	void testWritingEmptySession() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
+        ArrayList<Cabin> session2Cabins = new ArrayList<Cabin>();
+		String start = "";   
+		Date startDate = formatter.parse(start);      
+		String end = "";
+		Date endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.fromString("00000000-0000-0000-0000-000000000000"), "", session2Cabins, "", startDate, endDate));
+		DataWriter.saveSessions();
+		assertEquals("", DataLoader.loadSessions().get(0).getTheme());
+	}
+	
+	@Test
+	void testWritingNullSession() {
+		sessionList.add(new Session(null, null, null, null, null, null));
+		DataWriter.saveSessions();
+		assertEquals(null, DataLoader.loadSessions().get(0).getTheme());
+	}
+
+
+    //test camp writing
+    @Test
+	void testWritingZeroCamps() {
+		campList = DataLoader.loadCamp();
+		assertEquals(0, campList.size());
+	}
+
+	@Test
+	void testWritingCampWithOneSession() throws ParseException {
+        ArrayList<String> campActivities = new ArrayList<String>();
+        campActivities.add("wake up" );
+        campActivities.add("breakfast at the mess hall");
+		campActivities.add("lunch at the mess hall");
+		campActivities.add("snack/rest time at cabin");
+		campActivities.add("dinner at the mess hall");
+        campActivities.add("campfire songs at firepit");
+        campActivities.add("lights out");
+        campActivities.add("ziplining at zipline track");
+        campActivities.add("swimming in lake");
+        campActivities.add("running on the field");
+        campActivities.add("gaga ball at the gaga ball pit");
+        campActivities.add("soccer on the field");
+        campActivities.add("kayaking in the lake");
+        campActivities.add("bracelet making in the mess hall");
+        campActivities.add("arts and crafts at craft building");
+        campActivities.add("painting at the craft building");
+        campActivities.add("archery at the archery range");
+        campActivities.add("tie dying at the craft building");
+        campActivities.add("singing at the mess hall");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
+		ArrayList<String> counselor1Allergies = new ArrayList<String>();
+		ArrayList<String> counselor1Relations = new ArrayList<String>();
+		ArrayList<Contact> counselor1Contacts = new ArrayList<Contact>();
+		ArrayList<String> counselor1Themes = new ArrayList<String>();
+		String bday = "04/22/2000";  
+		Date birthday = formatter.parse(bday); 
+		counselor1Allergies.add("blueberries");
+		counselor1Relations.add("Friend");
+		counselor1Contacts.add(new Contact("britney brock", "9903342233", "44 East Erie Street", "bb009@yahoo.com"));
+		counselor1Themes.add("hawaiian");
+		counselorList.add(new Counselor(UUID.randomUUID(), "John Messy", "johnmessy@yahoo.com", "password","899003349", "hello my name is john messy", counselor1Relations, counselor1Contacts, birthday, counselor1Allergies, counselor1Themes));
+	
+		ArrayList<Medication> camper1Meds = new ArrayList<Medication>();
+		ArrayList<String> camper1Allergies = new ArrayList<String>();
+		ArrayList<String> camper1Relations = new ArrayList<String>();
+		ArrayList<Contact> camper1Contacts = new ArrayList<Contact>();
+		ArrayList<String> camper1Themes = new ArrayList<String>();
+		
+		bday = "02/13/2011";  
+		birthday = formatter.parse(bday); 
+		camper1Meds.add(new Medication("one pill", "advil", "whenever he has a headache"));
+		camper1Allergies.add("strawberries");
+		camper1Relations.add("Father");
+		camper1Contacts.add(new Contact("billy smith", "8034556688", "122 Rock Point Rd", "billysmith33@gmail.com"));
+		camper1Themes.add("hawaiian");
+		camperList.add(new Camper(UUID.randomUUID(), "bob smith", birthday,camper1Meds, camper1Allergies, camper1Relations, camper1Contacts, camper1Themes));
+		
+        ArrayList<Camper> cabin1Campers = new ArrayList<Camper>();
+		ArrayList<Counselor> cabin1Counselors = new ArrayList<Counselor>();
+		ArrayList<Schedule> cabin1Schedules = new ArrayList<Schedule>();
+
+		cabin1Campers.add(camperList.get(0));
+			
+		for(int i = 0; i<7; i++){
+			cabin1Schedules.add(new Schedule(campActivities, 1));
+		}
+
+		cabin1Counselors.add(counselorList.get(0));
+		cabinList.add(new Cabin(cabin1Campers, cabin1Counselors, 12.0, 10.0, cabin1Schedules, UUID.randomUUID() ));
+		
+        ArrayList<Cabin> session1Cabins = new ArrayList<Cabin>();
+		session1Cabins.add(cabinList.get(0));
+		String start = "07/01/2023";
+		Date startDate = formatter.parse(start);      
+		String end = "07/14/2023";
+		Date endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.randomUUID(), "hawaiian", session1Cabins, "lets go girls", startDate, endDate));
+		
+        ArrayList<FAQ> faqs = new ArrayList<FAQ>();
+        faqs.add(new FAQ("What is the price", "$500.50"));
+
+		campList.add(new Camp(UUID.randomUUID(), "247",sessionList, 500.50, faqs,8.0,campActivities));
+		
+		DataWriter.saveCamp();
+		assertEquals("247", DataLoader.loadCamp().get(0).getName());
+	}
+	
+	@Test
+	void testWritingCampwithTwoSessions() throws ParseException {
+        ArrayList<String> campActivities = new ArrayList<String>();
+        campActivities.add("wake up" );
+        campActivities.add("breakfast at the mess hall");
+		campActivities.add("lunch at the mess hall");
+		campActivities.add("snack/rest time at cabin");
+		campActivities.add("dinner at the mess hall");
+        campActivities.add("campfire songs at firepit");
+        campActivities.add("lights out");
+        campActivities.add("ziplining at zipline track");
+        campActivities.add("swimming in lake");
+        campActivities.add("running on the field");
+        campActivities.add("gaga ball at the gaga ball pit");
+        campActivities.add("soccer on the field");
+        campActivities.add("kayaking in the lake");
+        campActivities.add("bracelet making in the mess hall");
+        campActivities.add("arts and crafts at craft building");
+        campActivities.add("painting at the craft building");
+        campActivities.add("archery at the archery range");
+        campActivities.add("tie dying at the craft building");
+        campActivities.add("singing at the mess hall");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
+		ArrayList<String> counselor1Allergies = new ArrayList<String>();
+		ArrayList<String> counselor1Relations = new ArrayList<String>();
+		ArrayList<Contact> counselor1Contacts = new ArrayList<Contact>();
+		ArrayList<String> counselor1Themes = new ArrayList<String>();
+		String bday = "04/22/2000";  
+		Date birthday = formatter.parse(bday); 
+		counselor1Allergies.add("blueberries");
+		counselor1Relations.add("Friend");
+		counselor1Contacts.add(new Contact("britney brock", "9903342233", "44 East Erie Street", "bb009@yahoo.com"));
+		counselor1Themes.add("hawaiian");
+		counselorList.add(new Counselor(UUID.randomUUID(), "John Messy", "johnmessy@yahoo.com", "password","899003349", "hello my name is john messy", counselor1Relations, counselor1Contacts, birthday, counselor1Allergies, counselor1Themes));
+	
+		ArrayList<Medication> camper1Meds = new ArrayList<Medication>();
+		ArrayList<String> camper1Allergies = new ArrayList<String>();
+		ArrayList<String> camper1Relations = new ArrayList<String>();
+		ArrayList<Contact> camper1Contacts = new ArrayList<Contact>();
+		ArrayList<String> camper1Themes = new ArrayList<String>();
+		
+		bday = "02/13/2011";  
+		birthday = formatter.parse(bday); 
+		camper1Meds.add(new Medication("one pill", "advil", "whenever he has a headache"));
+		camper1Allergies.add("strawberries");
+		camper1Relations.add("Father");
+		camper1Contacts.add(new Contact("billy smith", "8034556688", "122 Rock Point Rd", "billysmith33@gmail.com"));
+		camper1Themes.add("hawaiian");
+		camperList.add(new Camper(UUID.randomUUID(), "bob smith", birthday,camper1Meds, camper1Allergies, camper1Relations, camper1Contacts, camper1Themes));
+		
+        ArrayList<Camper> cabin1Campers = new ArrayList<Camper>();
+		ArrayList<Counselor> cabin1Counselors = new ArrayList<Counselor>();
+		ArrayList<Schedule> cabin1Schedules = new ArrayList<Schedule>();
+
+		cabin1Campers.add(camperList.get(0));
+			
+		for(int i = 0; i<7; i++){
+			cabin1Schedules.add(new Schedule(campActivities, 1));
+		}
+
+		cabin1Counselors.add(counselorList.get(0));
+		cabinList.add(new Cabin(cabin1Campers, cabin1Counselors, 12.0, 10.0, cabin1Schedules, UUID.randomUUID() ));
+		
+        ArrayList<Cabin> session1Cabins = new ArrayList<Cabin>();
+		session1Cabins.add(cabinList.get(0));
+		String start = "07/01/2023";
+		Date startDate = formatter.parse(start);      
+		String end = "07/14/2023";
+		Date endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.randomUUID(), "hawaiian", session1Cabins, "aloha", startDate, endDate));
+		
+
+        ArrayList<String> counselor2Allergies = new ArrayList<String>();
+		ArrayList<String> counselor2Relations = new ArrayList<String>();
+		ArrayList<Contact> counselor2Contacts = new ArrayList<Contact>();
+		ArrayList<String> counselor2Themes = new ArrayList<String>();
+		bday = "10/04/2002";  
+		birthday = formatter.parse(bday); 
+		counselor2Allergies.add("pollen");
+		counselor2Relations.add("Friend");
+		counselor2Contacts.add(new Contact("matt smith", "8893345567", "12 lake street", "mattsmith88@yahoo.com"));
+		counselor2Themes.add("ninja warriors");
+		counselorList.add(new Counselor(UUID.randomUUID(), "Kai Finger", "kaif88@yahoo.com", "password","8803442211", "hello my name is kai finger", counselor2Relations, counselor2Contacts, birthday, counselor2Allergies, counselor2Themes));
+		
+        ArrayList<Medication> camper2Meds = new ArrayList<Medication>();
+		ArrayList<String> camper2Allergies = new ArrayList<String>();
+		ArrayList<String> camper2Relations = new ArrayList<String>();
+		ArrayList<Contact> camper2Contacts = new ArrayList<Contact>();
+		ArrayList<String> camper2Themes = new ArrayList<String>();
+
+		bday = "06/14/2014";
+		birthday = formatter.parse(bday); 
+		camper2Meds.add(new Medication("one puff", "albuterol", "during asthma attacks"));
+		camper2Allergies.add("pollen");
+		camper2Allergies.add("peanuts");
+		camper2Relations.add("Doctor");
+		camper2Contacts.add(new Contact("Catherine Steen", "8803345578", "33 Lake Shore Drive", "drsteensoffice@gmail.com"));
+		camper2Themes.add("cars");
+		camperList.add(new Camper(UUID.randomUUID(), "josie king", birthday,camper2Meds, camper2Allergies, camper2Relations, camper2Contacts, camper2Themes));
+
+        ArrayList<Camper> cabin2Campers = new ArrayList<Camper>();
+		ArrayList<Counselor> cabin2Counselors = new ArrayList<Counselor>();
+		ArrayList<Schedule> cabin2Schedules = new ArrayList<Schedule>();
+		
+		cabin2Campers.add(camperList.get(1));
+		
+		for(int i = 0; i<7; i++){
+			cabin2Schedules.add(new Schedule(campActivities, 1));
+		}
+
+		cabin2Counselors.add(counselorList.get(1));
+		
+		cabinList.add(new Cabin(cabin2Campers, cabin2Counselors, 9.0, 7.0, cabin2Schedules, UUID.randomUUID() ));
+        
+        
+        ArrayList<Cabin> session2Cabins = new ArrayList<Cabin>();
+		session2Cabins.add(cabinList.get(1));
+		start = "07/01/2023";   
+		startDate = formatter.parse(start);      
+		end = "07/14/2023";
+		endDate = formatter.parse(end);     
+		sessionList.add(new Session(UUID.randomUUID(), "cars", session2Cabins, "zoom", startDate, endDate));
+		
+
+        ArrayList<FAQ> faqs = new ArrayList<FAQ>();
+        faqs.add(new FAQ("What is the price", "$500.50"));
+
+		campList.add(new Camp(UUID.randomUUID(), "247",sessionList, 500.50, faqs,8.0,campActivities));
+		
+		DataWriter.saveCamp();
+		assertEquals("247", DataLoader.loadCamp().get(0).getName());
+	
+
+	}
+	
+	@Test
+	void testWritingEmptyCamp() throws ParseException {
+        ArrayList<String> campActivities = new ArrayList<String>();
+        ArrayList<FAQ> faqs = new ArrayList<FAQ>();
+        
+		campList.add(new Camp(UUID.fromString("00000000-0000-0000-0000-000000000000"), "",sessionList, 0.0, faqs,0.0,campActivities));
+		
+		DataWriter.saveCamp();
+		assertEquals("", DataLoader.loadCamp().get(0).getName());
+	
+	}
+	
+	@Test
+	void testWritingNullCamp() {
+		campList.add(new Camp(null, null,null, 0, null,0,null));
+		DataWriter.saveCamp();
+		assertEquals(null, DataLoader.loadCamp().get(0).getName());
+	}
+
 	
 }
