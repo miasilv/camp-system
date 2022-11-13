@@ -12,6 +12,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Harvey Villanueva
+ */
 public class CabinListTest {
     // cabins are dependent on counselors and campers, so it will need to be imported
     private CounselorList counselors = CounselorList.getInstance();

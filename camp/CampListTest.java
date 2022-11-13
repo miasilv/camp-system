@@ -12,6 +12,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Harvey Villanueva
+ */
 public class CampListTest {
     private CampList camps = CampList.getInstance();
     private ArrayList<Camp> campList = camps.getCamps();

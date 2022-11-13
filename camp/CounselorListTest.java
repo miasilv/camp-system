@@ -12,6 +12,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Harvey Villanueva
+ */
 public class CounselorListTest {
     private CounselorList counselors = CounselorList.getInstance();
     private ArrayList<Counselor> counselorList = counselors.getCounselors();
