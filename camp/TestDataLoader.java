@@ -38,7 +38,6 @@ class TestDataLoader {
 	private CabinList cabins = CabinList.getInstance();
 	private ArrayList<Cabin> cabinList = cabins.getCabins();
 	
-
 	private UserList users = UserList.getInstance();
 	private ArrayList<Director> directorList = users.getDirectors();
 	private ArrayList<Guardian> guardianList = users.getGuardians();
@@ -262,8 +261,6 @@ class TestDataLoader {
 		UserList.getInstance().getDirectors().clear();
 		CampList.getInstance().getCamps().clear();
 		
-		
-
 		DataWriter.saveCampers();
 		DataWriter.saveCounselors();
 		DataWriter.saveCabin();
