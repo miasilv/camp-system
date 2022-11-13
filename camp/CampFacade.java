@@ -292,7 +292,6 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCampActivity(String activity) {
-        CampList.getInstance().getCamps().get(0).addActivity(activity);
         return camp.addActivity(activity);
     }
 
@@ -853,10 +852,6 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCounselorAllergy(String allergy) {
-        for(int i=0; i<currentCounselorAllergyList.size(); i++){
-            if(currentCounselorAllergyList.get(i).equalsIgnoreCase(allergy))
-                return false;
-        }
         return currentCounselor.addAllergy(allergy);
     }
 
@@ -1118,12 +1113,7 @@ public class CampFacade {
      * @return true if successful, false if not successful
      */
     public boolean addCamperAllergy(String allergy) {
-        for(int i=0; i<currentCamperAllergyList.size(); i++){
-            if(currentCamperAllergyList.get(i).equalsIgnoreCase(allergy))
-                return false;
-        }
-        currentCamper.addAllergy(allergy);
-        return true;
+        return currentCamper.addAllergy(allergy);
     }
 
     /**
