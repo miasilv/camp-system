@@ -1,3 +1,7 @@
+/**
+ * @author Natalie Crawford
+ */
+
 package camp;
 import org.junit.platform.*;
 

@@ -1,3 +1,6 @@
+/**
+ * @author Natalie Crawford
+ */
 package camp;
 import static org.junit.jupiter.api.Assertions.*;
 
