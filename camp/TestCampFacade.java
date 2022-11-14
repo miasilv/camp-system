@@ -1,3 +1,7 @@
+/**
+ * Tested by Mia Silver
+ */
+
 package camp;
 import org.junit.platform.*;
 import static org.junit.Assert.*;
@@ -220,6 +224,7 @@ public class TestCampFacade {
 
 		ArrayList<Cabin> session1Cabins = new ArrayList<Cabin>();
 		session1Cabins.add(cabinList.get(0));
+		session1Cabins.add(cabinList.get(1));
 		String start = "07/01/2023";
 		Date startDate = formatter.parse(start);      
 		String end = "07/14/2023";
@@ -453,5 +458,220 @@ public class TestCampFacade {
 	}
 
 	//-------------------------- Adding and removing a camper from guardian --------------------------
-	
+	@Test
+	public void testValidAddCamper() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2007";
+		Date bDate = formatter.parse(bday); 
+		boolean added = facade.addGuardianCamper("Bob Jones", bDate);
+		assertTrue(added);
+	}
+
+	@Test
+	public void testInvalidAddCamper() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/1996";
+		Date bDate = formatter.parse(bday); 
+		boolean added = facade.addGuardianCamper(null, bDate);
+		assertFalse(added);
+	}
+
+	@Test
+	public void testSaveAddCamper() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2007";
+		Date bDate = formatter.parse(bday); 
+		facade.addGuardianCamper("Bob Jones", bDate);
+		
+		facade.save();
+		
+		facade = new CampFacade();
+		facade.updateCamp();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		boolean saved = false;
+		for(int i = 0; i < facade.getGuardianCamperList().size(); i++) {
+			if(facade.getGuardianCamperList().get(i).getName().equals("Bob Jones")) {
+				saved = true;
+			}
+		}
+		assertTrue(saved);
+	}
+
+	@Test
+	public void testValidRemoveCamper() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		boolean removed = facade.removeGuardianCamper(0);
+		assertTrue(removed);
+	}
+
+	@Test
+	public void testInvalidRemoveCamper() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		boolean removed = facade.removeGuardianCamper(facade.getGuardianCamperList().size() + 1);
+		assertFalse(removed);
+	}
+
+	@Test
+	public void testSaveRemovedCamper() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		int ogSize = facade.getGuardianCamperList().size();
+		facade.removeGuardianCamper(0);
+		assertNotEquals(ogSize, facade.getGuardianCamperList().size());
+	}
+
+	//-------------------------- Adding and removing a camper to a session --------------------------
+	@Test
+	public void testValidAddCamperSessioninCamper() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2011";
+		Date bDate = formatter.parse(bday); 
+		facade.addGuardianCamper("Bob Jones", bDate);
+		int index = -1;
+		for(int i = 0; i < facade.getGuardianCamperList().size(); i++) {
+			if(facade.getGuardianCamperList().get(i).getName().equals("Bob Jones")) {
+				index = i;
+				facade.updateCamper("guardian", index);
+			}
+		}
+		facade.addCamperSession(0);
+		facade.updateCamper("guardian", index);
+		facade.updateCabinHash(facade.getCampSessions().get(0));
+		boolean inCamper = false;
+		if(facade.getCamperSessions().contains(facade.getCampSessions().get(0))) {
+			inCamper = true;
+		}
+		assertTrue(inCamper);
+	}
+
+	@Test
+	public void testValidAddCamperSessioninCabin() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2011";
+		Date bDate = formatter.parse(bday); 
+		facade.addGuardianCamper("Bob Jones", bDate);
+		int index = -1;
+		for(int i = 0; i < facade.getGuardianCamperList().size(); i++) {
+			if(facade.getGuardianCamperList().get(i).getName().equals("Bob Jones")) {
+				index = i;
+				facade.updateCamper("guardian", index);
+			}
+		}
+		facade.addCamperSession(0);
+		facade.updateCamper("guardian", index);
+		boolean inCabin = false;
+		if(facade.getCampSessions().get(0).getCabin(1).hasCamper(facade.getGuardianCamperList().get(index))) {
+			inCabin = true;
+		}
+		assertTrue(inCabin);
+	}
+
+	@Test
+	public void testInvalidAddCamperSession() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2007";
+		Date bDate = formatter.parse(bday); 
+		facade.addGuardianCamper("Bob Jones", bDate);
+		for(int i = 0; i < facade.getGuardianCamperList().size(); i++) {
+			if(facade.getGuardianCamperList().get(i).getName().equals("Bob Jones")) {
+				facade.updateCamper("guardian", i);
+			}
+		}
+		facade.addCamperSession(0);
+		boolean inCamper = false;
+		if(facade.getCamperSessions().contains(facade.getCampSessions().get(0))) {
+			inCamper = true;
+		}
+		assertFalse(inCamper);
+	}
+
+	@Test
+	public void testSaveAddCamperSessioninCamper() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2011";
+		Date bDate = formatter.parse(bday); 
+		facade.addGuardianCamper("Bob Jones", bDate);
+		int index = -1;
+		for(int i = 0; i < facade.getGuardianCamperList().size(); i++) {
+			if(facade.getGuardianCamperList().get(i).getName().equals("Bob Jones")) {
+				index = i;
+				facade.updateCamper("guardian", index);
+			}
+		}
+		facade.addCamperSession(0);
+		facade.updateCabinHash(facade.getCampSessions().get(0));
+		facade.save();
+		facade = new CampFacade();
+		facade.updateCamp();
+		facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", index);
+		boolean inCamper = false;
+		if(facade.getCamperSessions().contains(facade.getCampSessions().get(0))) {
+			inCamper = true;
+		}
+		assertTrue(inCamper);
+	}
+
+	@Test
+	public void testSaveAddCamperSessioninCabin() throws ParseException {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		String bday = "07/28/2011";
+		Date bDate = formatter.parse(bday); 
+		facade.addGuardianCamper("Bob Jones", bDate);
+		int index = -1;
+		for(int i = 0; i < facade.getGuardianCamperList().size(); i++) {
+			if(facade.getGuardianCamperList().get(i).getName().equals("Bob Jones")) {
+				index = i;
+				facade.updateCamper("guardian", index);
+			}
+		}
+		facade.addCamperSession(0);
+		facade.updateCabinHash(facade.getCampSessions().get(0));
+		facade.save();
+		facade = new CampFacade();
+		facade.updateCamp();
+		facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", index);
+		boolean inCabin = false;
+		if(facade.getCampSessions().get(0).getCabin(1).hasCamper(facade.getGuardianCamperList().get(index))) {
+			inCabin = true;
+		}
+		assertTrue(inCabin);
+	}
+	//-------------------------- Adding and removing a contact to a camper --------------------------
 }
