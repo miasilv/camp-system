@@ -41,7 +41,6 @@ public class Cabin {
     public Cabin(ArrayList<Camper> campers, ArrayList<Counselor> counselors, double maxAge, double minAge, ArrayList<Schedule> schedules, UUID id){
         this.campers = campers;
         this.counselors = counselors;
-
         this.maxAge= maxAge;
         this.minAge = minAge; 
         this.cabinID = id;
@@ -102,6 +101,7 @@ public class Cabin {
        }
         return schedule;
     }
+
     /**
      * creates a string showcasing the weekly schedule
      * @return the String representation of the weekly schedule
