@@ -19,6 +19,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class TestDataLoader {
+
 	private CampList camps = CampList.getInstance();
 	private ArrayList<Camp> campList = camps.getCamps();
 	private ArrayList<FAQ> faqs = new ArrayList<FAQ>();
@@ -46,7 +47,14 @@ class TestDataLoader {
 	private ArrayList<Director> directorList = users.getDirectors();
 	private ArrayList<Guardian> guardianList = users.getGuardians();
 
-
+	/**
+	 * 
+	 * for most of the other test classes, the before each and after each code was taken 
+	 * from this one written by Natalie Crawford
+	 * 
+	 * 
+	 * @throws ParseException
+	 */
 	@BeforeEach
 	public void setup() throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  

@@ -1,3 +1,7 @@
+/**
+ * @author Natalie Crawford
+ */
+
 package camp;
 import org.junit.platform.*;
 
@@ -94,49 +98,4 @@ class TestGuardian {
 		guardian.removeCamper(0);
         assertEquals(0, guardian.getCampers().size());
 	}
-	
-	@Test
-	void testCounselorRemoveAllergies() {
-		counselor.removeAllergy("blueberries");
-		assertEquals(null, counselor.getAllergies().get(0));
-	}
-
-    @Test
-	void testCounselorAddAllergiesBoolean() {
-		counselor.addAllergy("pollen");
-		assertTrue(counselor.addAllergy("pollen"));
-	}
-
-    @Test
-	void testCounselorRemoveAllergiesBoolean() {
-		counselor.removeAllergy("blueberries");
-		assertTrue(counselor.removeAllergy(0));
-	}
-
-    @Test
-	void testCounselorRemoveEmergencyContact() {
-		counselor.removeEmergencyContact("Friend");
-		assertTrue(counselor.removeEmergencyContact("Friend"));
-	}
-
-    @Test
-	void testCounselorAddEmergencyContact() {
-		counselor.addEmergencyContact("friend", "booksky", "booksky@gmail.com", "8993345532", "12 trick or treat road");
-		assertEquals("booksky", counselor.getEmergencyContacts().get("friend").getName());
-	}
-
-    @Test
-	void testCounselorRemoveSession() {
-		//counselor.removeSession(counselor.getSessionThemes().get(i));
-        //assertTrue(counselor.removeSession(counselor.getSessionThemes().get(i)))
-	}
-
-    @Test
-	void testCounselorAddSession() {
-		//counselor.addSession(counselor.getSessionThemes());
-        //assertTrue(counselor.addSession(counselor.getSessionThemes()));
-	}
-
-
-
 }
