@@ -23,6 +23,7 @@ public class Schedule {
         toPickFrom = new ArrayList<String>();
         activities = new ArrayList<String>();
         
+        
         activities.add(allActivities.get(0));
         activities.add(allActivities.get(1));
         activities.add(getRandomActivity());
@@ -44,32 +45,20 @@ public class Schedule {
         LinkedHashMap<String, String> createdSchedule = new LinkedHashMap<String, String>();
         toPickFrom = new ArrayList<String>();
         activities = new ArrayList<String>();
-        this.allActs = acts;
-        
-        activities.add(allActs.get(0));
-        activities.add(allActs.get(1));
-        activities.add(getRandomActivity());
-        activities.add(allActs.get(2));
-        activities.add(getRandomActivity());
-        activities.add(allActs.get(3));
-        activities.add(getRandomActivity());
-        activities.add(allActs.get(4));
-        activities.add(allActs.get(5));
-        activities.add(allActs.get(6));
         
         for(int i = 0; i < times.length; i++) {
-            createdSchedule.put(times[i], activities.get(i));
+            createdSchedule.put(times[i], acts.get(i));
         }
         this.schedule = createdSchedule;
     }
 
-    public String getRandomActivity() {
+    private String getRandomActivity() {
         Random rand = new Random();
-        if(allActs.size() <= 7) {
+        if(allActivities.size() <= 7) {
             return "";
         }
-        for(int i = 7; i < allActs.size(); i++) {
-            toPickFrom.add(allActs.get(i));
+        for(int i = 7; i < allActivities.size(); i++) {
+            toPickFrom.add(allActivities.get(i));
         }
 
         return toPickFrom.get(rand.nextInt(toPickFrom.size()));
@@ -131,7 +120,7 @@ public class Schedule {
         return true;
 	}
 
-    public static void setActivityList(ArrayList<String> acts) {
+    public void setActivityList(ArrayList<String> acts) {
         allActivities = acts;
     }
 }

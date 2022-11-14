@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 public class TestCampFacade {
     private CampFacade facade;
+	private SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+	private Camp camp;  
 
     private CampList camps = CampList.getInstance();
 	private ArrayList<Camp> campList = camps.getCamps();
@@ -47,7 +49,6 @@ public class TestCampFacade {
 
 	@BeforeEach
 	public void setup() throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");  
 		camperList.clear();
 		counselorList.clear();
 		cabinList.clear();
@@ -253,6 +254,8 @@ public class TestCampFacade {
 		DataWriter.saveCamp();
 
         facade = new CampFacade();
+		camp = camps.getCamps().get(0);
+		facade.updateCamp();
 	}
 
     @AfterEach
@@ -337,5 +340,118 @@ public class TestCampFacade {
         assertFalse(signedIn);
     }
 
+	//-------------------------- Adding and removing a session from camp --------------------------
+    @Test
+    public void testValidAddCampSession() throws ParseException {
+        String start = "07/21/2023";   
+		Date startDate = formatter.parse(start);      
+		String end = "07/28/2023";
+		Date endDate = formatter.parse(end); 
+        boolean added = facade.addCampSession("Rainbows", "Colorful Magic", startDate, endDate);
+        assertTrue(added);
+    }
 
+	@Test
+	public void testInvalidAddCampSession() throws ParseException {
+		String start = "07/21/2023";   
+		Date startDate = formatter.parse(start);      
+		String end = "07/28/2023";
+		Date endDate = formatter.parse(end); 
+        boolean added = facade.addCampSession("Rainbows", "Colorful Magic", endDate, startDate);
+        assertFalse(added);
+	}
+
+    @Test
+    public void testSaveAddedCampSession() throws ParseException {
+        String start = "07/21/2023";   
+		Date startDate = formatter.parse(start);      
+		String end = "07/28/2023";
+		Date endDate = formatter.parse(end); 
+        facade.addCampSession("Rainbows", "Colorful Magic", startDate, endDate);
+        facade.save();
+		facade = new CampFacade();
+		assertEquals("Rainbows", camps.getCamps().get(0).getSession("Rainbows").getTheme());
+    }
+
+	@Test
+	public void testValidRemoveCampSession() {
+		boolean removed = facade.removeCampSession(0);
+		assertTrue(removed);
+	}
+
+	@Test
+	public void testInvalidRemoveCampSession() {
+		boolean removed = facade.removeCampSession(sessions.getSessions().size() + 1);
+		assertFalse(removed);
+	}
+
+	@Test
+	public void testSaveRemovedCampSession() {
+		int ogSize = facade.getCampSessions().size();
+		facade.removeCampSession(0);
+		facade.save();
+		facade = new CampFacade();
+		facade.updateCamp();
+		assertNotEquals(ogSize, facade.getCampSessions().size());
+	}
+
+	//-------------------------- Adding and removing a cabin from session --------------------------
+	@Test
+	public void testValidAddSessionCabin() {
+		facade.updateSession(0);
+		boolean added = facade.addSessionCabin(18, 19);
+		assertTrue(added);
+	}
+
+	@Test
+	public void testInvalidAddSessionCabin() {
+		facade.updateSession(0);
+		boolean added = facade.addSessionCabin(19, 18);
+		assertFalse(added);
+	}
+
+	@Test
+	public void testSaveAddedSessionCabin() {
+		facade.updateSession(0);
+		facade.addSessionCabin(18, 19);
+		facade.save();
+		facade = new CampFacade();
+		facade.updateCamp();
+		boolean saved = false;
+		for(int i = 0; i < cabinList.size(); i++) {
+			if(cabinList.get(i).getMinAge() == 18) {
+				saved = true;
+			}
+		}
+		assertTrue(saved);
+	}
+
+	@Test
+	public void testValidRemoveSessionCabin() {
+		facade.updateSession(0);
+		boolean removed = facade.removeSessionCabin(0);
+		assertTrue(removed);
+	}
+
+	@Test
+	public void testInvalidRemoveSessionCabin() {
+		facade.updateSession(0);
+		boolean removed = facade.removeSessionCabin(facade.getSessionCabinList().size() + 1);
+		assertFalse(removed);
+	}
+
+	@Test
+	public void testSaveRemovedSessionCabin() {
+		facade.updateSession(0);
+		int ogSize = facade.getSessionCabinList().size();
+		facade.removeSessionCabin(0);
+		facade.save();
+		facade = new CampFacade();
+		facade.updateCamp();
+		facade.updateSession(0);
+		assertNotEquals(ogSize, facade.getSessionCabinList().size());
+	}
+
+	//-------------------------- Adding and removing a camper from guardian --------------------------
+	
 }
