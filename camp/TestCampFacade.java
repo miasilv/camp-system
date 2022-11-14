@@ -673,5 +673,84 @@ public class TestCampFacade {
 		}
 		assertTrue(inCabin);
 	}
+	
 	//-------------------------- Adding and removing a contact to a camper --------------------------
+	@Test
+	public void testValidAddCamperEmergencyContact() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		boolean added = facade.addCamperContact("mother", "name", "email", "phone number", "address");
+		assertTrue(added);
+	}
+
+	@Test
+	public void testInvalidAddCamperEmergencyContact() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		boolean added = facade.addCamperContact(null, "name", "email", "phone number", "address");
+		assertFalse(added);
+	}
+
+	@Test
+	public void testSaveAddCamperEmergencyContact() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		facade.addCamperContact("mother", "name", "email", "phone number", "address");
+		facade.save();
+		facade = new CampFacade();
+		facade.updateCamp();
+		facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		assertTrue((facade.getCamperContactHash().get("mother")) != null);
+	}
+
+	@Test
+	public void testValidRemoveCamperEmergencyContact() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		boolean removed = facade.removeCamperContact("father");
+		assertTrue(removed);
+	}
+
+	@Test
+	public void testInvalidRemoveCamperEmergencyContact() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		boolean removed = facade.removeCamperContact("mother");
+		assertFalse(removed);
+	}
+
+	@Test
+	public void testSaveRemoveCamperEmergencyContact() {
+		String email = users.getGuardians().get(0).getEmail();
+        String password = users.getGuardian(email).getPassword();
+        facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		facade.removeCamperContact("father");
+		facade.save();
+		facade.updateCamp();
+		facade.signIn(email, password);
+		facade.updateGuardian();
+		facade.updateCamper("guardian", 0);
+		assertTrue((facade.getCamperContactHash().get("father")) == null);
+	}
+
+	
 }
