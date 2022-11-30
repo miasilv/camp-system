@@ -297,7 +297,7 @@ public class UserListTest {
         assertSame(wrongFormat, null);
     }
 
-    // GET USER (ID) -------------------------------------------------------
+    // GET USER (UUID) -------------------------------------------------------
 
     @Test
     void testGetUserUUIDDirector() {
@@ -310,5 +310,6 @@ public class UserListTest {
         User guard = users.getUser(UUID.fromString("8e99955f-d23e-40a0-b693-231c42f41f09"));
         assertSame(guard, (User) guardianList.get(0));
     }
+
 
 }
